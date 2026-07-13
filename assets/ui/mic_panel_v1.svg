@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="560" viewBox="0 0 420 280">
+  <rect width="420" height="280" rx="10" fill="#FBFCF9"/>
+  <rect x="0.5" y="0.5" width="419" height="279" rx="9.5" fill="none" stroke="#AEBFB3"/>
+
+  <path d="M10 .5H410A9.5 9.5 0 01419.5 10V48H.5V10A9.5 9.5 0 0110 .5Z" fill="#2E4138"/>
+  <line x1=".5" y1="48" x2="419.5" y2="48" stroke="#26372F"/>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+    <rect x="26" y="10" width="8" height="13" rx="4" stroke="#F0D268"/>
+    <path d="M23 19V20A7 7 0 0037 20V19M30 27V30M26.5 30H33.5" stroke="#A7C5B2"/>
+  </g>
+  <g font-family="Arial, sans-serif">
+    <text x="52" y="22" fill="#F7F8F4" font-size="12" font-weight="700" letter-spacing="1.1">MIC INPUT</text>
+    <text x="52" y="35" fill="#B7C7BD" font-size="7" font-weight="500" letter-spacing="1.15">LIVE / MONO OR STEREO / 20 MS RAMP</text>
+  </g>
+
+  <g fill="#FFFFFF" stroke="#BDCBC1">
+    <rect x="16" y="78" width="72" height="142" rx="8"/>
+    <rect x="98" y="78" width="110" height="142" rx="8"/>
+    <rect x="216" y="78" width="112" height="142" rx="8"/>
+  </g>
+  <rect x="334" y="78" width="70" height="142" rx="8" fill="#EEF3EE" stroke="#BDCBC1"/>
+
+  <g font-family="Arial, sans-serif" fill="#405348">
+    <text x="52" y="174" text-anchor="middle" font-size="9" font-weight="700" letter-spacing=".75">ENABLE</text>
+    <text x="114" y="101" font-size="9" font-weight="700" letter-spacing=".75">MONO CH</text>
+    <text x="114" y="115" fill="#819187" font-size="7" font-weight="500" letter-spacing=".7">INPUT 1–8</text>
+    <text x="226" y="101" font-size="9" font-weight="700" letter-spacing=".75">STEREO PAIR</text>
+    <text x="369" y="101" text-anchor="middle" font-size="9" font-weight="700" letter-spacing=".75">OUTPUT</text>
+  </g>
+
+  <circle cx="52" cy="123" r="18" fill="#F1F5F1"/>
+  <circle cx="52" cy="123" r="13" fill="#EDF4EF" stroke="#8CB09E" stroke-width="2"/>
+  <circle cx="52" cy="123" r="4" fill="#426757"/>
+
+  <rect x="114" y="130" width="78" height="28" rx="6" fill="#F7FAF7" stroke="#AFC0B5"/>
+
+  <g font-family="Arial, sans-serif" fill="#60736A" font-size="9">
+    <text x="269" y="131">OFF</text>
+    <text x="269" y="148">1–2</text>
+    <text x="269" y="165">3–4</text>
+    <text x="269" y="182">5–6</text>
+    <text x="269" y="199">7–8</text>
+  </g>
+
+  <rect x="346" y="106" width="46" height="108" rx="6" fill="#E2E9E4" stroke="#AEBFB4"/>
+
+  <line x1="16" y1="239" x2="404" y2="239" stroke="#9EB5A5" stroke-width="2"/>
+  <text x="16" y="266" fill="#60736A" font-family="Arial, sans-serif" font-size="8" letter-spacing=".75">CLEAN STEREO L / R</text>
+  <circle cx="400" cy="264" r="3" fill="#8CAEAA"/>
+</svg>

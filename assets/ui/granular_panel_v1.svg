@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="880" viewBox="0 0 720 440">
+  <rect width="720" height="440" rx="10" fill="#FBFCF9"/>
+  <rect x=".5" y=".5" width="719" height="439" rx="9.5" fill="none" stroke="#AEBFB3"/>
+  <path d="M10 .5H710A9.5 9.5 0 01719.5 10V48H.5V10A9.5 9.5 0 0110 .5Z" fill="#2E4138"/>
+  <g><circle cx="25" cy="21" r="4" fill="#8FB6A0"/><circle cx="36" cy="12" r="3.5" fill="#F0D268"/><circle cx="43" cy="25" r="5" fill="#8FB6A0"/><circle cx="31" cy="34" r="3" fill="#DDB83F"/><path d="M22 12L25 9M44 11L47 8M46 34L49 37" stroke="#A7C5B2" stroke-width="1.5" stroke-linecap="round"/></g>
+  <g font-family="Arial, sans-serif"><text x="62" y="22" fill="#F7F8F4" font-size="12" font-weight="700" letter-spacing="1.1">GRANULAR INPUT</text><text x="62" y="35" fill="#B7C7BD" font-size="7" letter-spacing="1.1">CAPTURE / LOAD / SHAPE / PERFORM</text></g>
+
+  <rect x="14" y="62" width="626" height="50" rx="8" fill="#FFFFFF" stroke="#BDCBC1"/>
+  <g font-family="Arial, sans-serif" font-size="7" font-weight="700" fill="#405348" text-anchor="middle" letter-spacing=".35"><text x="53" y="104">ENABLE</text><text x="135" y="104">RECORD MIC</text><text x="237" y="104">PLAY TEXTURE</text></g>
+  <g><rect x="42" y="71" width="22" height="22" rx="4" fill="#EDF4EF" stroke="#9EB5A5"/><circle cx="53" cy="82" r="4" fill="#426757"/><rect x="124" y="71" width="22" height="22" rx="4" fill="#FFF3F0" stroke="#D5A596"/><circle cx="135" cy="82" r="5" fill="#BE7963"/><rect x="226" y="71" width="22" height="22" rx="4" fill="#FFF9E4" stroke="#D8B94B"/><path d="M234 76L243 82L234 88Z" fill="#D1AC31"/></g>
+  <rect x="296" y="70" width="132" height="34" rx="6" fill="#F3F7F3" stroke="#AFC0B5" stroke-dasharray="4 3"/><text x="362" y="91" text-anchor="middle" fill="#75877D" font-family="Arial, sans-serif" font-size="8">DROP SAMPLE</text>
+  <rect x="438" y="70" width="46" height="34" rx="6" fill="#FFFDF5" stroke="#D1BA61"/><path d="M461 77V91M455 85L461 91L467 85" fill="none" stroke="#92792D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="494" y="70" width="136" height="34" rx="6" fill="#F3F7F3" stroke="#AFC0B5"/>
+
+  <rect x="14" y="120" width="626" height="174" rx="8" fill="#F2F6F2" stroke="#BDCBC1"/>
+  <text x="28" y="137" fill="#405348" font-family="Arial, sans-serif" font-size="8" font-weight="700" letter-spacing=".7">BUFFER VIEW / DRAG POSITION</text>
+  <g stroke="#D7E0D8" stroke-width=".7"><path d="M92 147V282M170 147V282M248 147V282M326 147V282M404 147V282M482 147V282M560 147V282"/></g>
+  <path d="M26 212L34 204L42 220L50 181L58 236L66 165L74 247L82 190L90 229L98 175L106 243L114 201L122 218L130 187L138 232L146 205L154 216L162 170L170 249L178 183L186 238L194 198L202 222L210 185L218 240L226 203L234 219L242 177L250 245L258 194L266 232L274 205L282 216L290 184L298 241L306 202L314 220L322 168L330 250L338 186L346 239L354 200L362 224L370 188L378 236L386 204L394 218L402 176L410 246L418 193L426 233L434 202L442 219L450 180L458 243L466 198L474 229L482 188L490 237L498 205L506 219L514 174L522 248L530 190L538 236L546 199L554 222L562 184L570 241L578 203L586 218L594 180L602 238L612 200L628 212" fill="none" stroke="#7FA47B" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="356" y1="147" x2="356" y2="282" stroke="#D6B542" stroke-width="2"/>
+
+  <rect x="14" y="296" width="626" height="42" rx="7" fill="#FFFFFF" stroke="#BDCBC1"/>
+  <g font-family="Arial, sans-serif" font-size="6.5" font-weight="700" fill="#819187" letter-spacing=".55"><text x="24" y="308">MATERIAL</text><text x="264" y="308">STATUS</text><text x="444" y="308">TIME</text></g>
+
+  <rect x="14" y="342" width="626" height="86" rx="8" fill="#F8FAF7" stroke="#BDCBC1"/>
+  <g stroke="#D4DED6"><path d="M103 342V428M192 342V428M281 342V428M370 342V428M459 342V428M548 342V428"/></g>
+  <g font-family="Arial, sans-serif" text-anchor="middle"><g fill="#405348" font-size="7" font-weight="700" letter-spacing=".45"><text x="58" y="355">WET</text><text x="147" y="355">DENSITY</text><text x="236" y="355">SIZE</text><text x="325" y="355">PITCH</text><text x="414" y="355">SPRAY</text><text x="503" y="355">GRAIN AMP</text><text x="592" y="355">TEXTURE</text></g><g fill="#819187" font-size="6"><text x="58" y="365">%</text><text x="147" y="365">gr/s</text><text x="236" y="365">ms</text><text x="325" y="365">st</text><text x="414" y="365">ms</text><text x="503" y="365">dB</text><text x="592" y="365">dB</text></g></g>
+  <g fill="#EDF3EE" stroke="#96B3A4" stroke-width="2"><circle cx="58" cy="387" r="18"/><circle cx="147" cy="387" r="18"/><circle cx="236" cy="387" r="18"/><circle cx="325" cy="387" r="18"/><circle cx="414" cy="387" r="18"/><circle cx="503" cy="387" r="18" stroke="#D2B34B"/><circle cx="592" cy="387" r="18" stroke="#D2B34B"/></g>
+  <g stroke="#436657" stroke-width="2" stroke-linecap="round"><path d="M58 387L49 378M147 387L140 375M236 387L244 376M325 387L325 374M414 387L422 379"/><path d="M503 387L494 378M592 387L600 377" stroke="#9A7B26"/></g>
+  <g fill="#FFFFFF" stroke="#C5D1C8"><rect x="34" y="410" width="48" height="13" rx="4"/><rect x="123" y="410" width="48" height="13" rx="4"/><rect x="212" y="410" width="48" height="13" rx="4"/><rect x="301" y="410" width="48" height="13" rx="4"/><rect x="390" y="410" width="48" height="13" rx="4"/><rect x="479" y="410" width="48" height="13" rx="4"/><rect x="568" y="410" width="48" height="13" rx="4"/></g>
+
+  <rect x="650" y="62" width="56" height="366" rx="8" fill="#EEF3EE" stroke="#BDCBC1"/>
+  <text x="678" y="82" text-anchor="middle" fill="#405348" font-family="Arial, sans-serif" font-size="8" font-weight="700" letter-spacing=".6">OUTPUT</text>
+  <rect x="663" y="108" width="30" height="234" rx="6" fill="#E2E9E4" stroke="#AEBFB4"/><rect x="672" y="122" width="12" height="187" rx="4" fill="#14201B"/><rect x="667" y="222" width="22" height="7" rx="3.5" fill="#4C6D5E" stroke="#8FAF9F"/>
+  <text x="678" y="362" text-anchor="middle" fill="#60736A" font-family="Arial, sans-serif" font-size="7">0.0 dB</text><circle cx="678" cy="414" r="3" fill="#8CAEAA"/>
+</svg>

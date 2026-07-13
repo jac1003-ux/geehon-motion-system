@@ -1,0 +1,29 @@
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Max temporary and backup files
+*.maxpat~
+*.maxproj~
+*.mxbak
+*.bak
+*~
+
+# Local tools and internal planning artifacts
+.superpowers/
+docs/superpowers/
+node_modules/
+.env
+.env.*
+
+# Submission and delivery archives
+teacher_packages/
+*.zip
+*.maxzip
+
+# Local logs
+*.log
+
+# Do not publish local test audio by default
+media/*
+!media/.gitkeep

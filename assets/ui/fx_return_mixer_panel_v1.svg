@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300">
+  <rect width="760" height="300" rx="10" fill="#FBFCF9"/>
+  <rect x="0.5" y="0.5" width="759" height="299" rx="9.5" fill="none" stroke="#AEBFB3"/>
+
+  <path d="M10 .5H750A9.5 9.5 0 01759.5 10V48H.5V10A9.5 9.5 0 0110 .5Z" fill="#2E4138"/>
+  <line x1="0" y1="48" x2="760" y2="48" stroke="#26372F"/>
+
+  <g transform="translate(17 8) scale(.135)">
+    <g transform="translate(120 120)">
+      <path d="M-5-13C-13-39-10-64 1-76C13-63 12-38 5-13Z" fill="#E4BD46"/>
+      <path d="M-5-13C-12-34-9-55 1-65C12-54 11-33 5-13Z" fill="#F0D273" transform="rotate(45)"/>
+      <path d="M-5-13C-13-37-10-60 1-70C13-58 12-35 5-13Z" fill="#D9AD35" transform="rotate(90)"/>
+      <path d="M-5-13C-11-31-8-50 1-59C11-49 10-30 5-13Z" fill="#EBC95E" transform="rotate(135)"/>
+      <path d="M-5-13C-12-35-9-57 1-67C12-56 11-34 5-13Z" fill="#DCAE37" transform="rotate(180)"/>
+      <g transform="rotate(225)"><path d="M-6-13C-15-35-10-58 2-68C16-54 14-32 6-13Z" fill="#7FA47B"/><path d="M0-14C1-29 2-45 2-61" fill="none" stroke="#DCE9DC" stroke-width="2.3"/></g>
+      <path d="M-5-13C-11-30-8-48 1-57C11-47 10-29 5-13Z" fill="#F0D06E" transform="rotate(270)"/>
+      <path d="M-5-13C-12-34-9-55 1-64C12-53 11-32 5-13Z" fill="#E1B63E" transform="rotate(315)"/>
+      <circle cx="1" cy="0" r="14" fill="#F3DC88"/>
+    </g>
+  </g>
+
+  <text x="58" y="22" fill="#F7F8F4" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.1">FX RETURN MIXER</text>
+  <text x="58" y="35" fill="#B7C7BD" font-family="Arial, sans-serif" font-size="7" font-weight="500" letter-spacing="1.2">DRY / VOCODER / CHOP / TREMOLO</text>
+  <rect x="636" y="13" width="106" height="22" rx="11" fill="none" stroke="#8B7831"/>
+  <text x="651" y="27" fill="#F0D268" font-family="Arial, sans-serif" font-size="8" font-weight="600" letter-spacing="1">RETURN BANK A</text>
+
+  <rect x="0" y="48" width="145" height="252" fill="#FBFCF9"/>
+  <rect x="145" y="48" width="145" height="252" fill="#F8FAF8"/>
+  <rect x="290" y="48" width="145" height="252" fill="#FBFCF9"/>
+  <rect x="435" y="48" width="145" height="252" fill="#F8FAF8"/>
+  <rect x="580" y="48" width="180" height="252" fill="#F7F6EE"/>
+  <g stroke="#C1CEC4">
+    <line x1="145" y1="48" x2="145" y2="300"/>
+    <line x1="290" y1="48" x2="290" y2="300"/>
+    <line x1="435" y1="48" x2="435" y2="300"/>
+    <line x1="580" y1="48" x2="580" y2="300"/>
+  </g>
+
+  <g font-family="Arial, sans-serif" font-size="10" font-weight="700" letter-spacing=".8">
+    <text x="16" y="69" fill="#476153">DRY</text>
+    <text x="161" y="69" fill="#447D7C">VOCODER</text>
+    <text x="306" y="69" fill="#447D7C">CHOP</text>
+    <text x="451" y="69" fill="#447D7C">TREMOLO</text>
+    <text x="596" y="69" fill="#B48B16">MASTER OUT</text>
+  </g>
+  <g fill="none" stroke-width="1.1">
+    <circle cx="123" cy="69" r="12" stroke="#86A594"/>
+    <circle cx="268" cy="69" r="12" stroke="#6D9E9D"/>
+    <circle cx="413" cy="69" r="12" stroke="#6D9E9D"/>
+    <circle cx="558" cy="69" r="12" stroke="#6D9E9D"/>
+  </g>
+
+  <g fill="#FFFFFF" stroke-width="1">
+    <rect x="17" y="126" width="42" height="58" rx="6" stroke="#AFC2B6"/>
+    <rect x="162" y="126" width="42" height="58" rx="6" stroke="#86ADAC"/>
+    <rect x="307" y="126" width="42" height="58" rx="6" stroke="#86ADAC"/>
+    <rect x="452" y="126" width="42" height="58" rx="6" stroke="#86ADAC"/>
+  </g>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M25 155H51M25 151V159M51 151V159" stroke="#779986" stroke-width="1.6"/>
+    <g stroke="#4E9291" stroke-width="1.5">
+      <path d="M170 164V148M175 164V143M180 164V153M185 164V138M190 164V150M195 164V145"/>
+      <path d="M315 154C319 144 322 164 326 154S333 164 337 154M323 143V165M332 143V165"/>
+      <path d="M459 157C465 143 471 143 477 157S486 171 490 157"/>
+    </g>
+  </g>
+
+  <g fill="#E8EEE9" stroke="#B4C3B9">
+    <rect x="75" y="96" width="54" height="150" rx="5"/>
+    <rect x="220" y="96" width="54" height="150" rx="5"/>
+    <rect x="365" y="96" width="54" height="150" rx="5"/>
+    <rect x="510" y="96" width="54" height="150" rx="5"/>
+  </g>
+
+  <g fill="none" stroke="#91AAA6" stroke-width="1.7">
+    <path d="M14 268H131"/><path d="M159 268H276"/><path d="M304 268H421"/><path d="M449 268H566"/>
+  </g>
+  <g fill="#627972" font-family="Arial, sans-serif" font-size="7" letter-spacing=".8">
+    <text x="16" y="285">DRY / L-R</text>
+    <text x="161" y="285">RETURN / L-R</text>
+    <text x="306" y="285">RETURN / L-R</text>
+    <text x="451" y="285">RETURN / L-R</text>
+  </g>
+  <circle cx="127" cy="282" r="3" fill="#7FA69A"/>
+  <circle cx="272" cy="282" r="3" fill="#5F9B9A"/>
+  <circle cx="417" cy="282" r="3" fill="#5F9B9A"/>
+  <circle cx="562" cy="282" r="3" fill="#5F9B9A"/>
+
+  <rect x="596" y="91" width="54" height="156" rx="5" fill="#FFFDF6" stroke="#D8B43D"/>
+  <rect x="670" y="96" width="12" height="150" rx="4" fill="#F4F0DF" stroke="#D3C38A"/>
+  <rect x="690" y="96" width="12" height="150" rx="4" fill="#F4F0DF" stroke="#D3C38A"/>
+  <g fill="none" stroke="#B68E1B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="716" y="57" width="28" height="28" rx="6"/>
+    <path d="M723 64H733L727 71L733 78H723M736 71H741M739 68L742 71L739 74"/>
+  </g>
+  <g fill="#927824" font-family="Arial, sans-serif" font-size="6.5" text-anchor="middle">
+    <text x="676" y="90">L</text><text x="696" y="90">R</text>
+  </g>
+  <path d="M594 268H746" stroke="#DFBD48" stroke-width="1.8"/>
+  <text x="596" y="285" fill="#806B27" font-family="Arial, sans-serif" font-size="7" letter-spacing=".8">MIXED L / R</text>
+  <circle cx="742" cy="282" r="3" fill="#DFBD48"/>
+</svg>

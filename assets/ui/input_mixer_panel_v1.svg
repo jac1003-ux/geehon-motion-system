@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="320" viewBox="0 0 760 320">
+  <rect width="760" height="320" rx="10" fill="#FBFCF9"/>
+  <rect x="0.5" y="0.5" width="759" height="319" rx="9.5" fill="none" stroke="#AEBFB3"/>
+
+  <path d="M10 0.5H750A9.5 9.5 0 01759.5 10V48H0.5V10A9.5 9.5 0 0110 .5Z" fill="#2E4138"/>
+  <line x1="0" y1="48" x2="760" y2="48" stroke="#26372F"/>
+
+  <g transform="translate(17 8) scale(.135)">
+    <g transform="translate(120 120)">
+      <path d="M-5-13C-13-39-10-64 1-76C13-63 12-38 5-13Z" fill="#E4BD46"/>
+      <path d="M-5-13C-12-34-9-55 1-65C12-54 11-33 5-13Z" fill="#F0D273" transform="rotate(45)"/>
+      <path d="M-5-13C-13-37-10-60 1-70C13-58 12-35 5-13Z" fill="#D9AD35" transform="rotate(90)"/>
+      <path d="M-5-13C-11-31-8-50 1-59C11-49 10-30 5-13Z" fill="#EBC95E" transform="rotate(135)"/>
+      <path d="M-5-13C-12-35-9-57 1-67C12-56 11-34 5-13Z" fill="#DCAE37" transform="rotate(180)"/>
+      <g transform="rotate(225)"><path d="M-6-13C-15-35-10-58 2-68C16-54 14-32 6-13Z" fill="#7FA47B"/><path d="M0-14C1-29 2-45 2-61" fill="none" stroke="#DCE9DC" stroke-width="2.3"/></g>
+      <path d="M-5-13C-11-30-8-48 1-57C11-47 10-29 5-13Z" fill="#F0D06E" transform="rotate(270)"/>
+      <path d="M-5-13C-12-34-9-55 1-64C12-53 11-32 5-13Z" fill="#E1B63E" transform="rotate(315)"/>
+      <circle cx="1" cy="0" r="14" fill="#F3DC88"/>
+    </g>
+  </g>
+
+  <text x="58" y="22" fill="#F7F8F4" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.1">SOURCE MIXER</text>
+  <text x="58" y="35" fill="#B7C7BD" font-family="Arial, sans-serif" font-size="7" font-weight="500" letter-spacing="1.2">MIC / FILE / GRANULAR</text>
+  <rect x="594" y="13" width="148" height="22" rx="11" fill="none" stroke="#756936"/>
+  <text x="607" y="27" fill="#F0D268" font-family="Arial, sans-serif" font-size="8" font-weight="600" letter-spacing="1">SOURCE MIX / DRY BUS</text>
+
+  <rect x="0" y="48" width="182" height="272" fill="#FBFCF9"/>
+  <rect x="182" y="48" width="182" height="272" fill="#F8FAF7"/>
+  <rect x="364" y="48" width="182" height="272" fill="#FBFCF9"/>
+  <rect x="546" y="48" width="214" height="272" fill="#EDF2EE"/>
+  <line x1="182" y1="48" x2="182" y2="320" stroke="#C1CEC4"/>
+  <line x1="364" y1="48" x2="364" y2="320" stroke="#C1CEC4"/>
+  <line x1="546" y1="48" x2="546" y2="320" stroke="#C1CEC4"/>
+
+  <g font-family="Arial, sans-serif">
+    <text x="16" y="68" fill="#35483E" font-size="10" font-weight="700" letter-spacing="1">MIC</text>
+    <text x="16" y="80" fill="#819187" font-size="7" font-weight="500" letter-spacing="1">LIVE SOURCE</text>
+    <text x="198" y="68" fill="#35483E" font-size="10" font-weight="700" letter-spacing="1">FILE</text>
+    <text x="198" y="80" fill="#819187" font-size="7" font-weight="500" letter-spacing="1">SAMPLE SOURCE</text>
+    <text x="380" y="68" fill="#35483E" font-size="10" font-weight="700" letter-spacing="1">GRANULAR</text>
+    <text x="380" y="80" fill="#819187" font-size="7" font-weight="500" letter-spacing="1">TEXTURE SOURCE</text>
+    <text x="566" y="68" fill="#35483E" font-size="10" font-weight="700" letter-spacing="1">MASTER</text>
+    <text x="566" y="80" fill="#819187" font-size="7" font-weight="500" letter-spacing="1">DRY OUTPUT</text>
+  </g>
+
+  <g fill="#FFFFFF" stroke="#B8C8BD">
+    <rect x="17" y="138" width="48" height="82" rx="7"/>
+    <rect x="199" y="138" width="48" height="82" rx="7"/>
+    <rect x="381" y="138" width="48" height="82" rx="7"/>
+  </g>
+
+  <g fill="none" stroke="#8FB6A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="33" y="159" width="16" height="25" rx="8"/>
+    <path d="M28 177V179A13 13 0 0054 179V177M41 192V200M35 200H47"/>
+    <path d="M211 154H229L237 162V203H211ZM229 154V163H237"/>
+    <path d="M216 186C220 177 222 195 226 186S232 195 235 186" stroke="#D4BD5C"/>
+  </g>
+  <g>
+    <circle cx="394" cy="180" r="4" fill="#8FB6A0"/>
+    <circle cx="405" cy="161" r="3.5" fill="#D4BD5C"/>
+    <circle cx="416" cy="178" r="5" fill="#8FB6A0"/>
+    <circle cx="405" cy="196" r="3" fill="#D4BD5C"/>
+    <path d="M392 160L395 157M417 159L420 156M419 197L422 200" stroke="#728F7D" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <g fill="#E8EEE9" stroke="#B4C3B9">
+    <rect x="84" y="103" width="54" height="152" rx="5"/>
+    <rect x="266" y="103" width="54" height="152" rx="5"/>
+    <rect x="448" y="103" width="54" height="152" rx="5"/>
+    <rect x="674" y="100" width="54" height="158" rx="5"/>
+  </g>
+  <g fill="none" stroke="#9FB5A6" stroke-width="2">
+    <path d="M14 288H168"/><path d="M196 288H350"/><path d="M378 288H532"/>
+  </g>
+  <path d="M562 288H744" stroke="#DFBD48" stroke-width="2"/>
+  <g fill="#687B70" font-family="Arial, sans-serif" font-size="7" letter-spacing=".8">
+    <text x="16" y="303">GAIN / L-R</text><text x="198" y="303">GAIN / L-R</text><text x="380" y="303">GAIN / L-R</text><text x="566" y="303">MIXED L / R</text>
+  </g>
+  <circle cx="164" cy="301" r="3" fill="#8CAEAA"/><circle cx="346" cy="301" r="3" fill="#8CAEAA"/><circle cx="528" cy="301" r="3" fill="#8CAEAA"/><circle cx="739" cy="301" r="3" fill="#DFBD48"/>
+
+  <rect x="565" y="97" width="88" height="58" rx="7" fill="#FFFDF5" stroke="#D1BA61"/>
+  <text x="576" y="113" fill="#8E7A32" font-family="Arial, sans-serif" font-size="8" font-weight="600" letter-spacing="1">SOURCE SUM</text>
+  <rect x="575" y="121" width="68" height="24" rx="4" fill="#F7F8F4" stroke="#E0D4A1"/>
+  <rect x="565" y="172" width="88" height="34" rx="7" fill="#FFFDF5" stroke="#D0B64F"/>
+  <path d="M579 185H584L590 179V199L584 193H579Z" fill="none" stroke="#756326" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M596 184L603 194M603 184L596 194" stroke="#756326" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="610" y="192" fill="#756326" font-family="Arial, sans-serif" font-size="7" font-weight="600" letter-spacing=".8">MUTE ALL</text>
+
+  <g fill="none" stroke="#9AAFA1">
+    <circle cx="157" cy="70" r="12"/><circle cx="339" cy="70" r="12"/><circle cx="521" cy="70" r="12"/>
+  </g>
+</svg>

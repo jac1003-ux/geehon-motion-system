@@ -1,0 +1,45 @@
+body {
+	margin: 0px;
+}
+
+#container {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	padding: 0px;
+	width: 640px;
+	height: 480px;
+	overflow: hidden;
+}
+
+#overlay {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+#videoel {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	padding: 0px;
+	font-size: 0;
+	overflow: hidden;
+	width: 640px;
+	height: 480px;
+	object-fit: cover;
+}
+
+canvas {
+	z-index: 1;
+	position: absolute;
+	pointer-events: none;
+	/* transform: scaleX(-1); */
+	/* transform: scaleX(-1); */
+}
+
+video {
+	/* -webkit-transform: scaleX(-1); */
+	/* transform: scaleX(-1); */
+	/* transform: rotateY(180deg); */
+}
