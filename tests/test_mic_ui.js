@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
-const patchPath = path.join(root, "mt_input_mic_ui.maxpat");
+const patchPath = path.join(root, "patchers", "inputs", "mt_input_mic_ui.maxpat");
 
 function boxMap(patcher) {
   return new Map((patcher.boxes || []).map((entry) => [entry.box.id, entry.box]));
@@ -76,7 +76,6 @@ assert.strictEqual(boxes.get("m-out-l").comment, "Mic audio L");
 assert.strictEqual(boxes.get("m-out-r").comment, "Mic audio R");
 assert(recursiveBoxes.some((box) => box.text === "s mt_mic_enable_state"), "shared Enable sender missing");
 assert(recursiveBoxes.some((box) => box.text === "r mt_mic_enable_state"), "shared Enable receiver missing");
-assert(fs.existsSync(path.join(root, "mic_panel_v1.png")), "module-local PNG skin is missing");
 assert(fs.existsSync(path.join(root, "assets", "ui", "mic_panel_v1.svg")), "editable Mic SVG skin is missing");
 assert(fs.existsSync(path.join(root, "assets", "ui", "mic_panel_v1.png")), "canonical 2x Mic PNG skin is missing");
 for (const id of ["m-title", "m-note", "m-enable-label", "m-channel-label", "m-pair-label", "m-pair-items", "m-gain-label", "m-out-note"]) {

@@ -3,8 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
-const patchPath = path.join(root, "mt_input_file_ui.maxpat");
-const localPng = path.join(root, "file_panel_v1.png");
+const patchPath = path.join(root, "patchers", "inputs", "mt_input_file_ui.maxpat");
 const assetPng = path.join(root, "assets", "ui", "file_panel_v1.png");
 const assetSvg = path.join(root, "assets", "ui", "file_panel_v1.svg");
 
@@ -44,10 +43,8 @@ function pngSize(filePath) {
 }
 
 assert(fs.existsSync(patchPath), "mt_input_file_ui.maxpat has not been generated");
-assert(fs.existsSync(localPng), "module-local file_panel_v1.png is missing");
 assert(fs.existsSync(assetPng), "canonical file_panel_v1.png is missing");
 assert(fs.existsSync(assetSvg), "editable file_panel_v1.svg is missing");
-assert.deepStrictEqual(pngSize(localPng), [1040, 680]);
 assert.deepStrictEqual(pngSize(assetPng), [1040, 680]);
 
 const raw = fs.readFileSync(patchPath, "utf8");

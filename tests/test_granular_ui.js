@@ -3,8 +3,10 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
-const patchPath = path.join(root, process.env.GRANULAR_PATCH || "mt_input_granular_ui.maxpat");
-const localPng = path.join(root, "granular_panel_v1.png");
+const patchPath = path.join(
+  root,
+  process.env.GRANULAR_PATCH || path.join("patchers", "inputs", "mt_input_granular_ui.maxpat")
+);
 const assetPng = path.join(root, "assets", "ui", "granular_panel_v1.png");
 const assetSvg = path.join(root, "assets", "ui", "granular_panel_v1.svg");
 
@@ -44,10 +46,8 @@ function pngSize(filePath) {
 }
 
 assert(fs.existsSync(patchPath), "mt_input_granular_ui.maxpat has not been generated");
-assert(fs.existsSync(localPng), "module-local granular_panel_v1.png is missing");
 assert(fs.existsSync(assetPng), "canonical granular_panel_v1.png is missing");
 assert(fs.existsSync(assetSvg), "editable granular_panel_v1.svg is missing");
-assert.deepStrictEqual(pngSize(localPng), [1440, 880]);
 assert.deepStrictEqual(pngSize(assetPng), [1440, 880]);
 
 const raw = fs.readFileSync(patchPath, "utf8");
@@ -235,7 +235,7 @@ assert(coreBoxes.some((box) => box.text === "adc~ 1"));
 assert(coreBoxes.some((box) => box.text === "info~ mt_granular_buffer"));
 assert(coreBoxes.some((box) => box.text === "s mt_granular_position"));
 
-const synthPath = path.join(root, "mt_granular_synth.maxpat");
+const synthPath = path.join(root, "patchers", "dsp", "mt_granular_synth.maxpat");
 const synth = JSON.parse(fs.readFileSync(synthPath, "utf8")).patcher;
 const synthBoxes = boxMap(synth);
 assert.strictEqual(synthBoxes.get("g-c-amp-load").text, "loadmess -32");

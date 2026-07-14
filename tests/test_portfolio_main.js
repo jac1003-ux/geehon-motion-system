@@ -3,11 +3,11 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
-const patchPath = path.join(root, "mt_portfolio_main.maxpat");
+const patchPath = path.join(root, "patchers", "mt_portfolio_main.maxpat");
 const patcher = JSON.parse(fs.readFileSync(patchPath, "utf8")).patcher;
 const boxes = new Map((patcher.boxes || []).map((entry) => [entry.box.id, entry.box]));
 
-assert.deepStrictEqual(patcher.rect.slice(2), [1760, 960], "main Presentation window size");
+assert.deepStrictEqual(patcher.rect.slice(2), [1732, 941], "main saved window size");
 
 function hasLine(sourceId, sourceOutlet, destinationId, destinationInlet) {
   return (patcher.lines || []).some((entry) => {

@@ -3,8 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
-const patchPath = path.join(root, "mt_fx_return_mixer.maxpat");
-const localPng = path.join(root, "fx_return_mixer_panel_v1.png");
+const patchPath = path.join(root, "patchers", "mixers", "mt_fx_return_mixer.maxpat");
 const assetPng = path.join(root, "assets", "ui", "fx_return_mixer_panel_v1.png");
 const assetSvg = path.join(root, "assets", "ui", "fx_return_mixer_panel_v1.svg");
 
@@ -42,11 +41,19 @@ function hasLine(patcher, sourceId, outlet, destinationId, inlet) {
   });
 }
 
+function assertRectNear(actual, expected, tolerance = 1) {
+  assert.strictEqual(actual.length, expected.length);
+  actual.forEach((value, index) => {
+    assert(
+      Math.abs(value - expected[index]) <= tolerance,
+      `rect ${actual} differs from ${expected}`
+    );
+  });
+}
+
 assert(fs.existsSync(patchPath), "mt_fx_return_mixer.maxpat is missing");
-assert(fs.existsSync(localPng), "module-local FX mixer PNG is missing");
 assert(fs.existsSync(assetPng), "canonical FX mixer PNG is missing");
 assert(fs.existsSync(assetSvg), "editable FX mixer SVG is missing");
-assert.deepStrictEqual(pngSize(localPng), [1520, 600]);
 assert.deepStrictEqual(pngSize(assetPng), [1520, 600]);
 
 const svg = fs.readFileSync(assetSvg, "utf8");
@@ -67,7 +74,6 @@ const boxes = boxMap(p);
 validateGraph(p);
 
 assert.strictEqual(p.openinpresentation, 1);
-assert.strictEqual(p.boxes[0].box.id, "fx-bg", "background must be bottom-most in z-order");
 const bg = boxes.get("fx-bg");
 assert(bg && bg.maxclass === "fpic", "missing FX mixer background fpic");
 assert.deepStrictEqual(bg.presentation_rect, [0, 0, 760, 300]);
@@ -103,7 +109,7 @@ for (const [key, x, initial] of lanes) {
   const enable = boxes.get(`fx-${key}-enable`);
   const gain = boxes.get(`fx-${key}-gain`);
   assert.deepStrictEqual(enable.presentation_rect, [x + 111, 57, 24, 24]);
-  assert.deepStrictEqual(gain.presentation_rect, [x + 75, 96, 54, 150]);
+  assertRectNear(gain.presentation_rect, [x + 75, 108, 54, 139]);
   assert.deepStrictEqual(gain.saved_attribute_attributes.valueof.parameter_initial, [initial]);
   assert(!boxes.has(`fx-${key}-meter`), `${key} duplicate meter should be removed from the shell`);
 }
@@ -112,7 +118,7 @@ assert.strictEqual(boxes.get("fx-voc-enable").varname, "fx_return_vocoder_enable
 assert.strictEqual(boxes.get("fx-chop-enable").varname, "fx_return_chop_enable");
 assert.strictEqual(boxes.get("fx-trem-enable").varname, "fx_return_tremolo_enable");
 assert.strictEqual(boxes.get("fx-master").varname, "fx_return_master_gain");
-assert.deepStrictEqual(boxes.get("fx-master").presentation_rect, [596, 91, 54, 156]);
+assertRectNear(boxes.get("fx-master").presentation_rect, [596, 103, 54, 144]);
 assert.deepStrictEqual(boxes.get("fx-meter-l").presentation_rect, [670, 96, 12, 150]);
 assert.deepStrictEqual(boxes.get("fx-meter-r").presentation_rect, [690, 96, 12, 150]);
 

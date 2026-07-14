@@ -3,8 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
-const patchPath = path.join(root, "mt_input_mixer_ui.maxpat");
-const localPng = path.join(root, "input_mixer_panel_v1.png");
+const patchPath = path.join(root, "patchers", "mixers", "mt_input_mixer_ui.maxpat");
 const assetPng = path.join(root, "assets", "ui", "input_mixer_panel_v1.png");
 const assetSvg = path.join(root, "assets", "ui", "input_mixer_panel_v1.svg");
 
@@ -52,10 +51,8 @@ function hasLine(patcher, sourceId, outlet, destinationId, inlet) {
 }
 
 assert(fs.existsSync(patchPath), "mt_input_mixer_ui.maxpat has not been generated");
-assert(fs.existsSync(localPng), "module-local input_mixer_panel_v1.png is missing");
 assert(fs.existsSync(assetPng), "canonical input_mixer_panel_v1.png is missing");
 assert(fs.existsSync(assetSvg), "editable input_mixer_panel_v1.svg is missing");
-assert.deepStrictEqual(pngSize(localPng), [1520, 640]);
 assert.deepStrictEqual(pngSize(assetPng), [1520, 640]);
 const svg = fs.readFileSync(assetSvg, "utf8");
 assert(svg.includes('<rect x="594" y="13" width="148" height="22"'), "Dry Bus header pill is too narrow");
