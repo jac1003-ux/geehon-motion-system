@@ -76,7 +76,6 @@
             420
           ],
           "rendermode": 1,
-          "url": "file:///Users/jac_tea/Documents/maxmsp%E6%8F%92%E4%BB%B6%E5%88%B6%E4%BD%9C/gesture_input_system/jweb/jweb-hands-landmarker-main/jweb-hands-landmarker.html",
           "presentation": 1,
           "presentation_rect": [
             8,
@@ -1039,12 +1038,12 @@
                 "box": {
                   "comment": "",
                   "id": "hp-hand-control-core-out-camera-append",
-                  "index": 3,
+                  "index": 1,
                   "maxclass": "outlet",
                   "numinlets": 1,
                   "numoutlets": 0,
                   "patching_rect": [
-                    615,
+                    35,
                     637,
                     30,
                     30
@@ -1070,12 +1069,12 @@
                 "box": {
                   "comment": "",
                   "id": "hp-hand-control-core-out-hand-x",
-                  "index": 4,
+                  "index": 2,
                   "maxclass": "outlet",
                   "numinlets": 1,
                   "numoutlets": 0,
                   "patching_rect": [
-                    275,
+                    155,
                     895,
                     30,
                     30
@@ -1101,12 +1100,12 @@
                 "box": {
                   "comment": "",
                   "id": "hp-hand-control-core-out-hand-y",
-                  "index": 5,
+                  "index": 3,
                   "maxclass": "outlet",
                   "numinlets": 1,
                   "numoutlets": 0,
                   "patching_rect": [
-                    395,
+                    275,
                     895,
                     30,
                     30
@@ -1132,12 +1131,12 @@
                 "box": {
                   "comment": "",
                   "id": "hp-hand-control-core-out-pinch",
-                  "index": 6,
+                  "index": 4,
                   "maxclass": "outlet",
                   "numinlets": 1,
                   "numoutlets": 0,
                   "patching_rect": [
-                    35,
+                    395,
                     981,
                     30,
                     30
@@ -1163,12 +1162,12 @@
                 "box": {
                   "comment": "",
                   "id": "hp-hand-control-core-out-palm",
-                  "index": 7,
+                  "index": 5,
                   "maxclass": "outlet",
                   "numinlets": 1,
                   "numoutlets": 0,
                   "patching_rect": [
-                    155,
+                    515,
                     981,
                     30,
                     30
@@ -2129,6 +2128,132 @@
           ],
           "text": "draw_hands $1"
         }
+      },
+      {
+        "box": {
+          "id": "hp-path-note",
+          "maxclass": "comment",
+          "numinlets": 1,
+          "numoutlets": 0,
+          "outlettype": [
+            ""
+          ],
+          "patching_rect": [
+            1300,
+            95,
+            520,
+            22
+          ],
+          "text": "Portable startup: resolve the local hand tracker from the Max Project root."
+        }
+      },
+      {
+        "box": {
+          "id": "hp-path-load",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            "bang"
+          ],
+          "patching_rect": [
+            1300,
+            130,
+            70,
+            22
+          ],
+          "text": "loadbang"
+        }
+      },
+      {
+        "box": {
+          "id": "hp-path-project",
+          "maxclass": "message",
+          "numinlets": 2,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patching_rect": [
+            1300,
+            165,
+            350,
+            22
+          ],
+          "text": "Project:/web/hand-landmarker/jweb-hands-landmarker.html"
+        }
+      },
+      {
+        "box": {
+          "id": "hp-path-absolute",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patching_rect": [
+            1300,
+            200,
+            95,
+            22
+          ],
+          "text": "absolutepath"
+        }
+      },
+      {
+        "box": {
+          "id": "hp-path-fileurl",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patching_rect": [
+            1300,
+            235,
+            105,
+            22
+          ],
+          "text": "sprintf file://%s"
+        }
+      },
+      {
+        "box": {
+          "id": "hp-path-symbol",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patching_rect": [
+            1300,
+            270,
+            145,
+            22
+          ],
+          "text": "tosymbol @separator \" \""
+        }
+      },
+      {
+        "box": {
+          "id": "hp-path-url",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patching_rect": [
+            1300,
+            305,
+            85,
+            22
+          ],
+          "text": "prepend url"
+        }
       }
     ],
     "lines": [
@@ -2465,6 +2590,114 @@
           "destination": [
             "hj-out-slot4",
             0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "hp-path-load",
+            0
+          ],
+          "destination": [
+            "hp-path-project",
+            0
+          ],
+          "color": [
+            0.302,
+            0.651,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "hp-path-project",
+            0
+          ],
+          "destination": [
+            "hp-path-absolute",
+            0
+          ],
+          "color": [
+            0.302,
+            0.651,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "hp-path-absolute",
+            0
+          ],
+          "destination": [
+            "hp-path-fileurl",
+            0
+          ],
+          "color": [
+            0.302,
+            0.651,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "hp-path-fileurl",
+            0
+          ],
+          "destination": [
+            "hp-path-symbol",
+            0
+          ],
+          "color": [
+            0.302,
+            0.651,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "hp-path-symbol",
+            0
+          ],
+          "destination": [
+            "hp-path-url",
+            0
+          ],
+          "color": [
+            0.302,
+            0.651,
+            1,
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "hp-path-url",
+            0
+          ],
+          "destination": [
+            "hp-jweb",
+            0
+          ],
+          "color": [
+            0.302,
+            0.651,
+            1,
+            1
           ]
         }
       }

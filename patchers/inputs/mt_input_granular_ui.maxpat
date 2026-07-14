@@ -5212,35 +5212,30 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "granular_knob_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "granular_knob_gain_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "granular_panel_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_grain_voice.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_granular_synth.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

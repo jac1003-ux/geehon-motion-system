@@ -2477,7 +2477,6 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "mt_vocoder_pfft.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

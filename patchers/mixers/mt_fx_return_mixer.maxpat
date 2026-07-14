@@ -2474,7 +2474,6 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "fx_return_mixer_panel_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1

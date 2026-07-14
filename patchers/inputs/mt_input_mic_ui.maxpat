@@ -1833,7 +1833,6 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "mic_panel_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1

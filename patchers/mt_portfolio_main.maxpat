@@ -1612,133 +1612,114 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "file_panel_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "fx_return_mixer_panel_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "granular_knob_gain_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "granular_knob_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "granular_panel_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "input_mixer_panel_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mic_panel_v1.png",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "PNG",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_control_hand_jweb.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_fx_return_mixer.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_grain_voice.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_granular_synth.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_input_file_ui.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_input_granular_ui.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_input_mic_ui.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_input_mixer_ui.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_mod_tremolo.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_mod_vocal_chop.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_mod_vocoder.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mt_vocoder_pfft.maxpat",
-				"bootpath" : "~/Documents/maxmsp插件制作/gesture_input_system",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
