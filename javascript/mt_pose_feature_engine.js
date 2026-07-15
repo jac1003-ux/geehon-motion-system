@@ -124,6 +124,8 @@
   PoseFeatureEngine.prototype.command = function (name, value) {
     var normalized = String(name || "").toLowerCase();
     var selected;
+    var previous;
+    var next;
 
     if (normalized === "profile") {
       selected = profileName(value);
@@ -145,16 +147,28 @@
       this.calibrationSession = null;
       this.resetTemporalFeatures();
     } else if (normalized === "camera_ready") {
-      this.cameraReady = flag(value);
-      if (!this.cameraReady) {
+      previous = this.cameraReady;
+      next = flag(value);
+      if (previous === next) {
+        return null;
+      }
+      this.cameraReady = next;
+      if (!next) {
         this.resetTracking();
         this.resetTemporalFeatures();
+        return this.safeSourceResult();
       }
     } else if (normalized === "model_ready") {
-      this.modelReady = flag(value);
-      if (!this.modelReady) {
+      previous = this.modelReady;
+      next = flag(value);
+      if (previous === next) {
+        return null;
+      }
+      this.modelReady = next;
+      if (!next) {
         this.resetTracking();
         this.resetTemporalFeatures();
+        return this.safeSourceResult();
       }
     } else if (normalized === "dict_name") {
       if (value != null && String(value).length) {
@@ -162,7 +176,50 @@
       }
     }
 
-    return this;
+    return null;
+  };
+
+  PoseFeatureEngine.prototype.safeSourceResult = function () {
+    var events = [];
+    var status = "source_not_ready";
+    var calibrationPhase = this.calibrationSession
+      ? this.calibrationSession.phase
+      : "idle";
+    var output;
+
+    if (this.lastStatus !== status) {
+      events.push("status " + status);
+      this.lastStatus = status;
+    }
+    output = {
+      profile: this.profile,
+      status: status,
+      calibration_phase: calibrationPhase,
+      timestamp_ms: this.lastTimestampMs === null ? 0 : this.lastTimestampMs,
+      calibrated: this.calibrations[this.profile] ? 1 : 0,
+      tracking_valid: 0,
+      inside_control_zone: 0,
+      model_ready: this.modelReady,
+      camera_ready: this.cameraReady,
+      has_pose: 0,
+      torso_sway: 0,
+      torso_lean: 0,
+      shoulder_tilt: 0,
+      head_turn: 0,
+      body_proximity: 0,
+      motion_energy: 0,
+      tracking_confidence: 0,
+      Energy: 0,
+      Space: 0,
+      Texture: 0,
+      Transform: 0,
+      semantic_assigned: 0,
+    };
+    return {
+      dictionary: output,
+      dictionaryName: this.outputDictName,
+      events: events,
+    };
   };
 
   PoseFeatureEngine.prototype.resetTracking = function () {
@@ -280,6 +337,7 @@
   PoseFeatureEngine.prototype.motionEnergy = function (geometry, timestampMs) {
     var history = this.motionHistory;
     var cutoff = timestampMs - 250;
+    var snapshot = motionSnapshot(geometry, timestampMs);
     var velocityTotal = 0;
     var velocityCount = 0;
     var previous;
@@ -292,8 +350,18 @@
     var nameIndex;
     var name;
 
-    history.push(motionSnapshot(geometry, timestampMs));
+    if (
+      history.length &&
+      history[history.length - 1].timestampMs === timestampMs
+    ) {
+      history[history.length - 1] = snapshot;
+    } else {
+      history.push(snapshot);
+    }
     while (history.length > 2 && history[1].timestampMs < cutoff) {
+      history.shift();
+    }
+    while (history.length > 120) {
       history.shift();
     }
 
@@ -361,11 +429,8 @@
   };
 
   PoseFeatureEngine.prototype.statusFor = function (state) {
-    if (!state.cameraReady) {
-      return "no_camera";
-    }
-    if (!state.modelReady) {
-      return "model_loading";
+    if (!state.cameraReady || !state.modelReady) {
+      return "source_not_ready";
     }
     if (!state.hasPose) {
       return "no_pose";
@@ -403,6 +468,10 @@
       timestampMs = this.lastTimestampMs === null ? 0 : this.lastTimestampMs;
     }
     if (this.lastTimestampMs !== null && timestampMs < this.lastTimestampMs) {
+      if (this.calibrationSession) {
+        events.push("calibration_failed timestamp_reset");
+        this.calibrationSession = null;
+      }
       this.resetTracking();
       this.resetTemporalFeatures();
     }
@@ -572,14 +641,22 @@ function reset_calibration() {
 }
 
 function camera_ready(value) {
+  var result;
   if (inlet === 1) {
-    poseFeatureEngine.command("camera_ready", value);
+    result = poseFeatureEngine.command("camera_ready", value);
+    if (result) {
+      emitEngineResult(result);
+    }
   }
 }
 
 function model_ready(value) {
+  var result;
   if (inlet === 1) {
-    poseFeatureEngine.command("model_ready", value);
+    result = poseFeatureEngine.command("model_ready", value);
+    if (result) {
+      emitEngineResult(result);
+    }
   }
 }
 

@@ -418,13 +418,76 @@ function assertRange(value, minimum, maximum, label) {
   const lost = engine.processFrame(noPoseFrame(3300));
   assert.strictEqual(lost.dictionary.tracking_valid, 0);
 
-  engine.command("camera_ready", 0);
-  const noCamera = engine.processFrame(
-    noPoseFrame(3400, { camera_ready: 0 })
+  const sourceLost = engine.command("camera_ready", 0);
+  assert(sourceLost, "A ready-to-not-ready transition must publish immediately");
+  assert.strictEqual(sourceLost.dictionary.camera_ready, 0);
+  assert.strictEqual(sourceLost.dictionary.model_ready, 1);
+  assert.strictEqual(sourceLost.dictionary.tracking_valid, 0);
+  assert.strictEqual(sourceLost.dictionary.has_pose, 0);
+  assert.strictEqual(sourceLost.dictionary.calibrated, 1);
+  assert.strictEqual(sourceLost.dictionary.profile, "singer");
+  assert.strictEqual(sourceLost.dictionary.status, "source_not_ready");
+  for (const field of [
+    "torso_sway",
+    "torso_lean",
+    "shoulder_tilt",
+    "head_turn",
+    "body_proximity",
+    "motion_energy",
+    "tracking_confidence",
+  ]) {
+    assert.strictEqual(sourceLost.dictionary[field], 0, `${field} must fail safe`);
+  }
+  assert.strictEqual(
+    engine.command("camera_ready", 0),
+    null,
+    "Repeated not-ready state must not flood duplicate publications"
   );
-  assert.strictEqual(noCamera.dictionary.camera_ready, 0);
-  assert.strictEqual(noCamera.dictionary.tracking_valid, 0);
-  assert.strictEqual(noCamera.dictionary.status, "no_camera");
+
+  const modelLost = engine.command("model_ready", 0);
+  assert(modelLost, "A second source state change must publish its new flags");
+  assert.strictEqual(modelLost.dictionary.model_ready, 0);
+  assert.strictEqual(modelLost.dictionary.camera_ready, 0);
+  assert.strictEqual(modelLost.dictionary.status, "source_not_ready");
+  assert.strictEqual(engine.command("model_ready", 0), null);
+}
+
+// Repeated timestamps replace the latest motion snapshot and remain bounded.
+{
+  const engine = readyEngine();
+  calibrateStable(engine, 0);
+  let repeated;
+  for (let index = 0; index < 10000; index += 1) {
+    repeated = engine.processFrame(
+      makeFrame({ timestampMs: 3200, shiftX: index % 2 ? -0.03 : -0.04 })
+    );
+    assert(
+      engine.motionHistory.length <= 120,
+      "Motion history must have a hard sample limit"
+    );
+  }
+  assert(Number.isFinite(repeated.dictionary.motion_energy));
+  assertRange(repeated.dictionary.motion_energy, 0, 1, "repeated motion energy");
+}
+
+// A backwards frame timestamp aborts in-progress calibration and resets timing.
+{
+  const engine = readyEngine();
+  engine.command("calibrate");
+  engine.processFrame(makeFrame({ timestampMs: 1000 }));
+  engine.processFrame(makeFrame({ timestampMs: 2100 }));
+  assert(engine.calibrationSampleCount() > 0);
+
+  const reset = engine.processFrame(makeFrame({ timestampMs: 1500 }));
+  assert.strictEqual(engine.calibrationSession, null);
+  assert.strictEqual(engine.calibrationSampleCount(), 0);
+  assert.strictEqual(reset.dictionary.calibration_phase, "idle");
+  assert.strictEqual(reset.dictionary.tracking_valid, 0);
+  assert.strictEqual(reset.dictionary.motion_energy, 0);
+  assert(
+    reset.events.includes("calibration_failed timestamp_reset"),
+    "Timestamp rollback must report calibration failure"
+  );
 }
 
 // Calibrated output is smoothed, dead-zoned, bounded, and carries motion energy.
@@ -556,6 +619,14 @@ for (const token of [
 ]) {
   assert(engineSource.includes(token), `Missing engine command: ${token}`);
 }
+assert(
+  /function camera_ready[\s\S]*emitEngineResult/.test(engineSource),
+  "camera_ready 0 must emit a complete safe result immediately"
+);
+assert(
+  /function model_ready[\s\S]*emitEngineResult/.test(engineSource),
+  "model_ready 0 must emit a complete safe result immediately"
+);
 assert(!engineSource.includes("posedict"), "Engine must not use fixed posedict");
 assert(!engineSource.includes("/Users/"), "Engine must not use an absolute user path");
 
