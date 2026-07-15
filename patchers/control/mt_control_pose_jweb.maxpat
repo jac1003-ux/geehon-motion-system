@@ -272,12 +272,34 @@
       },
       {
         "box": {
+          "id": "pose-camera-refresh-trigger",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 2,
+          "outlettype": ["", "clear"],
+          "patching_rect": [885, 335, 70, 22],
+          "text": "t l clear"
+        }
+      },
+      {
+        "box": {
+          "id": "pose-camera-iter",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [""],
+          "patching_rect": [885, 375, 35, 22],
+          "text": "iter"
+        }
+      },
+      {
+        "box": {
           "id": "pose-camera-append",
           "maxclass": "newobj",
           "numinlets": 1,
           "numoutlets": 1,
           "outlettype": [""],
-          "patching_rect": [885, 335, 110, 22],
+          "patching_rect": [885, 415, 110, 22],
           "text": "prepend append"
         }
       },
@@ -288,7 +310,7 @@
           "numinlets": 1,
           "numoutlets": 2,
           "outlettype": ["", ""],
-          "patching_rect": [885, 380, 45, 22],
+          "patching_rect": [885, 455, 45, 22],
           "text": "t l l"
         }
       },
@@ -602,6 +624,27 @@
       {
         "patchline": {
           "source": ["pose-output-route", 1],
+          "destination": ["pose-camera-refresh-trigger", 0],
+          "color": [0.44, 0.72, 1, 1]
+        }
+      },
+      {
+        "patchline": {
+          "source": ["pose-camera-refresh-trigger", 1],
+          "destination": ["pose-camera-menu", 0],
+          "color": [0.44, 0.72, 1, 1]
+        }
+      },
+      {
+        "patchline": {
+          "source": ["pose-camera-refresh-trigger", 0],
+          "destination": ["pose-camera-iter", 0],
+          "color": [0.44, 0.72, 1, 1]
+        }
+      },
+      {
+        "patchline": {
+          "source": ["pose-camera-iter", 0],
           "destination": ["pose-camera-append", 0],
           "color": [0.44, 0.72, 1, 1]
         }

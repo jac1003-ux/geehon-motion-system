@@ -102,6 +102,48 @@ assert(
   "Frame dictionary update is not connected to outlet 1"
 );
 
+const cameraMenu = findByVarname("pose_camera_menu");
+const deviceRefreshTrigger = findByText("t l clear");
+const deviceIterator = findByText("iter");
+const prependAppend = findByText("prepend append");
+const appendFanout = findByText("t l l");
+assert(deviceRefreshTrigger, "Missing ordered camera-menu clear/list trigger");
+assert(deviceIterator, "Missing per-device iterator");
+assert(prependAppend, "Missing per-device append message");
+assert(appendFanout, "Missing camera append fan-out trigger");
+assert(
+  isConnectedFromOutlet(route, 1, deviceRefreshTrigger),
+  "mediadevices output is not connected to t l clear"
+);
+assert(
+  isConnectedFromOutlet(deviceRefreshTrigger, 1, cameraMenu),
+  "t l clear must send clear from its right outlet to the camera menu first"
+);
+assert(
+  isConnectedFromOutlet(deviceRefreshTrigger, 0, deviceIterator),
+  "t l clear must send the device list from its left outlet to iter"
+);
+assert(
+  isConnected(deviceIterator, prependAppend),
+  "Camera devices are not iterated into individual append messages"
+);
+assert(
+  isConnected(prependAppend, appendFanout),
+  "Per-device append messages are not connected to the fan-out trigger"
+);
+assert(
+  isConnectedFromOutlet(appendFanout, 1, cameraMenu),
+  "Per-device append messages do not populate the camera menu"
+);
+assert(
+  isConnectedFromOutlet(appendFanout, 0, outletOrder[1]),
+  "Per-device append messages do not reach outlet 2"
+);
+assert(
+  !isConnectedFromOutlet(route, 1, prependAppend),
+  "mediadevices list must not be prepended with append as one message"
+);
+
 const pathChain = assertConnectedChain([
   "Project:/web/pose-landmarker/jweb-pose-landmarker.html",
   "absolutepath",
