@@ -67,16 +67,11 @@
   }
 
   function controlZoneContains(geometry) {
-    var points;
-    if (!geometry || !geometry.points) {
+    if (!geometry) {
       return false;
     }
-    points = geometry.points;
     return (
-      pointInside(points.left_shoulder) &&
-      pointInside(points.right_shoulder) &&
-      pointInside(points.left_hip) &&
-      pointInside(points.right_hip)
+      pointInside(geometry.shoulderCenter) && pointInside(geometry.hipCenter)
     );
   }
 

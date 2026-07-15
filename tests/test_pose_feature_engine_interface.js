@@ -368,16 +368,40 @@ function assertRange(value, minimum, maximum, label) {
   assert.strictEqual(result.dictionary.tracking_valid, 0);
 }
 
-// All shoulders and hips must remain inside the control zone.
+// Shoulder and hip centers define the control zone; individual points may cross it.
 {
   const engine = readyEngine();
   const inside = engine.processFrame(makeFrame({ timestampMs: 0 }));
   assert.strictEqual(inside.dictionary.inside_control_zone, 1);
 
-  const outsideFrame = makeFrame({ timestampMs: 10 });
-  outsideFrame.left.left_shoulder.x = 0.86;
-  const outside = engine.processFrame(outsideFrame);
-  assert.strictEqual(outside.dictionary.inside_control_zone, 0);
+  const oneShoulderOutsideFrame = makeFrame({ timestampMs: 10 });
+  oneShoulderOutsideFrame.left.left_shoulder.x = 0.9;
+  const oneShoulderOutside = engine.processFrame(oneShoulderOutsideFrame);
+  assert.strictEqual(
+    oneShoulderOutside.dictionary.inside_control_zone,
+    1,
+    "An individual shoulder may cross the zone while its shoulder center remains inside"
+  );
+
+  const shoulderCenterOutsideFrame = makeFrame({ timestampMs: 20 });
+  shoulderCenterOutsideFrame.left.left_shoulder.x = 0.88;
+  shoulderCenterOutsideFrame.right.right_shoulder.x = 0.86;
+  const shoulderCenterOutside = engine.processFrame(shoulderCenterOutsideFrame);
+  assert.strictEqual(
+    shoulderCenterOutside.dictionary.inside_control_zone,
+    0,
+    "A shoulder center outside the zone must be rejected"
+  );
+
+  const hipCenterOutsideFrame = makeFrame({ timestampMs: 30 });
+  hipCenterOutsideFrame.left.left_hip.y = 0.92;
+  hipCenterOutsideFrame.right.right_hip.y = 0.94;
+  const hipCenterOutside = engine.processFrame(hipCenterOutsideFrame);
+  assert.strictEqual(
+    hipCenterOutside.dictionary.inside_control_zone,
+    0,
+    "A hip center outside the zone must be rejected"
+  );
 }
 
 // Missing pose and unavailable runtime state never emit fresh live features.
