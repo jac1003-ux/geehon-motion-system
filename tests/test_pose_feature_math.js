@@ -36,6 +36,12 @@ assert.deepStrictEqual(Object.keys(math).sort(), [
 assert.strictEqual(math.pointConfidence({ visibility: 0.7, presence: 0.4 }), 0.4);
 assert.strictEqual(math.pointConfidence({}), 1);
 assert.strictEqual(math.pointConfidence(null), 0);
+assert.strictEqual(math.pointConfidence({ visibility: null, presence: 0.6 }), 0.6);
+assert.strictEqual(math.pointConfidence({ visibility: NaN, presence: 1 }), 0);
+assert.strictEqual(math.pointConfidence({ visibility: Infinity, presence: 1 }), 0);
+assert.strictEqual(math.pointConfidence({ visibility: -Infinity, presence: 1 }), 0);
+assert.strictEqual(math.pointConfidence({ visibility: 2, presence: 1.5 }), 1);
+assert.strictEqual(math.pointConfidence({ visibility: -0.2, presence: 0.8 }), 0);
 assert.strictEqual(math.median([9, 1, 5, 3]), 4);
 assert.strictEqual(math.median([]), null);
 
@@ -51,6 +57,16 @@ degenerateEars.right.right_ear.x = 0.5;
 assert.strictEqual(math.geometry(degenerateEars), null);
 
 const baseline = math.geometry(neutral);
+assert.strictEqual(baseline.timestampMs, 1000);
+assert.strictEqual(math.geometry(makeFrame({ timestampMs: NaN })).timestampMs, 0);
+assert.strictEqual(
+  math.geometry(makeFrame({ timestampMs: Infinity })).timestampMs,
+  0
+);
+assert.strictEqual(
+  math.geometry(makeFrame({ timestampMs: -Infinity })).timestampMs,
+  0
+);
 const rightGeometry = math.geometry(performerRightShift);
 const leftGeometry = math.geometry(performerLeftShift);
 const rightShoulderUpGeometry = math.geometry(rightShoulderRaised);
@@ -145,6 +161,10 @@ assert.strictEqual(math.deadzoneSigned(0.03, 0.04), 0);
 assert(math.deadzoneSigned(-0.5, 0.04) < 0);
 assert.strictEqual(math.smoothingAlpha(0, 80), 0);
 assert.strictEqual(math.smoothingAlpha(20, 0), 1);
+assert.strictEqual(math.smoothingAlpha(NaN, 80), 0);
+assert.strictEqual(math.smoothingAlpha(Infinity, 80), 0);
+assert.strictEqual(math.smoothingAlpha(-Infinity, 80), 0);
+assert.strictEqual(math.smoothingAlpha(NaN, 0), 1);
 assert(
   Math.abs(math.smoothingAlpha(80, 80) - (1 - Math.exp(-1))) < 1e-12
 );

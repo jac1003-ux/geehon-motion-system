@@ -57,9 +57,21 @@
       return 0;
     }
 
-    visibility = point.visibility == null ? 1 : point.visibility;
-    presence = point.presence == null ? 1 : point.presence;
+    visibility = confidenceComponent(point.visibility);
+    presence = confidenceComponent(point.presence);
     return Math.min(visibility, presence);
+  }
+
+  function confidenceComponent(value) {
+    if (value == null) {
+      return 1;
+    }
+
+    if (!finiteNumber(value)) {
+      return 0;
+    }
+
+    return clip(value, 0, 1);
   }
 
   function findPoint(frame, name) {
@@ -168,7 +180,7 @@
       headTurn: (earCenter.x - points.nose.x) / earWidth,
       confidence: frameConfidence(frame),
       timestampMs:
-        frame && frame.meta && typeof frame.meta.timestamp_ms === "number"
+        frame && frame.meta && finiteNumber(frame.meta.timestamp_ms)
           ? frame.meta.timestamp_ms
           : 0,
     };
@@ -296,6 +308,10 @@
   function smoothingAlpha(dtMs, tauMs) {
     if (!(tauMs > 0)) {
       return 1;
+    }
+
+    if (!finiteNumber(dtMs)) {
+      return 0;
     }
 
     return 1 - Math.exp(-Math.max(0, dtMs) / tauMs);
