@@ -232,3 +232,307 @@ for (const line of lines) {
 }
 
 console.log("Pose jweb bridge interface: PASS");
+
+const engineScriptPath = path.resolve(
+  __dirname,
+  "../javascript/mt_pose_feature_engine.js"
+);
+const enginePatchPath = path.resolve(
+  __dirname,
+  "../patchers/control/mt_pose_feature_engine.maxpat"
+);
+
+assert(fs.existsSync(engineScriptPath), "Missing Pose feature engine script");
+assert(fs.existsSync(enginePatchPath), "Missing Pose feature engine patch");
+
+const engineModule = require(engineScriptPath);
+const { makeFrame } = require("./fixtures/pose_frames");
+const poseMath = require("../javascript/pose_feature_math.js");
+const PoseFeatureEngine = engineModule.PoseFeatureEngine;
+
+assert.strictEqual(
+  typeof PoseFeatureEngine,
+  "function",
+  "Pose feature engine must expose a testable constructor"
+);
+
+function noPoseFrame(timestampMs, overrides = {}) {
+  return {
+    meta: Object.assign(
+      {
+        frame_id: timestampMs,
+        timestamp_ms: timestampMs,
+        has_pose: 0,
+        model_ready: 1,
+        camera_ready: 1,
+      },
+      overrides
+    ),
+    neutral: {},
+    left: {},
+    right: {},
+  };
+}
+
+function readyEngine(profile = "singer") {
+  const engine = new PoseFeatureEngine();
+  engine.command("model_ready", 1);
+  engine.command("camera_ready", 1);
+  engine.command("profile", profile);
+  return engine;
+}
+
+function calibrateStable(engine, startMs, options = {}) {
+  engine.command("calibrate");
+  let result;
+  for (let timestampMs = startMs; timestampMs <= startMs + 3000; timestampMs += 100) {
+    result = engine.processFrame(makeFrame(Object.assign({}, options, { timestampMs })));
+  }
+  return result;
+}
+
+function assertRange(value, minimum, maximum, label) {
+  assert(
+    value >= minimum && value <= maximum,
+    `${label} must stay in ${minimum}..${maximum}; received ${value}`
+  );
+}
+
+// Calibration uses frame timestamps: one second prepare, then two seconds collect.
+{
+  const engine = readyEngine();
+  engine.command("calibrate");
+  const prepare = engine.processFrame(makeFrame({ timestampMs: 1000 }));
+  assert.strictEqual(prepare.dictionary.calibration_phase, "preparing");
+  assert.strictEqual(engine.calibrationSampleCount(), 0);
+
+  engine.processFrame(makeFrame({ timestampMs: 1999 }));
+  assert.strictEqual(engine.calibrationSampleCount(), 0);
+  engine.processFrame(makeFrame({ timestampMs: 2000 }));
+  assert.strictEqual(engine.calibrationSampleCount(), 1);
+
+  const collecting = engine.processFrame(makeFrame({ timestampMs: 3999 }));
+  assert.strictEqual(collecting.dictionary.calibration_phase, "collecting");
+  assert(engine.calibrationSampleCount() > 1);
+
+  const complete = engine.processFrame(makeFrame({ timestampMs: 4000 }));
+  assert.strictEqual(complete.dictionary.calibrated, 1);
+  assert.strictEqual(complete.dictionary.calibration_phase, "idle");
+  assert(
+    complete.events.includes("calibration_complete singer"),
+    "Successful calibration must emit a profile-specific event"
+  );
+}
+
+// Profiles own independent baselines and reset only the selected profile.
+{
+  const engine = readyEngine("singer");
+  calibrateStable(engine, 0);
+  assert.strictEqual(engine.isCalibrated("singer"), true);
+  assert.strictEqual(engine.isCalibrated("instrumentalist"), false);
+
+  engine.command("profile", "instrumentalist");
+  calibrateStable(engine, 5000, { shiftX: -0.05 });
+  assert.strictEqual(engine.isCalibrated("instrumentalist"), true);
+
+  engine.command("reset_calibration");
+  assert.strictEqual(engine.isCalibrated("instrumentalist"), false);
+  assert.strictEqual(engine.isCalibrated("singer"), true);
+}
+
+// Tracking confidence uses 150 ms entry and 100 ms exit hysteresis.
+{
+  const engine = readyEngine();
+  let result = engine.processFrame(makeFrame({ timestampMs: 0 }));
+  assert.strictEqual(result.dictionary.tracking_valid, 0);
+  result = engine.processFrame(makeFrame({ timestampMs: 149 }));
+  assert.strictEqual(result.dictionary.tracking_valid, 0);
+  result = engine.processFrame(makeFrame({ timestampMs: 150 }));
+  assert.strictEqual(result.dictionary.tracking_valid, 1);
+
+  result = engine.processFrame(
+    makeFrame({ timestampMs: 200, visibility: 0.5, presence: 0.5 })
+  );
+  assert.strictEqual(result.dictionary.tracking_valid, 1);
+  result = engine.processFrame(
+    makeFrame({ timestampMs: 250, visibility: 0.3, presence: 0.3 })
+  );
+  assert.strictEqual(result.dictionary.tracking_valid, 1);
+  result = engine.processFrame(
+    makeFrame({ timestampMs: 349, visibility: 0.3, presence: 0.3 })
+  );
+  assert.strictEqual(result.dictionary.tracking_valid, 1);
+  result = engine.processFrame(
+    makeFrame({ timestampMs: 350, visibility: 0.3, presence: 0.3 })
+  );
+  assert.strictEqual(result.dictionary.tracking_valid, 0);
+}
+
+// All shoulders and hips must remain inside the control zone.
+{
+  const engine = readyEngine();
+  const inside = engine.processFrame(makeFrame({ timestampMs: 0 }));
+  assert.strictEqual(inside.dictionary.inside_control_zone, 1);
+
+  const outsideFrame = makeFrame({ timestampMs: 10 });
+  outsideFrame.left.left_shoulder.x = 0.86;
+  const outside = engine.processFrame(outsideFrame);
+  assert.strictEqual(outside.dictionary.inside_control_zone, 0);
+}
+
+// Missing pose and unavailable runtime state never emit fresh live features.
+{
+  const engine = readyEngine();
+  calibrateStable(engine, 0);
+  engine.processFrame(makeFrame({ timestampMs: 3100, shiftX: -0.08 }));
+
+  const missing = engine.processFrame(noPoseFrame(3200));
+  assert.strictEqual(missing.dictionary.has_pose, 0);
+  assert.strictEqual(missing.dictionary.torso_sway, 0);
+  assert.strictEqual(missing.dictionary.motion_energy, 0);
+
+  const lost = engine.processFrame(noPoseFrame(3300));
+  assert.strictEqual(lost.dictionary.tracking_valid, 0);
+
+  engine.command("camera_ready", 0);
+  const noCamera = engine.processFrame(
+    noPoseFrame(3400, { camera_ready: 0 })
+  );
+  assert.strictEqual(noCamera.dictionary.camera_ready, 0);
+  assert.strictEqual(noCamera.dictionary.tracking_valid, 0);
+  assert.strictEqual(noCamera.dictionary.status, "no_camera");
+}
+
+// Calibrated output is smoothed, dead-zoned, bounded, and carries motion energy.
+{
+  const engine = readyEngine();
+  calibrateStable(engine, 0);
+  const tiny = engine.processFrame(
+    makeFrame({ timestampMs: 3100, shiftX: -0.001 })
+  );
+  assert.strictEqual(tiny.dictionary.torso_sway, 0);
+
+  const movedFrame = makeFrame({ timestampMs: 3180, shiftX: -0.08 });
+  const moved = engine.processFrame(movedFrame);
+  const raw = poseMath.featuresFromGeometry(
+    poseMath.geometry(movedFrame),
+    engine.calibrationFor("singer")
+  );
+  assert(moved.dictionary.torso_sway > 0);
+  assert(
+    moved.dictionary.torso_sway < poseMath.deadzoneSigned(raw.torso_sway, 0.04),
+    "80 ms smoothing must soften a sudden pose change"
+  );
+  assert(moved.dictionary.motion_energy > 0);
+
+  for (const field of [
+    "torso_sway",
+    "torso_lean",
+    "shoulder_tilt",
+    "head_turn",
+    "body_proximity",
+  ]) {
+    assertRange(moved.dictionary[field], -1, 1, field);
+  }
+  assertRange(moved.dictionary.motion_energy, 0, 1, "motion_energy");
+  assertRange(
+    moved.dictionary.tracking_confidence,
+    0,
+    1,
+    "tracking_confidence"
+  );
+  for (const macro of ["Energy", "Space", "Texture", "Transform"]) {
+    assert.strictEqual(moved.dictionary[macro], 0);
+  }
+  assert.strictEqual(moved.dictionary.semantic_assigned, 0);
+}
+
+const engineRoot = JSON.parse(fs.readFileSync(enginePatchPath, "utf8")).patcher;
+const engineBoxes = (engineRoot.boxes || []).map((entry) => entry.box);
+const engineLines = (engineRoot.lines || []).map((entry) => entry.patchline);
+const engineById = new Map(engineBoxes.map((box) => [box.id, box]));
+const engineByText = (text) => engineBoxes.find((box) => box.text === text);
+const engineConnected = (source, destination) =>
+  engineLines.some(
+    (line) =>
+      line.source[0] === source.id && line.destination[0] === destination.id
+  );
+
+const engineInlets = engineBoxes
+  .filter((box) => box.maxclass === "inlet")
+  .sort((a, b) => a.patching_rect[0] - b.patching_rect[0]);
+const engineOutlets = engineBoxes
+  .filter((box) => box.maxclass === "outlet")
+  .sort((a, b) => a.patching_rect[0] - b.patching_rect[0]);
+
+assert.strictEqual(engineInlets.length, 2, "Feature engine needs two inlets");
+assert.deepStrictEqual(
+  engineInlets.map((box) => box.comment),
+  ["frame dictionary", "profile and calibration commands"]
+);
+assert.strictEqual(engineOutlets.length, 6, "Feature engine needs six outlets");
+assert.deepStrictEqual(
+  engineOutlets.map((box) => box.comment),
+  [
+    "feature dictionary",
+    "tracking confidence",
+    "tracking valid",
+    "calibrated",
+    "inside control zone",
+    "calibration and status event",
+  ]
+);
+
+const declarePath = engineByText("declarepath ../../javascript");
+const engineJs = engineByText("js mt_pose_feature_engine.js");
+const initName = engineByText("dict_name #0_pose_features");
+assert(declarePath, "Missing feature-engine JavaScript search path");
+assert(engineJs, "Missing feature-engine js object");
+assert(initName, "Missing instance-safe output dictionary initialization");
+assert(engineConnected(engineInlets[0], engineJs));
+assert(engineConnected(engineInlets[1], engineJs));
+assert(engineConnected(initName, engineJs));
+
+for (let index = 0; index < engineOutlets.length; index += 1) {
+  assert(
+    engineLines.some(
+      (line) =>
+        line.source[0] === engineJs.id &&
+        line.source[1] === index &&
+        line.destination[0] === engineOutlets[index].id
+    ),
+    `Feature-engine outlet ${index + 1} is not wired in contract order`
+  );
+}
+
+assert.strictEqual(
+  engineBoxes.filter((box) => box.text === "loadbang").length,
+  1,
+  "Feature engine must use one loadbang"
+);
+assert.strictEqual(
+  engineBoxes.filter((box) => /^loadmess(?:\s|$)/.test(box.text || "")).length,
+  0,
+  "Feature engine must not use loadmess"
+);
+assert(
+  engineBoxes.some((box) => /^(?:t|trigger)\s/.test(box.text || "")),
+  "Feature engine initialization must use trigger"
+);
+
+const engineSource = fs.readFileSync(engineScriptPath, "utf8");
+for (const token of [
+  "dictionary",
+  "profile",
+  "calibrate",
+  "reset_calibration",
+  "camera_ready",
+  "model_ready",
+  "dict_name",
+]) {
+  assert(engineSource.includes(token), `Missing engine command: ${token}`);
+}
+assert(!engineSource.includes("posedict"), "Engine must not use fixed posedict");
+assert(!engineSource.includes("/Users/"), "Engine must not use an absolute user path");
+
+console.log("Pose feature engine interface and behavior: PASS");
