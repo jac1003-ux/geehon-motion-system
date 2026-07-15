@@ -12,6 +12,13 @@ const {
 } = require("./fixtures/pose_frames");
 const math = require("../javascript/pose_feature_math.js");
 
+function assertClose(actual, expected, message) {
+  assert(
+    Math.abs(actual - expected) < 1e-12,
+    `${message}: expected ${expected}, received ${actual}`
+  );
+}
+
 assert.strictEqual(global.PoseFeatureMath, math);
 assert.deepStrictEqual(Object.keys(math).sort(), [
   "calibrationFromSamples",
@@ -38,6 +45,10 @@ const degenerateShoulders = makeFrame();
 degenerateShoulders.left.left_shoulder.x = 0.5;
 degenerateShoulders.right.right_shoulder.x = 0.5;
 assert.strictEqual(math.geometry(degenerateShoulders), null);
+const degenerateEars = makeFrame();
+degenerateEars.left.left_ear.x = 0.5;
+degenerateEars.right.right_ear.x = 0.5;
+assert.strictEqual(math.geometry(degenerateEars), null);
 
 const baseline = math.geometry(neutral);
 const rightGeometry = math.geometry(performerRightShift);
@@ -45,6 +56,70 @@ const leftGeometry = math.geometry(performerLeftShift);
 const rightShoulderUpGeometry = math.geometry(rightShoulderRaised);
 const headRightGeometry = math.geometry(headRight);
 const closerGeometry = math.geometry(closer);
+const torsoLeanFrame = makeFrame();
+torsoLeanFrame.left.left_shoulder.x -= 0.04;
+torsoLeanFrame.right.right_shoulder.x -= 0.04;
+const torsoLeanGeometry = math.geometry(torsoLeanFrame);
+
+assertClose(
+  baseline.bodyScale,
+  Math.max(0.05, baseline.shoulderWidth * 0.65 + baseline.torsoLength * 0.35),
+  "bodyScale should use the weighted shoulder/torso formula"
+);
+assertClose(baseline.earWidth, 0.08, "geometry should expose earWidth");
+assertClose(
+  headRightGeometry.headTurn,
+  (headRightGeometry.earCenter.x - headRightGeometry.points.nose.x) /
+    headRightGeometry.earWidth,
+  "headTurn should normalize against earWidth"
+);
+
+const rightFeatures = math.featuresFromGeometry(rightGeometry, baseline);
+const leanFeatures = math.featuresFromGeometry(torsoLeanGeometry, baseline);
+const shoulderFeatures = math.featuresFromGeometry(
+  rightShoulderUpGeometry,
+  baseline
+);
+const headFeatures = math.featuresFromGeometry(headRightGeometry, baseline);
+const proximityFeatures = math.featuresFromGeometry(closerGeometry, baseline);
+
+assertClose(
+  rightFeatures.torso_sway,
+  math.clip(
+    (baseline.centerX - rightGeometry.centerX) / (baseline.bodyScale * 0.75),
+    -1,
+    1
+  ),
+  "torso_sway sensitivity"
+);
+assertClose(
+  leanFeatures.torso_lean,
+  math.clip((torsoLeanGeometry.torsoLean - baseline.torsoLean) / 0.5, -1, 1),
+  "torso_lean sensitivity"
+);
+assertClose(
+  shoulderFeatures.shoulder_tilt,
+  math.clip(
+    (rightShoulderUpGeometry.shoulderTilt - baseline.shoulderTilt) / 0.5,
+    -1,
+    1
+  ),
+  "shoulder_tilt sensitivity"
+);
+assertClose(
+  headFeatures.head_turn,
+  math.clip((headRightGeometry.headTurn - baseline.headTurn) / 0.45, -1, 1),
+  "head_turn sensitivity"
+);
+assertClose(
+  proximityFeatures.body_proximity,
+  math.clip(
+    (closerGeometry.bodyScale / baseline.bodyScale - 1) / 0.6,
+    -1,
+    1
+  ),
+  "body_proximity sensitivity"
+);
 
 assert(
   math.featuresFromGeometry(rightGeometry, baseline).torso_sway > 0,

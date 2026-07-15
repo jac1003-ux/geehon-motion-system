@@ -128,6 +128,7 @@
     var shoulderCenter;
     var hipCenter;
     var earCenter;
+    var earWidth;
     var shoulderWidth;
     var torsoLength;
     var bodyScale;
@@ -142,11 +143,12 @@
     shoulderCenter = midpoint(points.left_shoulder, points.right_shoulder);
     hipCenter = midpoint(points.left_hip, points.right_hip);
     earCenter = midpoint(points.left_ear, points.right_ear);
+    earWidth = distance(points.left_ear, points.right_ear);
     shoulderWidth = distance(points.left_shoulder, points.right_shoulder);
     torsoLength = distance(shoulderCenter, hipCenter);
-    bodyScale = (shoulderWidth + torsoLength) / 2;
+    bodyScale = Math.max(0.05, shoulderWidth * 0.65 + torsoLength * 0.35);
 
-    if (!(shoulderWidth > 0) || !(bodyScale > 0)) {
+    if (!(earWidth > 0) || !(shoulderWidth > 0)) {
       return null;
     }
 
@@ -155,6 +157,7 @@
       shoulderCenter: shoulderCenter,
       hipCenter: hipCenter,
       earCenter: earCenter,
+      earWidth: earWidth,
       shoulderWidth: shoulderWidth,
       torsoLength: torsoLength,
       centerX: (shoulderCenter.x + hipCenter.x) / 2,
@@ -162,7 +165,7 @@
       torsoLean: (hipCenter.x - shoulderCenter.x) / bodyScale,
       shoulderTilt:
         (points.left_shoulder.y - points.right_shoulder.y) / shoulderWidth,
-      headTurn: (earCenter.x - points.nose.x) / shoulderWidth,
+      headTurn: (earCenter.x - points.nose.x) / earWidth,
       confidence: frameConfidence(frame),
       timestampMs:
         frame && frame.meta && typeof frame.meta.timestamp_ms === "number"
@@ -251,15 +254,23 @@
     scale = baseline.bodyScale;
 
     return {
-      torso_sway: clip((baseline.centerX - current.centerX) / scale, -1, 1),
-      torso_lean: clip(current.torsoLean - baseline.torsoLean, -1, 1),
-      shoulder_tilt: clip(
-        current.shoulderTilt - baseline.shoulderTilt,
+      torso_sway: clip(
+        (baseline.centerX - current.centerX) / (scale * 0.75),
         -1,
         1
       ),
-      head_turn: clip(current.headTurn - baseline.headTurn, -1, 1),
-      body_proximity: clip(current.bodyScale / scale - 1, -1, 1),
+      torso_lean: clip(
+        (current.torsoLean - baseline.torsoLean) / 0.5,
+        -1,
+        1
+      ),
+      shoulder_tilt: clip(
+        (current.shoulderTilt - baseline.shoulderTilt) / 0.5,
+        -1,
+        1
+      ),
+      head_turn: clip((current.headTurn - baseline.headTurn) / 0.45, -1, 1),
+      body_proximity: clip((current.bodyScale / scale - 1) / 0.6, -1, 1),
       motion_energy: 0,
       tracking_confidence:
         typeof current.confidence === "number"
