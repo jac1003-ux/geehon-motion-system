@@ -32,5 +32,15 @@ the local modifications and attribution travel with the runtime.
 - An optional on-screen control zone marks normalized x `0.15..0.85` and y
   `0.10..0.90`.
 
-The MediaPipe version, model URL, and CDN loading strategy remain aligned with
-the upstream example. This adaptation adds no new online runtime dependency.
+## Network requirement
+
+This runtime currently requires network access to both jsDelivr and the Google
+MediaPipe model host. The pinned jsDelivr package provides the Tasks Vision
+JavaScript bundle and WASM files; the Google MediaPipe model URL provides the
+Pose Landmarker Lite model. No additional large vendor assets are introduced by
+this adaptation.
+
+Here, "portable" means that project files contain no machine-specific absolute
+paths. It does not mean offline operation. A future offline vendoring pass can
+store the pinned JavaScript bundle, WASM files, and `.task` model inside the Max
+project after their size, update policy, and license obligations are reviewed.
