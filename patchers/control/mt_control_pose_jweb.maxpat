@@ -11,6 +11,7 @@
     "classnamespace": "box",
     "rect": [80, 80, 1120, 780],
     "gridsize": [15, 15],
+    "openinpresentation": 1,
     "description": "Portable Pose Landmarker jweb bridge with instance-safe frame dictionaries.",
     "tags": "pose jweb camera bridge dictionary interaction",
     "boxes": [
