@@ -89,6 +89,63 @@
     };
   }
 
+  function createModeCoordinator(options) {
+    var desiredRunningMode = options.initialDesiredMode;
+    var appliedModelMode = options.initialAppliedMode;
+    var applyMode = options.applyMode;
+    var convergence = null;
+
+    function converge() {
+      if (convergence) {
+        return convergence;
+      }
+
+      convergence = (async function () {
+        while (appliedModelMode !== desiredRunningMode) {
+          var targetMode = desiredRunningMode;
+          await applyMode(targetMode);
+          appliedModelMode = targetMode;
+        }
+        return appliedModelMode;
+      })();
+
+      convergence = convergence.then(
+        function (mode) {
+          convergence = null;
+          if (appliedModelMode !== desiredRunningMode) {
+            return converge();
+          }
+          return mode;
+        },
+        function (error) {
+          convergence = null;
+          throw error;
+        }
+      );
+      return convergence;
+    }
+
+    return {
+      request: function (mode) {
+        desiredRunningMode = mode;
+        return converge();
+      },
+      desiredMode: function () {
+        return desiredRunningMode;
+      },
+      appliedMode: function () {
+        return appliedModelMode;
+      },
+      isConverged: function (mode) {
+        return (
+          desiredRunningMode === mode &&
+          appliedModelMode === mode &&
+          convergence === null
+        );
+      },
+    };
+  }
+
   function metaValue(dictionary, key) {
     if (!dictionary) {
       return null;
@@ -249,6 +306,7 @@
     stopStream: stopStream,
     acceptCurrentStream: acceptCurrentStream,
     createCameraLifecycle: createCameraLifecycle,
+    createModeCoordinator: createModeCoordinator,
     createFramePublisher: createFramePublisher,
   };
 });

@@ -16,8 +16,10 @@
   let drawImage = true;
   let drawLandmarks = true;
   let drawConnectors = true;
-  let runningMode = "VIDEO";
+  let desiredRunningMode = "VIDEO";
+  let appliedModelMode = null;
   let poseLandmarker = null;
+  let modeCoordinator = null;
   let drawingUtils = null;
   let PoseLandmarkerClass = null;
   let currentStream = null;
@@ -27,7 +29,7 @@
   let modelReady = false;
   let cameraReady = false;
   let pendingImageGeneration = 0;
-  let modeOptionsQueue = Promise.resolve();
+  let pendingImageSource = "";
 
   function outlet() {
     window.max.outlet.apply(window.max, arguments);
@@ -139,10 +141,11 @@
   window.max.bindInlet("set_image", async function (imageFile) {
     const imageGeneration = cameraLifecycle.invalidateForImage();
     pendingImageGeneration = imageGeneration;
+    pendingImageSource = String(imageFile);
     releaseCurrentStream();
 
     if (await setRunningMode("IMAGE", imageGeneration)) {
-      image.src = String(imageFile);
+      image.src = pendingImageSource;
     }
   });
 
@@ -220,7 +223,7 @@
       ) {
         return;
       }
-      if (runningMode !== "VIDEO") {
+      if (!modelModeIs("VIDEO")) {
         lifecycle.stopStream(candidateStream);
         return;
       }
@@ -240,7 +243,7 @@
         }
         return;
       }
-      if (runningMode !== "VIDEO") {
+      if (!modelModeIs("VIDEO")) {
         lifecycle.stopStream(candidateStream);
         if (video.srcObject === candidateStream) {
           video.srcObject = null;
@@ -272,38 +275,57 @@
     }
   }
 
-  function setRunningMode(nextMode, generation) {
+  function modelModeIs(mode) {
+    return (
+      modeCoordinator !== null &&
+      desiredRunningMode === mode &&
+      appliedModelMode === mode &&
+      modeCoordinator.isConverged(mode)
+    );
+  }
+
+  async function setRunningMode(nextMode, generation) {
     if (nextMode !== "VIDEO" && nextMode !== "IMAGE") {
       reportError("INVALID_RUNNING_MODE", nextMode);
-      return Promise.resolve(false);
+      return false;
     }
 
-    const modeTask = modeOptionsQueue.then(async function () {
-      if (!cameraLifecycle.isCurrent(generation, nextMode)) {
-        return false;
-      }
+    if (!cameraLifecycle.isCurrent(generation, nextMode)) {
+      return false;
+    }
 
-      if (poseLandmarker && nextMode !== runningMode) {
-        await poseLandmarker.setOptions({ runningMode: nextMode });
-      }
+    desiredRunningMode = nextMode;
+    if (!modeCoordinator) {
+      return false;
+    }
 
-      if (!cameraLifecycle.isCurrent(generation, nextMode)) {
-        return false;
-      }
+    try {
+      await modeCoordinator.request(nextMode);
+      desiredRunningMode = modeCoordinator.desiredMode();
+      appliedModelMode = modeCoordinator.appliedMode();
+    } catch (error) {
+      reportError("MODEL_MODE_FAILED", error);
+      return false;
+    }
 
-      runningMode = nextMode;
+    if (!cameraLifecycle.isCurrent(generation, nextMode)) {
+      return false;
+    }
+
+    if (modelModeIs(nextMode)) {
       canvas.clearRect(0, 0, overlay.width, overlay.height);
       return true;
-    });
-
-    modeOptionsQueue = modeTask.then(
-      function () {},
-      function () {}
-    );
-    return modeTask;
+    }
+    return false;
   }
 
   function startVideoLoop(generation) {
+    if (
+      !cameraLifecycle.isCurrent(generation, "VIDEO") ||
+      !modelModeIs("VIDEO")
+    ) {
+      return;
+    }
     if (animationFrame) {
       cancelAnimationFrame(animationFrame);
     }
@@ -315,12 +337,15 @@
   async function processVideoFrame(generation) {
     animationFrame = 0;
 
-    if (!cameraLifecycle.isCurrent(generation, "VIDEO")) {
+    if (
+      !cameraLifecycle.isCurrent(generation, "VIDEO") ||
+      !modelModeIs("VIDEO")
+    ) {
       return;
     }
 
     if (
-      runningMode === "VIDEO" &&
+      modelModeIs("VIDEO") &&
       modelReady &&
       cameraReady &&
       video.readyState >= 2 &&
@@ -333,7 +358,10 @@
 
       try {
         const results = poseLandmarker.detectForVideo(video, timestampMs);
-        if (!cameraLifecycle.isCurrent(generation, "VIDEO")) {
+        if (
+          !cameraLifecycle.isCurrent(generation, "VIDEO") ||
+          !modelModeIs("VIDEO")
+        ) {
           return;
         }
         renderAndPublish(results, video, timestampMs, generation);
@@ -345,7 +373,7 @@
     }
 
     if (
-      runningMode === "VIDEO" &&
+      modelModeIs("VIDEO") &&
       cameraReady &&
       cameraLifecycle.isCurrent(generation, "VIDEO")
     ) {
@@ -356,15 +384,35 @@
   }
 
   async function detectImage() {
-    if (!poseLandmarker || runningMode !== "IMAGE" || !image.src) {
+    const generation = pendingImageGeneration;
+    if (
+      !poseLandmarker ||
+      !image.src ||
+      !cameraLifecycle.isCurrent(generation, "IMAGE")
+    ) {
       return;
     }
 
     try {
+      if (
+        !modelModeIs("IMAGE") &&
+        !(await setRunningMode("IMAGE", generation))
+      ) {
+        return;
+      }
+      if (
+        !cameraLifecycle.isCurrent(generation, "IMAGE") ||
+        !modelModeIs("IMAGE")
+      ) {
+        return;
+      }
+
       const timestampMs = Date.now();
       const results = poseLandmarker.detect(image);
-      const generation = pendingImageGeneration;
-      if (!cameraLifecycle.isCurrent(generation, "IMAGE")) {
+      if (
+        !cameraLifecycle.isCurrent(generation, "IMAGE") ||
+        !modelModeIs("IMAGE")
+      ) {
         return;
       }
       renderAndPublish(results, image, timestampMs, generation);
@@ -520,6 +568,7 @@
       "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm"
     );
 
+    const initialModelMode = desiredRunningMode;
     poseLandmarker = await PoseLandmarkerClass.createFromOptions(vision, {
       baseOptions: {
         modelAssetPath:
@@ -527,20 +576,42 @@
         delegate: "GPU",
       },
       numPoses: 1,
-      runningMode: runningMode,
+      runningMode: initialModelMode,
     });
+
+    appliedModelMode = initialModelMode;
+    modeCoordinator = lifecycle.createModeCoordinator({
+      initialDesiredMode: desiredRunningMode,
+      initialAppliedMode: appliedModelMode,
+      applyMode: async function (mode) {
+        await poseLandmarker.setOptions({ runningMode: mode });
+        appliedModelMode = mode;
+      },
+    });
+    await modeCoordinator.request(desiredRunningMode);
+    desiredRunningMode = modeCoordinator.desiredMode();
+    appliedModelMode = modeCoordinator.appliedMode();
 
     modelReady = true;
     status("model_loading", 0);
     status("model_ready", 1);
 
-    await openCamera({
-      video: {
-        width: { ideal: 640 },
-        height: { ideal: 480 },
-      },
-      audio: false,
-    });
+    if (
+      desiredRunningMode === "IMAGE" &&
+      cameraLifecycle.isCurrent(pendingImageGeneration, "IMAGE")
+    ) {
+      if (pendingImageSource) {
+        image.src = pendingImageSource;
+      }
+    } else {
+      await openCamera({
+        video: {
+          width: { ideal: 640 },
+          height: { ideal: 480 },
+        },
+        audio: false,
+      });
+    }
   } catch (error) {
     modelReady = false;
     status("model_loading", 0);

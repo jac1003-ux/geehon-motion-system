@@ -40,6 +40,8 @@ const runtimeSource = bridgeSource + "\n" + lifecycleSource;
   "numPoses: 1",
   "createFramePublisher",
   "cameraLifecycle",
+  "desiredRunningMode",
+  "appliedModelMode",
   "session_id",
   "model_loading",
   "model_ready",
@@ -347,9 +349,50 @@ function testImageIntentInvalidatesPendingVideo() {
   assert.deepStrictEqual(stopped, ["old-video"]);
 }
 
-testGenerationAndStreamStop();
-testSerializedConfirmedPublishing();
-testStaleGenerationAndCallbackWatchdog();
-testImageIntentInvalidatesPendingVideo();
+function deferred() {
+  let resolve;
+  let reject;
+  const promise = new Promise((resolvePromise, rejectPromise) => {
+    resolve = resolvePromise;
+    reject = rejectPromise;
+  });
+  return { promise, resolve, reject };
+}
 
-console.log("Pose web assets: PASS");
+async function testModelModeConvergesAfterLateVideoCompletion() {
+  const delayedVideo = deferred();
+  const calls = [];
+  const coordinator = lifecycle.createModeCoordinator({
+    initialDesiredMode: "IMAGE",
+    initialAppliedMode: "IMAGE",
+    applyMode(mode) {
+      calls.push(mode);
+      return mode === "VIDEO" ? delayedVideo.promise : Promise.resolve();
+    },
+  });
+
+  const videoRequest = coordinator.request("VIDEO");
+  await Promise.resolve();
+  assert.deepStrictEqual(calls, ["VIDEO"]);
+
+  const imageRequest = coordinator.request("IMAGE");
+  delayedVideo.resolve();
+  await Promise.all([videoRequest, imageRequest]);
+
+  assert.deepStrictEqual(calls, ["VIDEO", "IMAGE"]);
+  assert.strictEqual(coordinator.desiredMode(), "IMAGE");
+  assert.strictEqual(coordinator.appliedMode(), "IMAGE");
+  assert.strictEqual(coordinator.isConverged("IMAGE"), true);
+}
+
+(async function run() {
+  testGenerationAndStreamStop();
+  testSerializedConfirmedPublishing();
+  testStaleGenerationAndCallbackWatchdog();
+  testImageIntentInvalidatesPendingVideo();
+  await testModelModeConvergesAfterLateVideoCompletion();
+  console.log("Pose web assets: PASS");
+})().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
