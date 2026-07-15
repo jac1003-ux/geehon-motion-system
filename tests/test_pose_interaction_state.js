@@ -138,22 +138,24 @@ assert.strictEqual(typeof InteractionState, "function");
   const invalid = engine({ tracking_valid: 0, tracking_confidence: 0.2 });
 
   assert.strictEqual(state.step(1100, invalid).state, "HOLD");
-  assert.strictEqual(state.step(1399, invalid).state, "HOLD");
-  assertNear(state.step(1399, invalid).torso_sway, 0.8, "HOLD keeps value");
+  assert.strictEqual(state.step(1399, invalid).state, "HOLD"); // elapsed 299
+  assert.strictEqual(state.step(1400, invalid).state, "HOLD"); // elapsed 300
+  assertNear(state.step(1400, invalid).torso_sway, 0.8, "HOLD keeps value");
 
-  const returnStart = state.step(1400, invalid);
+  const returnStart = state.step(1401, invalid); // elapsed 301
   assert.strictEqual(returnStart.state, "RETURN");
-  assertNear(returnStart.torso_sway, 0.8, "RETURN begins at held value");
+  assert(returnStart.torso_sway < 0.8, "RETURN begins after the HOLD boundary");
 
   const returnMiddle = state.step(1800, invalid);
   assert.strictEqual(returnMiddle.state, "RETURN");
   assertNear(returnMiddle.torso_sway, 0.4, "RETURN reaches midpoint");
 
-  const returnEndMinusOne = state.step(2199, invalid);
-  assert.strictEqual(returnEndMinusOne.state, "RETURN");
-  assert(returnEndMinusOne.torso_sway > 0);
+  assert.strictEqual(state.step(2199, invalid).state, "RETURN"); // elapsed 1099
+  const returnEnd = state.step(2200, invalid); // elapsed 1100
+  assert.strictEqual(returnEnd.state, "RETURN");
+  assertNeutral(returnEnd, "RETURN reaches neutral at its inclusive boundary");
 
-  const lost = state.step(2200, invalid);
+  const lost = state.step(2201, invalid); // elapsed 1101
   assert.strictEqual(lost.state, "LOST");
   assert.strictEqual(lost.active, 0);
   assertNeutral(lost, "LOST is neutral");
@@ -310,8 +312,10 @@ assert.strictEqual(typeof InteractionState, "function");
   state.step(0, engine());
   const outside = engine({ inside_control_zone: 0 });
   assert.strictEqual(state.step(10, outside).state, "HOLD");
-  assert.strictEqual(state.step(310, outside).state, "RETURN");
-  assert.strictEqual(state.step(1110, outside).state, "LOST");
+  assert.strictEqual(state.step(310, outside).state, "HOLD");
+  assert.strictEqual(state.step(311, outside).state, "RETURN");
+  assert.strictEqual(state.step(1110, outside).state, "RETURN");
+  assert.strictEqual(state.step(1111, outside).state, "LOST");
 }
 
 {

@@ -262,10 +262,10 @@
     }
     elapsed = Math.max(0, timestampMs - this.lossStartMs);
 
-    if (elapsed < this.holdMs) {
+    if (elapsed <= this.holdMs) {
       this.state = "HOLD";
       this.currentOutput = copyFeatures(this.lossOutput);
-    } else if (elapsed < this.holdMs + this.returnMs) {
+    } else if (elapsed <= this.holdMs + this.returnMs) {
       this.state = "RETURN";
       returnElapsed = elapsed - this.holdMs;
       this.currentOutput = interpolateFeatures(
