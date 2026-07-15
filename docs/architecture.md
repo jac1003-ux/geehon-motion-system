@@ -39,6 +39,27 @@ This structure keeps the dry signal explicit:
 
 The Max control layer derives normalized values for hand X, hand Y, pinch distance, and palm width. The current Main patch maps the first three values to Tremolo parameters and leaves palm width reserved.
 
+### 5. Standalone Pose Interaction Layer
+
+`mt_control_pose_demo.maxpat` is a separate Stage-One control prototype and is not part of the Main audio graph. Its pipeline is:
+
+```text
+mt_control_pose_jweb
+        |
+        v
+mt_pose_feature_engine
+        |
+        v
+mt_interaction_profile <---- mt_midi_clutch
+        |
+        v
+raw safe features + unassigned macro outlets
+```
+
+The feature engine stores separate Singer and Instrumentalist calibration baselines, applies confidence hysteresis, smoothing, deadzones, and motion history, and keeps display mirroring separate from anatomical sign conventions.
+
+The interaction profile adds timestamp-driven safety states: `NO_CAMERA`, `POSITION`, `UNCALIBRATED`, `CALIBRATING`, `READY`, `ACTIVE`, `HOLD`, `RETURN`, and `LOST`. An optional MIDI CC foot clutch closes before device-disconnect status is emitted. The four semantic macros remain zero until later ergonomic mapping research.
+
 ## Project-Relative Resource Loading
 
 The hand tracker resolves:
@@ -48,6 +69,12 @@ Project:/web/hand-landmarker/jweb-hands-landmarker.html
 ```
 
 through `absolutepath`, converts it to a `file://` URL, and sends it to `jweb`. Active runtime patchers therefore do not depend on a specific macOS user folder.
+
+The Pose tracker uses the same project-relative pattern for:
+
+```text
+Project:/web/pose-landmarker/jweb-pose-landmarker.html
+```
 
 ## Interface Stability
 

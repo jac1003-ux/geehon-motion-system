@@ -58,6 +58,26 @@
         "kind": "patcher",
         "local": 1
       },
+      "mt_control_pose_jweb.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "mt_pose_feature_engine.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "mt_interaction_profile.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "mt_midi_clutch.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "mt_control_pose_demo.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
       "mt_granular_synth.maxpat": {
         "kind": "patcher",
         "local": 1

@@ -27,6 +27,30 @@ assert.strictEqual(
   "Main patch is not marked as top-level"
 );
 
+for (const name of [
+  "mt_control_pose_jweb.maxpat",
+  "mt_pose_feature_engine.maxpat",
+  "mt_interaction_profile.maxpat",
+  "mt_midi_clutch.maxpat",
+  "mt_control_pose_demo.maxpat",
+]) {
+  assert(members[name], `Pose project member is missing: ${name}`);
+  assert.strictEqual(members[name].local, 1, `${name} must be project-local`);
+  assert.strictEqual(
+    members[name].toplevel,
+    undefined,
+    `${name} must not be a top-level project patcher`
+  );
+}
+
+assert.deepStrictEqual(
+  Object.entries(members)
+    .filter(([, metadata]) => metadata.toplevel === 1)
+    .map(([name]) => name),
+  ["mt_portfolio_main.maxpat"],
+  "Main must remain the only top-level patcher"
+);
+
 const activePatchers = collectPatchers(patchersRoot);
 const byName = new Map();
 for (const filePath of activePatchers) {

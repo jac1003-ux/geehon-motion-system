@@ -19,6 +19,7 @@ The local `jweb` page currently loads these remote resources at runtime:
 - MediaPipe drawing utilities `0.2`
 - MediaPipe Tasks Vision `0.10.0`
 - MediaPipe Hand Landmarker model and WASM files
+- MediaPipe Pose Landmarker Lite model and WASM files
 
 Without network access, the current Gesture module may not initialize even though its HTML and project bridge are local.
 
@@ -32,10 +33,26 @@ The retained upstream source notice is stored at `web/hand-landmarker/README_HAN
 
 The local adaptation adds project-relative loading, mirrored video display, handedness correction, camera selection, and normalized performance-control outputs.
 
+## Third-Party Pose Tracker
+
+The Pose interaction prototype is adapted from:
+
+- [lysdexic-audio/jweb-pose-landmarker](https://github.com/lysdexic-audio/jweb-pose-landmarker)
+
+The retained upstream notice is stored at `web/pose-landmarker/README_POSE_LANDMARKER.md`, and the GPL-3.0 license text remains at `web/pose-landmarker/LICENSE`.
+
+The local Pose page loads these exact runtime resources:
+
+- `https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/vision_bundle.js`
+- `https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm`
+- `https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task`
+
+The local adaptation adds instance-safe dictionaries, camera ownership, mirrored display without mirrored anatomical output, one-person Pose inference, calibration metadata, and lifecycle safeguards for asynchronous `jweb` communication.
+
 ## Development-Only Requirement
 
-Node.js is used only to run repository and patch-structure checks in `tests/`. It is not required to perform with the Max project.
+The files under `javascript/` are Max runtime logic and run inside Max's `js` object. Node.js is used only to run repository, pure-logic, and patch-structure checks in `tests/`; it is not required to perform with the Max project.
 
 ## Project License Status
 
-The repository does not yet declare a separate license for the original Geehon Motion System code and artwork. Before public release or commercial distribution, select a project license and review how the bundled GPL-3.0 hand-tracking component affects the intended distribution model.
+The repository does not yet declare a separate license for the original Geehon Motion System code and artwork. Before public release or commercial distribution, select a project license and review how the bundled GPL-3.0 Hand and Pose tracking components affect the intended distribution model.

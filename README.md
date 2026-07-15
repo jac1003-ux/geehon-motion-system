@@ -16,6 +16,9 @@ This repository contains a working prototype, not a packaged standalone applicat
 - Three-channel source mixer with a dedicated dry bus
 - Parallel FX returns for a pfft spectral vocoder, live vocal chop, and stereo tremolo
 - MediaPipe hand tracking inside Max `jweb`
+- Standalone MediaPipe Pose interaction prototype with Singer and Instrumentalist calibration profiles
+- Tracking-loss safety with Hold, Return, Lost, and reconnect ramps
+- Optional MIDI CC foot clutch with device-loss protection
 - Four-page Source, FX, Gesture, and Master presentation interface
 - Short parameter ramps for click-free switching
 
@@ -47,9 +50,10 @@ FX modules output independent processed layers. The original source signal is co
 2. Install Max 9.
 3. Open `geehon-motion-system.maxproj`.
 4. Open `mt_portfolio_main.maxpat` from the Max Project window.
-5. Allow Max to access the camera when macOS asks.
-6. Keep an internet connection available while the hand tracker loads its MediaPipe libraries and model.
-7. Turn on DSP, enable one or more sources, then raise the relevant Source and FX return gains.
+5. To test the Stage-One Pose control layer separately, open `mt_control_pose_demo.maxpat` from the same Project window.
+6. Allow Max to access the camera when macOS asks.
+7. Keep an internet connection available while the Hand or Pose tracker loads its MediaPipe libraries and model.
+8. Turn on DSP, enable one or more sources, then raise the relevant Source and FX return gains.
 
 ## Current Gesture Mapping
 
@@ -61,6 +65,17 @@ FX modules output independent processed layers. The original source signal is co
 | Palm width | Reserved for a future mapping |
 
 These mappings are provisional. The next design stage will evaluate neutral positions, movement range, fatigue, parameter scaling, and perceptual clarity before treating them as a final performance system.
+
+## Pose Interaction Stage One
+
+The standalone Pose demo deliberately stops before effect mapping. It produces calibrated, safety-conditioned body features for later ergonomic design:
+
+- **Singer:** a separately stored neutral baseline intended for hands-free control while singing.
+- **Instrumentalist:** a separately stored neutral baseline intended for postures shaped by an instrument.
+- **Safety:** tracking loss holds the last value briefly, returns to neutral, and reconnects without a sudden jump.
+- **Optional foot clutch:** MIDI Learn can bind one CC pedal; device loss closes the clutch and reconnection does not automatically re-arm it.
+
+The `Energy`, `Space`, `Texture`, and `Transform` macro outputs exist but remain zero and explicitly unassigned. The Pose prototype is not connected to `mt_portfolio_main.maxpat` or to any audio effect in Stage One.
 
 ## Repository Structure
 
@@ -74,6 +89,8 @@ patchers/                      Active Max runtime patchers
   dsp/                         Granular voices and pfft processing
 assets/ui/                     PNG skins, editable SVG sources, and logo assets
 web/hand-landmarker/           Local jweb page and MediaPipe bridge
+web/pose-landmarker/           Local Pose jweb page, runtime, license, and model bridge
+javascript/                    Max runtime math, calibration, state, and MIDI safety logic
 media/                         Optional local audio files, ignored by default
 tests/                         Static patch and repository checks
 scripts/                       Maintenance utilities
@@ -90,18 +107,23 @@ node tests/test_maxproj.js
 node tests/test_maxpat_integrity.js
 node tests/test_repository_structure.js
 node tests/test_hand_control_interface.js
+node tests/test_pose_feature_math.js
+node tests/test_pose_interaction_state.js
+node tests/test_pose_patch_interfaces.js
+node tests/test_pose_demo.js
 ```
 
 Additional module-specific checks are available in `tests/`.
 
 ## Dependencies and Credits
 
-The audio system uses standard Max/MSP objects. Hand tracking is adapted from `jweb-hands-landmarker` and loads MediaPipe Tasks Vision resources at runtime. Full attribution, network requirements, and license notes are documented in [docs/dependencies.md](docs/dependencies.md).
+The audio system uses standard Max/MSP objects. Hand and Pose tracking are adapted from their respective `jweb` Landmarker projects and load MediaPipe Tasks Vision resources at runtime. Full attribution, network requirements, and license notes are documented in [docs/dependencies.md](docs/dependencies.md).
 
 ## Known Limitations
 
-- Gesture tracking currently depends on remote MediaPipe CDN and model resources.
+- Hand and Pose tracking currently depend on remote MediaPipe CDN and model resources.
 - Gesture mappings are functional prototypes and are not yet finalized for ergonomics.
+- Pose Singer/Instrumentalist operation, long-session fatigue, and MIDI hardware behavior still require the documented manual checkpoint.
 - The project has not yet been packaged as a VST, Audio Unit, Max for Live device, or standalone app.
 - Audio behavior should still be verified on each target interface and camera setup.
 
