@@ -183,3 +183,105 @@ const sharedBus = (profilePatch.boxes || [])
 assert.deepStrictEqual(sharedBus, [], "Do not use shared send/receive buses");
 
 console.log("Pose patch interfaces: PASS");
+
+const midiPatchPath = path.join(
+  root,
+  "patchers/control/mt_midi_clutch.maxpat"
+);
+const midiScriptPath = path.join(root, "javascript/mt_midi_device_watch.js");
+
+assert(fs.existsSync(midiScriptPath), "Missing MIDI device watcher script");
+assert(fs.existsSync(midiPatchPath), "Missing MIDI clutch patch");
+
+const midiModule = require(midiScriptPath);
+assert.strictEqual(
+  typeof midiModule.MidiDeviceWatch,
+  "function",
+  "MIDI watcher must expose a testable constructor"
+);
+
+const watcher = new midiModule.MidiDeviceWatch();
+watcher.select("Expression Pedal");
+watcher.beginRefresh();
+watcher.append("Other Device");
+assert.strictEqual(watcher.finishRefresh().connected, 0);
+watcher.beginRefresh();
+watcher.append("Expression Pedal");
+assert.strictEqual(watcher.finishRefresh().connected, 1);
+watcher.learn(1);
+const learned = watcher.processCC(100, 21, 3);
+assert.strictEqual(learned.learn, 0);
+assert.strictEqual(learned.value, 100);
+assert.strictEqual(watcher.processCC(80, 22, 3).matched, 0);
+assert.strictEqual(watcher.processCC(80, 21, 3).matched, 1);
+
+const midiPatch = readPatch(midiPatchPath);
+const midiBoxes = (midiPatch.boxes || []).map((entry) => entry.box);
+const midiOutlets = sortedPorts(midiPatch, "outlet");
+
+for (const varname of [
+  "pose_midi_device",
+  "pose_midi_learn",
+  "pose_midi_mode",
+]) {
+  assert(
+    midiBoxes.some((box) => box.varname === varname),
+    `Missing MIDI control varname: ${varname}`
+  );
+}
+
+assert.strictEqual(midiOutlets.length, 4, "MIDI clutch must expose 4 outlets");
+assert.deepStrictEqual(
+  midiOutlets.map((box) => box.comment),
+  [
+    "clutch 0/1",
+    "pedal_mode 0/1",
+    "pedal_connected 0/1",
+    "status symbol",
+  ]
+);
+
+for (const text of [
+  "midiinfo",
+  "ctlin",
+  "metro 1000",
+  ">= 64",
+  "declarepath ../../javascript",
+  "js mt_midi_device_watch.js",
+]) {
+  assert(findText(midiPatch, text), `Missing MIDI object: ${text}`);
+}
+
+const mode = midiBoxes.find((box) => box.varname === "pose_midi_mode");
+const metro = findText(midiPatch, "metro 1000");
+const modeTrigger = findText(midiPatch, "t i i i i i");
+assert(modeTrigger, "Missing ordered pedal-mode fan-out");
+assert(isConnected(midiPatch, mode, modeTrigger), "Pedal mode trigger is disconnected");
+assert(
+  isConnected(midiPatch, modeTrigger, metro, 2),
+  "Pedal mode must control polling through the ordered trigger"
+);
+
+const safeDisconnect = findText(midiPatch, "t 0 0");
+assert(safeDisconnect, "Missing ordered disconnect safety trigger");
+assert(
+  isConnected(midiPatch, safeDisconnect, midiOutlets[0], 1),
+  "Disconnect must close clutch from the right trigger outlet first"
+);
+assert(
+  isConnected(midiPatch, safeDisconnect, midiOutlets[2], 0),
+  "Disconnect must report pedal disconnected after closing clutch"
+);
+
+assert.strictEqual(
+  midiBoxes.filter((box) => box.text === "loadbang").length,
+  1,
+  "MIDI clutch must use one central loadbang"
+);
+assert.strictEqual(
+  midiBoxes.filter((box) => /^loadmess(?:\s|$)/.test(box.text || "")).length,
+  0,
+  "MIDI clutch must not use loadmess"
+);
+
+console.log("Pose MIDI clutch interface: PASS");
