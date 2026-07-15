@@ -98,6 +98,21 @@ const shoulderFeatures = math.featuresFromGeometry(
 );
 const headFeatures = math.featuresFromGeometry(headRightGeometry, baseline);
 const proximityFeatures = math.featuresFromGeometry(closerGeometry, baseline);
+const nanConfidenceGeometry = Object.assign({}, baseline, { confidence: NaN });
+const infiniteConfidenceGeometry = Object.assign({}, baseline, {
+  confidence: Infinity,
+});
+
+assert.strictEqual(
+  math.featuresFromGeometry(nanConfidenceGeometry, baseline)
+    .tracking_confidence,
+  0
+);
+assert.strictEqual(
+  math.featuresFromGeometry(infiniteConfidenceGeometry, baseline)
+    .tracking_confidence,
+  0
+);
 
 assertClose(
   rightFeatures.torso_sway,

@@ -285,7 +285,7 @@
       body_proximity: clip((current.bodyScale / scale - 1) / 0.6, -1, 1),
       motion_energy: 0,
       tracking_confidence:
-        typeof current.confidence === "number"
+        finiteNumber(current.confidence)
           ? clip(current.confidence, 0, 1)
           : 0,
     };
