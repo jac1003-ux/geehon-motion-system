@@ -26,6 +26,12 @@
     };
   }
 
+  function createSessionId(now, random) {
+    var timestamp = (now || Date.now)().toString(36);
+    var entropy = (random || Math.random)().toString(36).slice(2, 12);
+    return "pose-" + timestamp + "-" + entropy;
+  }
+
   function stopStream(stream) {
     if (!stream || typeof stream.getTracks !== "function") {
       return;
@@ -46,17 +52,61 @@
     return true;
   }
 
-  function confirmedFrameId(dictionary) {
+  function createCameraLifecycle(initialMode) {
+    var generation = createGeneration();
+    var intendedMode = initialMode || "VIDEO";
+
+    return {
+      beginOpen: function () {
+        intendedMode = "VIDEO";
+        return generation.advance();
+      },
+      invalidateForImage: function () {
+        intendedMode = "IMAGE";
+        return generation.advance();
+      },
+      stop: function () {
+        return generation.advance();
+      },
+      currentGeneration: function () {
+        return generation.current();
+      },
+      currentMode: function () {
+        return intendedMode;
+      },
+      isCurrent: function (token, mode) {
+        return (
+          generation.isCurrent(token) && (!mode || intendedMode === mode)
+        );
+      },
+      acceptVideoStream: function (token, stream) {
+        if (!generation.isCurrent(token) || intendedMode !== "VIDEO") {
+          stopStream(stream);
+          return false;
+        }
+        return true;
+      },
+    };
+  }
+
+  function metaValue(dictionary, key) {
     if (!dictionary) {
       return null;
     }
-    if (dictionary.meta && typeof dictionary.meta.frame_id === "number") {
-      return dictionary.meta.frame_id;
+    if (dictionary.meta && dictionary.meta[key] != null) {
+      return dictionary.meta[key];
     }
-    if (typeof dictionary["meta::frame_id"] === "number") {
-      return dictionary["meta::frame_id"];
+    if (dictionary["meta::" + key] != null) {
+      return dictionary["meta::" + key];
     }
     return null;
+  }
+
+  function confirmsPublication(dictionary, target) {
+    return (
+      metaValue(dictionary, "session_id") === target.sessionId &&
+      metaValue(dictionary, "frame_id") === target.targetFrameId
+    );
   }
 
   function createFramePublisher(options) {
@@ -66,8 +116,16 @@
     var emitError = options.emitError;
     var isGenerationCurrent = options.isGenerationCurrent;
     var setTimer = options.setTimer || setTimeout;
+    var clearTimer = options.clearTimer || clearTimeout;
     var maxAttempts = Math.max(1, options.maxAttempts || 8);
-    var retryDelayMs = Math.max(0, options.retryDelayMs || 12);
+    var retryDelayMs = Math.max(
+      0,
+      options.retryDelayMs == null ? 12 : options.retryDelayMs
+    );
+    var callbackTimeoutMs = Math.max(
+      1,
+      options.callbackTimeoutMs == null ? 80 : options.callbackTimeoutMs
+    );
     var pending = null;
     var inFlight = false;
 
@@ -88,45 +146,56 @@
     }
 
     function confirm(target, attempt) {
+      var settled = false;
+      var watchdog;
+
       if (!isGenerationCurrent(target.generation)) {
         finish();
         return;
       }
 
-      try {
-        getDict(target.targetDictName, function (dictionary) {
-          if (!isGenerationCurrent(target.generation)) {
-            finish();
-            return;
-          }
+      function settle(dictionary, callbackTimedOut) {
+        if (settled) {
+          return;
+        }
+        settled = true;
+        clearTimer(watchdog);
 
-          if (confirmedFrameId(dictionary) === target.targetFrameId) {
-            emitUpdate(
-              target.targetDictName,
-              target.targetFrameId,
-              target.timestampMs
-            );
-            finish();
-            return;
-          }
+        if (!isGenerationCurrent(target.generation)) {
+          finish();
+          return;
+        }
 
-          if (attempt + 1 >= maxAttempts) {
-            failTimeout(target);
-            return;
-          }
+        if (!callbackTimedOut && confirmsPublication(dictionary, target)) {
+          emitUpdate(
+            target.targetDictName,
+            target.targetFrameId,
+            target.timestampMs
+          );
+          finish();
+          return;
+        }
 
-          setTimer(function () {
-            confirm(target, attempt + 1);
-          }, retryDelayMs);
-        });
-      } catch (error) {
         if (attempt + 1 >= maxAttempts) {
           failTimeout(target);
           return;
         }
+
         setTimer(function () {
           confirm(target, attempt + 1);
         }, retryDelayMs);
+      }
+
+      watchdog = setTimer(function () {
+        settle(null, true);
+      }, callbackTimeoutMs);
+
+      try {
+        getDict(target.targetDictName, function (dictionary) {
+          settle(dictionary, false);
+        });
+      } catch (error) {
+        settle(null, true);
       }
     }
 
@@ -163,6 +232,7 @@
           targetFrameId: publication.targetFrameId,
           timestampMs: publication.timestampMs,
           generation: publication.generation,
+          sessionId: publication.sessionId,
           frame: publication.frame,
         };
         pump();
@@ -175,8 +245,10 @@
 
   return {
     createGeneration: createGeneration,
+    createSessionId: createSessionId,
     stopStream: stopStream,
     acceptCurrentStream: acceptCurrentStream,
+    createCameraLifecycle: createCameraLifecycle,
     createFramePublisher: createFramePublisher,
   };
 });

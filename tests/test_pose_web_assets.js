@@ -39,7 +39,8 @@ const runtimeSource = bridgeSource + "\n" + lifecycleSource;
   "draw_control_zone",
   "numPoses: 1",
   "createFramePublisher",
-  "cameraGeneration",
+  "cameraLifecycle",
+  "session_id",
   "model_loading",
   "model_ready",
   "camera_ready",
@@ -129,13 +130,51 @@ const lifecycle = require(path.join(
   "pose-runtime-lifecycle.js"
 ));
 
-function publication(frameId, generation, dictName) {
+function publication(frameId, generation, dictName, sessionId = "session-A") {
   return {
     targetDictName: dictName,
     targetFrameId: frameId,
     timestampMs: frameId * 10,
     generation,
-    frame: { meta: { frame_id: frameId } },
+    sessionId,
+    frame: { meta: { frame_id: frameId, session_id: sessionId } },
+  };
+}
+
+function createFakeTimers() {
+  let nextId = 1;
+  const tasks = [];
+
+  return {
+    setTimer(callback) {
+      const task = { id: nextId, callback, cancelled: false };
+      nextId += 1;
+      tasks.push(task);
+      return task.id;
+    },
+    clearTimer(id) {
+      const task = tasks.find((candidate) => candidate.id === id);
+      if (task) {
+        task.cancelled = true;
+      }
+    },
+    runNext() {
+      while (tasks.length) {
+        const task = tasks.shift();
+        if (!task.cancelled) {
+          task.callback();
+          return true;
+        }
+      }
+      return false;
+    },
+    runAll(limit = 100) {
+      let count = 0;
+      while (this.runNext()) {
+        count += 1;
+        assert(count <= limit, "Fake timer queue did not settle");
+      }
+    },
   };
 }
 
@@ -176,7 +215,7 @@ function testSerializedConfirmedPublishing() {
   const token = generation.advance();
   const setCalls = [];
   const getCallbacks = [];
-  const timers = [];
+  const clock = createFakeTimers();
   const updates = [];
   const errors = [];
 
@@ -196,11 +235,11 @@ function testSerializedConfirmedPublishing() {
     isGenerationCurrent(value) {
       return generation.isCurrent(value);
     },
-    setTimer(callback) {
-      timers.push(callback);
-    },
+    setTimer: clock.setTimer,
+    clearTimer: clock.clearTimer,
     maxAttempts: 3,
     retryDelayMs: 1,
+    callbackTimeoutMs: 5,
   });
 
   publisher.enqueue(publication(1, token, "dict_A"));
@@ -214,10 +253,14 @@ function testSerializedConfirmedPublishing() {
   );
   assert.strictEqual(getCallbacks[0].name, "dict_A");
 
-  getCallbacks.shift().callback({ meta: { frame_id: 0 } });
+  getCallbacks.shift().callback({
+    meta: { frame_id: 1, session_id: "old-session" },
+  });
   assert.strictEqual(updates.length, 0);
-  timers.shift()();
-  getCallbacks.shift().callback({ meta: { frame_id: 1 } });
+  clock.runNext();
+  getCallbacks.shift().callback({
+    meta: { frame_id: 1, session_id: "session-A" },
+  });
 
   assert.deepStrictEqual(updates, [["dict_A", 1, 10]]);
   assert.deepStrictEqual(
@@ -226,16 +269,18 @@ function testSerializedConfirmedPublishing() {
     "Pending frames must coalesce to the latest snapshot"
   );
 
-  getCallbacks.shift().callback({ meta: { frame_id: 3 } });
+  getCallbacks.shift().callback({
+    meta: { frame_id: 3, session_id: "session-A" },
+  });
   assert.deepStrictEqual(updates[1], ["dict_C", 3, 30]);
   assert.deepStrictEqual(errors, []);
 }
 
-function testStaleGenerationAndFiniteTimeout() {
+function testStaleGenerationAndCallbackWatchdog() {
   const generation = lifecycle.createGeneration();
   const token = generation.advance();
   const callbacks = [];
-  const timers = [];
+  const clock = createFakeTimers();
   const updates = [];
   const errors = [];
 
@@ -253,31 +298,58 @@ function testStaleGenerationAndFiniteTimeout() {
     isGenerationCurrent(value) {
       return generation.isCurrent(value);
     },
-    setTimer(callback) {
-      timers.push(callback);
-    },
+    setTimer: clock.setTimer,
+    clearTimer: clock.clearTimer,
     maxAttempts: 2,
     retryDelayMs: 1,
+    callbackTimeoutMs: 5,
   });
 
   publisher.enqueue(publication(4, token, "dict_stale"));
   generation.advance();
-  callbacks.shift()({ meta: { frame_id: 4 } });
+  callbacks.shift()({ meta: { frame_id: 4, session_id: "session-A" } });
   assert.deepStrictEqual(updates, [], "Stale camera generations must not emit update");
 
   const currentToken = generation.current();
   publisher.enqueue(publication(5, currentToken, "dict_timeout"));
-  callbacks.shift()({ meta: { frame_id: 0 } });
-  timers.shift()();
-  callbacks.shift()({ meta: { frame_id: 0 } });
+  clock.runAll();
 
   assert.deepStrictEqual(errors, ["DICT_CONFIRM_TIMEOUT"]);
   assert.deepStrictEqual(updates, []);
   assert.strictEqual(publisher.isBusy(), false);
+
+  publisher.enqueue(publication(6, currentToken, "dict_recovered"));
+  callbacks[callbacks.length - 1]({
+    meta: { frame_id: 6, session_id: "session-A" },
+  });
+  assert.deepStrictEqual(updates, [["dict_recovered", 6, 60]]);
+  assert.deepStrictEqual(errors, ["DICT_CONFIRM_TIMEOUT"]);
+  assert.strictEqual(publisher.isBusy(), false);
+}
+
+function testImageIntentInvalidatesPendingVideo() {
+  const camera = lifecycle.createCameraLifecycle("IMAGE");
+  const stopped = [];
+  const stream = {
+    getTracks() {
+      return [{ stop: () => stopped.push("old-video") }];
+    },
+  };
+
+  const videoToken = camera.beginOpen();
+  assert.strictEqual(camera.currentMode(), "VIDEO");
+
+  const imageToken = camera.invalidateForImage();
+  assert.strictEqual(camera.currentMode(), "IMAGE");
+  assert.strictEqual(camera.isCurrent(imageToken, "IMAGE"), true);
+  assert.strictEqual(camera.isCurrent(videoToken, "VIDEO"), false);
+  assert.strictEqual(camera.acceptVideoStream(videoToken, stream), false);
+  assert.deepStrictEqual(stopped, ["old-video"]);
 }
 
 testGenerationAndStreamStop();
 testSerializedConfirmedPublishing();
-testStaleGenerationAndFiniteTimeout();
+testStaleGenerationAndCallbackWatchdog();
+testImageIntentInvalidatesPendingVideo();
 
 console.log("Pose web assets: PASS");

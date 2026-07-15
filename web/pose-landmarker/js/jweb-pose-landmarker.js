@@ -6,7 +6,8 @@
   const overlay = document.getElementById("overlay");
   const canvas = overlay.getContext("2d");
   const lifecycle = window.PoseRuntimeLifecycle;
-  const cameraGeneration = lifecycle.createGeneration();
+  const sessionId = lifecycle.createSessionId();
+  const cameraLifecycle = lifecycle.createCameraLifecycle("VIDEO");
 
   let dictName = "pose_landmarkdict";
   let frameId = 0;
@@ -25,6 +26,8 @@
   let processingFrame = false;
   let modelReady = false;
   let cameraReady = false;
+  let pendingImageGeneration = 0;
+  let modeOptionsQueue = Promise.resolve();
 
   function outlet() {
     window.max.outlet.apply(window.max, arguments);
@@ -57,10 +60,11 @@
     },
     emitError: reportError,
     isGenerationCurrent: function (generation) {
-      return cameraGeneration.isCurrent(generation);
+      return cameraLifecycle.isCurrent(generation);
     },
     maxAttempts: 8,
     retryDelayMs: 12,
+    callbackTimeoutMs: 80,
   });
 
   function enabled(value) {
@@ -133,8 +137,13 @@
   });
 
   window.max.bindInlet("set_image", async function (imageFile) {
-    await setRunningMode("IMAGE");
-    image.src = String(imageFile);
+    const imageGeneration = cameraLifecycle.invalidateForImage();
+    pendingImageGeneration = imageGeneration;
+    releaseCurrentStream();
+
+    if (await setRunningMode("IMAGE", imageGeneration)) {
+      image.src = String(imageFile);
+    }
   });
 
   async function getMediaDevices() {
@@ -171,9 +180,7 @@
     }
   }
 
-  function stopCurrentStream() {
-    const generation = cameraGeneration.advance();
-
+  function releaseCurrentStream() {
     cancelVideoLoop();
 
     const stream = currentStream || video.srcObject;
@@ -183,12 +190,19 @@
     video.srcObject = null;
     cameraReady = false;
     status("camera_ready", 0);
+  }
+
+  function stopCurrentStream() {
+    const generation = cameraLifecycle.stop();
+    releaseCurrentStream();
     return generation;
   }
 
   async function openCamera(constraints) {
-    const requestGeneration = stopCurrentStream();
+    const requestGeneration = cameraLifecycle.beginOpen();
     let candidateStream = null;
+
+    releaseCurrentStream();
 
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       reportError("CAMERA_UNAVAILABLE", "This browser cannot open a camera.");
@@ -196,21 +210,13 @@
     }
 
     try {
-      if (runningMode !== "VIDEO") {
-        await poseLandmarker.setOptions({ runningMode: "VIDEO" });
-        if (!cameraGeneration.isCurrent(requestGeneration)) {
-          return;
-        }
-        runningMode = "VIDEO";
+      if (!(await setRunningMode("VIDEO", requestGeneration))) {
+        return;
       }
 
       candidateStream = await navigator.mediaDevices.getUserMedia(constraints);
       if (
-        !lifecycle.acceptCurrentStream(
-          cameraGeneration,
-          requestGeneration,
-          candidateStream
-        )
+        !cameraLifecycle.acceptVideoStream(requestGeneration, candidateStream)
       ) {
         return;
       }
@@ -224,11 +230,7 @@
       await video.play();
 
       if (
-        !lifecycle.acceptCurrentStream(
-          cameraGeneration,
-          requestGeneration,
-          candidateStream
-        )
+        !cameraLifecycle.acceptVideoStream(requestGeneration, candidateStream)
       ) {
         if (video.srcObject === candidateStream) {
           video.srcObject = null;
@@ -255,7 +257,7 @@
       await outputVideoDevices();
     } catch (error) {
       lifecycle.stopStream(candidateStream);
-      if (!cameraGeneration.isCurrent(requestGeneration)) {
+      if (!cameraLifecycle.isCurrent(requestGeneration, "VIDEO")) {
         return;
       }
       if (currentStream === candidateStream) {
@@ -270,24 +272,35 @@
     }
   }
 
-  async function setRunningMode(nextMode) {
-    if (!poseLandmarker || nextMode === runningMode) {
-      runningMode = nextMode;
-      return;
-    }
-
+  function setRunningMode(nextMode, generation) {
     if (nextMode !== "VIDEO" && nextMode !== "IMAGE") {
       reportError("INVALID_RUNNING_MODE", nextMode);
-      return;
+      return Promise.resolve(false);
     }
 
-    if (nextMode === "IMAGE") {
-      stopCurrentStream();
-    }
+    const modeTask = modeOptionsQueue.then(async function () {
+      if (!cameraLifecycle.isCurrent(generation, nextMode)) {
+        return false;
+      }
 
-    runningMode = nextMode;
-    await poseLandmarker.setOptions({ runningMode: nextMode });
-    canvas.clearRect(0, 0, overlay.width, overlay.height);
+      if (poseLandmarker && nextMode !== runningMode) {
+        await poseLandmarker.setOptions({ runningMode: nextMode });
+      }
+
+      if (!cameraLifecycle.isCurrent(generation, nextMode)) {
+        return false;
+      }
+
+      runningMode = nextMode;
+      canvas.clearRect(0, 0, overlay.width, overlay.height);
+      return true;
+    });
+
+    modeOptionsQueue = modeTask.then(
+      function () {},
+      function () {}
+    );
+    return modeTask;
   }
 
   function startVideoLoop(generation) {
@@ -302,7 +315,7 @@
   async function processVideoFrame(generation) {
     animationFrame = 0;
 
-    if (!cameraGeneration.isCurrent(generation)) {
+    if (!cameraLifecycle.isCurrent(generation, "VIDEO")) {
       return;
     }
 
@@ -320,7 +333,7 @@
 
       try {
         const results = poseLandmarker.detectForVideo(video, timestampMs);
-        if (!cameraGeneration.isCurrent(generation)) {
+        if (!cameraLifecycle.isCurrent(generation, "VIDEO")) {
           return;
         }
         renderAndPublish(results, video, timestampMs, generation);
@@ -334,7 +347,7 @@
     if (
       runningMode === "VIDEO" &&
       cameraReady &&
-      cameraGeneration.isCurrent(generation)
+      cameraLifecycle.isCurrent(generation, "VIDEO")
     ) {
       animationFrame = requestAnimationFrame(function () {
         processVideoFrame(generation);
@@ -350,7 +363,10 @@
     try {
       const timestampMs = Date.now();
       const results = poseLandmarker.detect(image);
-      const generation = cameraGeneration.current();
+      const generation = pendingImageGeneration;
+      if (!cameraLifecycle.isCurrent(generation, "IMAGE")) {
+        return;
+      }
       renderAndPublish(results, image, timestampMs, generation);
     } catch (error) {
       reportError("POSE_IMAGE_FAILED", error);
@@ -384,6 +400,7 @@
       camera_ready: cameraReady ? 1 : 0,
       meta: {
         frame_id: frameId,
+        session_id: sessionId,
         timestamp_ms: timestampMs,
         has_pose: 0,
         model_ready: modelReady ? 1 : 0,
@@ -451,7 +468,7 @@
   }
 
   function renderAndPublish(results, source, timestampMs, generation) {
-    if (!cameraGeneration.isCurrent(generation)) {
+    if (!cameraLifecycle.isCurrent(generation)) {
       return;
     }
 
@@ -472,7 +489,7 @@
       ? frameFromLandmarks(landmarks, timestampMs)
       : emptyFrame(timestampMs);
 
-    if (!cameraGeneration.isCurrent(generation)) {
+    if (!cameraLifecycle.isCurrent(generation)) {
       return;
     }
 
@@ -481,6 +498,7 @@
       targetFrameId: frameId,
       timestampMs: timestampMs,
       generation: generation,
+      sessionId: sessionId,
       frame: frame,
     });
   }
