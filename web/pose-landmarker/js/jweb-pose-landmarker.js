@@ -1,0 +1,421 @@
+(async function () {
+  "use strict";
+
+  const video = document.getElementById("videoel");
+  const image = document.getElementById("imageel");
+  const overlay = document.getElementById("overlay");
+  const canvas = overlay.getContext("2d");
+
+  let dictName = "pose_landmarkdict";
+  let frameId = 0;
+  let flipImage = true;
+  let drawControlZone = true;
+  let drawImage = true;
+  let drawLandmarks = true;
+  let drawConnectors = true;
+  let runningMode = "VIDEO";
+  let poseLandmarker = null;
+  let drawingUtils = null;
+  let PoseLandmarkerClass = null;
+  let currentStream = null;
+  let animationFrame = 0;
+  let lastVideoTime = -1;
+  let processingFrame = false;
+  let modelReady = false;
+  let cameraReady = false;
+
+  function outlet() {
+    window.max.outlet.apply(window.max, arguments);
+  }
+
+  function status(name, value) {
+    outlet("status", name, value);
+  }
+
+  function readableError(error) {
+    if (!error) {
+      return "Unknown error";
+    }
+    return error.name ? error.name + ": " + error.message : String(error);
+  }
+
+  function reportError(code, error) {
+    outlet("error", code, readableError(error));
+  }
+
+  function enabled(value) {
+    return !(
+      value === 0 ||
+      value === "0" ||
+      value === false ||
+      value === "false" ||
+      value == null
+    );
+  }
+
+  function applyDisplayMirror() {
+    const factor = flipImage ? "-1" : "1";
+    video.style.transform = "scaleX(" + factor + ")";
+    overlay.style.transform = "scaleX(" + factor + ")";
+  }
+
+  window.max.bindInlet("set_dict_name", function (name) {
+    const requestedName = String(name || "").trim();
+    if (requestedName) {
+      dictName = requestedName;
+    }
+  });
+
+  window.max.bindInlet("flip_image", function (value) {
+    flipImage = enabled(value);
+    applyDisplayMirror();
+  });
+
+  window.max.bindInlet("draw_control_zone", function (value) {
+    drawControlZone = enabled(value);
+  });
+
+  window.max.bindInlet("draw_image", function (value) {
+    drawImage = enabled(value);
+  });
+
+  window.max.bindInlet("draw_landmarks", function (value) {
+    drawLandmarks = enabled(value);
+  });
+
+  window.max.bindInlet("draw_connectors", function (value) {
+    drawConnectors = enabled(value);
+  });
+
+  window.max.bindInlet("get_mediadevices", function () {
+    outputVideoDevices();
+  });
+
+  window.max.bindInlet("set_mediadevice", async function (deviceLabel) {
+    const devices = await getVideoDevices();
+    const device = devices.find(function (candidate) {
+      return candidate.label === String(deviceLabel);
+    });
+
+    if (!device) {
+      reportError("NO_VIDEO_DEVICE", 'No video input device named "' + deviceLabel + '".');
+      return;
+    }
+
+    await openCamera({
+      video: {
+        deviceId: { exact: device.deviceId },
+        width: { ideal: 640 },
+        height: { ideal: 480 },
+      },
+      audio: false,
+    });
+  });
+
+  window.max.bindInlet("set_image", async function (imageFile) {
+    await setRunningMode("IMAGE");
+    image.src = String(imageFile);
+  });
+
+  async function getMediaDevices() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+      throw new Error("This browser cannot list media devices.");
+    }
+    return navigator.mediaDevices.enumerateDevices();
+  }
+
+  async function getVideoDevices() {
+    try {
+      const devices = await getMediaDevices();
+      return devices.filter(function (device) {
+        return device.kind === "videoinput";
+      });
+    } catch (error) {
+      reportError("MEDIA_DEVICE_LIST_FAILED", error);
+      return [];
+    }
+  }
+
+  async function outputVideoDevices() {
+    const devices = await getVideoDevices();
+    const labels = devices.map(function (device, index) {
+      return device.label || "Camera " + (index + 1);
+    });
+    outlet.apply(null, ["mediadevices"].concat(labels));
+  }
+
+  function stopCurrentStream() {
+    if (animationFrame) {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+    }
+
+    const stream = currentStream || video.srcObject;
+    if (stream && stream.getTracks) {
+      stream.getTracks().forEach(function (track) {
+        track.stop();
+      });
+    }
+
+    currentStream = null;
+    video.srcObject = null;
+    cameraReady = false;
+    status("camera_ready", 0);
+  }
+
+  async function openCamera(constraints) {
+    stopCurrentStream();
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      reportError("CAMERA_UNAVAILABLE", "This browser cannot open a camera.");
+      return;
+    }
+
+    try {
+      currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+      video.srcObject = currentStream;
+      await video.play();
+      cameraReady = true;
+      status("camera_ready", 1);
+      await setRunningMode("VIDEO");
+      startVideoLoop();
+      await outputVideoDevices();
+    } catch (error) {
+      stopCurrentStream();
+      reportError("CAMERA_OPEN_FAILED", error);
+    }
+  }
+
+  async function setRunningMode(nextMode) {
+    if (!poseLandmarker || nextMode === runningMode) {
+      runningMode = nextMode;
+      return;
+    }
+
+    if (nextMode !== "VIDEO" && nextMode !== "IMAGE") {
+      reportError("INVALID_RUNNING_MODE", nextMode);
+      return;
+    }
+
+    if (nextMode === "IMAGE") {
+      stopCurrentStream();
+    }
+
+    runningMode = nextMode;
+    await poseLandmarker.setOptions({ runningMode: nextMode });
+    canvas.clearRect(0, 0, overlay.width, overlay.height);
+  }
+
+  function startVideoLoop() {
+    if (animationFrame) {
+      cancelAnimationFrame(animationFrame);
+    }
+    animationFrame = requestAnimationFrame(processVideoFrame);
+  }
+
+  async function processVideoFrame() {
+    animationFrame = 0;
+
+    if (
+      runningMode === "VIDEO" &&
+      modelReady &&
+      cameraReady &&
+      video.readyState >= 2 &&
+      !processingFrame &&
+      video.currentTime !== lastVideoTime
+    ) {
+      processingFrame = true;
+      lastVideoTime = video.currentTime;
+      const timestampMs = Date.now();
+
+      try {
+        const results = poseLandmarker.detectForVideo(video, timestampMs);
+        await renderAndPublish(results, video, timestampMs);
+      } catch (error) {
+        reportError("POSE_FRAME_FAILED", error);
+      } finally {
+        processingFrame = false;
+      }
+    }
+
+    if (runningMode === "VIDEO" && cameraReady) {
+      animationFrame = requestAnimationFrame(processVideoFrame);
+    }
+  }
+
+  async function detectImage() {
+    if (!poseLandmarker || runningMode !== "IMAGE" || !image.src) {
+      return;
+    }
+
+    try {
+      const timestampMs = Date.now();
+      const results = poseLandmarker.detect(image);
+      await renderAndPublish(results, image, timestampMs);
+    } catch (error) {
+      reportError("POSE_IMAGE_FAILED", error);
+    }
+  }
+
+  image.addEventListener("load", detectImage);
+
+  function finiteOr(value, fallback) {
+    return typeof value === "number" && isFinite(value) ? value : fallback;
+  }
+
+  function copyLandmark(landmark) {
+    landmark = landmark || {};
+    return {
+      x: finiteOr(landmark.x, 0),
+      y: finiteOr(landmark.y, 0),
+      z: finiteOr(landmark.z, 0),
+      visibility: finiteOr(landmark.visibility, 1),
+      presence: finiteOr(landmark.presence, 1),
+    };
+  }
+
+  function emptyFrame(timestampMs) {
+    return {
+      left: {},
+      right: {},
+      neutral: {},
+      has_pose: 0,
+      model_ready: modelReady ? 1 : 0,
+      camera_ready: cameraReady ? 1 : 0,
+      meta: {
+        frame_id: frameId,
+        timestamp_ms: timestampMs,
+        has_pose: 0,
+        model_ready: modelReady ? 1 : 0,
+        camera_ready: cameraReady ? 1 : 0,
+      },
+    };
+  }
+
+  function frameFromLandmarks(landmarks, timestampMs) {
+    const frame = emptyFrame(timestampMs);
+
+    POSE_LANDMARKS_LEFT.forEach(function (entry) {
+      frame.left[entry[0]] = copyLandmark(landmarks[entry[1]]);
+    });
+    POSE_LANDMARKS_RIGHT.forEach(function (entry) {
+      frame.right[entry[0]] = copyLandmark(landmarks[entry[1]]);
+    });
+    POSE_LANDMARKS_NEUTRAL.forEach(function (entry) {
+      frame.neutral[entry[0]] = copyLandmark(landmarks[entry[1]]);
+    });
+
+    frame.has_pose = 1;
+    frame.meta.has_pose = 1;
+    return frame;
+  }
+
+  function drawZone() {
+    if (!drawControlZone) {
+      return;
+    }
+
+    const x = overlay.width * 0.15;
+    const y = overlay.height * 0.10;
+    const width = overlay.width * (0.85 - 0.15);
+    const height = overlay.height * (0.90 - 0.10);
+
+    canvas.save();
+    canvas.strokeStyle = "rgba(242, 198, 69, 0.9)";
+    canvas.lineWidth = 2;
+    canvas.setLineDash([8, 6]);
+    canvas.strokeRect(x, y, width, height);
+    canvas.restore();
+  }
+
+  function drawPose(landmarks) {
+    if (!landmarks || !drawingUtils || !PoseLandmarkerClass) {
+      return;
+    }
+
+    if (drawLandmarks) {
+      drawingUtils.drawLandmarks(landmarks, {
+        radius: 3,
+        color: "#f2c645",
+        fillColor: "#edf4ef",
+      });
+    }
+
+    if (drawConnectors) {
+      drawingUtils.drawConnectors(
+        landmarks,
+        PoseLandmarkerClass.POSE_CONNECTIONS,
+        { color: "#8fb6ad", lineWidth: 3 }
+      );
+    }
+  }
+
+  async function renderAndPublish(results, source, timestampMs) {
+    const landmarks =
+      results && results.landmarks && results.landmarks.length
+        ? results.landmarks[0]
+        : null;
+
+    canvas.clearRect(0, 0, overlay.width, overlay.height);
+    if (drawImage && source) {
+      canvas.drawImage(source, 0, 0, overlay.width, overlay.height);
+    }
+    drawZone();
+    drawPose(landmarks);
+
+    frameId += 1;
+    const frame = landmarks
+      ? frameFromLandmarks(landmarks, timestampMs)
+      : emptyFrame(timestampMs);
+
+    await window.max.setDict(dictName, frame);
+    outlet("update", dictName, frameId, timestampMs);
+  }
+
+  applyDisplayMirror();
+  status("model_loading", 1);
+  status("model_ready", 0);
+  status("camera_ready", 0);
+
+  try {
+    const visionBundle = await import(
+      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/vision_bundle.js"
+    );
+    const FilesetResolver = visionBundle.FilesetResolver;
+    PoseLandmarkerClass = visionBundle.PoseLandmarker;
+    drawingUtils = new visionBundle.DrawingUtils(canvas);
+
+    const vision = await FilesetResolver.forVisionTasks(
+      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm"
+    );
+
+    poseLandmarker = await PoseLandmarkerClass.createFromOptions(vision, {
+      baseOptions: {
+        modelAssetPath:
+          "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task",
+        delegate: "GPU",
+      },
+      numPoses: 1,
+      runningMode: runningMode,
+    });
+
+    modelReady = true;
+    status("model_loading", 0);
+    status("model_ready", 1);
+
+    await openCamera({
+      video: {
+        width: { ideal: 640 },
+        height: { ideal: 480 },
+      },
+      audio: false,
+    });
+  } catch (error) {
+    modelReady = false;
+    status("model_loading", 0);
+    status("model_ready", 0);
+    reportError("MODEL_LOAD_FAILED", error);
+  }
+
+  window.addEventListener("beforeunload", stopCurrentStream);
+})();
