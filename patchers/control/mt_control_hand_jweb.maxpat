@@ -2368,7 +2368,7 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            552,
+            548,
             12,
             22,
             22
@@ -2398,12 +2398,12 @@
             150,
             20
           ],
-          "text": "Mirror view",
+          "text": "Mirror",
           "presentation": 1,
           "presentation_rect": [
-            580,
+            578,
             14,
-            52,
+            48,
             18
           ]
         }
@@ -2668,7 +2668,7 @@
           "presentation_rect": [
             638,
             14,
-            68,
+            62,
             18
           ]
         }

@@ -101,9 +101,9 @@ function updateHand() {
     "hp-jweb-devices": [80, 12, 112, 22],
     "hp-camera-menu": [200, 12, 214, 22],
     "hp-camera-set": [422, 12, 120, 22],
-    "hj-mirror-toggle": [552, 12, 22, 22],
-    "hj-mirror-label": [580, 14, 52, 18],
-    "hj-free-hand-label": [638, 14, 68, 18],
+    "hj-mirror-toggle": [548, 12, 22, 22],
+    "hj-mirror-label": [578, 14, 48, 18],
+    "hj-free-hand-label": [638, 14, 62, 18],
     "hj-free-hand-menu": [708, 12, 78, 22],
     "hp-jweb": [12, 50, 774, 358],
   };
@@ -112,6 +112,8 @@ function updateHand() {
     if (layout[box.id]) setPresentation(box, layout[box.id]);
     else if (box.presentation) setPresentation(box, null, false);
   }
+
+  boxes.get("hj-mirror-label").text = "Mirror";
 
   write(handPath, document);
 }
