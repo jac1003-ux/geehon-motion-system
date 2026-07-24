@@ -1,5 +1,14 @@
 (function (root, factory) {
   var api = factory();
+  var name;
+
+  if (typeof exports === "object") {
+    for (name in api) {
+      if (Object.prototype.hasOwnProperty.call(api, name)) {
+        exports[name] = api[name];
+      }
+    }
+  }
 
   if (typeof module === "object" && module.exports) {
     module.exports = api;

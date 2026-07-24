@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1732" height="941" viewBox="0 0 1732 941">
+  <rect width="1732" height="941" fill="#e8efea"/>
+  <rect width="1732" height="96" fill="#243f35"/>
+  <line x1="24" y1="95.5" x2="1708" y2="95.5" stroke="#6f8c80"/>
+
+  <g transform="translate(38 48) scale(.18)">
+    <path d="M-5-13C-13-39-10-64 1-76C13-63 12-38 5-13Z" fill="#e8bf43"/>
+    <path d="M-5-13C-12-34-9-55 1-65C12-54 11-33 5-13Z" fill="#f1d676" transform="rotate(45)"/>
+    <path d="M-5-13C-13-37-10-60 1-70C13-58 12-35 5-13Z" fill="#d7aa2e" transform="rotate(90)"/>
+    <path d="M-5-13C-11-31-8-50 1-59C11-49 10-30 5-13Z" fill="#ebcb61" transform="rotate(135)"/>
+    <path d="M-5-13C-12-35-9-57 1-67C12-56 11-34 5-13Z" fill="#dfa92c" transform="rotate(180)"/>
+    <path d="M-6-13C-15-35-10-58 2-68C16-54 14-32 6-13Z" fill="#7ea47c" transform="rotate(225)"/>
+    <path d="M-5-13C-11-30-8-48 1-57C11-47 10-29 5-13Z" fill="#f0d06e" transform="rotate(270)"/>
+    <path d="M-5-13C-12-34-9-55 1-64C12-53 11-32 5-13Z" fill="#e2b53c" transform="rotate(315)"/>
+    <circle cx="1" cy="0" r="14" fill="#f3dc88"/>
+  </g>
+
+  <text x="70" y="42" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="18" font-weight="600" letter-spacing="1.2" fill="#f7faf7">JUHUA</text>
+  <text x="70" y="59" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="9" font-weight="400" letter-spacing="1.8" fill="#adc2b7">MOTION INSTRUMENT</text>
+  <text x="286" y="42" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="13" font-weight="500" letter-spacing=".8" fill="#dce7e0">PERFORMANCE SYSTEM</text>
+  <text x="286" y="59" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="8" font-weight="400" letter-spacing="1.1" fill="#90a89e">SOURCE / GESTURE / FX / MASTER</text>
+
+  <rect x="22" y="116" width="1688" height="680" rx="10" fill="#f4f7f4" stroke="#b8c9c0"/>
+  <text x="42" y="137" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="10" font-weight="500" letter-spacing="1.1" fill="#4b675c">PERFORM OVERVIEW</text>
+
+  <rect x="808" y="608" width="620" height="172" rx="8" fill="#fbfcfa" stroke="#b8c9c0"/>
+  <text x="830" y="635" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="15" font-weight="600" letter-spacing=".5" fill="#29473c">MASTER / UTILITIES</text>
+  <text x="830" y="653" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="9" font-weight="400" letter-spacing=".8" fill="#789087">EQ EDITOR / RECORD / EXPORT</text>
+  <line x1="830" y1="665" x2="1406" y2="665" stroke="#d1ddd6"/>
+  <line x1="1012" y1="679" x2="1012" y2="758" stroke="#d9e2dd"/>
+  <line x1="1216" y1="679" x2="1216" y2="758" stroke="#d9e2dd"/>
+
+  <text x="830" y="691" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="9" font-weight="500" letter-spacing=".7" fill="#5a7168">7-BAND EQ</text>
+  <text x="1034" y="691" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="9" font-weight="500" letter-spacing=".7" fill="#5a7168">MASTER RECORD</text>
+  <text x="1238" y="691" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="9" font-weight="500" letter-spacing=".7" fill="#5a7168">OUTPUT</text>
+
+  <rect x="22" y="812" width="1688" height="105" rx="9" fill="#f8faf8" stroke="#c0d0c7"/>
+  <text x="42" y="841" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="11" font-weight="500" letter-spacing=".8" fill="#3f5a50">LIVE STATUS</text>
+  <circle cx="44" cy="868" r="5" fill="#75ad88"/>
+  <text x="58" y="872" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="10" font-weight="400" fill="#617970">Noise Gate follows Mic Enable</text>
+  <circle cx="270" cy="868" r="5" fill="#e4bd42"/>
+  <text x="284" y="872" font-family="Avenir Next, Helvetica Neue, sans-serif" font-size="10" font-weight="400" fill="#617970">Gesture mapping remains unassigned</text>
+  <line x1="42" y1="898" x2="1690" y2="898" stroke="#d4dfd8"/>
+</svg>

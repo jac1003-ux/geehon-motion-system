@@ -23,7 +23,7 @@
     math = require("./pose_feature_math.js");
   }
   if (!math && typeof include === "function") {
-    include("pose_feature_math.js");
+    include("Patcher:/../../javascript/pose_feature_math.js");
     math = root.PoseFeatureMath;
   }
   if (!math) {
@@ -657,6 +657,19 @@ function model_ready(value) {
     if (result) {
       emitEngineResult(result);
     }
+  }
+}
+
+function anything() {
+  var values;
+
+  if (inlet !== 1) {
+    return;
+  }
+
+  values = arrayfromargs(arguments);
+  if (messagename === "model_loading" && Number(values[0]) !== 0) {
+    model_ready(0);
   }
 }
 

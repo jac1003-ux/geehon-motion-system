@@ -136,11 +136,10 @@ assert.deepStrictEqual(
   ]
 );
 
-assert(
-  findText(profilePatch, "declarepath ../../javascript"),
-  "Missing JavaScript search path"
+const js = findText(
+  profilePatch,
+  "js Patcher:/../../javascript/mt_pose_interaction_state.js"
 );
-const js = findText(profilePatch, "js mt_pose_interaction_state.js");
 assert(js, "Missing interaction state bridge object");
 assert(isConnected(profilePatch, inlets[0], js), "Dictionary inlet is disconnected");
 assert(isConnected(profilePatch, inlets[1], js), "Command inlet is disconnected");
@@ -246,8 +245,8 @@ for (const text of [
   "ctlin",
   "metro 1000",
   ">= 64",
-  "declarepath ../../javascript",
-  "js mt_midi_device_watch.js",
+  "js Patcher:/../../javascript/mt_midi_device_watch.js",
+  "t l l",
 ]) {
   assert(findText(midiPatch, text), `Missing MIDI object: ${text}`);
 }

@@ -2,10 +2,10 @@
   "name": "geehon-motion-system",
   "version": 1,
   "viewrect": [
-    80.0,
-    80.0,
-    360.0,
-    620.0
+    80,
+    80,
+    360,
+    620
   ],
   "autoorganize": 0,
   "hideprojectwindow": 0,
@@ -87,6 +87,14 @@
         "local": 1
       },
       "mt_vocoder_pfft.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "mt_control_vocal_profile.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "mt_control_vocal_demo.maxpat": {
         "kind": "patcher",
         "local": 1
       }

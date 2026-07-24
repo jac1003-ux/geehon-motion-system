@@ -116,6 +116,113 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 1,
+					"fontsize" : 9.0,
+					"id" : "m-gate-title",
+					"maxclass" : "comment",
+					"patching_rect" : [ 24.0, 223.0, 72.0, 18.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 24.0, 223.0, 72.0, 18.0 ],
+					"text" : "NOISE GATE",
+					"textcolor" : [ 0.24, 0.33, 0.29, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgcolor" : [ 0.72, 0.78, 0.74, 1.0 ],
+					"id" : "m-gate-state",
+					"ignoreclick" : 1,
+					"maxclass" : "led",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"oncolor" : [ 0.93, 0.75, 0.24, 1.0 ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 84.0, 223.0, 14.0, 14.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 84.0, 223.0, 14.0, 14.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontface" : 1,
+					"fontsize" : 8.0,
+					"id" : "m-threshold-label",
+					"maxclass" : "comment",
+					"patching_rect" : [ 110.0, 221.0, 82.0, 18.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 110.0, 221.0, 82.0, 18.0 ],
+					"text" : "THRESHOLD dBFS",
+					"textcolor" : [ 0.34, 0.43, 0.39, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"format" : 6,
+					"id" : "m-threshold",
+					"maxclass" : "flonum",
+					"maximum" : -10.0,
+					"minimum" : -70.0,
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "bang" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 110.0, 240.0, 72.0, 20.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 110.0, 240.0, 72.0, 20.0 ],
+					"varname" : "mic_gate_threshold"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontface" : 1,
+					"fontsize" : 8.0,
+					"id" : "m-release-label",
+					"maxclass" : "comment",
+					"patching_rect" : [ 208.0, 221.0, 76.0, 18.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 208.0, 221.0, 76.0, 18.0 ],
+					"text" : "RELEASE ms",
+					"textcolor" : [ 0.34, 0.43, 0.39, 1.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "m-release",
+					"maxclass" : "number",
+					"maximum" : 500,
+					"minimum" : 20,
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "bang" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 208.0, 240.0, 64.0, 20.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 208.0, 240.0, 64.0, 20.0 ],
+					"varname" : "mic_gate_release"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgcolor" : [ 0.94, 0.97, 0.95, 1.0 ],
+					"border" : 1,
+					"bordercolor" : [ 0.55, 0.68, 0.61, 1.0 ],
+					"id" : "m-gate-panel",
+					"maxclass" : "panel",
+					"patching_rect" : [ 16.0, 216.0, 288.0, 52.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 16.0, 216.0, 288.0, 52.0 ],
+					"rounded" : 8
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"comment" : "Enable 0/1",
 					"id" : "m-ext-enable",
 					"index" : 0,
@@ -132,8 +239,8 @@
 					"id" : "p-Mic-control",
 					"maxclass" : "newobj",
 					"numinlets" : 4,
-					"numoutlets" : 8,
-					"outlettype" : [ "", "int", "", "", "int", "", "", "int" ],
+					"numoutlets" : 10,
+					"outlettype" : [ "", "int", "", "", "int", "", "", "int", "float", "int" ],
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
@@ -370,10 +477,10 @@
 									"id" : "mc-init-trigger",
 									"maxclass" : "newobj",
 									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "bang", "bang", "bang" ],
-									"patching_rect" : [ 227.0, 145.0, 65.0, 22.0 ],
-									"text" : "t b b b"
+									"numoutlets" : 5,
+									"outlettype" : [ "bang", "bang", "bang", "bang", "bang" ],
+									"patching_rect" : [ 227.0, 145.0, 95.0, 22.0 ],
+									"text" : "t b b b b b"
 								}
 
 							}
@@ -414,6 +521,28 @@
 
 							}
 , 							{
+								"box" : {
+									"id" : "mc-init-threshold",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 320.0, 176.0, 45.0, 22.0 ],
+									"text" : "-45."
+								}
+							}
+, 							{
+								"box" : {
+									"id" : "mc-init-release",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 375.0, 176.0, 42.0, 22.0 ],
+									"text" : "120"
+								}
+							}
+, 							{
 								"box" : 								{
 									"comment" : "",
 									"id" : "mc-enable-out",
@@ -448,6 +577,28 @@
 									"patching_rect" : [ 431.0, 274.0, 30.0, 30.0 ]
 								}
 
+							}
+, 							{
+								"box" : {
+									"comment" : "Gate threshold default",
+									"id" : "mc-threshold-ui-out",
+									"index" : 9,
+									"maxclass" : "outlet",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 480.0, 274.0, 30.0, 30.0 ]
+								}
+							}
+, 							{
+								"box" : {
+									"comment" : "Gate release default",
+									"id" : "mc-release-ui-out",
+									"index" : 10,
+									"maxclass" : "outlet",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 535.0, 274.0, 30.0, 30.0 ]
+								}
 							}
 , 							{
 								"box" : 								{
@@ -608,6 +759,34 @@
 
 							}
 , 							{
+								"patchline" : {
+									"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+									"destination" : [ "mc-init-threshold", 0 ],
+									"source" : [ "mc-init-trigger", 3 ]
+								}
+							}
+, 							{
+								"patchline" : {
+									"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+									"destination" : [ "mc-init-release", 0 ],
+									"source" : [ "mc-init-trigger", 4 ]
+								}
+							}
+, 							{
+								"patchline" : {
+									"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+									"destination" : [ "mc-threshold-ui-out", 0 ],
+									"source" : [ "mc-init-threshold", 0 ]
+								}
+							}
+, 							{
+								"patchline" : {
+									"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+									"destination" : [ "mc-release-ui-out", 0 ],
+									"source" : [ "mc-init-release", 0 ]
+								}
+							}
+, 							{
 								"patchline" : 								{
 									"color" : [ 1.0, 0.62, 0.24, 1.0 ],
 									"destination" : [ "mc-init-trigger", 0 ],
@@ -725,9 +904,9 @@
 				"box" : 				{
 					"id" : "p-Mic-input",
 					"maxclass" : "newobj",
-					"numinlets" : 3,
-					"numoutlets" : 2,
-					"outlettype" : [ "signal", "signal" ],
+					"numinlets" : 5,
+					"numoutlets" : 3,
+					"outlettype" : [ "signal", "signal", "int" ],
 					"patcher" : 					{
 						"fileversion" : 1,
 						"appversion" : 						{
@@ -748,7 +927,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 30.0, 25.0, 760.0, 20.0 ],
-									"text" : "Mic input DSP: adc 1-8 -> mono/stereo routing -> route ramp -> enable ramp -> L/R"
+									"text" : "Mic input DSP: adc 1-8 -> mono/stereo routing -> linked noise gate -> enable ramp -> L/R"
 								}
 
 							}
@@ -790,6 +969,30 @@
 									"patching_rect" : [ 485.0, 170.0, 30.0, 30.0 ]
 								}
 
+							}
+, 							{
+								"box" : {
+									"comment" : "Gate threshold dBFS",
+									"id" : "mi-threshold",
+									"index" : 4,
+									"maxclass" : "inlet",
+									"numinlets" : 0,
+									"numoutlets" : 1,
+									"outlettype" : [ "float" ],
+									"patching_rect" : [ 650.0, 170.0, 30.0, 30.0 ]
+								}
+							}
+, 							{
+								"box" : {
+									"comment" : "Gate release ms",
+									"id" : "mi-release",
+									"index" : 5,
+									"maxclass" : "inlet",
+									"numinlets" : 0,
+									"numoutlets" : 1,
+									"outlettype" : [ "int" ],
+									"patching_rect" : [ 750.0, 170.0, 30.0, 30.0 ]
+								}
 							}
 , 							{
 								"box" : 								{
@@ -1068,13 +1271,102 @@
 
 							}
 , 							{
+								"box" : {
+									"id" : "p-Mic-noise-gate",
+									"maxclass" : "newobj",
+									"numinlets" : 5,
+									"numoutlets" : 3,
+									"outlettype" : [ "signal", "signal", "int" ],
+									"patching_rect" : [ 250.0, 710.0, 160.0, 22.0 ],
+									"text" : "p Noise_gate",
+									"patcher" : {
+										"fileversion" : 1,
+										"appversion" : { "major" : 9, "minor" : 0, "revision" : 5, "architecture" : "x64", "modernui" : 1 },
+										"classnamespace" : "box",
+										"rect" : [ 120.0, 120.0, 900.0, 650.0 ],
+										"gridsize" : [ 15.0, 15.0 ],
+										"boxes" : [
+											{ "box" : { "id" : "ng-title", "maxclass" : "comment", "text" : "Linked stereo noise gate: either channel opens both / 5 ms attack / 40 ms hold", "patching_rect" : [ 30.0, 25.0, 600.0, 20.0 ] } },
+											{ "box" : { "id" : "ng-in-l", "maxclass" : "inlet", "index" : 1, "numinlets" : 0, "numoutlets" : 1, "outlettype" : [ "signal" ], "patching_rect" : [ 60.0, 80.0, 30.0, 30.0 ] } },
+											{ "box" : { "id" : "ng-in-r", "maxclass" : "inlet", "index" : 2, "numinlets" : 0, "numoutlets" : 1, "outlettype" : [ "signal" ], "patching_rect" : [ 170.0, 80.0, 30.0, 30.0 ] } },
+											{ "box" : { "id" : "ng-enable", "maxclass" : "inlet", "index" : 3, "numinlets" : 0, "numoutlets" : 1, "outlettype" : [ "int" ], "patching_rect" : [ 330.0, 80.0, 30.0, 30.0 ] } },
+											{ "box" : { "id" : "ng-threshold", "maxclass" : "inlet", "index" : 4, "numinlets" : 0, "numoutlets" : 1, "outlettype" : [ "float" ], "patching_rect" : [ 470.0, 80.0, 30.0, 30.0 ] } },
+											{ "box" : { "id" : "ng-release", "maxclass" : "inlet", "index" : 5, "numinlets" : 0, "numoutlets" : 1, "outlettype" : [ "int" ], "patching_rect" : [ 610.0, 80.0, 30.0, 30.0 ] } },
+											{ "box" : { "id" : "ng-peak-l", "maxclass" : "newobj", "text" : "peakamp~ 10", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "float" ], "patching_rect" : [ 60.0, 145.0, 88.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-peak-r", "maxclass" : "newobj", "text" : "peakamp~ 10", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "float" ], "patching_rect" : [ 170.0, 145.0, 88.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-maximum", "maxclass" : "newobj", "text" : "maximum 0.", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "float" ], "patching_rect" : [ 110.0, 205.0, 90.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-atodb", "maxclass" : "newobj", "text" : "atodb", "numinlets" : 1, "numoutlets" : 1, "outlettype" : [ "float" ], "patching_rect" : [ 110.0, 245.0, 55.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-threshold-clip", "maxclass" : "newobj", "text" : "clip -70. -10.", "numinlets" : 3, "numoutlets" : 1, "outlettype" : [ "float" ], "patching_rect" : [ 470.0, 145.0, 105.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-compare", "maxclass" : "newobj", "text" : ">= -45.", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "int" ], "patching_rect" : [ 110.0, 325.0, 70.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-active-pak", "maxclass" : "newobj", "text" : "pak 0 0", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "list" ], "patching_rect" : [ 260.0, 325.0, 70.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-active", "maxclass" : "newobj", "text" : "expr $i1 && $i2", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "int" ], "patching_rect" : [ 260.0, 365.0, 120.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-change", "maxclass" : "newobj", "text" : "change", "numinlets" : 1, "numoutlets" : 3, "outlettype" : [ "int", "int", "int" ], "patching_rect" : [ 260.0, 405.0, 60.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-sel", "maxclass" : "newobj", "text" : "sel 1 0", "numinlets" : 3, "numoutlets" : 3, "outlettype" : [ "bang", "bang", "" ], "patching_rect" : [ 260.0, 445.0, 60.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-open-trigger", "maxclass" : "newobj", "text" : "t b b b", "numinlets" : 1, "numoutlets" : 3, "outlettype" : [ "bang", "bang", "bang" ], "patching_rect" : [ 210.0, 485.0, 60.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-stop", "maxclass" : "message", "text" : "stop", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "" ], "patching_rect" : [ 340.0, 485.0, 42.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-open-state", "maxclass" : "message", "text" : "1", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "int" ], "patching_rect" : [ 210.0, 525.0, 32.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-open-ramp", "maxclass" : "message", "text" : "1. 5", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "" ], "patching_rect" : [ 260.0, 525.0, 45.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-close-delay", "maxclass" : "newobj", "text" : "delay 40", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "bang" ], "patching_rect" : [ 340.0, 525.0, 65.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-close-trigger", "maxclass" : "newobj", "text" : "t b b", "numinlets" : 1, "numoutlets" : 2, "outlettype" : [ "bang", "bang" ], "patching_rect" : [ 340.0, 565.0, 48.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-close-state", "maxclass" : "message", "text" : "0", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "int" ], "patching_rect" : [ 410.0, 605.0, 32.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-release-clip", "maxclass" : "newobj", "text" : "clip 20 500", "numinlets" : 3, "numoutlets" : 1, "outlettype" : [ "int" ], "patching_rect" : [ 610.0, 145.0, 85.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-release-store", "maxclass" : "newobj", "text" : "f 120.", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "float" ], "patching_rect" : [ 340.0, 605.0, 55.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-close-ramp", "maxclass" : "message", "text" : "0. $1", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "" ], "patching_rect" : [ 340.0, 645.0, 50.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-line", "maxclass" : "newobj", "text" : "line~", "numinlets" : 2, "numoutlets" : 2, "outlettype" : [ "signal", "bang" ], "patching_rect" : [ 260.0, 605.0, 50.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-gain-l", "maxclass" : "newobj", "text" : "*~ 0.", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "signal" ], "patching_rect" : [ 60.0, 565.0, 55.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-gain-r", "maxclass" : "newobj", "text" : "*~ 0.", "numinlets" : 2, "numoutlets" : 1, "outlettype" : [ "signal" ], "patching_rect" : [ 170.0, 565.0, 55.0, 22.0 ] } },
+											{ "box" : { "id" : "ng-out-l", "maxclass" : "outlet", "index" : 1, "numinlets" : 1, "numoutlets" : 0, "patching_rect" : [ 60.0, 625.0, 30.0, 30.0 ] } },
+											{ "box" : { "id" : "ng-out-r", "maxclass" : "outlet", "index" : 2, "numinlets" : 1, "numoutlets" : 0, "patching_rect" : [ 170.0, 625.0, 30.0, 30.0 ] } },
+											{ "box" : { "id" : "ng-state-out", "maxclass" : "outlet", "index" : 3, "numinlets" : 1, "numoutlets" : 0, "patching_rect" : [ 410.0, 645.0, 30.0, 30.0 ] } }
+										],
+										"lines" : [
+											{ "patchline" : { "source" : [ "ng-in-l", 0 ], "destination" : [ "ng-peak-l", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-in-r", 0 ], "destination" : [ "ng-peak-r", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-peak-l", 0 ], "destination" : [ "ng-maximum", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-peak-r", 0 ], "destination" : [ "ng-maximum", 1 ] } },
+											{ "patchline" : { "source" : [ "ng-maximum", 0 ], "destination" : [ "ng-atodb", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-atodb", 0 ], "destination" : [ "ng-compare", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-threshold", 0 ], "destination" : [ "ng-threshold-clip", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-threshold-clip", 0 ], "destination" : [ "ng-compare", 1 ] } },
+											{ "patchline" : { "source" : [ "ng-compare", 0 ], "destination" : [ "ng-active-pak", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-enable", 0 ], "destination" : [ "ng-active-pak", 1 ] } },
+											{ "patchline" : { "source" : [ "ng-active-pak", 0 ], "destination" : [ "ng-active", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-active", 0 ], "destination" : [ "ng-change", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-change", 0 ], "destination" : [ "ng-sel", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-sel", 0 ], "destination" : [ "ng-open-trigger", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-open-trigger", 2 ], "destination" : [ "ng-stop", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-stop", 0 ], "destination" : [ "ng-close-delay", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-open-trigger", 1 ], "destination" : [ "ng-open-state", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-open-state", 0 ], "destination" : [ "ng-state-out", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-open-trigger", 0 ], "destination" : [ "ng-open-ramp", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-open-ramp", 0 ], "destination" : [ "ng-line", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-sel", 1 ], "destination" : [ "ng-close-delay", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-close-delay", 0 ], "destination" : [ "ng-close-trigger", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-close-trigger", 1 ], "destination" : [ "ng-close-state", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-close-state", 0 ], "destination" : [ "ng-state-out", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-release", 0 ], "destination" : [ "ng-release-clip", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-release-clip", 0 ], "destination" : [ "ng-release-store", 1 ] } },
+											{ "patchline" : { "source" : [ "ng-close-trigger", 0 ], "destination" : [ "ng-release-store", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-release-store", 0 ], "destination" : [ "ng-close-ramp", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-close-ramp", 0 ], "destination" : [ "ng-line", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-in-l", 0 ], "destination" : [ "ng-gain-l", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-in-r", 0 ], "destination" : [ "ng-gain-r", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-line", 0 ], "destination" : [ "ng-gain-l", 1 ], "order" : 1 } },
+											{ "patchline" : { "source" : [ "ng-line", 0 ], "destination" : [ "ng-gain-r", 1 ], "order" : 0 } },
+											{ "patchline" : { "source" : [ "ng-gain-l", 0 ], "destination" : [ "ng-out-l", 0 ] } },
+											{ "patchline" : { "source" : [ "ng-gain-r", 0 ], "destination" : [ "ng-out-r", 0 ] } }
+										]
+									}
+								}
+							}
+, 							{
 								"box" : 								{
 									"id" : "mi-gate-l",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 250.0, 715.0, 55.0, 22.0 ],
+									"patching_rect" : [ 250.0, 765.0, 55.0, 22.0 ],
 									"text" : "*~ 0."
 								}
 
@@ -1086,7 +1378,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 425.0, 715.0, 55.0, 22.0 ],
+									"patching_rect" : [ 425.0, 765.0, 55.0, 22.0 ],
 									"text" : "*~ 0."
 								}
 
@@ -1099,7 +1391,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 250.0, 805.0, 30.0, 30.0 ]
+									"patching_rect" : [ 250.0, 850.0, 30.0, 30.0 ]
 								}
 
 							}
@@ -1111,9 +1403,20 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 425.0, 805.0, 30.0, 30.0 ]
+									"patching_rect" : [ 425.0, 850.0, 30.0, 30.0 ]
 								}
 
+							}
+, 							{
+								"box" : {
+									"comment" : "Gate open state",
+									"id" : "mi-gate-state-out",
+									"index" : 3,
+									"maxclass" : "outlet",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 575.0, 850.0, 30.0, 30.0 ]
+								}
 							}
  ],
 						"lines" : [ 							{
@@ -1627,7 +1930,7 @@
 , 							{
 								"patchline" : 								{
 									"color" : [ 0.68, 0.95, 0.34, 1.0 ],
-									"destination" : [ "mi-gate-l", 0 ],
+									"destination" : [ "p-Mic-noise-gate", 0 ],
 									"source" : [ "mi-sum-l", 0 ]
 								}
 
@@ -1635,16 +1938,58 @@
 , 							{
 								"patchline" : 								{
 									"color" : [ 0.68, 0.95, 0.34, 1.0 ],
-									"destination" : [ "mi-gate-r", 0 ],
+									"destination" : [ "p-Mic-noise-gate", 1 ],
 									"source" : [ "mi-sum-r", 0 ]
 								}
 
+							}
+, 							{
+								"patchline" : {
+									"color" : [ 0.68, 0.95, 0.34, 1.0 ],
+									"destination" : [ "mi-gate-l", 0 ],
+									"source" : [ "p-Mic-noise-gate", 0 ]
+								}
+							}
+, 							{
+								"patchline" : {
+									"color" : [ 0.68, 0.95, 0.34, 1.0 ],
+									"destination" : [ "mi-gate-r", 0 ],
+									"source" : [ "p-Mic-noise-gate", 1 ]
+								}
+							}
+, 							{
+								"patchline" : {
+									"color" : [ 0.44, 0.72, 1.0, 1.0 ],
+									"destination" : [ "p-Mic-noise-gate", 2 ],
+									"source" : [ "mi-enable", 0 ]
+								}
+							}
+, 							{
+								"patchline" : {
+									"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+									"destination" : [ "p-Mic-noise-gate", 3 ],
+									"source" : [ "mi-threshold", 0 ]
+								}
+							}
+, 							{
+								"patchline" : {
+									"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+									"destination" : [ "p-Mic-noise-gate", 4 ],
+									"source" : [ "mi-release", 0 ]
+								}
+							}
+, 							{
+								"patchline" : {
+									"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+									"destination" : [ "mi-gate-state-out", 0 ],
+									"source" : [ "p-Mic-noise-gate", 2 ]
+								}
 							}
  ],
 						"originid" : "pat-8"
 					}
 ,
-					"patching_rect" : [ 437.333346366882324, 114.000003039836884, 110.0, 22.0 ],
+					"patching_rect" : [ 437.333346366882324, 114.000003039836884, 150.0, 22.0 ],
 					"text" : "p Mic_input"
 				}
 
@@ -1697,6 +2042,46 @@
 					"color" : [ 0.44, 0.72, 1.0, 1.0 ],
 					"destination" : [ "p-Mic-control", 0 ],
 					"source" : [ "m-ext-enable", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : {
+					"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+					"destination" : [ "m-threshold", 0 ],
+					"source" : [ "p-Mic-control", 8 ]
+				}
+
+			}
+, 			{
+				"patchline" : {
+					"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+					"destination" : [ "m-release", 0 ],
+					"source" : [ "p-Mic-control", 9 ]
+				}
+
+			}
+, 			{
+				"patchline" : {
+					"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+					"destination" : [ "p-Mic-input", 3 ],
+					"source" : [ "m-threshold", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : {
+					"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+					"destination" : [ "p-Mic-input", 4 ],
+					"source" : [ "m-release", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : {
+					"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+					"destination" : [ "m-gate-state", 0 ],
+					"source" : [ "p-Mic-input", 2 ]
 				}
 
 			}

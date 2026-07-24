@@ -58,23 +58,13 @@
       },
       {
         "box": {
-          "id": "profile-declarepath",
-          "maxclass": "newobj",
-          "numinlets": 1,
-          "numoutlets": 0,
-          "patching_rect": [590, 108, 185, 22],
-          "text": "declarepath ../../javascript"
-        }
-      },
-      {
-        "box": {
           "id": "profile-js",
           "maxclass": "newobj",
           "numinlets": 2,
           "numoutlets": 7,
           "outlettype": ["", "", "", "", "", "", ""],
-          "patching_rect": [100, 255, 235, 22],
-          "text": "js mt_pose_interaction_state.js",
+          "patching_rect": [100, 255, 345, 22],
+          "text": "js Patcher:/../../javascript/mt_pose_interaction_state.js",
           "varname": "pose_interaction_state"
         }
       },

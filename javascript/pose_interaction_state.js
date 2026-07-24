@@ -460,6 +460,11 @@
     neutralFeatures: neutralFeatures,
   };
 
+  if (typeof exports === "object") {
+    exports.InteractionState = InteractionState;
+    exports.neutralFeatures = neutralFeatures;
+  }
+
   if (typeof module === "object" && module.exports) {
     module.exports = root.PoseInteractionStateAPI;
   }

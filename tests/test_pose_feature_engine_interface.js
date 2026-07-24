@@ -103,11 +103,13 @@ assert(
 );
 
 const cameraMenu = findByVarname("pose_camera_menu");
-const deviceRefreshTrigger = findByText("t l clear");
+const deviceRefreshTrigger = findByText("t l b");
+const clearCameraMenu = findByText("clear");
 const deviceIterator = findByText("iter");
 const prependAppend = findByText("prepend append");
 const appendFanout = findByText("t l l");
 assert(deviceRefreshTrigger, "Missing ordered camera-menu clear/list trigger");
+assert(clearCameraMenu, "Missing camera-menu clear message");
 assert(deviceIterator, "Missing per-device iterator");
 assert(prependAppend, "Missing per-device append message");
 assert(appendFanout, "Missing camera append fan-out trigger");
@@ -116,12 +118,13 @@ assert(
   "mediadevices output is not connected to t l clear"
 );
 assert(
-  isConnectedFromOutlet(deviceRefreshTrigger, 1, cameraMenu),
-  "t l clear must send clear from its right outlet to the camera menu first"
+  isConnectedFromOutlet(deviceRefreshTrigger, 1, clearCameraMenu) &&
+    isConnected(clearCameraMenu, cameraMenu),
+  "t l b must send a clear message to the camera menu first"
 );
 assert(
   isConnectedFromOutlet(deviceRefreshTrigger, 0, deviceIterator),
-  "t l clear must send the device list from its left outlet to iter"
+  "t l b must send the device list from its left outlet to iter"
 );
 assert(
   isConnected(deviceIterator, prependAppend),
@@ -145,7 +148,7 @@ assert(
 );
 
 const pathChain = assertConnectedChain([
-  "Project:/web/pose-landmarker/jweb-pose-landmarker.html",
+  "Patcher:/../../web/pose-landmarker/jweb-pose-landmarker.html",
   "absolutepath",
   "sprintf file://%s",
   'tosymbol @separator " "',
@@ -570,10 +573,10 @@ assert.deepStrictEqual(
   ]
 );
 
-const declarePath = engineByText("declarepath ../../javascript");
-const engineJs = engineByText("js mt_pose_feature_engine.js");
+const engineJs = engineByText(
+  "js Patcher:/../../javascript/mt_pose_feature_engine.js"
+);
 const initName = engineByText("dict_name #0_pose_features");
-assert(declarePath, "Missing feature-engine JavaScript search path");
 assert(engineJs, "Missing feature-engine js object");
 assert(initName, "Missing instance-safe output dictionary initialization");
 assert(engineConnected(engineInlets[0], engineJs));
@@ -626,6 +629,12 @@ assert(
 assert(
   /function model_ready[\s\S]*emitEngineResult/.test(engineSource),
   "model_ready 0 must emit a complete safe result immediately"
+);
+assert(
+  /function anything\(\)[\s\S]*model_loading[\s\S]*model_ready\(0\)/.test(
+    engineSource
+  ),
+  "model_loading 1 must place the engine in a safe not-ready state"
 );
 assert(!engineSource.includes("posedict"), "Engine must not use fixed posedict");
 assert(!engineSource.includes("/Users/"), "Engine must not use an absolute user path");

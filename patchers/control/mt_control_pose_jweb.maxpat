@@ -277,9 +277,20 @@
           "maxclass": "newobj",
           "numinlets": 1,
           "numoutlets": 2,
-          "outlettype": ["", "clear"],
+          "outlettype": ["list", "bang"],
           "patching_rect": [885, 335, 70, 22],
-          "text": "t l clear"
+          "text": "t l b"
+        }
+      },
+      {
+        "box": {
+          "id": "pose-camera-clear",
+          "maxclass": "message",
+          "numinlets": 2,
+          "numoutlets": 1,
+          "outlettype": [""],
+          "patching_rect": [970, 335, 45, 22],
+          "text": "clear"
         }
       },
       {
@@ -345,7 +356,7 @@
           "numoutlets": 1,
           "outlettype": [""],
           "patching_rect": [195, 690, 365, 22],
-          "text": "Project:/web/pose-landmarker/jweb-pose-landmarker.html"
+          "text": "Patcher:/../../web/pose-landmarker/jweb-pose-landmarker.html"
         }
       },
       {
@@ -632,6 +643,13 @@
       {
         "patchline": {
           "source": ["pose-camera-refresh-trigger", 1],
+          "destination": ["pose-camera-clear", 0],
+          "color": [0.44, 0.72, 1, 1]
+        }
+      },
+      {
+        "patchline": {
+          "source": ["pose-camera-clear", 0],
           "destination": ["pose-camera-menu", 0],
           "color": [0.44, 0.72, 1, 1]
         }

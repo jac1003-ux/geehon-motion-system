@@ -12,14 +12,14 @@
     "rect": [
       80,
       80,
-      680,
-      520
+      798,
+      420
     ],
     "gridsize": [
       15,
       15
     ],
-    "description": "Standalone teacher-style Hand_control template check patch.",
+    "description": "Camera hand control source with selectable free hand and tracking-valid safety output.",
     "tags": "check teacher hand control template modular jweb pror vst mapping",
     "boxes": [
       {
@@ -35,7 +35,7 @@
             23
           ],
           "text": "MT Control Hand Jweb - camera hand control source",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             8,
             8,
@@ -56,7 +56,7 @@
             980,
             23
           ],
-          "text": "Camera hand tracking outputs four 0-1 control slots: hand X, hand Y, pinch distance, palm width."
+          "text": "Camera hand tracking outputs hand X, hand Y, pinch distance, palm width, and Tracking Valid."
         }
       },
       {
@@ -78,10 +78,10 @@
           "rendermode": 1,
           "presentation": 1,
           "presentation_rect": [
-            8,
-            96,
-            400,
-            300
+            12,
+            50,
+            774,
+            358
           ]
         }
       },
@@ -103,9 +103,9 @@
           "text": "reload",
           "presentation": 1,
           "presentation_rect": [
-            8,
-            36,
-            70,
+            12,
+            12,
+            60,
             22
           ]
         }
@@ -123,7 +123,7 @@
             20
           ],
           "text": "Reload Webcam",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             84,
             38,
@@ -150,8 +150,8 @@
           "text": "get_mediadevices",
           "presentation": 1,
           "presentation_rect": [
-            172,
-            36,
+            80,
+            12,
             112,
             22
           ]
@@ -170,7 +170,7 @@
             20
           ],
           "text": "List Cameras",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             290,
             38,
@@ -203,9 +203,9 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            8,
-            64,
-            210,
+            200,
+            12,
+            214,
             22
           ]
         }
@@ -228,8 +228,8 @@
           "text": "set_mediadevice $1",
           "presentation": 1,
           "presentation_rect": [
-            226,
-            64,
+            422,
+            12,
             120,
             22
           ]
@@ -248,7 +248,7 @@
             20
           ],
           "text": "Set Camera",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             352,
             66,
@@ -290,7 +290,7 @@
             70,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             425,
             104,
@@ -312,7 +312,7 @@
             20
           ],
           "text": "Hand X",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             494,
             106,
@@ -339,7 +339,7 @@
             70,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             425,
             136,
@@ -361,7 +361,7 @@
             20
           ],
           "text": "Hand Y",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             494,
             138,
@@ -388,7 +388,7 @@
             70,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             425,
             168,
@@ -410,7 +410,7 @@
             20
           ],
           "text": "Pinch Distance",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             494,
             170,
@@ -437,7 +437,7 @@
             70,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             425,
             200,
@@ -459,7 +459,7 @@
             20
           ],
           "text": "Palm Width",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             494,
             202,
@@ -472,9 +472,10 @@
         "box": {
           "id": "th-hand-control",
           "maxclass": "newobj",
-          "numinlets": 1,
-          "numoutlets": 5,
+          "numinlets": 2,
+          "numoutlets": 6,
           "outlettype": [
+            "",
             "",
             "",
             "",
@@ -576,21 +577,22 @@
                   "id": "hp-right",
                   "maxclass": "newobj",
                   "numinlets": 1,
-                  "numoutlets": 2,
+                  "numoutlets": 3,
                   "outlettype": [
+                    "",
                     "",
                     ""
                   ],
                   "patching_rect": [
                     35,
                     379,
-                    130,
+                    165,
                     22
                   ],
                   "saved_object_attributes": {
                     "legacy": 1
                   },
-                  "text": "dict.unpack Right:"
+                  "text": "dict.unpack Left: Right:"
                 }
               },
               {
@@ -1016,7 +1018,7 @@
                     520,
                     23
                   ],
-                  "text": "out: camera list / hand_x / hand_y / pinch / palm"
+                  "text": "out: camera list / hand_x / hand_y / pinch / palm / tracking_valid"
                 }
               },
               {
@@ -1172,6 +1174,220 @@
                     30,
                     30
                   ]
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-hand-control-core-in-side-label",
+                  "maxclass": "comment",
+                  "patching_rect": [
+                    170,
+                    35,
+                    230,
+                    20
+                  ],
+                  "numinlets": 1,
+                  "numoutlets": 0,
+                  "text": "in 2: free hand 0 Right / 1 Left"
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-hand-control-core-in-side",
+                  "maxclass": "inlet",
+                  "patching_rect": [
+                    170,
+                    121,
+                    30,
+                    30
+                  ],
+                  "comment": "free hand: 0 Right / 1 Left",
+                  "index": 2,
+                  "numinlets": 0,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-hand-select-trigger",
+                  "maxclass": "newobj",
+                  "patching_rect": [
+                    230,
+                    121,
+                    65,
+                    22
+                  ],
+                  "numinlets": 1,
+                  "numoutlets": 3,
+                  "outlettype": [
+                    "",
+                    "",
+                    ""
+                  ],
+                  "text": "t i b b"
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-hand-select-plus",
+                  "maxclass": "newobj",
+                  "patching_rect": [
+                    230,
+                    164,
+                    40,
+                    22
+                  ],
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "text": "+ 1"
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-hand-selector",
+                  "maxclass": "newobj",
+                  "patching_rect": [
+                    230,
+                    422,
+                    82,
+                    22
+                  ],
+                  "numinlets": 3,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "text": "selector 2"
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-selected-trigger",
+                  "maxclass": "newobj",
+                  "patching_rect": [
+                    230,
+                    465,
+                    78,
+                    22
+                  ],
+                  "numinlets": 1,
+                  "numoutlets": 4,
+                  "outlettype": [
+                    "",
+                    "",
+                    "",
+                    ""
+                  ],
+                  "text": "t l b b b"
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-tracking-stop",
+                  "maxclass": "message",
+                  "patching_rect": [
+                    355,
+                    422,
+                    40,
+                    22
+                  ],
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "text": "stop"
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-tracking-delay",
+                  "maxclass": "newobj",
+                  "patching_rect": [
+                    355,
+                    465,
+                    70,
+                    22
+                  ],
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "text": "delay 250"
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-tracking-one",
+                  "maxclass": "message",
+                  "patching_rect": [
+                    445,
+                    422,
+                    32,
+                    22
+                  ],
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "text": "1"
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-tracking-zero",
+                  "maxclass": "message",
+                  "patching_rect": [
+                    445,
+                    465,
+                    32,
+                    22
+                  ],
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "text": "0"
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-hand-control-core-out-tracking-label",
+                  "maxclass": "comment",
+                  "patching_rect": [
+                    1540,
+                    70,
+                    175,
+                    20
+                  ],
+                  "numinlets": 1,
+                  "numoutlets": 0,
+                  "text": "out 6: tracking valid 0/1"
+                }
+              },
+              {
+                "box": {
+                  "id": "hp-hand-control-core-out-tracking",
+                  "maxclass": "outlet",
+                  "patching_rect": [
+                    635,
+                    981,
+                    30,
+                    30
+                  ],
+                  "comment": "tracking valid 0/1",
+                  "index": 6,
+                  "numinlets": 1,
+                  "numoutlets": 0
                 }
               }
             ],
@@ -1535,59 +1751,239 @@
               {
                 "patchline": {
                   "destination": [
-                    "hp-points",
+                    "hp-pinch-pak",
+                    1
+                  ],
+                  "source": [
+                    "hp-thumb",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "destination": [
+                    "hp-pinch-pak",
                     0
                   ],
+                  "source": [
+                    "hp-thumb",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "destination": [
+                    "hp-palm-pak",
+                    1
+                  ],
+                  "source": [
+                    "hp-wrist",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "destination": [
+                    "hp-palm-pak",
+                    0
+                  ],
+                  "source": [
+                    "hp-wrist",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "hp-hand-control-core-in-side",
+                    0
+                  ],
+                  "destination": [
+                    "hp-hand-select-trigger",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "hp-hand-select-trigger",
+                    0
+                  ],
+                  "destination": [
+                    "hp-hand-select-plus",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "hp-hand-select-trigger",
+                    2
+                  ],
+                  "destination": [
+                    "hp-tracking-stop",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "hp-hand-select-trigger",
+                    1
+                  ],
+                  "destination": [
+                    "hp-tracking-zero",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "hp-hand-select-plus",
+                    0
+                  ],
+                  "destination": [
+                    "hp-hand-selector",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "hp-right",
+                    1
+                  ],
+                  "destination": [
+                    "hp-hand-selector",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
                   "source": [
                     "hp-right",
                     0
-                  ]
-                }
-              },
-              {
-                "patchline": {
-                  "destination": [
-                    "hp-pinch-pak",
-                    1
                   ],
-                  "source": [
-                    "hp-thumb",
-                    1
+                  "destination": [
+                    "hp-hand-selector",
+                    2
                   ]
                 }
               },
               {
                 "patchline": {
-                  "destination": [
-                    "hp-pinch-pak",
+                  "source": [
+                    "hp-hand-selector",
                     0
                   ],
-                  "source": [
-                    "hp-thumb",
+                  "destination": [
+                    "hp-selected-trigger",
                     0
                   ]
                 }
               },
               {
                 "patchline": {
-                  "destination": [
-                    "hp-palm-pak",
-                    1
-                  ],
                   "source": [
-                    "hp-wrist",
-                    1
+                    "hp-selected-trigger",
+                    3
+                  ],
+                  "destination": [
+                    "hp-tracking-stop",
+                    0
                   ]
                 }
               },
               {
                 "patchline": {
+                  "source": [
+                    "hp-selected-trigger",
+                    2
+                  ],
                   "destination": [
-                    "hp-palm-pak",
+                    "hp-tracking-one",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "hp-selected-trigger",
+                    1
+                  ],
+                  "destination": [
+                    "hp-tracking-delay",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "hp-selected-trigger",
                     0
                   ],
+                  "destination": [
+                    "hp-points",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
                   "source": [
-                    "hp-wrist",
+                    "hp-tracking-stop",
+                    0
+                  ],
+                  "destination": [
+                    "hp-tracking-delay",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "hp-tracking-delay",
+                    0
+                  ],
+                  "destination": [
+                    "hp-tracking-zero",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "hp-tracking-one",
+                    0
+                  ],
+                  "destination": [
+                    "hp-hand-control-core-out-tracking",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "hp-tracking-zero",
+                    0
+                  ],
+                  "destination": [
+                    "hp-hand-control-core-out-tracking",
                     0
                   ]
                 }
@@ -1598,7 +1994,7 @@
           "patching_rect": [
             890,
             166,
-            360,
+            420,
             22
           ],
           "saved_object_attributes": {
@@ -1620,7 +2016,7 @@
             1260,
             23
           ],
-          "text": "Test: Reload Webcam / List Cameras / Set Camera; move right hand and watch four 0-1 values. Outputs are ready for Tremolo or later mappings."
+          "text": "Test: select the free hand, reload camera, then confirm four 0-1 values plus Tracking Valid."
         }
       },
       {
@@ -1651,7 +2047,7 @@
             20
           ],
           "text": "slot1 hand_x",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             494,
             252,
@@ -1678,7 +2074,7 @@
             75,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             425,
             250,
@@ -1715,7 +2111,7 @@
             20
           ],
           "text": "slot2 hand_y",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             494,
             284,
@@ -1742,7 +2138,7 @@
             75,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             425,
             282,
@@ -1779,7 +2175,7 @@
             20
           ],
           "text": "slot3 pinch",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             494,
             316,
@@ -1806,7 +2202,7 @@
             75,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             425,
             314,
@@ -1843,7 +2239,7 @@
             20
           ],
           "text": "slot4 palm",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             494,
             348,
@@ -1870,7 +2266,7 @@
             75,
             22
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             425,
             346,
@@ -1937,8 +2333,8 @@
             240,
             20
           ],
-          "text": "out 1-4: slot1 hand_x / slot2 hand_y / slot3 pinch / slot4 palm",
-          "presentation": 1,
+          "text": "out 1-5: hand_x / hand_y / pinch / palm / tracking valid",
+          "presentation": 0,
           "presentation_rect": [
             8,
             410,
@@ -1972,10 +2368,10 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            425,
-            400,
-            24,
-            24
+            552,
+            12,
+            22,
+            22
           ]
         }
       },
@@ -2005,10 +2401,10 @@
           "text": "Mirror view",
           "presentation": 1,
           "presentation_rect": [
-            455,
-            402,
-            90,
-            20
+            580,
+            14,
+            52,
+            18
           ]
         }
       },
@@ -2035,7 +2431,7 @@
             24,
             24
           ],
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             425,
             428,
@@ -2068,7 +2464,7 @@
             20
           ],
           "text": "Fix Left/Right label",
-          "presentation": 1,
+          "presentation": 0,
           "presentation_rect": [
             455,
             430,
@@ -2253,6 +2649,142 @@
             22
           ],
           "text": "prepend url"
+        }
+      },
+      {
+        "box": {
+          "id": "hj-free-hand-label",
+          "maxclass": "comment",
+          "patching_rect": [
+            620,
+            200,
+            90,
+            20
+          ],
+          "numinlets": 1,
+          "numoutlets": 0,
+          "text": "Free Hand",
+          "presentation": 1,
+          "presentation_rect": [
+            638,
+            14,
+            68,
+            18
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "hj-free-hand-menu",
+          "maxclass": "umenu",
+          "patching_rect": [
+            620,
+            225,
+            150,
+            22
+          ],
+          "items": [
+            "Right",
+            ",",
+            "Left"
+          ],
+          "numinlets": 1,
+          "numoutlets": 3,
+          "outlettype": [
+            "int",
+            "",
+            ""
+          ],
+          "parameter_enable": 0,
+          "presentation": 1,
+          "presentation_rect": [
+            708,
+            12,
+            78,
+            22
+          ],
+          "varname": "free_hand_selector"
+        }
+      },
+      {
+        "box": {
+          "id": "hj-free-hand-default",
+          "maxclass": "newobj",
+          "patching_rect": [
+            790,
+            225,
+            78,
+            22
+          ],
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "text": "loadmess 0"
+        }
+      },
+      {
+        "box": {
+          "id": "hj-tracking-toggle",
+          "maxclass": "toggle",
+          "patching_rect": [
+            620,
+            370,
+            24,
+            24
+          ],
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            "int"
+          ],
+          "presentation": 0,
+          "presentation_rect": [
+            425,
+            232,
+            24,
+            24
+          ],
+          "varname": "hand_tracking_valid"
+        }
+      },
+      {
+        "box": {
+          "id": "hj-tracking-label",
+          "maxclass": "comment",
+          "patching_rect": [
+            655,
+            372,
+            120,
+            20
+          ],
+          "numinlets": 1,
+          "numoutlets": 0,
+          "text": "Tracking Valid",
+          "presentation": 0,
+          "presentation_rect": [
+            455,
+            234,
+            120,
+            20
+          ]
+        }
+      },
+      {
+        "box": {
+          "id": "hj-out-tracking",
+          "maxclass": "outlet",
+          "patching_rect": [
+            520,
+            682,
+            30,
+            30
+          ],
+          "comment": "tracking valid 0/1",
+          "index": 5,
+          "numinlets": 1,
+          "numoutlets": 0
         }
       }
     ],
@@ -2700,12 +3232,72 @@
             1
           ]
         }
+      },
+      {
+        "patchline": {
+          "source": [
+            "hj-free-hand-default",
+            0
+          ],
+          "destination": [
+            "hj-free-hand-menu",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "hj-free-hand-menu",
+            0
+          ],
+          "destination": [
+            "th-hand-control",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "th-hand-control",
+            5
+          ],
+          "destination": [
+            "hj-tracking-toggle",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "th-hand-control",
+            5
+          ],
+          "destination": [
+            "hj-out-tracking",
+            0
+          ]
+        }
       }
     ],
     "originid": "pat-470",
     "dependency_cache": [],
     "autosave": 0,
     "openinpresentation": 1,
-    "bglocked": 1
+    "bglocked": 1,
+    "locked_bgcolor": [
+      0.949,
+      0.969,
+      0.953,
+      1
+    ],
+    "bgcolor": [
+      0.949,
+      0.969,
+      0.953,
+      1
+    ]
   }
 }

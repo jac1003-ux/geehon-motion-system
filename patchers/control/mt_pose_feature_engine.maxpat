@@ -58,23 +58,13 @@
       },
       {
         "box": {
-          "id": "feature-declarepath",
-          "maxclass": "newobj",
-          "numinlets": 1,
-          "numoutlets": 0,
-          "patching_rect": [600, 108, 185, 22],
-          "text": "declarepath ../../javascript"
-        }
-      },
-      {
-        "box": {
           "id": "feature-engine-js",
           "maxclass": "newobj",
           "numinlets": 2,
           "numoutlets": 6,
           "outlettype": ["", "", "", "", "", ""],
-          "patching_rect": [100, 215, 215, 22],
-          "text": "js mt_pose_feature_engine.js",
+          "patching_rect": [100, 215, 330, 22],
+          "text": "js Patcher:/../../javascript/mt_pose_feature_engine.js",
           "varname": "pose_feature_engine"
         }
       },

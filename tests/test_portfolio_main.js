@@ -98,19 +98,55 @@ assert(!fs.readFileSync(patchPath, "utf8").includes("mt_grain_enable_state"), "l
 const pageTab = boxes.get("pm-page-tab");
 assert(pageTab, "pm-page-tab is missing");
 assert.strictEqual(pageTab.maxclass, "tab", "pm-page-tab class");
-assert.deepStrictEqual(pageTab.tabs, ["SOURCE", "FX", "GESTURE", "MASTER"], "page labels");
+assert.deepStrictEqual(pageTab.tabs, ["PERFORM", "SOURCE", "FX", "GESTURE", "MASTER"], "page labels");
 const pageRouter = boxes.get("pm-page-router");
 assert(pageRouter, "pm-page-router is missing");
 const routerBoxes = new Map((pageRouter.patcher?.boxes || []).map((entry) => [entry.box.id, entry.box]));
-for (let index = 0; index < 4; index += 1) {
+for (let index = 0; index < 5; index += 1) {
   assert(routerBoxes.get(`page-msg-${index}`)?.text.includes("script hide"), `page ${index} hide commands`);
   assert(routerBoxes.get(`page-msg-${index}`)?.text.includes("script show"), `page ${index} show commands`);
 }
-assert(routerBoxes.get("page-msg-0").text.includes("script show ui_source_mixer"), "SOURCE page contents");
-assert(routerBoxes.get("page-msg-1").text.includes("script show ui_fx_vocoder"), "FX page contents");
-assert(routerBoxes.get("page-msg-2").text.includes("script show ui_gesture_hand"), "GESTURE page contents");
-assert(routerBoxes.get("page-msg-3").text.includes("script show ui_master_returns"), "MASTER page contents");
+assert(routerBoxes.get("page-msg-0").text.includes("script show ui_perform_shell"), "PERFORM commercial shell");
+assert(routerBoxes.get("page-msg-0").text.includes("script show ui_gesture_hand"), "PERFORM gesture camera");
+assert(!routerBoxes.get("page-msg-0").text.includes("script show ui_source_mixer"), "PERFORM must not embed the full source mixer");
+assert(!routerBoxes.get("page-msg-0").text.includes("script show ui_master_returns"), "PERFORM must not embed the full FX mixer");
+assert(routerBoxes.get("page-msg-0").text.includes("presentation_rect 402 222 798 420"), "PERFORM camera placement");
+for (const varname of [
+  "ui_perform_mic", "ui_perform_file", "ui_perform_grain",
+  "ui_perform_vocoder", "ui_perform_chop", "ui_perform_tremolo",
+]) {
+  assert(routerBoxes.get("page-msg-0").text.includes(`script show ${varname}`), `PERFORM quick control ${varname}`);
+  for (let index = 1; index < 5; index += 1) {
+    assert(routerBoxes.get(`page-msg-${index}`).text.includes(`script hide ${varname}`), `${varname} hidden on detail page ${index}`);
+  }
+}
+assert(routerBoxes.get("page-msg-1").text.includes("script show ui_source_mic"), "SOURCE page contents");
+assert(routerBoxes.get("page-msg-1").text.includes("presentation_rect 24 520 760 320"), "SOURCE mixer placement restore");
+assert(routerBoxes.get("page-msg-2").text.includes("script show ui_fx_vocoder"), "FX page contents");
+assert(routerBoxes.get("page-msg-3").text.includes("script show ui_gesture_hand"), "GESTURE page contents");
+assert(routerBoxes.get("page-msg-3").text.includes("presentation_rect 24 160 798 420"), "GESTURE camera placement restore");
+assert(routerBoxes.get("page-msg-4").text.includes("script show ui_master_returns"), "MASTER page contents");
+assert(routerBoxes.get("page-msg-4").text.includes("presentation_rect 24 160 760 300"), "MASTER return placement restore");
 assert.strictEqual(boxes.get("pm-thispatcher")?.text, "thispatcher", "top-level thispatcher");
+
+const shell = boxes.get("pm-shell-bg");
+assert(shell, "commercial main shell is missing");
+assert.strictEqual(shell.maxclass, "fpic", "main shell class");
+assert.strictEqual(shell.pic, "main_shell_v1.png", "main shell asset");
+assert.deepStrictEqual(shell.presentation_rect, [0, 0, 1732, 941], "main shell fills the saved window");
+assert(fs.existsSync(path.join(root, "assets", "ui", shell.pic)), "main shell asset exists");
+
+const performShell = boxes.get("pm-perform-bg");
+assert(performShell, "PERFORM page shell is missing");
+assert.strictEqual(performShell.maxclass, "fpic", "PERFORM shell class");
+assert.strictEqual(
+  performShell.pic,
+  "../assets/ui/perform_shell_v2.png",
+  "PERFORM shell asset uses a portable path from patchers/"
+);
+assert.deepStrictEqual(performShell.presentation_rect, [0, 96, 1732, 845], "PERFORM shell fills the content area");
+assert(fs.existsSync(path.join(root, "assets", "ui", "perform_shell_v2.svg")), "editable PERFORM SVG exists");
+assert(fs.existsSync(path.join(root, "assets", "ui", "perform_shell_v2.png")), "rendered PERFORM PNG exists");
 
 const expectedVarnames = {
   "pm-mic": "ui_source_mic",
@@ -122,14 +158,68 @@ const expectedVarnames = {
   "pm-tremolo": "ui_fx_tremolo",
   "pm-hand": "ui_gesture_hand",
   "pm-fx-return": "ui_master_returns",
+  "pm-meter-l": "ui_output_meter_l",
+  "pm-meter-r": "ui_output_meter_r",
+  "pm-dac": "ui_output_dac",
+  "pm-output-label": "ui_output_label",
+  "pm-eq-title": "ui_util_eq_title",
+  "pm-eq-open": "ui_util_eq_open",
+  "pm-rec-title": "ui_util_rec_title",
+  "pm-rec-open": "ui_util_rec_open",
+  "pm-rec-start": "ui_util_rec_start",
+  "pm-rec-stop": "ui_util_rec_stop",
+  "pm-perform-bg": "ui_perform_shell",
+  "pm-perform-mic": "ui_perform_mic",
+  "pm-perform-file": "ui_perform_file",
+  "pm-perform-grain": "ui_perform_grain",
+  "pm-perform-vocoder": "ui_perform_vocoder",
+  "pm-perform-chop": "ui_perform_chop",
+  "pm-perform-tremolo": "ui_perform_tremolo",
 };
 for (const [id, varname] of Object.entries(expectedVarnames)) {
   assert.strictEqual(boxes.get(id)?.varname, varname, `${id} varname`);
 }
 
-assert(hasLine("pm-page-load", 0, "pm-page-tab", 0), "default SOURCE page initialization");
+assert(hasLine("pm-page-load", 0, "pm-page-tab", 0), "default PERFORM page initialization");
 assert(hasLine("pm-page-tab", 0, "pm-page-router", 0), "tab to page router");
 assert(hasLine("pm-page-router", 0, "pm-thispatcher", 0), "page router to thispatcher");
+
+const performState = boxes.get("pm-perform-state");
+assert(performState?.patcher, "PERFORM quick-state router is missing");
+assert.strictEqual(performState.numinlets, 6, "PERFORM quick-state inlet count");
+assert.strictEqual(performState.numoutlets, 6, "PERFORM quick-state outlet count");
+for (const [index, id] of [
+  "pm-perform-mic", "pm-perform-file", "pm-perform-grain",
+  "pm-perform-vocoder", "pm-perform-chop", "pm-perform-tremolo",
+].entries()) {
+  assert(hasLine(id, 0, "pm-perform-state", index), `${id} writes shared state`);
+  assert(hasLine("pm-perform-state", index, id, 0), `${id} follows shared state`);
+}
+
+assert.strictEqual(boxes.get("pm-eq-plugin")?.text, "vst~ 2 2 AUNBandEQ", "Apple master EQ host");
+assert.strictEqual(boxes.get("pm-eq-open")?.text, "open", "master EQ editor command");
+assert(hasLine("pm-fx-return", 0, "pm-eq-plugin", 0), "master L to EQ");
+assert(hasLine("pm-fx-return", 1, "pm-eq-plugin", 1), "master R to EQ");
+assert(hasLine("pm-eq-open", 0, "pm-eq-plugin", 0), "open command to EQ");
+assert(hasLine("pm-eq-plugin", 0, "pm-dac", 0), "EQ L to monitor");
+assert(hasLine("pm-eq-plugin", 1, "pm-dac", 1), "EQ R to monitor");
+assert(hasLine("pm-eq-plugin", 0, "pm-meter-l", 0), "EQ L to meter");
+assert(hasLine("pm-eq-plugin", 1, "pm-meter-r", 0), "EQ R to meter");
+for (const [outlet, destination, inlet] of [
+  [0, "pm-dac", 0], [1, "pm-dac", 1],
+  [0, "pm-meter-l", 0], [1, "pm-meter-r", 0],
+  [0, "pm-recorder", 0], [1, "pm-recorder", 1],
+]) {
+  assert(!hasLine("pm-fx-return", outlet, destination, inlet), `${destination} must not bypass EQ`);
+}
+
+assert.strictEqual(boxes.get("pm-recorder")?.text, "sfrecord~ 2", "stereo master recorder");
+assert(hasLine("pm-eq-plugin", 0, "pm-recorder", 0), "EQ L to recorder");
+assert(hasLine("pm-eq-plugin", 1, "pm-recorder", 1), "EQ R to recorder");
+for (const [id, text] of [["pm-rec-open", "open wave"], ["pm-rec-start", "1"], ["pm-rec-stop", "0"]]) {
+  assert.strictEqual(boxes.get(id)?.text, text, `${id} command`);
+  assert(hasLine(id, 0, "pm-recorder", 0), `${id} to recorder`);
+}
 
 for (const entry of patcher.lines || []) {
   const source = entry.patchline.source[0];

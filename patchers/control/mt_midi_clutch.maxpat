@@ -25,7 +25,7 @@
       {"box": {"id": "midi-mode", "maxclass": "toggle", "numinlets": 1, "numoutlets": 1, "outlettype": ["int"], "parameter_enable": 0, "patching_rect": [665, 98, 24, 24], "varname": "pose_midi_mode", "hint": "Enable optional foot clutch; off restores the gate", "presentation": 1, "presentation_rect": [615, 80, 24, 24]}},
 
       {"box": {"id": "midi-info", "maxclass": "newobj", "numinlets": 2, "numoutlets": 1, "outlettype": [""], "patching_rect": [150, 195, 60, 22], "text": "midiinfo"}},
-      {"box": {"id": "midi-info-fanout", "maxclass": "newobj", "numinlets": 1, "numoutlets": 2, "outlettype": ["", ""], "patching_rect": [150, 235, 45, 22], "text": "t a a"}},
+      {"box": {"id": "midi-info-fanout", "maxclass": "newobj", "numinlets": 1, "numoutlets": 2, "outlettype": ["list", "list"], "patching_rect": [150, 235, 45, 22], "text": "t l l"}},
       {"box": {"id": "midi-refresh", "maxclass": "message", "numinlets": 2, "numoutlets": 1, "outlettype": [""], "patching_rect": [55, 195, 35, 22], "text": "-1"}},
       {"box": {"id": "midi-metro", "maxclass": "newobj", "numinlets": 2, "numoutlets": 1, "outlettype": ["bang"], "patching_rect": [55, 235, 80, 22], "text": "metro 1000"}},
       {"box": {"id": "midi-device-trigger", "maxclass": "newobj", "numinlets": 1, "numoutlets": 2, "outlettype": ["", ""], "patching_rect": [280, 195, 45, 22], "text": "t s s"}},
@@ -39,8 +39,7 @@
       {"box": {"id": "midi-mode-off-safe", "maxclass": "newobj", "numinlets": 1, "numoutlets": 2, "outlettype": ["int", "int"], "patching_rect": [735, 235, 50, 22], "text": "t 1 1"}},
       {"box": {"id": "midi-mode-on-safe", "maxclass": "newobj", "numinlets": 1, "numoutlets": 3, "outlettype": ["bang", "int", "int"], "patching_rect": [810, 235, 60, 22], "text": "t b 0 0"}},
 
-      {"box": {"id": "midi-declarepath", "maxclass": "newobj", "numinlets": 1, "numoutlets": 0, "patching_rect": [600, 285, 185, 22], "text": "declarepath ../../javascript"}},
-      {"box": {"id": "midi-watch-js", "maxclass": "newobj", "numinlets": 4, "numoutlets": 4, "outlettype": ["", "", "", ""], "patching_rect": [390, 385, 220, 22], "text": "js mt_midi_device_watch.js", "varname": "pose_midi_watcher"}},
+      {"box": {"id": "midi-watch-js", "maxclass": "newobj", "numinlets": 4, "numoutlets": 4, "outlettype": ["", "", "", ""], "patching_rect": [390, 385, 320, 22], "text": "js Patcher:/../../javascript/mt_midi_device_watch.js", "varname": "pose_midi_watcher"}},
       {"box": {"id": "midi-cc-gate", "maxclass": "newobj", "numinlets": 2, "numoutlets": 1, "outlettype": [""], "patching_rect": [390, 435, 45, 22], "text": "gate 1"}},
       {"box": {"id": "midi-threshold", "maxclass": "newobj", "numinlets": 2, "numoutlets": 1, "outlettype": ["int"], "patching_rect": [390, 475, 45, 22], "text": ">= 64"}},
       {"box": {"id": "midi-connected-gate", "maxclass": "newobj", "numinlets": 2, "numoutlets": 1, "outlettype": [""], "patching_rect": [500, 435, 45, 22], "text": "gate 1"}},

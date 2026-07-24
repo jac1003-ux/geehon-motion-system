@@ -7,7 +7,7 @@
     stateApi = require("./pose_interaction_state.js");
   }
   if (!stateApi && typeof include === "function") {
-    include("pose_interaction_state.js");
+    include("Patcher:/../../javascript/pose_interaction_state.js");
     stateApi = root.PoseInteractionStateAPI;
   }
   if (!stateApi || typeof stateApi.InteractionState !== "function") {

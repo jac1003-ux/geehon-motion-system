@@ -88,7 +88,7 @@
       {"box": {"id": "demo-pedal-connected-command", "maxclass": "newobj", "numinlets": 1, "numoutlets": 1, "outlettype": [""], "patching_rect": [755, 925, 155, 22], "text": "prepend pedal_connected"}},
       {"box": {"id": "demo-pedal-status-set", "maxclass": "newobj", "numinlets": 1, "numoutlets": 1, "outlettype": [""], "patching_rect": [920, 925, 75, 22], "text": "prepend set"}},
 
-      {"box": {"id": "demo-final-fanout", "maxclass": "newobj", "numinlets": 1, "numoutlets": 2, "outlettype": ["", ""], "patching_rect": [300, 1005, 45, 22], "text": "t a a"}},
+      {"box": {"id": "demo-final-fanout", "maxclass": "newobj", "numinlets": 1, "numoutlets": 2, "outlettype": ["list", "list"], "patching_rect": [300, 1005, 45, 22], "text": "t l l"}},
       {"box": {"id": "demo-dict-unpack", "maxclass": "newobj", "numinlets": 1, "numoutlets": 15, "outlettype": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""], "patching_rect": [520, 1005, 920, 22], "text": "dict.unpack state: calibrated: tracking_valid: inside_control_zone: armed: clutch_gate: model_ready: camera_ready: has_pose: torso_sway: torso_lean: shoulder_tilt: head_turn: body_proximity: motion_energy:"}},
       {"box": {"id": "demo-state-set", "maxclass": "newobj", "numinlets": 1, "numoutlets": 1, "outlettype": [""], "patching_rect": [520, 1040, 75, 22], "text": "prepend set"}},
       {"box": {"id": "demo-active-fanout", "maxclass": "newobj", "numinlets": 1, "numoutlets": 2, "outlettype": ["int", "int"], "patching_rect": [300, 1040, 40, 22], "text": "t i i"}},
