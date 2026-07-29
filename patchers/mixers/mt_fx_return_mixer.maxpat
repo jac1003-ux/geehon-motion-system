@@ -1,2485 +1,4670 @@
 {
-	"patcher" : 	{
-		"fileversion" : 1,
-		"appversion" : 		{
-			"major" : 9,
-			"minor" : 0,
-			"revision" : 5,
-			"architecture" : "x64",
-			"modernui" : 1
-		}
-,
-		"classnamespace" : "box",
-		"rect" : [ 34.0, 101.0, 1732.0, 942.0 ],
-		"bglocked" : 1,
-		"openinpresentation" : 1,
-		"gridsize" : [ 15.0, 15.0 ],
-		"boxes" : [ 			{
-				"box" : 				{
-					"id" : "fx-shell-note",
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 24.0, 20.0, 720.0, 20.0 ],
-					"text" : "FX RETURN SHELL: 12 inputs -> Return_lanes -> four gains -> Return_sum -> master -> 5 outputs"
+	"patcher": {
+		"fileversion": 1,
+		"appversion": {
+			"major": 9,
+			"minor": 0,
+			"revision": 5,
+			"architecture": "x64",
+			"modernui": 1
+		},
+		"classnamespace": "box",
+		"rect": [
+			34,
+			101,
+			1100,
+			850
+		],
+		"bglocked": 1,
+		"openinpresentation": 1,
+		"gridsize": [
+			15,
+			15
+		],
+		"boxes": [
+			{
+				"box": {
+					"id": "fx-shell-note",
+					"maxclass": "comment",
+					"numinlets": 1,
+					"numoutlets": 0,
+					"patching_rect": [
+						20,
+						10,
+						760,
+						20
+					],
+					"text": "FX RETURN SHELL: dry + four pure-wet returns -> master"
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Dry audio L",
-					"id" : "fx-dry-l",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 24.0, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-dry-l",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						"signal"
+					],
+					"index": 1,
+					"comment": "Dry audio L",
+					"patching_rect": [
+						20,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Dry audio R",
-					"id" : "fx-dry-r",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 70.066666666666663, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-dry-r",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						"signal"
+					],
+					"index": 2,
+					"comment": "Dry audio R",
+					"patching_rect": [
+						62,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Vocoder return L",
-					"id" : "fx-voc-l",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 116.13333333333334, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-voc-l",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						"signal"
+					],
+					"index": 3,
+					"comment": "Vocoder return L",
+					"patching_rect": [
+						104,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Vocoder return R",
-					"id" : "fx-voc-r",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 162.199999999999989, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-voc-r",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						"signal"
+					],
+					"index": 4,
+					"comment": "Vocoder return R",
+					"patching_rect": [
+						146,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Chop return L",
-					"id" : "fx-chop-l",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 208.26666666666668, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-bit-l",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						"signal"
+					],
+					"index": 5,
+					"comment": "Bitcrusher return L",
+					"patching_rect": [
+						188,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Chop return R",
-					"id" : "fx-chop-r",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 254.333333333333371, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-bit-r",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						"signal"
+					],
+					"index": 6,
+					"comment": "Bitcrusher return R",
+					"patching_rect": [
+						230,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Tremolo return L",
-					"id" : "fx-trem-l",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 300.399999999999977, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-delay-l",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						"signal"
+					],
+					"index": 7,
+					"comment": "Feedback Delay return L",
+					"patching_rect": [
+						272,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Tremolo return R",
-					"id" : "fx-trem-r",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 346.46666666666664, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-delay-r",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						"signal"
+					],
+					"index": 8,
+					"comment": "Feedback Delay return R",
+					"patching_rect": [
+						314,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Dry Enable 0/1",
-					"id" : "fx-dry-enable-in",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 392.53333333333336, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-multi-l",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						"signal"
+					],
+					"index": 9,
+					"comment": "Multiband return L",
+					"patching_rect": [
+						356,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Vocoder Enable 0/1",
-					"id" : "fx-voc-enable-in",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 438.600000000000023, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-multi-r",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						"signal"
+					],
+					"index": 10,
+					"comment": "Multiband return R",
+					"patching_rect": [
+						398,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Chop Enable 0/1",
-					"id" : "fx-chop-enable-in",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 484.666666666666686, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-dry-enable-in",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						""
+					],
+					"index": 11,
+					"comment": "Dry Enable 0/1",
+					"patching_rect": [
+						440,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Tremolo Enable 0/1",
-					"id" : "fx-trem-enable-in",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 530.733333333333348, 70.0, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-voc-enable-in",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						""
+					],
+					"index": 12,
+					"comment": "Vocoder Enable 0/1",
+					"patching_rect": [
+						482,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "fx-dry-enable",
-					"maxclass" : "toggle",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 576.799999999999955, 70.0, 24.0, 24.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 111.0, 57.0, 24.0, 24.0 ],
-					"varname" : "fx_return_dry_enable"
+			},
+			{
+				"box": {
+					"id": "fx-bit-enable-in",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						""
+					],
+					"index": 13,
+					"comment": "Bitcrusher Enable 0/1",
+					"patching_rect": [
+						524,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "fx-voc-enable",
-					"maxclass" : "toggle",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 622.866666666666674, 70.0, 24.0, 24.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 256.0, 57.0, 24.0, 24.0 ],
-					"varname" : "fx_return_vocoder_enable"
+			},
+			{
+				"box": {
+					"id": "fx-delay-enable-in",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						""
+					],
+					"index": 14,
+					"comment": "Feedback Delay Enable 0/1",
+					"patching_rect": [
+						566,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "fx-chop-enable",
-					"maxclass" : "toggle",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 668.93333333333328, 70.0, 24.0, 24.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 401.0, 57.0, 24.0, 24.0 ],
-					"varname" : "fx_return_chop_enable"
+			},
+			{
+				"box": {
+					"id": "fx-multi-enable-in",
+					"maxclass": "inlet",
+					"numinlets": 0,
+					"numoutlets": 1,
+					"outlettype": [
+						""
+					],
+					"index": 15,
+					"comment": "Multiband Enable 0/1",
+					"patching_rect": [
+						608,
+						40,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "fx-trem-enable",
-					"maxclass" : "toggle",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 715.0, 70.0, 24.0, 24.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 546.0, 57.0, 24.0, 24.0 ],
-					"varname" : "fx_return_tremolo_enable"
+			},
+			{
+				"box": {
+					"id": "fx-dry-enable",
+					"maxclass": "toggle",
+					"numinlets": 1,
+					"numoutlets": 1,
+					"outlettype": [
+						"int"
+					],
+					"parameter_enable": 0,
+					"patching_rect": [
+						111,
+						345,
+						24,
+						24
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						111,
+						57,
+						24,
+						24
+					],
+					"varname": "fx_return_dry_enable"
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "p-Return-lanes",
-					"maxclass" : "newobj",
-					"numinlets" : 16,
-					"numoutlets" : 15,
-					"outlettype" : [ "signal", "signal", "signal", "signal", "signal", "signal", "signal", "signal", "", "", "", "", "int", "int", "int" ],
-					"patcher" : 					{
-						"fileversion" : 1,
-						"appversion" : 						{
-							"major" : 9,
-							"minor" : 0,
-							"revision" : 5,
-							"architecture" : "x64",
-							"modernui" : 1
+			},
+			{
+				"box": {
+					"id": "fx-dry-gain",
+					"lastchannelcount": 0,
+					"maxclass": "live.gain~",
+					"numinlets": 2,
+					"numoutlets": 5,
+					"outlettype": [
+						"signal",
+						"signal",
+						"",
+						"float",
+						"list"
+					],
+					"parameter_enable": 1,
+					"patching_rect": [
+						75,
+						600,
+						54,
+						139
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						75,
+						108,
+						54,
+						139
+					],
+					"saved_attribute_attributes": {
+						"valueof": {
+							"parameter_initial": [
+								0
+							],
+							"parameter_longname": "fx_return_dry_gain",
+							"parameter_mmax": 6,
+							"parameter_mmin": -70,
+							"parameter_modmode": 0,
+							"parameter_shortname": "Original",
+							"parameter_type": 0,
+							"parameter_unitstyle": 4
 						}
-,
-						"classnamespace" : "box",
-						"rect" : [ 134.0, 173.0, 1190.0, 520.0 ],
-						"gridsize" : [ 15.0, 15.0 ],
-						"boxes" : [ 							{
-								"box" : 								{
-									"id" : "fxc-title",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 20.0, 760.0, 20.0 ],
-									"text" : "RETURN_LANES: audio + external/local enable -> 20 ms ramp -> gated stereo"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-dry-l",
-									"index" : 1,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 30.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-dry-r",
-									"index" : 2,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 113.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-voc-l",
-									"index" : 3,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 170.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-voc-r",
-									"index" : 4,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 257.5, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-chop-l",
-									"index" : 5,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 316.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-chop-r",
-									"index" : 6,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 400.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-trem-l",
-									"index" : 7,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 457.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-trem-r",
-									"index" : 8,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 543.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-dry-ext",
-									"index" : 9,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 600.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-voc-ext",
-									"index" : 10,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 655.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-chop-ext",
-									"index" : 11,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 721.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-trem-ext",
-									"index" : 12,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 788.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-dry-local",
-									"index" : 13,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "int" ],
-									"patching_rect" : [ 900.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-voc-local",
-									"index" : 14,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "int" ],
-									"patching_rect" : [ 970.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-chop-local",
-									"index" : 15,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "int" ],
-									"patching_rect" : [ 1040.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-trem-local",
-									"index" : 16,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "int" ],
-									"patching_rect" : [ 1110.0, 70.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-dry-ext-route",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "int", "int" ],
-									"patching_rect" : [ 40.0, 195.0, 45.0, 22.0 ],
-									"text" : "t i i"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-dry-ui-set",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 590.0, 295.0, 60.0, 22.0 ],
-									"text" : "set $1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-dry-msg",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 66.0, 295.0, 55.0, 22.0 ],
-									"text" : "$1 20"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-dry-line",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "signal", "bang" ],
-									"patching_rect" : [ 66.0, 335.0, 50.0, 22.0 ],
-									"text" : "line~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-dry-gate-l",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 393.0, 55.0, 22.0 ],
-									"text" : "*~ 0."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-dry-gate-r",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 113.0, 393.0, 55.0, 22.0 ],
-									"text" : "*~ 0."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-dry-default",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 40.0, 114.0, 90.0, 22.0 ],
-									"text" : "loadmess 1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-voc-ext-route",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "int", "int" ],
-									"patching_rect" : [ 655.0, 195.0, 45.0, 22.0 ],
-									"text" : "t i i"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-voc-ui-set",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 655.0, 295.0, 60.0, 22.0 ],
-									"text" : "set $1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-voc-local-route",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "int", "int", "int" ],
-									"patching_rect" : [ 206.0, 195.0, 60.0, 22.0 ],
-									"text" : "t i i i"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-voc-state-send",
-									"linecount" : 3,
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 247.0, 244.0, 144.0, 49.0 ],
-									"text" : "s mt_vocoder_enable_state"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-voc-msg",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 206.0, 295.0, 55.0, 22.0 ],
-									"text" : "$1 20"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-voc-line",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "signal", "bang" ],
-									"patching_rect" : [ 206.0, 335.0, 50.0, 22.0 ],
-									"text" : "line~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-voc-gate-l",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 170.0, 393.0, 55.0, 22.0 ],
-									"text" : "*~ 0."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-voc-gate-r",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 257.5, 393.0, 55.0, 22.0 ],
-									"text" : "*~ 0."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-chop-ext-route",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "int", "int" ],
-									"patching_rect" : [ 721.0, 195.0, 45.0, 22.0 ],
-									"text" : "t i i"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-chop-ui-set",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 721.0, 295.0, 60.0, 22.0 ],
-									"text" : "set $1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-chop-local-route",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "int", "int", "int" ],
-									"patching_rect" : [ 352.0, 195.0, 60.0, 22.0 ],
-									"text" : "t i i i"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-chop-state-send",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 393.0, 244.0, 140.0, 22.0 ],
-									"text" : "s mt_chop_enable_state"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-chop-msg",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 352.0, 295.0, 55.0, 22.0 ],
-									"text" : "$1 20"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-chop-line",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "signal", "bang" ],
-									"patching_rect" : [ 352.0, 335.0, 50.0, 22.0 ],
-									"text" : "line~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-chop-gate-l",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 316.0, 393.0, 55.0, 22.0 ],
-									"text" : "*~ 0."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-chop-gate-r",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 400.0, 393.0, 55.0, 22.0 ],
-									"text" : "*~ 0."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-trem-ext-route",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 2,
-									"outlettype" : [ "int", "int" ],
-									"patching_rect" : [ 788.0, 195.0, 45.0, 22.0 ],
-									"text" : "t i i"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-trem-ui-set",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 788.0, 295.0, 60.0, 22.0 ],
-									"text" : "set $1"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-trem-local-route",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 3,
-									"outlettype" : [ "int", "int", "int" ],
-									"patching_rect" : [ 493.0, 195.0, 60.0, 22.0 ],
-									"text" : "t i i i"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-trem-state-send",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 535.0, 244.0, 155.0, 22.0 ],
-									"text" : "s mt_tremolo_enable_state"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-trem-msg",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 493.0, 295.0, 55.0, 22.0 ],
-									"text" : "$1 20"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-trem-line",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 2,
-									"outlettype" : [ "signal", "bang" ],
-									"patching_rect" : [ 493.0, 335.0, 50.0, 22.0 ],
-									"text" : "line~"
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-trem-gate-l",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 457.0, 393.0, 55.0, 22.0 ],
-									"text" : "*~ 0."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxc-trem-gate-r",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 543.0, 393.0, 55.0, 22.0 ],
-									"text" : "*~ 0."
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-dry-out-l",
-									"index" : 1,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 30.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-dry-out-r",
-									"index" : 2,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 113.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-voc-out-l",
-									"index" : 3,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 170.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-voc-out-r",
-									"index" : 4,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 257.5, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-chop-out-l",
-									"index" : 5,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 316.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-chop-out-r",
-									"index" : 6,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 400.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-trem-out-l",
-									"index" : 7,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 457.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-trem-out-r",
-									"index" : 8,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 543.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-dry-ui-out",
-									"index" : 9,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 590.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-voc-ui-out",
-									"index" : 10,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 655.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-chop-ui-out",
-									"index" : 11,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 721.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-trem-ui-out",
-									"index" : 12,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 788.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-voc-state-out",
-									"index" : 13,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 900.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-chop-state-out",
-									"index" : 14,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 970.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxc-trem-state-out",
-									"index" : 15,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 1040.0, 430.0, 30.0, 30.0 ]
-								}
-
-							}
- ],
-						"lines" : [ 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-chop-ext-route", 0 ],
-									"source" : [ "fxc-chop-ext", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-chop-msg", 0 ],
-									"midpoints" : [ 756.5, 233.828125, 361.5, 233.828125 ],
-									"source" : [ "fxc-chop-ext-route", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-chop-ui-set", 0 ],
-									"source" : [ "fxc-chop-ext-route", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-chop-out-l", 0 ],
-									"source" : [ "fxc-chop-gate-l", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-chop-out-r", 0 ],
-									"source" : [ "fxc-chop-gate-r", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-chop-gate-l", 0 ],
-									"source" : [ "fxc-chop-l", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-chop-gate-l", 1 ],
-									"order" : 1,
-									"source" : [ "fxc-chop-line", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-chop-gate-r", 1 ],
-									"midpoints" : [ 361.5, 375.0, 445.5, 375.0 ],
-									"order" : 0,
-									"source" : [ "fxc-chop-line", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-chop-local-route", 0 ],
-									"midpoints" : [ 1049.5, 147.5, 361.5, 147.5 ],
-									"source" : [ "fxc-chop-local", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-chop-msg", 0 ],
-									"source" : [ "fxc-chop-local-route", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-chop-state-out", 0 ],
-									"midpoints" : [ 382.0, 323.5, 979.5, 323.5 ],
-									"source" : [ "fxc-chop-local-route", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-chop-state-send", 0 ],
-									"source" : [ "fxc-chop-local-route", 2 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-chop-line", 0 ],
-									"source" : [ "fxc-chop-msg", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-chop-gate-r", 0 ],
-									"source" : [ "fxc-chop-r", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-chop-ui-out", 0 ],
-									"source" : [ "fxc-chop-ui-set", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-dry-ext-route", 0 ],
-									"source" : [ "fxc-dry-default", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-dry-ext-route", 0 ],
-									"midpoints" : [ 609.5, 147.5, 49.5, 147.5 ],
-									"source" : [ "fxc-dry-ext", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-dry-msg", 0 ],
-									"source" : [ "fxc-dry-ext-route", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-dry-ui-set", 0 ],
-									"midpoints" : [ 49.5, 233.390625, 599.5, 233.390625 ],
-									"source" : [ "fxc-dry-ext-route", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-dry-out-l", 0 ],
-									"source" : [ "fxc-dry-gate-l", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-dry-out-r", 0 ],
-									"source" : [ "fxc-dry-gate-r", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-dry-gate-l", 0 ],
-									"source" : [ "fxc-dry-l", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-dry-gate-l", 1 ],
-									"order" : 1,
-									"source" : [ "fxc-dry-line", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-dry-gate-r", 1 ],
-									"midpoints" : [ 75.5, 375.0, 158.5, 375.0 ],
-									"order" : 0,
-									"source" : [ "fxc-dry-line", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-dry-msg", 0 ],
-									"midpoints" : [ 909.5, 233.43359375, 75.5, 233.43359375 ],
-									"source" : [ "fxc-dry-local", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-dry-line", 0 ],
-									"source" : [ "fxc-dry-msg", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-dry-gate-r", 0 ],
-									"source" : [ "fxc-dry-r", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-dry-ui-out", 0 ],
-									"source" : [ "fxc-dry-ui-set", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-trem-ext-route", 0 ],
-									"source" : [ "fxc-trem-ext", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-trem-msg", 0 ],
-									"midpoints" : [ 823.5, 233.78125, 502.5, 233.78125 ],
-									"source" : [ "fxc-trem-ext-route", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-trem-ui-set", 0 ],
-									"source" : [ "fxc-trem-ext-route", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-trem-out-l", 0 ],
-									"source" : [ "fxc-trem-gate-l", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-trem-out-r", 0 ],
-									"source" : [ "fxc-trem-gate-r", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-trem-gate-l", 0 ],
-									"source" : [ "fxc-trem-l", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-trem-gate-l", 1 ],
-									"order" : 1,
-									"source" : [ "fxc-trem-line", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-trem-gate-r", 1 ],
-									"midpoints" : [ 502.5, 375.0, 588.5, 375.0 ],
-									"order" : 0,
-									"source" : [ "fxc-trem-line", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-trem-local-route", 0 ],
-									"midpoints" : [ 1119.5, 147.5, 502.5, 147.5 ],
-									"source" : [ "fxc-trem-local", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-trem-msg", 0 ],
-									"source" : [ "fxc-trem-local-route", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-trem-state-out", 0 ],
-									"midpoints" : [ 523.0, 323.5, 1049.5, 323.5 ],
-									"source" : [ "fxc-trem-local-route", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-trem-state-send", 0 ],
-									"source" : [ "fxc-trem-local-route", 2 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-trem-line", 0 ],
-									"source" : [ "fxc-trem-msg", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-trem-gate-r", 0 ],
-									"source" : [ "fxc-trem-r", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-trem-ui-out", 0 ],
-									"source" : [ "fxc-trem-ui-set", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-voc-ext-route", 0 ],
-									"source" : [ "fxc-voc-ext", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-voc-msg", 0 ],
-									"midpoints" : [ 690.5, 233.9765625, 215.5, 233.9765625 ],
-									"source" : [ "fxc-voc-ext-route", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-voc-ui-set", 0 ],
-									"source" : [ "fxc-voc-ext-route", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-voc-out-l", 0 ],
-									"source" : [ "fxc-voc-gate-l", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-voc-out-r", 0 ],
-									"source" : [ "fxc-voc-gate-r", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-voc-gate-l", 0 ],
-									"source" : [ "fxc-voc-l", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-voc-gate-l", 1 ],
-									"order" : 1,
-									"source" : [ "fxc-voc-line", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-voc-gate-r", 1 ],
-									"midpoints" : [ 215.5, 375.0, 303.0, 375.0 ],
-									"order" : 0,
-									"source" : [ "fxc-voc-line", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-voc-local-route", 0 ],
-									"midpoints" : [ 979.5, 147.5, 215.5, 147.5 ],
-									"source" : [ "fxc-voc-local", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-									"destination" : [ "fxc-voc-msg", 0 ],
-									"source" : [ "fxc-voc-local-route", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-voc-state-out", 0 ],
-									"midpoints" : [ 236.0, 323.5, 909.5, 323.5 ],
-									"source" : [ "fxc-voc-local-route", 1 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-voc-state-send", 0 ],
-									"source" : [ "fxc-voc-local-route", 2 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-voc-line", 0 ],
-									"source" : [ "fxc-voc-msg", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxc-voc-gate-r", 0 ],
-									"source" : [ "fxc-voc-r", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-									"destination" : [ "fxc-voc-ui-out", 0 ],
-									"source" : [ "fxc-voc-ui-set", 0 ]
-								}
-
-							}
- ],
-						"originid" : "pat-12"
-					}
-,
-					"patching_rect" : [ 24.0, 155.0, 710.0, 22.0 ],
-					"text" : "p Return_lanes"
+					},
+					"showname": 0,
+					"varname": "fx_return_dry_gain"
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "fx-dry-gain",
-					"lastchannelcount" : 0,
-					"maxclass" : "live.gain~",
-					"numinlets" : 2,
-					"numoutlets" : 5,
-					"outlettype" : [ "signal", "signal", "", "float", "list" ],
-					"parameter_enable" : 1,
-					"patching_rect" : [ 24.0, 221.348332285881042, 54.0, 130.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 75.28090488910675, 107.865177154541016, 54.0, 139.0 ],
-					"saved_attribute_attributes" : 					{
-						"valueof" : 						{
-							"parameter_initial" : [ 0 ],
-							"parameter_longname" : "fx_return_dry_gain",
-							"parameter_mmax" : 6.0,
-							"parameter_mmin" : -70.0,
-							"parameter_modmode" : 0,
-							"parameter_shortname" : "Original",
-							"parameter_type" : 0,
-							"parameter_unitstyle" : 4
+			},
+			{
+				"box": {
+					"id": "fx-voc-enable",
+					"maxclass": "toggle",
+					"numinlets": 1,
+					"numoutlets": 1,
+					"outlettype": [
+						"int"
+					],
+					"parameter_enable": 0,
+					"patching_rect": [
+						256,
+						345,
+						24,
+						24
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						256,
+						57,
+						24,
+						24
+					],
+					"varname": "fx_return_vocoder_enable"
+				}
+			},
+			{
+				"box": {
+					"id": "fx-voc-gain",
+					"lastchannelcount": 0,
+					"maxclass": "live.gain~",
+					"numinlets": 2,
+					"numoutlets": 5,
+					"outlettype": [
+						"signal",
+						"signal",
+						"",
+						"float",
+						"list"
+					],
+					"parameter_enable": 1,
+					"patching_rect": [
+						220,
+						600,
+						54,
+						139
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						220,
+						108,
+						54,
+						139
+					],
+					"saved_attribute_attributes": {
+						"valueof": {
+							"parameter_initial": [
+								-10
+							],
+							"parameter_longname": "fx_return_dry_gain",
+							"parameter_mmax": 6,
+							"parameter_mmin": -70,
+							"parameter_modmode": 0,
+							"parameter_shortname": "Original",
+							"parameter_type": 0,
+							"parameter_unitstyle": 4
 						}
-
-					}
-,
-					"showname" : 0,
-					"varname" : "fx_return_dry_gain"
+					},
+					"showname": 0,
+					"varname": "fx_return_vocoder_gain"
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "fx-voc-gain",
-					"lastchannelcount" : 0,
-					"maxclass" : "live.gain~",
-					"numinlets" : 2,
-					"numoutlets" : 5,
-					"outlettype" : [ "signal", "signal", "", "float", "list" ],
-					"parameter_enable" : 1,
-					"patching_rect" : [ 122.714285714285722, 221.348332285881042, 54.0, 130.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 220.22473669052124, 107.865177154541016, 54.0, 139.0 ],
-					"saved_attribute_attributes" : 					{
-						"valueof" : 						{
-							"parameter_initial" : [ -10 ],
-							"parameter_longname" : "fx_return_vocoder_gain",
-							"parameter_mmax" : 6.0,
-							"parameter_mmin" : -70.0,
-							"parameter_modmode" : 0,
-							"parameter_shortname" : "Vocoder FX",
-							"parameter_type" : 0,
-							"parameter_unitstyle" : 4
+			},
+			{
+				"box": {
+					"id": "fx-bit-enable",
+					"maxclass": "toggle",
+					"numinlets": 1,
+					"numoutlets": 1,
+					"outlettype": [
+						"int"
+					],
+					"parameter_enable": 0,
+					"patching_rect": [
+						401,
+						345,
+						24,
+						24
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						401,
+						57,
+						24,
+						24
+					],
+					"varname": "fx_return_bitcrusher_enable"
+				}
+			},
+			{
+				"box": {
+					"id": "fx-bit-gain",
+					"lastchannelcount": 0,
+					"maxclass": "live.gain~",
+					"numinlets": 2,
+					"numoutlets": 5,
+					"outlettype": [
+						"signal",
+						"signal",
+						"",
+						"float",
+						"list"
+					],
+					"parameter_enable": 1,
+					"patching_rect": [
+						365,
+						600,
+						54,
+						139
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						365,
+						108,
+						54,
+						139
+					],
+					"saved_attribute_attributes": {
+						"valueof": {
+							"parameter_initial": [
+								0
+							],
+							"parameter_longname": "fx_return_dry_gain",
+							"parameter_mmax": 6,
+							"parameter_mmin": -70,
+							"parameter_modmode": 0,
+							"parameter_shortname": "Original",
+							"parameter_type": 0,
+							"parameter_unitstyle": 4
 						}
-
-					}
-,
-					"showname" : 0,
-					"varname" : "fx_return_vocoder_gain"
+					},
+					"showname": 0,
+					"varname": "fx_return_bitcrusher_gain"
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "fx-chop-gain",
-					"lastchannelcount" : 0,
-					"maxclass" : "live.gain~",
-					"numinlets" : 2,
-					"numoutlets" : 5,
-					"outlettype" : [ "signal", "signal", "", "float", "list" ],
-					"parameter_enable" : 1,
-					"patching_rect" : [ 221.428571428571416, 221.348332285881042, 54.0, 130.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 365.16856849193573, 107.865177154541016, 54.0, 139.0 ],
-					"saved_attribute_attributes" : 					{
-						"valueof" : 						{
-							"parameter_initial" : [ 0 ],
-							"parameter_longname" : "fx_return_chop_gain",
-							"parameter_mmax" : 6.0,
-							"parameter_mmin" : -70.0,
-							"parameter_modmode" : 0,
-							"parameter_shortname" : "Chop FX",
-							"parameter_type" : 0,
-							"parameter_unitstyle" : 4
+			},
+			{
+				"box": {
+					"id": "fx-delay-enable",
+					"maxclass": "toggle",
+					"numinlets": 1,
+					"numoutlets": 1,
+					"outlettype": [
+						"int"
+					],
+					"parameter_enable": 0,
+					"patching_rect": [
+						546,
+						345,
+						24,
+						24
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						546,
+						57,
+						24,
+						24
+					],
+					"varname": "fx_return_feedback_delay_enable"
+				}
+			},
+			{
+				"box": {
+					"id": "fx-delay-gain",
+					"lastchannelcount": 0,
+					"maxclass": "live.gain~",
+					"numinlets": 2,
+					"numoutlets": 5,
+					"outlettype": [
+						"signal",
+						"signal",
+						"",
+						"float",
+						"list"
+					],
+					"parameter_enable": 1,
+					"patching_rect": [
+						510,
+						600,
+						54,
+						139
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						510,
+						108,
+						54,
+						139
+					],
+					"saved_attribute_attributes": {
+						"valueof": {
+							"parameter_initial": [
+								-10
+							],
+							"parameter_longname": "fx_return_dry_gain",
+							"parameter_mmax": 6,
+							"parameter_mmin": -70,
+							"parameter_modmode": 0,
+							"parameter_shortname": "Original",
+							"parameter_type": 0,
+							"parameter_unitstyle": 4
 						}
-
-					}
-,
-					"showname" : 0,
-					"varname" : "fx_return_chop_gain"
+					},
+					"showname": 0,
+					"varname": "fx_return_feedback_delay_gain"
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "fx-trem-gain",
-					"lastchannelcount" : 0,
-					"maxclass" : "live.gain~",
-					"numinlets" : 2,
-					"numoutlets" : 5,
-					"outlettype" : [ "signal", "signal", "", "float", "list" ],
-					"parameter_enable" : 1,
-					"patching_rect" : [ 320.142857142857167, 221.348332285881042, 54.0, 130.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 510.11240029335022, 107.865177154541016, 54.0, 139.0 ],
-					"saved_attribute_attributes" : 					{
-						"valueof" : 						{
-							"parameter_initial" : [ -10 ],
-							"parameter_longname" : "fx_return_tremolo_gain",
-							"parameter_mmax" : 6.0,
-							"parameter_mmin" : -70.0,
-							"parameter_modmode" : 0,
-							"parameter_shortname" : "Tremolo FX",
-							"parameter_type" : 0,
-							"parameter_unitstyle" : 4
+			},
+			{
+				"box": {
+					"id": "fx-multi-enable",
+					"maxclass": "toggle",
+					"numinlets": 1,
+					"numoutlets": 1,
+					"outlettype": [
+						"int"
+					],
+					"parameter_enable": 0,
+					"patching_rect": [
+						691,
+						345,
+						24,
+						24
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						691,
+						57,
+						24,
+						24
+					],
+					"varname": "fx_return_multiband_enable"
+				}
+			},
+			{
+				"box": {
+					"id": "fx-multi-gain",
+					"lastchannelcount": 0,
+					"maxclass": "live.gain~",
+					"numinlets": 2,
+					"numoutlets": 5,
+					"outlettype": [
+						"signal",
+						"signal",
+						"",
+						"float",
+						"list"
+					],
+					"parameter_enable": 1,
+					"patching_rect": [
+						655,
+						600,
+						54,
+						139
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						655,
+						108,
+						54,
+						139
+					],
+					"saved_attribute_attributes": {
+						"valueof": {
+							"parameter_initial": [
+								-10
+							],
+							"parameter_longname": "fx_return_dry_gain",
+							"parameter_mmax": 6,
+							"parameter_mmin": -70,
+							"parameter_modmode": 0,
+							"parameter_shortname": "Original",
+							"parameter_type": 0,
+							"parameter_unitstyle": 4
 						}
-
-					}
-,
-					"showname" : 0,
-					"varname" : "fx_return_tremolo_gain"
+					},
+					"showname": 0,
+					"varname": "fx_return_multiband_gain"
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "p-Return-sum",
-					"maxclass" : "newobj",
-					"numinlets" : 8,
-					"numoutlets" : 2,
-					"outlettype" : [ "signal", "signal" ],
-					"patcher" : 					{
-						"fileversion" : 1,
-						"appversion" : 						{
-							"major" : 9,
-							"minor" : 0,
-							"revision" : 5,
-							"architecture" : "x64",
-							"modernui" : 1
+			},
+			{
+				"box": {
+					"id": "fx-master",
+					"lastchannelcount": 0,
+					"maxclass": "live.gain~",
+					"numinlets": 2,
+					"numoutlets": 5,
+					"outlettype": [
+						"signal",
+						"signal",
+						"",
+						"float",
+						"list"
+					],
+					"parameter_enable": 1,
+					"patching_rect": [
+						741,
+						600,
+						54,
+						144
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						741,
+						103,
+						54,
+						144
+					],
+					"saved_attribute_attributes": {
+						"valueof": {
+							"parameter_initial": [
+								-10
+							],
+							"parameter_longname": "fx_return_master_gain",
+							"parameter_mmax": 6,
+							"parameter_mmin": -70,
+							"parameter_modmode": 0,
+							"parameter_shortname": "FX Master",
+							"parameter_type": 0,
+							"parameter_unitstyle": 4
 						}
-,
-						"classnamespace" : "box",
-						"rect" : [ 80.0, 80.0, 640.0, 450.0 ],
-						"gridsize" : [ 15.0, 15.0 ],
-						"boxes" : [ 							{
-								"box" : 								{
-									"id" : "fxs-title",
-									"maxclass" : "comment",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 24.0, 20.0, 520.0, 22.0 ],
-									"text" : "RETURN_SUM: four stereo lanes -> balanced L/R sum"
+					},
+					"showname": 0,
+					"varname": "fx_return_master_gain"
+				}
+			},
+			{
+				"box": {
+					"id": "fx-meter-l",
+					"maxclass": "meter~",
+					"numinlets": 1,
+					"numoutlets": 1,
+					"outlettype": [
+						"float"
+					],
+					"patching_rect": [
+						815,
+						600,
+						12,
+						150
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						815,
+						96,
+						12,
+						150
+					]
+				}
+			},
+			{
+				"box": {
+					"id": "fx-meter-r",
+					"maxclass": "meter~",
+					"numinlets": 1,
+					"numoutlets": 1,
+					"outlettype": [
+						"float"
+					],
+					"patching_rect": [
+						835,
+						600,
+						12,
+						150
+					],
+					"presentation": 1,
+					"presentation_rect": [
+						835,
+						96,
+						12,
+						150
+					]
+				}
+			},
+			{
+				"box": {
+					"id": "p-Return-lanes",
+					"maxclass": "newobj",
+					"numinlets": 20,
+					"numoutlets": 19,
+					"outlettype": [
+						"signal",
+						"signal",
+						"signal",
+						"signal",
+						"signal",
+						"signal",
+						"signal",
+						"signal",
+						"signal",
+						"signal",
+						"",
+						"",
+						"",
+						"",
+						"",
+						"",
+						"",
+						"",
+						""
+					],
+					"patching_rect": [
+						20,
+						430,
+						150,
+						22
+					],
+					"text": "p Return_lanes",
+					"patcher": {
+						"fileversion": 1,
+						"appversion": {
+							"major": 9,
+							"minor": 0,
+							"revision": 5,
+							"architecture": "x64",
+							"modernui": 1
+						},
+						"classnamespace": "box",
+						"rect": [
+							120,
+							120,
+							980,
+							790
+						],
+						"gridsize": [
+							15,
+							15
+						],
+						"boxes": [
+							{
+								"box": {
+									"id": "fxc-title",
+									"maxclass": "comment",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"patching_rect": [
+										24,
+										10,
+										800,
+										20
+									],
+									"text": "RETURN_LANES: five stereo returns -> 20 ms enable ramps"
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxs-dry-l",
-									"index" : 1,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 30.0, 70.0, 30.0, 30.0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-dry-l",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 1,
+									"comment": "",
+									"patching_rect": [
+										30,
+										40,
+										30,
+										30
+									]
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxs-dry-r",
-									"index" : 2,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 70.0, 70.0, 30.0, 30.0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-dry-r",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 2,
+									"comment": "",
+									"patching_rect": [
+										72,
+										40,
+										30,
+										30
+									]
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxs-voc-l",
-									"index" : 3,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 170.0, 70.0, 30.0, 30.0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-dry-ext",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"index": 11,
+									"comment": "",
+									"patching_rect": [
+										450,
+										40,
+										30,
+										30
+									]
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxs-voc-r",
-									"index" : 4,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 210.0, 70.0, 30.0, 30.0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-dry-local",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"index": 16,
+									"comment": "",
+									"patching_rect": [
+										660,
+										40,
+										30,
+										30
+									]
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxs-chop-l",
-									"index" : 5,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 310.0, 70.0, 30.0, 30.0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-dry-ext-route",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 2,
+									"outlettype": [
+										"",
+										""
+									],
+									"patching_rect": [
+										114,
+										105,
+										45,
+										22
+									],
+									"text": "t i i"
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxs-chop-r",
-									"index" : 6,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 350.0, 70.0, 30.0, 30.0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-dry-ui-set",
+									"maxclass": "message",
+									"numinlets": 2,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										114,
+										145,
+										58,
+										22
+									],
+									"text": "set $1"
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxs-trem-l",
-									"index" : 7,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 450.0, 70.0, 30.0, 30.0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-dry-msg",
+									"maxclass": "message",
+									"numinlets": 2,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										30,
+										225,
+										58,
+										22
+									],
+									"text": "$1 20"
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxs-trem-r",
-									"index" : 8,
-									"maxclass" : "inlet",
-									"numinlets" : 0,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 490.0, 70.0, 30.0, 30.0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-dry-line",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										30,
+										265,
+										50,
+										22
+									],
+									"text": "line~"
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxs-sum-l-1",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 90.0, 150.0, 35.0, 22.0 ],
-									"text" : "+~"
+							},
+							{
+								"box": {
+									"id": "fxc-dry-gate-l",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										30,
+										325,
+										55,
+										22
+									],
+									"text": "*~ 0."
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxs-sum-r-1",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 150.0, 150.0, 35.0, 22.0 ],
-									"text" : "+~"
+							},
+							{
+								"box": {
+									"id": "fxc-dry-gate-r",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										102,
+										325,
+										55,
+										22
+									],
+									"text": "*~ 0."
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxs-sum-l-2",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 230.0, 220.0, 35.0, 22.0 ],
-									"text" : "+~"
+							},
+							{
+								"box": {
+									"id": "fxc-dry-out-l",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 1,
+									"comment": "",
+									"patching_rect": [
+										30,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxs-sum-r-2",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 290.0, 220.0, 35.0, 22.0 ],
-									"text" : "+~"
+							},
+							{
+								"box": {
+									"id": "fxc-dry-out-r",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 2,
+									"comment": "",
+									"patching_rect": [
+										72,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxs-sum-l-3",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 370.0, 290.0, 35.0, 22.0 ],
-									"text" : "+~"
+							},
+							{
+								"box": {
+									"id": "fxc-dry-ui-out",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 11,
+									"comment": "",
+									"patching_rect": [
+										450,
+										720,
+										30,
+										30
+									]
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "fxs-sum-r-3",
-									"maxclass" : "newobj",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "signal" ],
-									"patching_rect" : [ 430.0, 290.0, 35.0, 22.0 ],
-									"text" : "+~"
+							},
+							{
+								"box": {
+									"id": "fxc-dry-default",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										30,
+										105,
+										90,
+										22
+									],
+									"text": "loadmess 1"
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxs-out-l",
-									"index" : 1,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 370.0, 360.0, 30.0, 30.0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-l",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 3,
+									"comment": "",
+									"patching_rect": [
+										114,
+										40,
+										30,
+										30
+									]
 								}
-
-							}
-, 							{
-								"box" : 								{
-									"comment" : "",
-									"id" : "fxs-out-r",
-									"index" : 2,
-									"maxclass" : "outlet",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 430.0, 360.0, 30.0, 30.0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-r",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 4,
+									"comment": "",
+									"patching_rect": [
+										156,
+										40,
+										30,
+										30
+									]
 								}
-
-							}
- ],
-						"lines" : [ 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-l-2", 1 ],
-									"source" : [ "fxs-chop-l", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-ext",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"index": 12,
+									"comment": "",
+									"patching_rect": [
+										492,
+										40,
+										30,
+										30
+									]
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-r-2", 1 ],
-									"source" : [ "fxs-chop-r", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-local",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"index": 17,
+									"comment": "",
+									"patching_rect": [
+										702,
+										40,
+										30,
+										30
+									]
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-l-1", 0 ],
-									"source" : [ "fxs-dry-l", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-ext-route",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 2,
+									"outlettype": [
+										"",
+										""
+									],
+									"patching_rect": [
+										284,
+										105,
+										45,
+										22
+									],
+									"text": "t i i"
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-r-1", 0 ],
-									"source" : [ "fxs-dry-r", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-ui-set",
+									"maxclass": "message",
+									"numinlets": 2,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										284,
+										145,
+										58,
+										22
+									],
+									"text": "set $1"
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-l-2", 0 ],
-									"source" : [ "fxs-sum-l-1", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-msg",
+									"maxclass": "message",
+									"numinlets": 2,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										200,
+										225,
+										58,
+										22
+									],
+									"text": "$1 20"
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-l-3", 0 ],
-									"source" : [ "fxs-sum-l-2", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-line",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										200,
+										265,
+										50,
+										22
+									],
+									"text": "line~"
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-out-l", 0 ],
-									"source" : [ "fxs-sum-l-3", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-gate-l",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										200,
+										325,
+										55,
+										22
+									],
+									"text": "*~ 0."
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-r-2", 0 ],
-									"source" : [ "fxs-sum-r-1", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-gate-r",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										272,
+										325,
+										55,
+										22
+									],
+									"text": "*~ 0."
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-r-3", 0 ],
-									"source" : [ "fxs-sum-r-2", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-out-l",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 3,
+									"comment": "",
+									"patching_rect": [
+										114,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-out-r", 0 ],
-									"source" : [ "fxs-sum-r-3", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-out-r",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 4,
+									"comment": "",
+									"patching_rect": [
+										156,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-l-3", 1 ],
-									"source" : [ "fxs-trem-l", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-ui-out",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 12,
+									"comment": "",
+									"patching_rect": [
+										492,
+										720,
+										30,
+										30
+									]
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-r-3", 1 ],
-									"source" : [ "fxs-trem-r", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-local-route",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 3,
+									"outlettype": [
+										"",
+										"",
+										""
+									],
+									"patching_rect": [
+										326,
+										185,
+										60,
+										22
+									],
+									"text": "t i i i"
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-l-1", 1 ],
-									"source" : [ "fxs-voc-l", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-state-send",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										326,
+										225,
+										180,
+										22
+									],
+									"text": "s mt_vocoder_enable_state"
 								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "fxs-sum-r-1", 1 ],
-									"source" : [ "fxs-voc-r", 0 ]
+							},
+							{
+								"box": {
+									"id": "fxc-voc-state-out",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 16,
+									"comment": "",
+									"patching_rect": [
+										660,
+										720,
+										30,
+										30
+									]
 								}
-
+							},
+							{
+								"box": {
+									"id": "fxc-bit-l",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 5,
+									"comment": "",
+									"patching_rect": [
+										198,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-r",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 6,
+									"comment": "",
+									"patching_rect": [
+										240,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-ext",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"index": 13,
+									"comment": "",
+									"patching_rect": [
+										534,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-local",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"index": 18,
+									"comment": "",
+									"patching_rect": [
+										744,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-ext-route",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 2,
+									"outlettype": [
+										"",
+										""
+									],
+									"patching_rect": [
+										454,
+										105,
+										45,
+										22
+									],
+									"text": "t i i"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-ui-set",
+									"maxclass": "message",
+									"numinlets": 2,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										454,
+										145,
+										58,
+										22
+									],
+									"text": "set $1"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-msg",
+									"maxclass": "message",
+									"numinlets": 2,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										370,
+										225,
+										58,
+										22
+									],
+									"text": "$1 20"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-line",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										370,
+										265,
+										50,
+										22
+									],
+									"text": "line~"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-gate-l",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										370,
+										325,
+										55,
+										22
+									],
+									"text": "*~ 0."
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-gate-r",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										442,
+										325,
+										55,
+										22
+									],
+									"text": "*~ 0."
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-out-l",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 5,
+									"comment": "",
+									"patching_rect": [
+										198,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-out-r",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 6,
+									"comment": "",
+									"patching_rect": [
+										240,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-ui-out",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 13,
+									"comment": "",
+									"patching_rect": [
+										534,
+										720,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-local-route",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 3,
+									"outlettype": [
+										"",
+										"",
+										""
+									],
+									"patching_rect": [
+										496,
+										185,
+										60,
+										22
+									],
+									"text": "t i i i"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-state-send",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										496,
+										225,
+										180,
+										22
+									],
+									"text": "s mt_bitcrusher_enable_state"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-bit-state-out",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 17,
+									"comment": "",
+									"patching_rect": [
+										702,
+										720,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-l",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 7,
+									"comment": "",
+									"patching_rect": [
+										282,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-r",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 8,
+									"comment": "",
+									"patching_rect": [
+										324,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-ext",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"index": 14,
+									"comment": "",
+									"patching_rect": [
+										576,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-local",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"index": 19,
+									"comment": "",
+									"patching_rect": [
+										786,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-ext-route",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 2,
+									"outlettype": [
+										"",
+										""
+									],
+									"patching_rect": [
+										624,
+										105,
+										45,
+										22
+									],
+									"text": "t i i"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-ui-set",
+									"maxclass": "message",
+									"numinlets": 2,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										624,
+										145,
+										58,
+										22
+									],
+									"text": "set $1"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-msg",
+									"maxclass": "message",
+									"numinlets": 2,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										540,
+										225,
+										58,
+										22
+									],
+									"text": "$1 20"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-line",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										540,
+										265,
+										50,
+										22
+									],
+									"text": "line~"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-gate-l",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										540,
+										325,
+										55,
+										22
+									],
+									"text": "*~ 0."
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-gate-r",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										612,
+										325,
+										55,
+										22
+									],
+									"text": "*~ 0."
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-out-l",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 7,
+									"comment": "",
+									"patching_rect": [
+										282,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-out-r",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 8,
+									"comment": "",
+									"patching_rect": [
+										324,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-ui-out",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 14,
+									"comment": "",
+									"patching_rect": [
+										576,
+										720,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-local-route",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 3,
+									"outlettype": [
+										"",
+										"",
+										""
+									],
+									"patching_rect": [
+										666,
+										185,
+										60,
+										22
+									],
+									"text": "t i i i"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-state-send",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										666,
+										225,
+										180,
+										22
+									],
+									"text": "s mt_feedback_delay_enable_state"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-delay-state-out",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 18,
+									"comment": "",
+									"patching_rect": [
+										744,
+										720,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-l",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 9,
+									"comment": "",
+									"patching_rect": [
+										366,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-r",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 10,
+									"comment": "",
+									"patching_rect": [
+										408,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-ext",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"index": 15,
+									"comment": "",
+									"patching_rect": [
+										618,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-local",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"index": 20,
+									"comment": "",
+									"patching_rect": [
+										828,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-ext-route",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 2,
+									"outlettype": [
+										"",
+										""
+									],
+									"patching_rect": [
+										794,
+										105,
+										45,
+										22
+									],
+									"text": "t i i"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-ui-set",
+									"maxclass": "message",
+									"numinlets": 2,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										794,
+										145,
+										58,
+										22
+									],
+									"text": "set $1"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-msg",
+									"maxclass": "message",
+									"numinlets": 2,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										710,
+										225,
+										58,
+										22
+									],
+									"text": "$1 20"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-line",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										710,
+										265,
+										50,
+										22
+									],
+									"text": "line~"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-gate-l",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										710,
+										325,
+										55,
+										22
+									],
+									"text": "*~ 0."
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-gate-r",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										782,
+										325,
+										55,
+										22
+									],
+									"text": "*~ 0."
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-out-l",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 9,
+									"comment": "",
+									"patching_rect": [
+										366,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-out-r",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 10,
+									"comment": "",
+									"patching_rect": [
+										408,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-ui-out",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 15,
+									"comment": "",
+									"patching_rect": [
+										618,
+										720,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-local-route",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 3,
+									"outlettype": [
+										"",
+										"",
+										""
+									],
+									"patching_rect": [
+										836,
+										185,
+										60,
+										22
+									],
+									"text": "t i i i"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-state-send",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										836,
+										225,
+										180,
+										22
+									],
+									"text": "s mt_multiband_filter_enable_state"
+								}
+							},
+							{
+								"box": {
+									"id": "fxc-multi-state-out",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 19,
+									"comment": "",
+									"patching_rect": [
+										786,
+										720,
+										30,
+										30
+									]
+								}
 							}
- ],
-						"originid" : "pat-14"
+						],
+						"lines": [
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-default",
+										0
+									],
+									"destination": [
+										"fxc-dry-ext-route",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-local",
+										0
+									],
+									"destination": [
+										"fxc-dry-msg",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-ext",
+										0
+									],
+									"destination": [
+										"fxc-dry-ext-route",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-ext-route",
+										0
+									],
+									"destination": [
+										"fxc-dry-ui-set",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-ext-route",
+										1
+									],
+									"destination": [
+										"fxc-dry-msg",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-ui-set",
+										0
+									],
+									"destination": [
+										"fxc-dry-ui-out",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-msg",
+										0
+									],
+									"destination": [
+										"fxc-dry-line",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-l",
+										0
+									],
+									"destination": [
+										"fxc-dry-gate-l",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-r",
+										0
+									],
+									"destination": [
+										"fxc-dry-gate-r",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-line",
+										0
+									],
+									"destination": [
+										"fxc-dry-gate-l",
+										1
+									],
+									"order": 1
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-line",
+										0
+									],
+									"destination": [
+										"fxc-dry-gate-r",
+										1
+									],
+									"order": 0
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-gate-l",
+										0
+									],
+									"destination": [
+										"fxc-dry-out-l",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-dry-gate-r",
+										0
+									],
+									"destination": [
+										"fxc-dry-out-r",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-local",
+										0
+									],
+									"destination": [
+										"fxc-voc-local-route",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-local-route",
+										0
+									],
+									"destination": [
+										"fxc-voc-msg",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-local-route",
+										1
+									],
+									"destination": [
+										"fxc-voc-state-out",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-local-route",
+										2
+									],
+									"destination": [
+										"fxc-voc-state-send",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-ext",
+										0
+									],
+									"destination": [
+										"fxc-voc-ext-route",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-ext-route",
+										0
+									],
+									"destination": [
+										"fxc-voc-ui-set",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-ext-route",
+										1
+									],
+									"destination": [
+										"fxc-voc-msg",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-ui-set",
+										0
+									],
+									"destination": [
+										"fxc-voc-ui-out",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-msg",
+										0
+									],
+									"destination": [
+										"fxc-voc-line",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-l",
+										0
+									],
+									"destination": [
+										"fxc-voc-gate-l",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-r",
+										0
+									],
+									"destination": [
+										"fxc-voc-gate-r",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-line",
+										0
+									],
+									"destination": [
+										"fxc-voc-gate-l",
+										1
+									],
+									"order": 1
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-line",
+										0
+									],
+									"destination": [
+										"fxc-voc-gate-r",
+										1
+									],
+									"order": 0
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-gate-l",
+										0
+									],
+									"destination": [
+										"fxc-voc-out-l",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-voc-gate-r",
+										0
+									],
+									"destination": [
+										"fxc-voc-out-r",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-local",
+										0
+									],
+									"destination": [
+										"fxc-bit-local-route",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-local-route",
+										0
+									],
+									"destination": [
+										"fxc-bit-msg",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-local-route",
+										1
+									],
+									"destination": [
+										"fxc-bit-state-out",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-local-route",
+										2
+									],
+									"destination": [
+										"fxc-bit-state-send",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-ext",
+										0
+									],
+									"destination": [
+										"fxc-bit-ext-route",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-ext-route",
+										0
+									],
+									"destination": [
+										"fxc-bit-ui-set",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-ext-route",
+										1
+									],
+									"destination": [
+										"fxc-bit-msg",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-ui-set",
+										0
+									],
+									"destination": [
+										"fxc-bit-ui-out",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-msg",
+										0
+									],
+									"destination": [
+										"fxc-bit-line",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-l",
+										0
+									],
+									"destination": [
+										"fxc-bit-gate-l",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-r",
+										0
+									],
+									"destination": [
+										"fxc-bit-gate-r",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-line",
+										0
+									],
+									"destination": [
+										"fxc-bit-gate-l",
+										1
+									],
+									"order": 1
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-line",
+										0
+									],
+									"destination": [
+										"fxc-bit-gate-r",
+										1
+									],
+									"order": 0
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-gate-l",
+										0
+									],
+									"destination": [
+										"fxc-bit-out-l",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-bit-gate-r",
+										0
+									],
+									"destination": [
+										"fxc-bit-out-r",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-local",
+										0
+									],
+									"destination": [
+										"fxc-delay-local-route",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-local-route",
+										0
+									],
+									"destination": [
+										"fxc-delay-msg",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-local-route",
+										1
+									],
+									"destination": [
+										"fxc-delay-state-out",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-local-route",
+										2
+									],
+									"destination": [
+										"fxc-delay-state-send",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-ext",
+										0
+									],
+									"destination": [
+										"fxc-delay-ext-route",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-ext-route",
+										0
+									],
+									"destination": [
+										"fxc-delay-ui-set",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-ext-route",
+										1
+									],
+									"destination": [
+										"fxc-delay-msg",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-ui-set",
+										0
+									],
+									"destination": [
+										"fxc-delay-ui-out",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-msg",
+										0
+									],
+									"destination": [
+										"fxc-delay-line",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-l",
+										0
+									],
+									"destination": [
+										"fxc-delay-gate-l",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-r",
+										0
+									],
+									"destination": [
+										"fxc-delay-gate-r",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-line",
+										0
+									],
+									"destination": [
+										"fxc-delay-gate-l",
+										1
+									],
+									"order": 1
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-line",
+										0
+									],
+									"destination": [
+										"fxc-delay-gate-r",
+										1
+									],
+									"order": 0
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-gate-l",
+										0
+									],
+									"destination": [
+										"fxc-delay-out-l",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-delay-gate-r",
+										0
+									],
+									"destination": [
+										"fxc-delay-out-r",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-local",
+										0
+									],
+									"destination": [
+										"fxc-multi-local-route",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-local-route",
+										0
+									],
+									"destination": [
+										"fxc-multi-msg",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-local-route",
+										1
+									],
+									"destination": [
+										"fxc-multi-state-out",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-local-route",
+										2
+									],
+									"destination": [
+										"fxc-multi-state-send",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-ext",
+										0
+									],
+									"destination": [
+										"fxc-multi-ext-route",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-ext-route",
+										0
+									],
+									"destination": [
+										"fxc-multi-ui-set",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-ext-route",
+										1
+									],
+									"destination": [
+										"fxc-multi-msg",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-ui-set",
+										0
+									],
+									"destination": [
+										"fxc-multi-ui-out",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-msg",
+										0
+									],
+									"destination": [
+										"fxc-multi-line",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-l",
+										0
+									],
+									"destination": [
+										"fxc-multi-gate-l",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-r",
+										0
+									],
+									"destination": [
+										"fxc-multi-gate-r",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-line",
+										0
+									],
+									"destination": [
+										"fxc-multi-gate-l",
+										1
+									],
+									"order": 1
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-line",
+										0
+									],
+									"destination": [
+										"fxc-multi-gate-r",
+										1
+									],
+									"order": 0
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-gate-l",
+										0
+									],
+									"destination": [
+										"fxc-multi-out-l",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxc-multi-gate-r",
+										0
+									],
+									"destination": [
+										"fxc-multi-out-r",
+										0
+									]
+								}
+							}
+						]
 					}
-,
-					"patching_rect" : [ 24.0, 420.0, 710.0, 22.0 ],
-					"text" : "p Return_sum"
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "fx-master",
-					"lastchannelcount" : 0,
-					"maxclass" : "live.gain~",
-					"numinlets" : 2,
-					"numoutlets" : 5,
-					"outlettype" : [ "signal", "signal", "", "float", "list" ],
-					"parameter_enable" : 1,
-					"patching_rect" : [ 24.0, 475.28093683719635, 54.0, 150.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 595.50566554069519, 103.370794773101807, 54.0, 144.0 ],
-					"saved_attribute_attributes" : 					{
-						"valueof" : 						{
-							"parameter_initial" : [ -10 ],
-							"parameter_longname" : "fx_return_master_gain",
-							"parameter_mmax" : 6.0,
-							"parameter_mmin" : -70.0,
-							"parameter_modmode" : 0,
-							"parameter_shortname" : "FX Master",
-							"parameter_type" : 0,
-							"parameter_unitstyle" : 4
-						}
-
+			},
+			{
+				"box": {
+					"id": "p-Return-sum",
+					"maxclass": "newobj",
+					"numinlets": 10,
+					"numoutlets": 2,
+					"outlettype": [
+						"signal",
+						"signal"
+					],
+					"patching_rect": [
+						300,
+						500,
+						140,
+						22
+					],
+					"text": "p Return_sum",
+					"patcher": {
+						"fileversion": 1,
+						"appversion": {
+							"major": 9,
+							"minor": 0,
+							"revision": 5,
+							"architecture": "x64",
+							"modernui": 1
+						},
+						"classnamespace": "box",
+						"rect": [
+							120,
+							120,
+							720,
+							790
+						],
+						"gridsize": [
+							15,
+							15
+						],
+						"boxes": [
+							{
+								"box": {
+									"id": "fxs-title",
+									"maxclass": "comment",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"patching_rect": [
+										24,
+										10,
+										520,
+										20
+									],
+									"text": "RETURN_SUM: five stereo lanes -> balanced L/R sum"
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-dry-l",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 1,
+									"comment": "",
+									"patching_rect": [
+										30,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-dry-r",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 2,
+									"comment": "",
+									"patching_rect": [
+										70,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-voc-l",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 3,
+									"comment": "",
+									"patching_rect": [
+										140,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-voc-r",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 4,
+									"comment": "",
+									"patching_rect": [
+										180,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-bit-l",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 5,
+									"comment": "",
+									"patching_rect": [
+										250,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-bit-r",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 6,
+									"comment": "",
+									"patching_rect": [
+										290,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-delay-l",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 7,
+									"comment": "",
+									"patching_rect": [
+										360,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-delay-r",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 8,
+									"comment": "",
+									"patching_rect": [
+										400,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-multi-l",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 9,
+									"comment": "",
+									"patching_rect": [
+										470,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-multi-r",
+									"maxclass": "inlet",
+									"numinlets": 0,
+									"numoutlets": 1,
+									"outlettype": [
+										"signal"
+									],
+									"index": 10,
+									"comment": "",
+									"patching_rect": [
+										510,
+										40,
+										30,
+										30
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-sum-l-1",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										190,
+										180,
+										35,
+										22
+									],
+									"text": "+~"
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-sum-r-1",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										240,
+										180,
+										35,
+										22
+									],
+									"text": "+~"
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-sum-l-2",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										280,
+										250,
+										35,
+										22
+									],
+									"text": "+~"
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-sum-r-2",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										330,
+										250,
+										35,
+										22
+									],
+									"text": "+~"
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-sum-l-3",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										370,
+										320,
+										35,
+										22
+									],
+									"text": "+~"
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-sum-r-3",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										420,
+										320,
+										35,
+										22
+									],
+									"text": "+~"
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-sum-l-4",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										460,
+										390,
+										35,
+										22
+									],
+									"text": "+~"
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-sum-r-4",
+									"maxclass": "newobj",
+									"numinlets": 1,
+									"numoutlets": 1,
+									"outlettype": [
+										""
+									],
+									"patching_rect": [
+										510,
+										390,
+										35,
+										22
+									],
+									"text": "+~"
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-out-l",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 1,
+									"comment": "",
+									"patching_rect": [
+										460,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
+								}
+							},
+							{
+								"box": {
+									"id": "fxs-out-r",
+									"maxclass": "outlet",
+									"numinlets": 1,
+									"numoutlets": 0,
+									"index": 2,
+									"comment": "",
+									"patching_rect": [
+										520,
+										720,
+										30,
+										30
+									],
+									"outlettype": [
+										"signal"
+									]
+								}
+							}
+						],
+						"lines": [
+							{
+								"patchline": {
+									"source": [
+										"fxs-dry-l",
+										0
+									],
+									"destination": [
+										"fxs-sum-l-1",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-dry-r",
+										0
+									],
+									"destination": [
+										"fxs-sum-r-1",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-voc-l",
+										0
+									],
+									"destination": [
+										"fxs-sum-l-1",
+										1
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-voc-r",
+										0
+									],
+									"destination": [
+										"fxs-sum-r-1",
+										1
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-sum-l-1",
+										0
+									],
+									"destination": [
+										"fxs-sum-l-2",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-sum-r-1",
+										0
+									],
+									"destination": [
+										"fxs-sum-r-2",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-bit-l",
+										0
+									],
+									"destination": [
+										"fxs-sum-l-2",
+										1
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-bit-r",
+										0
+									],
+									"destination": [
+										"fxs-sum-r-2",
+										1
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-sum-l-2",
+										0
+									],
+									"destination": [
+										"fxs-sum-l-3",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-sum-r-2",
+										0
+									],
+									"destination": [
+										"fxs-sum-r-3",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-delay-l",
+										0
+									],
+									"destination": [
+										"fxs-sum-l-3",
+										1
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-delay-r",
+										0
+									],
+									"destination": [
+										"fxs-sum-r-3",
+										1
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-sum-l-3",
+										0
+									],
+									"destination": [
+										"fxs-sum-l-4",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-sum-r-3",
+										0
+									],
+									"destination": [
+										"fxs-sum-r-4",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-multi-l",
+										0
+									],
+									"destination": [
+										"fxs-sum-l-4",
+										1
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-multi-r",
+										0
+									],
+									"destination": [
+										"fxs-sum-r-4",
+										1
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-sum-l-4",
+										0
+									],
+									"destination": [
+										"fxs-out-l",
+										0
+									]
+								}
+							},
+							{
+								"patchline": {
+									"source": [
+										"fxs-sum-r-4",
+										0
+									],
+									"destination": [
+										"fxs-out-r",
+										0
+									]
+								}
+							}
+						]
 					}
-,
-					"showname" : 0,
-					"varname" : "fx_return_master_gain"
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "fx-meter-l",
-					"maxclass" : "meter~",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "float" ],
-					"patching_rect" : [ 179.775295257568359, 652.831511378288269, 120.0, 12.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 670.0, 96.0, 12.0, 150.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-out-l",
+					"maxclass": "outlet",
+					"numinlets": 1,
+					"numoutlets": 0,
+					"index": 1,
+					"comment": "Mixed audio L",
+					"patching_rect": [
+						700,
+						720,
+						30,
+						30
+					],
+					"outlettype": [
+						"signal"
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "fx-meter-r",
-					"maxclass" : "meter~",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "float" ],
-					"patching_rect" : [ 179.775295257568359, 679.797805666923523, 120.0, 12.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 690.0, 96.0, 12.0, 150.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-out-r",
+					"maxclass": "outlet",
+					"numinlets": 1,
+					"numoutlets": 0,
+					"index": 2,
+					"comment": "Mixed audio R",
+					"patching_rect": [
+						738,
+						720,
+						30,
+						30
+					],
+					"outlettype": [
+						"signal"
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Mixed audio L",
-					"id" : "fx-out-l",
-					"index" : 0,
-					"maxclass" : "outlet",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 24.0, 661.797805666923523, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-voc-enable-out",
+					"maxclass": "outlet",
+					"numinlets": 1,
+					"numoutlets": 0,
+					"index": 3,
+					"comment": "Vocoder Enable state",
+					"patching_rect": [
+						776,
+						720,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Mixed audio R",
-					"id" : "fx-out-r",
-					"index" : 0,
-					"maxclass" : "outlet",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 56.0, 661.797805666923523, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-bit-enable-out",
+					"maxclass": "outlet",
+					"numinlets": 1,
+					"numoutlets": 0,
+					"index": 4,
+					"comment": "Bitcrusher Enable state",
+					"patching_rect": [
+						814,
+						720,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Vocoder Enable state",
-					"id" : "fx-voc-enable-out",
-					"index" : 0,
-					"maxclass" : "outlet",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 616.123587608337402, 329.213509440422058, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-delay-enable-out",
+					"maxclass": "outlet",
+					"numinlets": 1,
+					"numoutlets": 0,
+					"index": 5,
+					"comment": "Feedback Delay Enable state",
+					"patching_rect": [
+						852,
+						720,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Chop Enable state",
-					"id" : "fx-chop-enable-out",
-					"index" : 0,
-					"maxclass" : "outlet",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 665.561793804168701, 329.213509440422058, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"id": "fx-multi-enable-out",
+					"maxclass": "outlet",
+					"numinlets": 1,
+					"numoutlets": 0,
+					"index": 6,
+					"comment": "Multiband Enable state",
+					"patching_rect": [
+						890,
+						720,
+						30,
+						30
+					]
 				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "Tremolo Enable state",
-					"id" : "fx-trem-enable-out",
-					"index" : 0,
-					"maxclass" : "outlet",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 715.0, 329.213509440422058, 30.0, 30.0 ]
+			},
+			{
+				"box": {
+					"autofit": 1,
+					"background": 1,
+					"forceaspect": 1,
+					"id": "fx-bg",
+					"ignoreclick": 1,
+					"maxclass": "fpic",
+					"numinlets": 1,
+					"numoutlets": 1,
+					"outlettype": [
+						"jit_matrix"
+					],
+					"patching_rect": [
+						20,
+						40,
+						905,
+						300
+					],
+					"pic": "fx_return_mixer_panel_v1.png",
+					"presentation": 1,
+					"presentation_rect": [
+						0,
+						0,
+						905,
+						300
+					]
 				}
-
 			}
-, 			{
-				"box" : 				{
-					"autofit" : 1,
-					"background" : 1,
-					"forceaspect" : 1,
-					"id" : "fx-bg",
-					"ignoreclick" : 1,
-					"maxclass" : "fpic",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "jit_matrix" ],
-					"patching_rect" : [ 1000.0, 20.0, 380.0, 150.0 ],
-					"pic" : "fx_return_mixer_panel_v1.png",
-					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 760.0, 300.0 ]
+		],
+		"lines": [
+			{
+				"patchline": {
+					"source": [
+						"fx-dry-l",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						0
+					]
 				}
-
-			}
- ],
-		"lines" : [ 			{
-				"patchline" : 				{
-					"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-					"destination" : [ "p-Return-lanes", 14 ],
-					"source" : [ "fx-chop-enable", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-dry-r",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						1
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-					"destination" : [ "p-Return-lanes", 10 ],
-					"source" : [ "fx-chop-enable-in", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-dry-enable-in",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						10
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-sum", 5 ],
-					"midpoints" : [ 239.678571428571416, 385.674166142940521, 527.071428571428555, 385.674166142940521 ],
-					"source" : [ "fx-chop-gain", 1 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-dry-enable",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						15
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-sum", 4 ],
-					"midpoints" : [ 230.928571428571416, 385.674166142940521, 428.357142857142833, 385.674166142940521 ],
-					"source" : [ "fx-chop-gain", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						0
+					],
+					"destination": [
+						"fx-dry-gain",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-lanes", 4 ],
-					"source" : [ "fx-chop-l", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						1
+					],
+					"destination": [
+						"fx-dry-gain",
+						1
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-lanes", 5 ],
-					"source" : [ "fx-chop-r", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						10
+					],
+					"destination": [
+						"fx-dry-enable",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-					"destination" : [ "p-Return-lanes", 12 ],
-					"source" : [ "fx-dry-enable", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-dry-gain",
+						0
+					],
+					"destination": [
+						"p-Return-sum",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-					"destination" : [ "p-Return-lanes", 8 ],
-					"source" : [ "fx-dry-enable-in", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-dry-gain",
+						1
+					],
+					"destination": [
+						"p-Return-sum",
+						1
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-sum", 1 ],
-					"midpoints" : [ 42.25, 385.674166142940521, 132.214285714285722, 385.674166142940521 ],
-					"source" : [ "fx-dry-gain", 1 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-voc-l",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						2
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-sum", 0 ],
-					"source" : [ "fx-dry-gain", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-voc-r",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						3
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-lanes", 0 ],
-					"source" : [ "fx-dry-l", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-voc-enable-in",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						11
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-lanes", 1 ],
-					"source" : [ "fx-dry-r", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-voc-enable",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						16
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-meter-l", 0 ],
-					"midpoints" : [ 33.5, 639.05622410774231, 189.275295257568359, 639.05622410774231 ],
-					"order" : 0,
-					"source" : [ "fx-master", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						2
+					],
+					"destination": [
+						"fx-voc-gain",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-meter-r", 0 ],
-					"midpoints" : [ 42.25, 638.79727043537423, 189.275295257568359, 638.79727043537423 ],
-					"order" : 0,
-					"source" : [ "fx-master", 1 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						3
+					],
+					"destination": [
+						"fx-voc-gain",
+						1
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-out-l", 0 ],
-					"order" : 1,
-					"source" : [ "fx-master", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						11
+					],
+					"destination": [
+						"fx-voc-enable",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-out-r", 0 ],
-					"midpoints" : [ 42.25, 643.539371252059937, 65.5, 643.539371252059937 ],
-					"order" : 1,
-					"source" : [ "fx-master", 1 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-voc-gain",
+						0
+					],
+					"destination": [
+						"p-Return-sum",
+						2
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-					"destination" : [ "p-Return-lanes", 15 ],
-					"source" : [ "fx-trem-enable", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-voc-gain",
+						1
+					],
+					"destination": [
+						"p-Return-sum",
+						3
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-					"destination" : [ "p-Return-lanes", 11 ],
-					"source" : [ "fx-trem-enable-in", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						15
+					],
+					"destination": [
+						"fx-voc-enable-out",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-sum", 7 ],
-					"midpoints" : [ 338.392857142857167, 385.674166142940521, 724.5, 385.674166142940521 ],
-					"source" : [ "fx-trem-gain", 1 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-bit-l",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						4
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-sum", 6 ],
-					"midpoints" : [ 329.642857142857167, 385.674166142940521, 625.785714285714334, 385.674166142940521 ],
-					"source" : [ "fx-trem-gain", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-bit-r",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						5
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-lanes", 6 ],
-					"source" : [ "fx-trem-l", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-bit-enable-in",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						12
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-lanes", 7 ],
-					"source" : [ "fx-trem-r", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-bit-enable",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						17
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-					"destination" : [ "p-Return-lanes", 13 ],
-					"source" : [ "fx-voc-enable", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						4
+					],
+					"destination": [
+						"fx-bit-gain",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.95, 0.55, 0.16, 1.0 ],
-					"destination" : [ "p-Return-lanes", 9 ],
-					"source" : [ "fx-voc-enable-in", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						5
+					],
+					"destination": [
+						"fx-bit-gain",
+						1
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-sum", 3 ],
-					"midpoints" : [ 140.964285714285722, 385.674166142940521, 329.642857142857167, 385.674166142940521 ],
-					"source" : [ "fx-voc-gain", 1 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						12
+					],
+					"destination": [
+						"fx-bit-enable",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-sum", 2 ],
-					"midpoints" : [ 132.214285714285722, 385.674166142940521, 230.928571428571416, 385.674166142940521 ],
-					"source" : [ "fx-voc-gain", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-bit-gain",
+						0
+					],
+					"destination": [
+						"p-Return-sum",
+						4
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-lanes", 2 ],
-					"source" : [ "fx-voc-l", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-bit-gain",
+						1
+					],
+					"destination": [
+						"p-Return-sum",
+						5
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "p-Return-lanes", 3 ],
-					"source" : [ "fx-voc-r", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						16
+					],
+					"destination": [
+						"fx-bit-enable-out",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-					"destination" : [ "fx-chop-enable", 0 ],
-					"midpoints" : [ 527.071428571428555, 187.0, 786.684102103721671, 187.0, 786.684102103721671, 60.0, 678.43333333333328, 60.0 ],
-					"source" : [ "p-Return-lanes", 10 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-delay-l",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						6
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-					"destination" : [ "fx-chop-enable-out", 0 ],
-					"source" : [ "p-Return-lanes", 13 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-delay-r",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						7
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-chop-gain", 1 ],
-					"midpoints" : [ 280.285714285714278, 199.174166142940521, 265.928571428571445, 199.174166142940521 ],
-					"source" : [ "p-Return-lanes", 5 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-delay-enable-in",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						13
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-chop-gain", 0 ],
-					"source" : [ "p-Return-lanes", 4 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-delay-enable",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						18
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-					"destination" : [ "fx-dry-enable", 0 ],
-					"midpoints" : [ 428.357142857142833, 187.0, 786.085616164867361, 187.0, 786.085616164867361, 60.0, 586.299999999999955, 60.0 ],
-					"source" : [ "p-Return-lanes", 8 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						6
+					],
+					"destination": [
+						"fx-delay-gain",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-dry-gain", 1 ],
-					"midpoints" : [ 82.857142857142861, 199.174166142940521, 68.5, 199.174166142940521 ],
-					"source" : [ "p-Return-lanes", 1 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						7
+					],
+					"destination": [
+						"fx-delay-gain",
+						1
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-dry-gain", 0 ],
-					"source" : [ "p-Return-lanes", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						13
+					],
+					"destination": [
+						"fx-delay-enable",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-					"destination" : [ "fx-trem-enable", 0 ],
-					"midpoints" : [ 576.428571428571445, 187.0, 786.287681393990624, 187.0, 786.287681393990624, 60.0, 724.5, 60.0 ],
-					"source" : [ "p-Return-lanes", 11 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-delay-gain",
+						0
+					],
+					"destination": [
+						"p-Return-sum",
+						6
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-					"destination" : [ "fx-trem-enable-out", 0 ],
-					"source" : [ "p-Return-lanes", 14 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-delay-gain",
+						1
+					],
+					"destination": [
+						"p-Return-sum",
+						7
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-trem-gain", 1 ],
-					"midpoints" : [ 379.0, 199.174166142940521, 364.642857142857167, 199.174166142940521 ],
-					"source" : [ "p-Return-lanes", 7 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						17
+					],
+					"destination": [
+						"fx-delay-enable-out",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-trem-gain", 0 ],
-					"source" : [ "p-Return-lanes", 6 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-multi-l",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						8
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-					"destination" : [ "fx-voc-enable", 0 ],
-					"midpoints" : [ 477.714285714285722, 187.0, 786.22904802634423, 187.0, 786.22904802634423, 60.0, 632.366666666666674, 60.0 ],
-					"source" : [ "p-Return-lanes", 9 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-multi-r",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						9
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"color" : [ 0.35, 0.65, 0.95, 1.0 ],
-					"destination" : [ "fx-voc-enable-out", 0 ],
-					"source" : [ "p-Return-lanes", 12 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-multi-enable-in",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						14
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-voc-gain", 1 ],
-					"midpoints" : [ 181.571428571428584, 199.174166142940521, 167.214285714285722, 199.174166142940521 ],
-					"source" : [ "p-Return-lanes", 3 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-multi-enable",
+						0
+					],
+					"destination": [
+						"p-Return-lanes",
+						19
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-voc-gain", 0 ],
-					"source" : [ "p-Return-lanes", 2 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						8
+					],
+					"destination": [
+						"fx-multi-gain",
+						0
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-master", 1 ],
-					"midpoints" : [ 724.5, 458.640468418598175, 68.5, 458.640468418598175 ],
-					"source" : [ "p-Return-sum", 1 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						9
+					],
+					"destination": [
+						"fx-multi-gain",
+						1
+					]
 				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "fx-master", 0 ],
-					"source" : [ "p-Return-sum", 0 ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						14
+					],
+					"destination": [
+						"fx-multi-enable",
+						0
+					]
 				}
-
-			}
- ],
-		"originid" : "pat-4",
-		"parameters" : 		{
-			"fx-chop-gain" : [ "fx_return_chop_gain", "Chop FX", 0 ],
-			"fx-dry-gain" : [ "fx_return_dry_gain", "Original", 0 ],
-			"fx-master" : [ "fx_return_master_gain", "FX Master", 0 ],
-			"fx-trem-gain" : [ "fx_return_tremolo_gain", "Tremolo FX", 0 ],
-			"fx-voc-gain" : [ "fx_return_vocoder_gain", "Vocoder FX", 0 ],
-			"parameterbanks" : 			{
-				"0" : 				{
-					"index" : 0,
-					"name" : "",
-					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-multi-gain",
+						0
+					],
+					"destination": [
+						"p-Return-sum",
+						8
+					]
 				}
-
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-multi-gain",
+						1
+					],
+					"destination": [
+						"p-Return-sum",
+						9
+					]
+				}
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-lanes",
+						18
+					],
+					"destination": [
+						"fx-multi-enable-out",
+						0
+					]
+				}
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-sum",
+						0
+					],
+					"destination": [
+						"fx-master",
+						0
+					]
+				}
+			},
+			{
+				"patchline": {
+					"source": [
+						"p-Return-sum",
+						1
+					],
+					"destination": [
+						"fx-master",
+						1
+					]
+				}
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-master",
+						0
+					],
+					"destination": [
+						"fx-meter-l",
+						0
+					],
+					"order": 0
+				}
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-master",
+						1
+					],
+					"destination": [
+						"fx-meter-r",
+						0
+					],
+					"order": 0
+				}
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-master",
+						0
+					],
+					"destination": [
+						"fx-out-l",
+						0
+					],
+					"order": 1
+				}
+			},
+			{
+				"patchline": {
+					"source": [
+						"fx-master",
+						1
+					],
+					"destination": [
+						"fx-out-r",
+						0
+					],
+					"order": 1
+				}
 			}
-,
-			"inherited_shortname" : 1
-		}
-,
-		"dependency_cache" : [ 			{
-				"name" : "fx_return_mixer_panel_v1.png",
-				"patcherrelativepath" : ".",
-				"type" : "PNG",
-				"implicit" : 1
+		],
+		"originid": "pat-4",
+		"parameters": {
+			"fx-chop-gain": [
+				"fx_return_chop_gain",
+				"Chop FX",
+				0
+			],
+			"fx-dry-gain": [
+				"fx_return_dry_gain",
+				"Original",
+				0
+			],
+			"fx-master": [
+				"fx_return_master_gain",
+				"FX Master",
+				0
+			],
+			"fx-trem-gain": [
+				"fx_return_tremolo_gain",
+				"Tremolo FX",
+				0
+			],
+			"fx-voc-gain": [
+				"fx_return_vocoder_gain",
+				"Vocoder FX",
+				0
+			],
+			"parameterbanks": {
+				"0": {
+					"index": 0,
+					"name": "",
+					"parameters": [
+						"-",
+						"-",
+						"-",
+						"-",
+						"-",
+						"-",
+						"-",
+						"-"
+					]
+				}
+			},
+			"inherited_shortname": 1
+		},
+		"dependency_cache": [
+			{
+				"name": "fx_return_mixer_panel_v1.png",
+				"patcherrelativepath": "../../assets/ui",
+				"type": "PNG",
+				"implicit": 1
 			}
- ],
-		"autosave" : 0
+		],
+		"autosave": 0
 	}
-
 }

@@ -136,7 +136,10 @@ parameterNames.forEach((name, index) => {
     && entry.patchline.destination[0] === `g-${name}-dial`
   ), `${name} silent knob set output is wrong`);
 });
-assert.deepStrictEqual(boxes.get("g-preset").items, ["Safe Cloud", ",", "Frozen Pad"]);
+assert.deepStrictEqual(
+  boxes.get("g-preset").items,
+  ["Safe Cloud", ",", "Frozen Pad", ",", "Rhythmic Dust"]
+);
 assert.strictEqual(boxes.get("g-file").text, "No material");
 assert.strictEqual(boxes.get("g-status").text, "Idle");
 assert.strictEqual(boxes.get("g-duration").text, "00:00");

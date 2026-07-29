@@ -37,7 +37,7 @@ assert.deepStrictEqual(
 );
 for (const id of [
   "hp-jweb-reload", "hp-jweb-devices", "hp-camera-menu",
-  "hp-camera-set", "hj-mirror-toggle", "hj-free-hand-menu",
+  "hp-camera-set", "hj-mirror-toggle",
 ]) {
   assert.strictEqual(rootBoxes.get(id)?.presentation, 1, `${id} remains available above the camera`);
 }

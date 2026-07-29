@@ -8,6 +8,8 @@ const patcher = JSON.parse(fs.readFileSync(patchPath, "utf8")).patcher;
 const boxes = new Map((patcher.boxes || []).map((entry) => [entry.box.id, entry.box]));
 
 assert.deepStrictEqual(patcher.rect.slice(2), [1732, 941], "main saved window size");
+assert(!boxes.has("pm-project-paths"), "invalid declarepath object must not be present");
+assert.strictEqual(boxes.get("pm-perform-bg")?.pic, "perform_shell_v2.png", "perform shell uses declared asset path");
 
 function hasLine(sourceId, sourceOutlet, destinationId, destinationInlet) {
   return (patcher.lines || []).some((entry) => {
@@ -43,13 +45,40 @@ const expectedSources = {
 };
 for (const [id, [name, presentationRect, inlets, outlets]] of Object.entries(expectedSources)) {
   const box = boxes.get(id);
+  const baseName = path.basename(name);
   assert(box, `${id} is missing`);
   assert.strictEqual(box.maxclass, "bpatcher", `${id} must be a bpatcher`);
   assert.strictEqual(box.name, name, `${id} source file`);
+  const dependency = patcher.dependency_cache.find((item) => item.name === baseName);
+  assert(dependency, `${id} dependency cache entry`);
+  assert(
+    fs.existsSync(path.resolve(path.dirname(patchPath), dependency.patcherrelativepath, baseName)),
+    `${id} dependency path must exist`
+  );
   assert.deepStrictEqual(box.presentation_rect, presentationRect, `${id} presentation size`);
   assert.strictEqual(box.numinlets, inlets, `${id} inlet count`);
   assert.strictEqual(box.numoutlets, outlets, `${id} outlet count`);
 }
+
+for (const [id, name] of Object.entries({
+  "pm-mixer": "mt_input_mixer_ui.maxpat",
+  "pm-vocoder": "mt_mod_vocoder.maxpat",
+  "pm-fx-return": "mt_fx_return_mixer.maxpat",
+  "pm-hand": "mt_control_hand_jweb.maxpat",
+  "pm-bitcrusher": "mt_mod_bitcrusher.maxpat",
+  "pm-feedback-delay": "mt_mod_feedback_delay.maxpat",
+  "pm-multiband": "mt_mod_multiband_filter_v2.maxpat",
+})) {
+  const baseName = path.basename(name);
+  const dependency = patcher.dependency_cache.find((item) => item.name === baseName);
+  assert.strictEqual(boxes.get(id)?.name, name, `${id} uses a portable bpatcher name`);
+  assert(dependency, `${id} dependency cache entry`);
+  assert(
+    fs.existsSync(path.resolve(path.dirname(patchPath), dependency.patcherrelativepath, baseName)),
+    `${id} dependency path must exist`
+  );
+}
+assert.strictEqual(boxes.get("pm-hand").numoutlets, 5, "Hand bpatcher outlet cache");
 
 assert(hasLine("pm-grain", 0, "pm-mixer", 4), "Granular L route is missing");
 assert(hasLine("pm-grain", 1, "pm-mixer", 5), "Granular R route is missing");
@@ -67,16 +96,17 @@ assert(hasLine("p-Source-state-router", 2, "pm-mixer", 8), "Granular state to mi
 
 const fxRouter = boxes.get("p-FX-state-router");
 assert(fxRouter?.patcher, "p FX_state_router is missing");
-assert.strictEqual(fxRouter.patcher.boxes.filter((entry) => entry.box.maxclass === "outlet").length, 8, "FX router outlet count");
-assert.strictEqual(fxRouter.patcher.boxes.filter((entry) => entry.box.text === "loadmess 1.").length, 2, "Vocoder and Chop wet defaults");
+assert.strictEqual(fxRouter.patcher.boxes.filter((entry) => entry.box.maxclass === "outlet").length, 9, "FX router outlet count");
+assert.strictEqual(fxRouter.patcher.boxes.filter((entry) => entry.box.text === "loadmess 1.").length, 1, "only Vocoder needs a wet default");
 assert(hasLine("p-FX-state-router", 0, "pm-vocoder", 2), "Vocoder enable to module");
-assert(hasLine("p-FX-state-router", 1, "pm-fx-return", 9), "Vocoder enable to return");
-assert(hasLine("p-FX-state-router", 2, "pm-chop", 2), "Chop enable to module");
-assert(hasLine("p-FX-state-router", 3, "pm-fx-return", 10), "Chop enable to return");
-assert(hasLine("p-FX-state-router", 4, "pm-tremolo", 2), "Tremolo enable to module");
-assert(hasLine("p-FX-state-router", 5, "pm-fx-return", 11), "Tremolo enable to return");
-assert(hasLine("p-FX-state-router", 6, "pm-vocoder", 3), "Vocoder wet default");
-assert(hasLine("p-FX-state-router", 7, "pm-chop", 8), "Chop wet default");
+assert(hasLine("p-FX-state-router", 1, "pm-fx-return", 11), "Vocoder enable to return");
+assert(hasLine("p-FX-state-router", 2, "pm-bitcrusher", 2), "Bitcrusher enable to module");
+assert(hasLine("p-FX-state-router", 3, "pm-fx-return", 12), "Bitcrusher enable to return");
+assert(hasLine("p-FX-state-router", 4, "pm-feedback-delay", 2), "Delay enable to module");
+assert(hasLine("p-FX-state-router", 5, "pm-fx-return", 13), "Delay enable to return");
+assert(hasLine("p-FX-state-router", 6, "pm-multiband", 2), "Multiband enable to module");
+assert(hasLine("p-FX-state-router", 7, "pm-fx-return", 14), "Multiband enable to return");
+assert(hasLine("p-FX-state-router", 8, "pm-vocoder", 3), "Vocoder wet default");
 
 for (const removedId of [
   "pm-mic-enable", "pm-mic-enable-label", "pm-file-enable", "pm-file-enable-label",
@@ -86,9 +116,10 @@ for (const removedId of [
   "pm-mic-enable-sync", "pm-file-enable-sync", "pm-grain-enable-sync",
   "pm-mic-enable-set", "pm-file-enable-set", "pm-grain-enable-set",
   "pm-vocoder-enable-recv", "pm-vocoder-enable-sync",
-  "pm-chop-enable-recv", "pm-chop-enable-sync",
-  "pm-tremolo-enable-recv", "pm-tremolo-enable-sync",
-  "pm-vocoder-wet-force", "pm-chop-wet-force",
+  "pm-bitcrusher-enable-recv", "pm-bitcrusher-enable-sync",
+  "pm-feedback-delay-enable-recv", "pm-feedback-delay-enable-sync",
+  "pm-multiband-enable-recv", "pm-multiband-enable-sync",
+  "pm-vocoder-wet-force",
 ]) {
   assert(!boxes.has(removedId), `${removedId} should be collected or removed`);
 }
@@ -113,7 +144,8 @@ assert(!routerBoxes.get("page-msg-0").text.includes("script show ui_master_retur
 assert(routerBoxes.get("page-msg-0").text.includes("presentation_rect 402 222 798 420"), "PERFORM camera placement");
 for (const varname of [
   "ui_perform_mic", "ui_perform_file", "ui_perform_grain",
-  "ui_perform_vocoder", "ui_perform_chop", "ui_perform_tremolo",
+  "ui_perform_vocoder", "ui_perform_bitcrusher", "ui_perform_feedback_delay",
+  "ui_perform_multiband",
 ]) {
   assert(routerBoxes.get("page-msg-0").text.includes(`script show ${varname}`), `PERFORM quick control ${varname}`);
   for (let index = 1; index < 5; index += 1) {
@@ -123,10 +155,13 @@ for (const varname of [
 assert(routerBoxes.get("page-msg-1").text.includes("script show ui_source_mic"), "SOURCE page contents");
 assert(routerBoxes.get("page-msg-1").text.includes("presentation_rect 24 520 760 320"), "SOURCE mixer placement restore");
 assert(routerBoxes.get("page-msg-2").text.includes("script show ui_fx_vocoder"), "FX page contents");
+assert(routerBoxes.get("page-msg-2").text.includes("script show ui_fx_bitcrusher"), "FX Bitcrusher page contents");
+assert(routerBoxes.get("page-msg-2").text.includes("script show ui_fx_feedback_delay"), "FX Delay page contents");
+assert(routerBoxes.get("page-msg-2").text.includes("script show ui_fx_multiband"), "FX Multiband page contents");
 assert(routerBoxes.get("page-msg-3").text.includes("script show ui_gesture_hand"), "GESTURE page contents");
 assert(routerBoxes.get("page-msg-3").text.includes("presentation_rect 24 160 798 420"), "GESTURE camera placement restore");
 assert(routerBoxes.get("page-msg-4").text.includes("script show ui_master_returns"), "MASTER page contents");
-assert(routerBoxes.get("page-msg-4").text.includes("presentation_rect 24 160 760 300"), "MASTER return placement restore");
+assert(routerBoxes.get("page-msg-4").text.includes("presentation_rect 24 160 905 300"), "MASTER return placement restore");
 assert.strictEqual(boxes.get("pm-thispatcher")?.text, "thispatcher", "top-level thispatcher");
 
 const shell = boxes.get("pm-shell-bg");
@@ -141,8 +176,8 @@ assert(performShell, "PERFORM page shell is missing");
 assert.strictEqual(performShell.maxclass, "fpic", "PERFORM shell class");
 assert.strictEqual(
   performShell.pic,
-  "../assets/ui/perform_shell_v2.png",
-  "PERFORM shell asset uses a portable path from patchers/"
+  "perform_shell_v2.png",
+  "PERFORM shell uses the declared portable asset path"
 );
 assert.deepStrictEqual(performShell.presentation_rect, [0, 96, 1732, 845], "PERFORM shell fills the content area");
 assert(fs.existsSync(path.join(root, "assets", "ui", "perform_shell_v2.svg")), "editable PERFORM SVG exists");
@@ -154,16 +189,15 @@ const expectedVarnames = {
   "pm-grain": "ui_source_grain",
   "pm-mixer": "ui_source_mixer",
   "pm-vocoder": "ui_fx_vocoder",
-  "pm-chop": "ui_fx_chop",
-  "pm-tremolo": "ui_fx_tremolo",
+  "pm-bitcrusher": "ui_fx_bitcrusher",
+  "pm-feedback-delay": "ui_fx_feedback_delay",
+  "pm-multiband": "ui_fx_multiband",
   "pm-hand": "ui_gesture_hand",
   "pm-fx-return": "ui_master_returns",
   "pm-meter-l": "ui_output_meter_l",
   "pm-meter-r": "ui_output_meter_r",
   "pm-dac": "ui_output_dac",
   "pm-output-label": "ui_output_label",
-  "pm-eq-title": "ui_util_eq_title",
-  "pm-eq-open": "ui_util_eq_open",
   "pm-rec-title": "ui_util_rec_title",
   "pm-rec-open": "ui_util_rec_open",
   "pm-rec-start": "ui_util_rec_start",
@@ -173,8 +207,9 @@ const expectedVarnames = {
   "pm-perform-file": "ui_perform_file",
   "pm-perform-grain": "ui_perform_grain",
   "pm-perform-vocoder": "ui_perform_vocoder",
-  "pm-perform-chop": "ui_perform_chop",
-  "pm-perform-tremolo": "ui_perform_tremolo",
+  "pm-perform-bitcrusher": "ui_perform_bitcrusher",
+  "pm-perform-feedback-delay": "ui_perform_feedback_delay",
+  "pm-perform-multiband": "ui_perform_multiband",
 };
 for (const [id, varname] of Object.entries(expectedVarnames)) {
   assert.strictEqual(boxes.get(id)?.varname, varname, `${id} varname`);
@@ -186,36 +221,27 @@ assert(hasLine("pm-page-router", 0, "pm-thispatcher", 0), "page router to thispa
 
 const performState = boxes.get("pm-perform-state");
 assert(performState?.patcher, "PERFORM quick-state router is missing");
-assert.strictEqual(performState.numinlets, 6, "PERFORM quick-state inlet count");
-assert.strictEqual(performState.numoutlets, 6, "PERFORM quick-state outlet count");
+assert.strictEqual(performState.numinlets, 7, "PERFORM quick-state inlet count");
+assert.strictEqual(performState.numoutlets, 7, "PERFORM quick-state outlet count");
 for (const [index, id] of [
   "pm-perform-mic", "pm-perform-file", "pm-perform-grain",
-  "pm-perform-vocoder", "pm-perform-chop", "pm-perform-tremolo",
+  "pm-perform-vocoder", "pm-perform-bitcrusher", "pm-perform-feedback-delay",
+  "pm-perform-multiband",
 ].entries()) {
   assert(hasLine(id, 0, "pm-perform-state", index), `${id} writes shared state`);
   assert(hasLine("pm-perform-state", index, id, 0), `${id} follows shared state`);
 }
 
-assert.strictEqual(boxes.get("pm-eq-plugin")?.text, "vst~ 2 2 AUNBandEQ", "Apple master EQ host");
-assert.strictEqual(boxes.get("pm-eq-open")?.text, "open", "master EQ editor command");
-assert(hasLine("pm-fx-return", 0, "pm-eq-plugin", 0), "master L to EQ");
-assert(hasLine("pm-fx-return", 1, "pm-eq-plugin", 1), "master R to EQ");
-assert(hasLine("pm-eq-open", 0, "pm-eq-plugin", 0), "open command to EQ");
-assert(hasLine("pm-eq-plugin", 0, "pm-dac", 0), "EQ L to monitor");
-assert(hasLine("pm-eq-plugin", 1, "pm-dac", 1), "EQ R to monitor");
-assert(hasLine("pm-eq-plugin", 0, "pm-meter-l", 0), "EQ L to meter");
-assert(hasLine("pm-eq-plugin", 1, "pm-meter-r", 0), "EQ R to meter");
+assert(!boxes.has("pm-eq-plugin"), "master output must not depend on an external EQ plugin");
 for (const [outlet, destination, inlet] of [
   [0, "pm-dac", 0], [1, "pm-dac", 1],
   [0, "pm-meter-l", 0], [1, "pm-meter-r", 0],
   [0, "pm-recorder", 0], [1, "pm-recorder", 1],
 ]) {
-  assert(!hasLine("pm-fx-return", outlet, destination, inlet), `${destination} must not bypass EQ`);
+  assert(hasLine("pm-fx-return", outlet, destination, inlet), `return mixer to ${destination}`);
 }
 
 assert.strictEqual(boxes.get("pm-recorder")?.text, "sfrecord~ 2", "stereo master recorder");
-assert(hasLine("pm-eq-plugin", 0, "pm-recorder", 0), "EQ L to recorder");
-assert(hasLine("pm-eq-plugin", 1, "pm-recorder", 1), "EQ R to recorder");
 for (const [id, text] of [["pm-rec-open", "open wave"], ["pm-rec-start", "1"], ["pm-rec-stop", "0"]]) {
   assert.strictEqual(boxes.get(id)?.text, text, `${id} command`);
   assert(hasLine(id, 0, "pm-recorder", 0), `${id} to recorder`);

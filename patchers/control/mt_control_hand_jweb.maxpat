@@ -19,7 +19,7 @@
       15,
       15
     ],
-    "description": "Camera hand control source with selectable free hand and tracking-valid safety output.",
+    "description": "Camera hand control source with fixed physical-right parameter output and tracking-valid safety.",
     "tags": "check teacher hand control template modular jweb pror vst mapping",
     "boxes": [
       {
@@ -1188,7 +1188,7 @@
                   ],
                   "numinlets": 1,
                   "numoutlets": 0,
-                  "text": "in 2: free hand 0 Right / 1 Left"
+                  "text": "in 2: tracker slot 0 Right / 1 Left"
                 }
               },
               {
@@ -1201,7 +1201,7 @@
                     30,
                     30
                   ],
-                  "comment": "free hand: 0 Right / 1 Left",
+                  "comment": "tracker slot: 0 Right / 1 Left",
                   "index": 2,
                   "numinlets": 0,
                   "numoutlets": 1,
@@ -1263,7 +1263,7 @@
                   "outlettype": [
                     ""
                   ],
-                  "text": "selector 2"
+                  "text": "switch 2"
                 }
               },
               {
@@ -2418,7 +2418,7 @@
             80,
             22
           ],
-          "text": "loadmess 1"
+          "text": "loadmess 0"
         }
       },
       {
@@ -2649,61 +2649,6 @@
             22
           ],
           "text": "prepend url"
-        }
-      },
-      {
-        "box": {
-          "id": "hj-free-hand-label",
-          "maxclass": "comment",
-          "patching_rect": [
-            620,
-            200,
-            90,
-            20
-          ],
-          "numinlets": 1,
-          "numoutlets": 0,
-          "text": "Free Hand",
-          "presentation": 1,
-          "presentation_rect": [
-            638,
-            14,
-            62,
-            18
-          ]
-        }
-      },
-      {
-        "box": {
-          "id": "hj-free-hand-menu",
-          "maxclass": "umenu",
-          "patching_rect": [
-            620,
-            225,
-            150,
-            22
-          ],
-          "items": [
-            "Right",
-            ",",
-            "Left"
-          ],
-          "numinlets": 1,
-          "numoutlets": 3,
-          "outlettype": [
-            "int",
-            "",
-            ""
-          ],
-          "parameter_enable": 0,
-          "presentation": 1,
-          "presentation_rect": [
-            708,
-            12,
-            78,
-            22
-          ],
-          "varname": "free_hand_selector"
         }
       },
       {
@@ -3237,18 +3182,6 @@
         "patchline": {
           "source": [
             "hj-free-hand-default",
-            0
-          ],
-          "destination": [
-            "hj-free-hand-menu",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "source": [
-            "hj-free-hand-menu",
             0
           ],
           "destination": [

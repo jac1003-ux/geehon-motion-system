@@ -1,14 +1,14 @@
 // IIFE for top level await
 (async () => { 
 const vision = await import("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/vision_bundle.js"); 
-const { HandLandmarker, FilesetResolver, DrawingUtils } = vision;
+const { GestureRecognizer, FilesetResolver, DrawingUtils } = vision;
 
 const video = document.getElementById('videoel');
 const image = document.getElementById('imageel');
 const overlay = document.getElementById('overlay');
 const canvas = overlay.getContext('2d');
 
-let handLandmarker;
+let gestureRecognizer;
 let camera;
 
 let drawImage = true;
@@ -114,7 +114,7 @@ const startVideo = () => {
         let nowInMs = Date.now();
         if (lastVideoTime !== video.currentTime) {
           lastVideoTime = video.currentTime;
-          results = handLandmarker.detectForVideo(video, nowInMs);
+          results = gestureRecognizer.recognizeForVideo(video, nowInMs);
           results.image = video;
           onResultsHands(results);
         }
@@ -143,11 +143,11 @@ const setRunningMode = async (running_mode) => {
     case "IMAGE":
       stopBothVideoAndAudio();
       runningMode = running_mode; 
-      await handLandmarker.setOptions({ runningMode: running_mode }); 
+      await gestureRecognizer.setOptions({ runningMode: running_mode }); 
       return
     case "VIDEO":
       runningMode = running_mode; 
-      await handLandmarker.setOptions({ runningMode: running_mode }); 
+      await gestureRecognizer.setOptions({ runningMode: running_mode }); 
       startVideo();
       return      
     default:
@@ -156,7 +156,7 @@ const setRunningMode = async (running_mode) => {
 };
 
 const detectImage = async () => {
-  let results = handLandmarker.detect(image); 
+  let results = gestureRecognizer.recognize(image); 
   results.image = image;
   onResultsHands(results);
 };
@@ -166,6 +166,52 @@ image.onload = detectImage;
 let lastVideoTime = -1;
 let results = undefined;
 const drawingUtils = new DrawingUtils(canvas);
+
+function zonePalmCenter(hand) {
+  const names = ["wrist", "index_finger_mcp", "middle_finger_mcp", "pinky_finger_mcp"];
+  if (!hand || names.some((name) => !hand[name])) return null;
+  return names.reduce((center, name) => ({
+    x: center.x + hand[name].x / names.length,
+    y: center.y + hand[name].y / names.length
+  }), { x: 0, y: 0 });
+}
+
+function drawControlZone(output) {
+  const inset = 4;
+  const width = overlay.width * 0.5 - inset * 2;
+  const height = overlay.height * 0.65 - inset * 2;
+  const x = inset; // CSS mirror places this half on the visible right.
+  const y = overlay.height * 0.175 + inset;
+  const gateHand = output.Left;
+  const controlCenter = zonePalmCenter(output.Right);
+  const open = Number(gateHand?.Gestures?.Open_Palm) || 0;
+  const fist = Number(gateHand?.Gestures?.Closed_Fist) || 0;
+  const inside = controlCenter
+    && controlCenter.x >= 0 && controlCenter.x <= 0.5
+    && controlCenter.y >= 0.175 && controlCenter.y <= 0.825;
+  const color = !gateHand || !controlCenter
+    ? "#86958f"
+    : open >= 0.6 && open > fist && inside
+      ? "#52a875"
+      : "#d3aa32";
+
+  canvas.save();
+  canvas.fillStyle = color + "18";
+  canvas.strokeStyle = color;
+  canvas.lineWidth = 3;
+  canvas.setLineDash([10, 8]);
+  canvas.fillRect(x, y, width, height);
+  canvas.strokeRect(x, y, width, height);
+  canvas.setLineDash([]);
+  canvas.lineWidth = 2;
+  canvas.beginPath();
+  canvas.moveTo(x + width / 2 - 18, y + height / 2);
+  canvas.lineTo(x + width / 2 + 18, y + height / 2);
+  canvas.moveTo(x + width / 2, y + height / 2 - 18);
+  canvas.lineTo(x + width / 2, y + height / 2 + 18);
+  canvas.stroke();
+  canvas.restore();
+}
 
 function onResultsHands(results) {
 
@@ -186,6 +232,12 @@ function onResultsHands(results) {
           const handName = flipHands ? hand[0].categoryName === "Right" ? "Left" : "Right" : hand[0].categoryName;
           output[handName] = output[handName] || {};
           output[handName][landmark] = results.landmarks[handIndex][index];
+          if (results.gestures?.[handIndex]?.length) {
+            const gesture = results.gestures[handIndex][0];
+            output[handName]["Gestures"] = {
+              [gesture.categoryName]: gesture.score
+            };
+          }
         } catch (e) {
           console.error(e);
         }
@@ -193,10 +245,12 @@ function onResultsHands(results) {
     }
   }
 
+  drawControlZone(output);
+
   if (results.landmarks) {
     for (const landmarks of results.landmarks) {
       if(drawHands) {
-        drawingUtils.drawConnectors(landmarks, HandLandmarker.HAND_CONNECTIONS, {
+        drawingUtils.drawConnectors(landmarks, GestureRecognizer.HAND_CONNECTIONS, {
           color: "#00FF00",
           lineWidth: 1
         });
@@ -219,9 +273,9 @@ function onResultsHands(results) {
 const filesetResolver = await FilesetResolver.forVisionTasks(
   "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.0/wasm"
 );
-handLandmarker = await HandLandmarker.createFromOptions(filesetResolver, {
+gestureRecognizer = await GestureRecognizer.createFromOptions(filesetResolver, {
   baseOptions: {
-    modelAssetPath: `https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task`,
+    modelAssetPath: `https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task`,
     delegate: "GPU"
   },
   runningMode: runningMode,

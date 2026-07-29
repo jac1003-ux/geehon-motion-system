@@ -207,7 +207,7 @@
 , 			{
 				"box" : 				{
 					"id" : "g-preset",
-					"items" : [ "Safe Cloud", ",", "Frozen Pad" ],
+					"items" : [ "Safe Cloud", ",", "Frozen Pad", ",", "Rhythmic Dust" ],
 					"maxclass" : "umenu",
 					"numinlets" : 1,
 					"numoutlets" : 3,
@@ -767,11 +767,11 @@
 								"box" : 								{
 									"id" : "gc-preset-select",
 									"maxclass" : "newobj",
-									"numinlets" : 3,
-									"numoutlets" : 3,
-									"outlettype" : [ "bang", "bang", "" ],
+									"numinlets" : 4,
+									"numoutlets" : 4,
+									"outlettype" : [ "bang", "bang", "bang", "" ],
 									"patching_rect" : [ 760.0, 130.0, 60.0, 22.0 ],
-									"text" : "sel 0 1"
+									"text" : "sel 0 1 2"
 								}
 
 							}
@@ -796,6 +796,18 @@
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 930.0, 180.0, 165.0, 22.0 ],
 									"text" : "95 56 280.117862 0 6.4 -32 0"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "gc-rhythmic-values",
+									"maxclass" : "message",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 1100.0, 180.0, 150.0, 22.0 ],
+									"text" : "70 72 45 7 180 -36 0"
 								}
 
 							}
@@ -1255,8 +1267,25 @@
 , 							{
 								"patchline" : 								{
 									"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+									"destination" : [ "gc-param-unpack", 0 ],
+									"source" : [ "gc-rhythmic-values", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"color" : [ 1.0, 0.62, 0.24, 1.0 ],
 									"destination" : [ "gc-duration-set", 0 ],
 									"source" : [ "gc-duration-format", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"color" : [ 1.0, 0.62, 0.24, 1.0 ],
+									"destination" : [ "gc-rhythmic-values", 0 ],
+									"midpoints" : [ 805.0, 166.0, 1109.5, 166.0 ],
+									"source" : [ "gc-preset-select", 2 ]
 								}
 
 							}

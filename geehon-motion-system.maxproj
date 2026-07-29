@@ -42,6 +42,26 @@
         "kind": "patcher",
         "local": 1
       },
+      "mt_mod_bitcrusher.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "mt_mod_feedback_delay.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "mt_mod_multiband_filter.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "mt_mod_multiband_filter_v2.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
+      "mt_mod_performance_filter.maxpat": {
+        "kind": "patcher",
+        "local": 1
+      },
       "mt_mod_vocal_chop.maxpat": {
         "kind": "patcher",
         "local": 1

@@ -4,6 +4,7 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const patchPath = path.join(root, "patchers", "inputs", "mt_input_mic_ui.maxpat");
+const selectionWatchPath = path.join(root, "javascript", "mt_filtergraph_selection.js");
 
 function boxMap(patcher) {
   return new Map((patcher.boxes || []).map((entry) => [entry.box.id, entry.box]));
@@ -91,6 +92,108 @@ assert([...coreBoxes.values()].some((box) => box.text === "$1 20"), "Enable 20 m
 assert([...coreBoxes.values()].some((box) => box.text === "0 20"), "route fade-down missing");
 assert([...coreBoxes.values()].some((box) => box.text === "1 20"), "route fade-up missing");
 assert([...coreBoxes.values()].some((box) => box.text === "pipe 20"), "route switch delay missing");
+
+const eq = boxes.get("p-Mic-eq");
+assert(eq && eq.patcher, "missing embedded Mic EQ");
+assert.strictEqual(eq.numinlets, 2, "Mic EQ must receive stereo L/R");
+assert.strictEqual(eq.numoutlets, 2, "Mic EQ must output stereo L/R");
+const eqBoxes = boxMap(eq.patcher);
+const filtergraph = [...eqBoxes.values()].find((box) => box.maxclass === "filtergraph~");
+assert(filtergraph && filtergraph.nfilters === 7, "Mic EQ must use a 7-band filtergraph~");
+assert.strictEqual(
+  [...eqBoxes.values()].filter((box) => box.text === "cascade~").length,
+  2,
+  "Mic EQ must use one cascade~ per channel"
+);
+for (const varname of ["mic_eq_frequency", "mic_eq_gain_db", "mic_eq_q"]) {
+  assert([...eqBoxes.values()].some((box) => box.varname === varname), `missing EQ control ${varname}`);
+}
+for (const parameter of ["p-Mic-eq::eq-freq", "p-Mic-eq::eq-gain", "p-Mic-eq::eq-q"]) {
+  assert(p.parameters?.[parameter], `missing registered EQ parameter ${parameter}`);
+}
+const eqLines = (eq.patcher.lines || []).map((entry) => entry.patchline);
+const hasEqLine = (source, destination) => eqLines.some((patchline) =>
+  patchline.source[0] === source && patchline.destination[0] === destination
+);
+const hasExactEqLine = (source, sourceOutlet, destination, destinationInlet) => eqLines.some((patchline) =>
+  patchline.source[0] === source &&
+  patchline.source[1] === sourceOutlet &&
+  patchline.destination[0] === destination &&
+  patchline.destination[1] === destinationInlet
+);
+for (const [gate, setter, control] of [
+  ["eq-feedback-freq", "eq-set-freq", "eq-freq"],
+  ["eq-feedback-gain", "eq-set-gain", "eq-gain"],
+  ["eq-feedback-q", "eq-set-q", "eq-q"],
+]) {
+  assert.strictEqual(eqBoxes.get(gate)?.text, "gate 1 1", `missing guarded EQ feedback ${gate}`);
+  assert(hasEqLine(gate, setter) && hasEqLine(setter, control), `${control} feedback must pass through set`);
+}
+assert.strictEqual(eqBoxes.get("eq-band-set")?.text, "prepend set", "EQ band display must update without feedback");
+assert(
+  hasEqLine("eq-band-plus", "eq-band-set") &&
+  hasEqLine("eq-band-set", "eq-band"),
+  "EQ node click must update BAND"
+);
+assert.strictEqual(
+  eqBoxes.get("eq-band-select")?.text,
+  "selectfilt $1, bang",
+  "BAND must select and query the matching filtergraph node"
+);
+assert(
+  hasEqLine("eq-band", "eq-band-minus") &&
+  hasEqLine("eq-band-select", "eq-graph"),
+  "BAND must control filtergraph selection"
+);
+assert.strictEqual(filtergraph.varname, "mic_eq_graph", "filtergraph~ needs a stable name for selected-node state");
+assert(
+  eqBoxes.get("eq-selected-pattr")?.text.includes("@bindto mic_eq_graph::edit_filter"),
+  "selected EQ node must follow filtergraph~ edit_filter"
+);
+for (const gate of ["eq-selected-freq", "eq-selected-gain", "eq-selected-q"]) {
+  assert.strictEqual(eqBoxes.get(gate)?.text, "gate 1 1", `missing selected-node filter ${gate}`);
+}
+assert(
+  hasEqLine("eq-selected-pattr", "eq-selected-trigger") &&
+  hasEqLine("eq-graph", "eq-index-match") &&
+  hasEqLine("eq-index-match", "eq-index-gates"),
+  "filtergraph feedback must be restricted to the selected node"
+);
+assert.strictEqual(
+  eqBoxes.get("eq-selection-watch")?.text,
+  "js Patcher:/../../javascript/mt_filtergraph_selection.js",
+  "graph selection needs a mouse-selection watcher"
+);
+assert(
+  eqBoxes.get("eq-mouse-state")?.text === "mousestate" &&
+  eqBoxes.get("eq-mouse-start")?.text === "mode 1" &&
+  eqBoxes.get("eq-mouse-poll")?.text === "qmetro 20 @active 1" &&
+  eqBoxes.get("eq-filter-state")?.text === "pak i f f f" &&
+  hasEqLine("eq-selection-watch", "eq-band") &&
+  hasEqLine("eq-mouse-state", "eq-selection-watch") &&
+  hasEqLine("eq-mouse-poll", "eq-mouse-state") &&
+  hasEqLine("eq-filter-state", "eq-selection-watch"),
+  "graph clicks and BAND edits must share one selected-node path"
+);
+assert(fs.existsSync(selectionWatchPath), "EQ selection watcher script is missing");
+const selectionWatch = fs.readFileSync(selectionWatchPath, "utf8");
+assert(selectionWatch.includes("selectNearest"), "selection watcher must hit-test EQ nodes");
+assert(selectionWatch.includes("clickedFrequency"), "selection watcher must use logarithmic frequency position");
+assert(selectionWatch.includes("outlet(0, nearest + 1)"), "selection watcher must report the one-based BAND value");
+assert(!selectionWatch.includes("EQ_SELECTION_DEBUG"), "selection watcher must not log per-click debug output");
+const rootLines = p.lines.map((entry) => entry.patchline);
+const hasRootLine = (source, destination) => rootLines.some((patchline) =>
+  patchline.source[0] === source && patchline.destination[0] === destination
+);
+assert(hasRootLine("p-Mic-input", "p-Mic-eq"), "Mic DSP must feed the embedded EQ");
+assert(hasRootLine("p-Mic-eq", "m-gain"), "Mic EQ must feed the output gain");
+assert(!hasRootLine("p-Mic-input", "m-gain"), "Mic audio must not bypass the EQ");
+assert(boxes.get("m-eq-open")?.varname === "mic_eq_open", "missing Mic EQ editor button");
+assert(
+  [...eqBoxes.values()].some((box) => box.text === "flat 0 1 2 3 4 5 6, edit_filter 0, selectfilt 0, bang"),
+  "missing EQ flat reset"
+);
+
 const approvedColors = new Set([
   JSON.stringify([0.44, 0.72, 1, 1]),
   JSON.stringify([1, 0.62, 0.24, 1]),

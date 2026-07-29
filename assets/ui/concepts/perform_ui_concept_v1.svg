@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <style>
+    .title { font-family: Arial, sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 0; fill: #2d443b; }
+    .section { font-family: Arial, sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0; fill: #314b41; }
+    .label { font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0; fill: #486057; }
+    .small { font-family: Arial, sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0; fill: #71867d; }
+    .tiny { font-family: Arial, sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0; fill: #81958d; }
+    .value { font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0; fill: #263b33; }
+    .white { fill: #f8faf7; }
+    .panel { fill: #fbfcfa; stroke: #b8cbc1; stroke-width: 1.5; }
+    .slot { fill: #f3f7f3; stroke: #c4d3cb; stroke-width: 1.25; }
+    .button { fill: #fffdf4; stroke: #dab33c; stroke-width: 1.5; }
+  </style>
+
+  <rect width="1600" height="900" fill="#edf2ee"/>
+  <rect x="0" y="0" width="1600" height="78" fill="#29443a"/>
+
+  <!-- Brand mark -->
+  <g transform="translate(45 39) scale(.23)">
+    <path d="M-5-13C-13-39-10-64 1-76C13-63 12-38 5-13Z" fill="#e4bd46"/>
+    <path d="M-5-13C-12-34-9-55 1-65C12-54 11-33 5-13Z" fill="#f0d273" transform="rotate(45)"/>
+    <path d="M-5-13C-13-37-10-60 1-70C13-58 12-35 5-13Z" fill="#d9ad35" transform="rotate(90)"/>
+    <path d="M-5-13C-11-31-8-50 1-59C11-49 10-30 5-13Z" fill="#ebc95e" transform="rotate(135)"/>
+    <path d="M-5-13C-12-35-9-57 1-67C12-56 11-34 5-13Z" fill="#dcae37" transform="rotate(180)"/>
+    <path d="M-6-13C-15-35-10-58 2-68C16-54 14-32 6-13Z" fill="#7fa47b" transform="rotate(225)"/>
+    <path d="M-5-13C-11-30-8-48 1-57C11-47 10-29 5-13Z" fill="#f0d06e" transform="rotate(270)"/>
+    <path d="M-5-13C-12-34-9-55 1-64C12-53 11-32 5-13Z" fill="#e1b63e" transform="rotate(315)"/>
+    <circle cx="1" cy="0" r="14" fill="#f3dc88"/>
+  </g>
+  <text x="78" y="34" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#f8faf7">JUHUA / MOTION INSTRUMENT</text>
+  <text x="78" y="55" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#b9cbc2">GESTURE-CONTROLLED AUDIO PERFORMANCE SYSTEM</text>
+
+  <rect x="1314" y="20" width="116" height="38" rx="7" fill="#35564a" stroke="#86aa96"/>
+  <circle cx="1337" cy="39" r="6" fill="#85b691"/>
+  <text x="1352" y="43" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#eef5ef">TRACKING</text>
+  <rect x="1442" y="20" width="126" height="38" rx="7" fill="#f4cb49"/>
+  <circle cx="1466" cy="39" r="7" fill="#29443a"/>
+  <text x="1482" y="43" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#29443a">DSP ON</text>
+
+  <!-- Navigation -->
+  <rect x="0" y="78" width="1600" height="58" fill="#dde8e0"/>
+  <rect x="28" y="89" width="208" height="36" rx="6" fill="#f4cb49"/>
+  <text x="102" y="112" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#29443a">PERFORM</text>
+  <text x="323" y="112" class="label">SOURCE</text>
+  <text x="474" y="112" class="label">FX</text>
+  <text x="596" y="112" class="label">GESTURE</text>
+  <text x="765" y="112" class="label">MASTER</text>
+  <text x="1320" y="112" class="small">PROFILE</text>
+  <rect x="1381" y="94" width="187" height="26" rx="5" fill="#f9fbf8" stroke="#afc2b8"/>
+  <text x="1395" y="112" class="label">VOCAL / RIGHT HAND</text>
+
+  <!-- Source quick controls -->
+  <rect x="28" y="156" width="326" height="470" rx="8" class="panel"/>
+  <text x="50" y="188" class="title">SOURCE</text>
+  <text x="50" y="207" class="small">QUICK INPUT CONTROL</text>
+
+  <g transform="translate(48 228)">
+    <rect width="286" height="105" rx="7" class="slot"/>
+    <circle cx="28" cy="28" r="14" fill="#eaf3ec" stroke="#8bb49f" stroke-width="2"/>
+    <circle cx="28" cy="28" r="6" fill="#4f8972"/>
+    <text x="54" y="25" class="section">MIC</text>
+    <text x="54" y="43" class="tiny">LIVE INPUT</text>
+    <rect x="18" y="66" width="126" height="25" rx="4" fill="#fff" stroke="#c5d4cc"/>
+    <text x="29" y="83" class="small">MONO CH 1</text>
+    <text x="169" y="84" class="small">GAIN</text>
+    <rect x="216" y="70" width="53" height="17" rx="3" fill="#243830"/>
+    <text x="224" y="83" font-family="Arial, sans-serif" font-size="10" fill="#fff">0.0 dB</text>
+  </g>
+
+  <g transform="translate(48 347)">
+    <rect width="286" height="105" rx="7" class="slot"/>
+    <circle cx="28" cy="28" r="14" fill="#fff8da" stroke="#d8b63d" stroke-width="2"/>
+    <path d="M23 20h9l5 5v13H23zM32 20v6h5" fill="none" stroke="#b18a1e" stroke-width="1.5"/>
+    <text x="54" y="25" class="section">FILE</text>
+    <text x="54" y="43" class="tiny">NO FILE LOADED</text>
+    <rect x="18" y="66" width="126" height="25" rx="4" fill="#fff" stroke="#c5d4cc"/>
+    <text x="29" y="83" class="small">PLAY / LOOP</text>
+    <text x="169" y="84" class="small">GAIN</text>
+    <rect x="216" y="70" width="53" height="17" rx="3" fill="#243830"/>
+    <text x="221" y="83" font-family="Arial, sans-serif" font-size="10" fill="#fff">-3.0 dB</text>
+  </g>
+
+  <g transform="translate(48 466)">
+    <rect width="286" height="138" rx="7" class="slot"/>
+    <circle cx="28" cy="28" r="14" fill="#eaf3ec" stroke="#8bb49f" stroke-width="2"/>
+    <circle cx="24" cy="25" r="3" fill="#d7b33b"/><circle cx="33" cy="22" r="3" fill="#75a987"/>
+    <circle cx="29" cy="33" r="4" fill="#8bbca1"/>
+    <text x="54" y="25" class="section">GRANULAR</text>
+    <text x="54" y="43" class="tiny">TEXTURE SOURCE</text>
+    <rect x="18" y="62" width="251" height="30" rx="4" fill="#1f2522"/>
+    <path d="M20 78l10-4 9 7 11-13 12 18 12-11 10 3 13-9 12 17 10-10 12 5 12-16 12 21 11-12 13 5 11-8 11 10 10-4 12 3" fill="none" stroke="#8fbca4" stroke-width="1.5"/>
+    <text x="18" y="117" class="small">GAIN</text>
+    <rect x="59" y="103" width="61" height="20" rx="3" fill="#243830"/>
+    <text x="70" y="117" font-family="Arial, sans-serif" font-size="10" fill="#fff">0.0 dB</text>
+    <text x="161" y="117" class="small">WET 90%</text>
+  </g>
+
+  <!-- Gesture viewport -->
+  <rect x="374" y="156" width="752" height="470" rx="8" class="panel"/>
+  <text x="396" y="188" class="title">GESTURE VIEW</text>
+  <text x="396" y="207" class="small">PRIMARY PERFORMANCE FEEDBACK</text>
+  <rect x="850" y="174" width="92" height="28" rx="5" fill="#eff5f0" stroke="#abc0b4"/>
+  <text x="869" y="193" class="label">MIRROR</text>
+  <rect x="950" y="174" width="95" height="28" rx="5" fill="#eff5f0" stroke="#abc0b4"/>
+  <text x="963" y="193" class="label">CALIBRATE</text>
+  <circle cx="1093" cy="188" r="8" fill="#83b492"/>
+
+  <rect x="396" y="224" width="708" height="336" rx="6" fill="#d9e4dd"/>
+  <rect x="410" y="238" width="680" height="308" rx="4" fill="#bdcec4"/>
+  <path d="M410 470C535 423 598 442 697 487C801 535 908 469 1090 431V546H410Z" fill="#a8bdb1"/>
+  <rect x="432" y="259" width="636" height="265" fill="none" stroke="#e2bc3f" stroke-width="1.5" stroke-dasharray="7 6"/>
+  <!-- performer silhouette and tracking skeleton -->
+  <circle cx="752" cy="330" r="46" fill="#738d80"/>
+  <path d="M665 492C674 412 705 382 752 382C799 382 833 414 842 492Z" fill="#698679"/>
+  <path d="M751 382V470M751 409L688 444M751 409L826 435M688 444L643 399M826 435L874 382" fill="none" stroke="#f4cb49" stroke-width="3"/>
+  <circle cx="752" cy="382" r="5" fill="#f4cb49"/><circle cx="751" cy="409" r="5" fill="#f4cb49"/>
+  <circle cx="688" cy="444" r="5" fill="#f4cb49"/><circle cx="826" cy="435" r="5" fill="#f4cb49"/>
+  <circle cx="643" cy="399" r="7" fill="#f4cb49"/><circle cx="874" cy="382" r="7" fill="#f4cb49"/>
+  <rect x="420" y="496" width="165" height="34" rx="5" fill="#29443a" opacity=".9"/>
+  <circle cx="438" cy="513" r="6" fill="#84bc92"/>
+  <text x="453" y="517" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#fff">RIGHT HAND ACTIVE</text>
+
+  <rect x="396" y="574" width="708" height="32" rx="5" fill="#f4f0d8"/>
+  <text x="413" y="594" class="label">MAPPING</text>
+  <text x="492" y="594" class="small">Unassigned</text>
+  <line x1="585" y1="584" x2="585" y2="598" stroke="#bdc9c2"/>
+  <text x="606" y="594" class="small">Confidence 96%</text>
+  <line x1="746" y1="584" x2="746" y2="598" stroke="#bdc9c2"/>
+  <text x="766" y="594" class="small">Safety clutch ready</text>
+
+  <!-- FX quick controls -->
+  <rect x="1146" y="156" width="426" height="470" rx="8" class="panel"/>
+  <text x="1168" y="188" class="title">FX RETURNS</text>
+  <text x="1168" y="207" class="small">ENABLE AND BLEND</text>
+
+  <g transform="translate(1166 228)">
+    <rect width="386" height="82" rx="7" class="slot"/>
+    <circle cx="27" cy="26" r="11" fill="#4f8972"/>
+    <path d="M20 26h14M23 21v10M28 18v16M33 22v8" stroke="#fff" stroke-width="1.3"/>
+    <text x="50" y="27" class="section">VOCODER</text>
+    <text x="50" y="46" class="tiny">SPECTRAL VOICE</text>
+    <rect x="239" y="18" width="56" height="20" rx="3" fill="#243830"/>
+    <text x="249" y="32" font-family="Arial, sans-serif" font-size="10" fill="#fff">0.0 dB</text>
+    <circle cx="350" cy="28" r="14" fill="#eef4ef" stroke="#98b5a6" stroke-width="2"/>
+    <circle cx="350" cy="28" r="6" fill="#4f8972"/>
+    <text x="239" y="59" class="small">RETURN GAIN</text>
+  </g>
+
+  <g transform="translate(1166 322)">
+    <rect width="386" height="82" rx="7" class="slot"/>
+    <circle cx="27" cy="26" r="11" fill="#4f8972"/>
+    <path d="M18 27h7l3-8 4 16 4-8h6" fill="none" stroke="#fff" stroke-width="1.5"/>
+    <text x="50" y="27" class="section">VOCAL CHOP</text>
+    <text x="50" y="46" class="tiny">LIVE SLICE</text>
+    <rect x="239" y="18" width="56" height="20" rx="3" fill="#243830"/>
+    <text x="249" y="32" font-family="Arial, sans-serif" font-size="10" fill="#fff">0.0 dB</text>
+    <circle cx="350" cy="28" r="14" fill="#eef4ef" stroke="#98b5a6" stroke-width="2"/>
+    <circle cx="350" cy="28" r="6" fill="#4f8972"/>
+    <text x="239" y="59" class="small">RETURN GAIN</text>
+  </g>
+
+  <g transform="translate(1166 416)">
+    <rect width="386" height="82" rx="7" class="slot"/>
+    <circle cx="27" cy="26" r="11" fill="#4f8972"/>
+    <path d="M17 27c6-15 13-15 19 0s13 15 19 0" fill="none" stroke="#fff" stroke-width="1.5"/>
+    <text x="50" y="27" class="section">TREMOLO</text>
+    <text x="50" y="46" class="tiny">STEREO MOTION</text>
+    <rect x="239" y="18" width="56" height="20" rx="3" fill="#243830"/>
+    <text x="249" y="32" font-family="Arial, sans-serif" font-size="10" fill="#fff">0.0 dB</text>
+    <circle cx="350" cy="28" r="14" fill="#eef4ef" stroke="#98b5a6" stroke-width="2"/>
+    <circle cx="350" cy="28" r="6" fill="#4f8972"/>
+    <text x="239" y="59" class="small">RETURN GAIN</text>
+  </g>
+
+  <g transform="translate(1166 510)">
+    <rect width="386" height="94" rx="7" fill="#fbfcfa" stroke="#c3d0c9" stroke-width="1.5" stroke-dasharray="6 5"/>
+    <circle cx="42" cy="47" r="18" fill="#f8f4df" stroke="#d7b33b"/>
+    <path d="M42 38v18M33 47h18" stroke="#a98219" stroke-width="2"/>
+    <text x="75" y="44" class="section">ADD FX RETURN</text>
+    <text x="75" y="64" class="small">Reserved for the next processor</text>
+  </g>
+
+  <!-- Master strip -->
+  <rect x="28" y="646" width="1544" height="224" rx="8" class="panel"/>
+  <text x="50" y="679" class="title">MASTER / UTILITIES</text>
+  <text x="50" y="698" class="small">FINAL CONTROL, EDITORS AND EXPORT</text>
+
+  <g transform="translate(48 718)">
+    <rect width="258" height="128" rx="7" class="slot"/>
+    <text x="18" y="27" class="section">NOISE GATE</text>
+    <circle cx="227" cy="23" r="7" fill="#85b691"/>
+    <text x="18" y="54" class="small">MIC FOLLOW</text>
+    <text x="18" y="79" class="value">-45 dBFS</text>
+    <text x="18" y="101" class="tiny">DETAILS IN MIC INPUT</text>
+  </g>
+
+  <g transform="translate(320 718)">
+    <rect width="300" height="128" rx="7" class="slot"/>
+    <text x="18" y="27" class="section">7-BAND EQ</text>
+    <text x="18" y="47" class="tiny">APPLE AUNBANDEQ</text>
+    <path d="M20 78C48 93 62 55 91 69S134 98 163 70S210 50 276 82" fill="none" stroke="#5b9c91" stroke-width="2"/>
+    <rect x="190" y="18" width="91" height="30" rx="5" class="button"/>
+    <text x="207" y="38" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#8c6b13">OPEN EQ</text>
+  </g>
+
+  <g transform="translate(634 718)">
+    <rect width="470" height="128" rx="7" class="slot"/>
+    <text x="18" y="27" class="section">RECORD / EXPORT</text>
+    <text x="18" y="49" class="small">No destination selected</text>
+    <rect x="18" y="72" width="130" height="34" rx="5" fill="#fff" stroke="#b6c8bf"/>
+    <text x="37" y="94" class="label">CHOOSE FILE</text>
+    <rect x="158" y="72" width="100" height="34" rx="5" class="button"/>
+    <circle cx="178" cy="89" r="6" fill="#c44f45"/>
+    <text x="192" y="94" class="label">RECORD</text>
+    <rect x="268" y="72" width="82" height="34" rx="5" fill="#fff" stroke="#b6c8bf"/>
+    <rect x="284" y="83" width="11" height="11" fill="#4c6258"/>
+    <text x="305" y="94" class="label">STOP</text>
+    <text x="384" y="94" class="small">00:00</text>
+  </g>
+
+  <g transform="translate(1118 700)">
+    <rect width="430" height="146" rx="7" fill="#f9f8ef" stroke="#d8b640" stroke-width="1.5"/>
+    <text x="20" y="31" class="section">MASTER OUTPUT</text>
+    <text x="20" y="58" class="value">0.0 dB</text>
+    <rect x="149" y="28" width="168" height="14" rx="7" fill="#dce6df"/>
+    <rect x="149" y="28" width="128" height="14" rx="7" fill="#79a78a"/>
+    <rect x="149" y="52" width="168" height="14" rx="7" fill="#dce6df"/>
+    <rect x="149" y="52" width="117" height="14" rx="7" fill="#79a78a"/>
+    <text x="329" y="39" class="tiny">L</text>
+    <text x="329" y="63" class="tiny">R</text>
+    <rect x="20" y="88" width="126" height="38" rx="6" class="button"/>
+    <text x="44" y="112" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#8c6b13">MUTE ALL</text>
+    <circle cx="376" cy="107" r="22" fill="#29443a"/>
+    <path d="M366 107h6l9-8v16l-9-8h-6M385 101c5 4 5 8 0 12" fill="none" stroke="#f5d363" stroke-width="2"/>
+  </g>
+</svg>

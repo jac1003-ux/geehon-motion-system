@@ -39,8 +39,9 @@ assert(handCore && handCore.patcher, "Missing Hand_control core");
 assert.strictEqual(handCore.numinlets, 2);
 assert.strictEqual(handCore.numoutlets, 6);
 assert.strictEqual(find(handCore.patcher, "hp-right").text, "dict.unpack Left: Right:");
-assert.strictEqual(find(hand, "hj-free-hand-menu").items[0], "Right");
+assert.strictEqual(find(hand, "hj-free-hand-menu"), undefined);
 assert.strictEqual(find(hand, "hj-free-hand-default").text, "loadmess 0");
+assert(connected(hand, "hj-free-hand-default", 0, "th-hand-control", 1));
 assert.strictEqual(sortedPorts(hand, "outlet").length, 5);
 assert.deepStrictEqual(
   sortedPorts(hand, "outlet").map((item) => item.comment || ""),

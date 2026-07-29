@@ -123,14 +123,34 @@ function updateMain() {
   const patcher = document.patcher;
   const boxes = boxMap(patcher);
 
+  const modulePaths = {
+    "pm-mic": "mt_input_mic_ui.maxpat",
+    "pm-file": "mt_input_file_ui.maxpat",
+    "pm-grain": "mt_input_granular_ui.maxpat",
+    "pm-mixer": "mt_input_mixer_ui.maxpat",
+    "pm-vocoder": "mt_mod_vocoder.maxpat",
+    "pm-fx-return": "mt_fx_return_mixer.maxpat",
+    "pm-hand": "mt_control_hand_jweb.maxpat",
+    "pm-bitcrusher": "mt_mod_bitcrusher.maxpat",
+    "pm-feedback-delay": "mt_mod_feedback_delay.maxpat",
+    "pm-multiband": "mt_mod_multiband_filter_v2.maxpat",
+  };
+  for (const [id, name] of Object.entries(modulePaths)) {
+    boxes.get(id).name = name;
+  }
+  boxes.get("pm-hand").numoutlets = 5;
+  boxes.get("pm-hand").outlettype = ["", "", "", "", ""];
+  patcher.boxes = patcher.boxes.filter((entry) => entry.box.id !== "pm-project-paths");
+
   const oldIds = new Set([
     "pm-perform-bg",
     "pm-perform-mic",
     "pm-perform-file",
     "pm-perform-grain",
     "pm-perform-vocoder",
-    "pm-perform-chop",
-    "pm-perform-tremolo",
+    "pm-perform-bitcrusher",
+    "pm-perform-feedback-delay",
+    "pm-perform-multiband",
     "pm-perform-state",
   ]);
   patcher.boxes = patcher.boxes.filter((entry) => !oldIds.has(entry.box.id));
@@ -153,7 +173,7 @@ function updateMain() {
       numoutlets: 1,
       outlettype: ["jit_matrix"],
       patching_rect: [1980, 20, 346, 169],
-      pic: "../assets/ui/perform_shell_v2.png",
+      pic: "perform_shell_v2.png",
       presentation: 1,
       presentation_rect: [0, 96, 1732, 845],
       varname: "ui_perform_shell",
@@ -164,9 +184,10 @@ function updateMain() {
     ["pm-perform-mic", "ui_perform_mic", [282, 256, 48, 28]],
     ["pm-perform-file", "ui_perform_file", [282, 380, 48, 28]],
     ["pm-perform-grain", "ui_perform_grain", [282, 504, 48, 28]],
-    ["pm-perform-vocoder", "ui_perform_vocoder", [1620, 256, 48, 28]],
-    ["pm-perform-chop", "ui_perform_chop", [1620, 380, 48, 28]],
-    ["pm-perform-tremolo", "ui_perform_tremolo", [1620, 504, 48, 28]],
+    ["pm-perform-vocoder", "ui_perform_vocoder", [1620, 238, 48, 28]],
+    ["pm-perform-bitcrusher", "ui_perform_bitcrusher", [1620, 337, 48, 28]],
+    ["pm-perform-feedback-delay", "ui_perform_feedback_delay", [1620, 436, 48, 28]],
+    ["pm-perform-multiband", "ui_perform_multiband", [1620, 535, 48, 28]],
   ];
   quick.forEach(([id, varname, rect], index) => {
     patcher.boxes.push(quickButton(id, varname, rect, 1860 + index * 72, 980));
@@ -177,16 +198,17 @@ function updateMain() {
     "mt_file_enable_state",
     "mt_granular_enable_state",
     "mt_vocoder_enable_state",
-    "mt_chop_enable_state",
-    "mt_tremolo_enable_state",
+    "mt_bitcrusher_enable_state",
+    "mt_feedback_delay_enable_state",
+    "mt_multiband_filter_enable_state",
   ];
   patcher.boxes.push({
     box: {
       id: "pm-perform-state",
       maxclass: "newobj",
-      numinlets: 6,
-      numoutlets: 6,
-      outlettype: ["", "", "", "", "", ""],
+      numinlets: 7,
+      numoutlets: 7,
+      outlettype: ["", "", "", "", "", "", ""],
       patcher: quickStatePatcher(stateNames),
       patching_rect: [1860, 1040, 150, 22],
       text: "p Perform_quick_state",
@@ -202,7 +224,6 @@ function updateMain() {
 
   const refreshed = boxMap(patcher);
   setPresentation(refreshed.get("pm-hand"), [402, 222, 798, 420]);
-  setPresentation(refreshed.get("pm-eq-open"), [620, 838, 82, 24]);
   setPresentation(refreshed.get("pm-rec-open"), [918, 838, 82, 24]);
   setPresentation(refreshed.get("pm-rec-start"), [1010, 838, 44, 24]);
   setPresentation(refreshed.get("pm-rec-stop"), [1064, 838, 44, 24]);
@@ -219,12 +240,14 @@ function updateMain() {
     "ui_perform_file",
     "ui_perform_grain",
     "ui_perform_vocoder",
-    "ui_perform_chop",
-    "ui_perform_tremolo",
+    "ui_perform_bitcrusher",
+    "ui_perform_feedback_delay",
+    "ui_perform_multiband",
   ];
   const existing = [
     "ui_source_mic", "ui_source_file", "ui_source_grain", "ui_source_mixer",
-    "ui_fx_vocoder", "ui_fx_chop", "ui_fx_tremolo", "ui_gesture_hand",
+    "ui_fx_vocoder", "ui_fx_bitcrusher", "ui_fx_feedback_delay",
+    "ui_fx_multiband", "ui_gesture_hand",
     "ui_gesture_map_title", "ui_gesture_slot1", "ui_gesture_slot1_label",
     "ui_gesture_slot2", "ui_gesture_slot2_label", "ui_gesture_slot3",
     "ui_gesture_slot3_label", "ui_gesture_slot4", "ui_gesture_slot4_label",
@@ -269,7 +292,7 @@ function updateMain() {
 
   routerBoxes.get("page-msg-2").text = [
     hideAll,
-    show(["ui_fx_vocoder", "ui_fx_chop", "ui_fx_tremolo"]),
+    show(["ui_fx_vocoder", "ui_fx_bitcrusher", "ui_fx_feedback_delay", "ui_fx_multiband"]),
   ].join(", ");
 
   routerBoxes.get("page-msg-3").text = [
@@ -290,7 +313,7 @@ function updateMain() {
 
   routerBoxes.get("page-msg-4").text = [
     hideAll,
-    "script sendbox ui_master_returns presentation_rect 24 160 760 300",
+    "script sendbox ui_master_returns presentation_rect 24 160 905 300",
     "script sendbox ui_output_meter_l presentation_rect 1238 716 142 12",
     "script sendbox ui_output_meter_r presentation_rect 1238 740 142 12",
     "script sendbox ui_output_dac presentation_rect 1388 707 36 36",
@@ -304,10 +327,40 @@ function updateMain() {
   ].join(", ");
 
   patcher.dependency_cache = patcher.dependency_cache || [];
+  const dependencyPaths = {
+    "file_panel_v1.png": "../assets/ui",
+    "fx_return_mixer_panel_v1.png": "../assets/ui",
+    "granular_knob_gain_v1.png": "../assets/ui",
+    "granular_knob_v1.png": "../assets/ui",
+    "granular_panel_v1.png": "../assets/ui",
+    "input_mixer_panel_v1.png": "../assets/ui",
+    "mic_panel_v1.png": "../assets/ui",
+    "mt_control_hand_jweb.maxpat": "control",
+    "mt_fx_return_mixer.maxpat": "mixers",
+    "mt_grain_voice.maxpat": "dsp",
+    "mt_granular_synth.maxpat": "dsp",
+    "mt_input_file_ui.maxpat": "inputs",
+    "mt_input_granular_ui.maxpat": "inputs",
+    "mt_input_mic_ui.maxpat": "inputs",
+    "mt_input_mixer_ui.maxpat": "mixers",
+    "mt_mod_vocoder.maxpat": "effects",
+    "mt_vocoder_pfft.maxpat": "effects",
+  };
+  for (const item of patcher.dependency_cache) {
+    if (dependencyPaths[item.name]) item.patcherrelativepath = dependencyPaths[item.name];
+  }
   const performAsset = patcher.dependency_cache.find((item) => item.name === "perform_shell_v2.png");
   if (performAsset) performAsset.patcherrelativepath = "../assets/ui";
   else patcher.dependency_cache.unshift({
     name: "perform_shell_v2.png",
+    patcherrelativepath: "../assets/ui",
+    type: "PNG",
+    implicit: 1,
+  });
+  const shellAsset = patcher.dependency_cache.find((item) => item.name === "main_shell_v1.png");
+  if (shellAsset) shellAsset.patcherrelativepath = "../assets/ui";
+  else patcher.dependency_cache.unshift({
+    name: "main_shell_v1.png",
     patcherrelativepath: "../assets/ui",
     type: "PNG",
     implicit: 1,

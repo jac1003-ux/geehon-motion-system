@@ -23,6 +23,7 @@ teacher_packages/
 
 # Local logs
 *.log
+.codex-render/
 
 # Do not publish local test audio by default
 media/*
