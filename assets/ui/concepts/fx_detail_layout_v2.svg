@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1732" height="845" viewBox="0 0 1732 845">
+  <defs>
+    <style>
+      .title{font:600 28px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:2px;fill:#29493f}
+      .sub{font:500 12px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1.8px;fill:#789087}
+      .head{font:600 18px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1.5px;fill:#fff}
+      .headsub{font:500 10px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1.3px;fill:#b9cbc3}
+      .label{font:600 13px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1px;fill:#3d574e}
+      .small{font:500 10px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1px;fill:#82978f}
+      .value{font:500 15px "Avenir Next","Helvetica Neue",sans-serif;fill:#eaf2ed}
+      .mix{font:600 11px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:.8px;fill:#355148}
+      .mixsub{font:500 8px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:.8px;fill:#8a9f97}
+    </style>
+    <linearGradient id="meter" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#70a98e"/><stop offset=".78" stop-color="#8dbd96"/><stop offset="1" stop-color="#efc94c"/></linearGradient>
+    <g id="toggle"><rect width="44" height="44" rx="9" fill="#17231f"/><path d="M14 14l16 16m0-16L14 30" stroke="#9cc7d8" stroke-width="3"/></g>
+    <g id="knob">
+      <circle cx="34" cy="34" r="29" fill="#edf3ef" stroke="#b7ccc0" stroke-width="3"/>
+      <circle cx="34" cy="34" r="21" fill="#f9fbf8"/>
+      <path d="M34 34l13 13" stroke="#31564a" stroke-width="4" stroke-linecap="round"/>
+      <path d="M11 48a28 28 0 0 1 16-40" fill="none" stroke="#74a89a" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <g id="fader">
+      <rect width="56" height="282" rx="10" fill="#edf3ef" stroke="#b8ccc1" stroke-width="2"/>
+      <rect x="21" y="24" width="14" height="222" rx="7" fill="#14241f"/>
+      <rect x="17" y="118" width="22" height="10" rx="5" fill="#84a697"/>
+      <rect x="21" y="123" width="14" height="123" rx="7" fill="url(#meter)" opacity=".72"/>
+      <text x="28" y="268" text-anchor="middle" class="mixsub">0.0 dB</text>
+    </g>
+    <g id="wave">
+      <rect width="250" height="122" rx="7" fill="#1f2925"/>
+      <line x1="0" y1="61" x2="250" y2="61" stroke="#806c2b"/>
+      <path d="M8 65c20-40 35 37 55-9s36 38 58-2 34 28 54-8 42 27 67-4" fill="none" stroke="#8cc1af" stroke-width="3"/>
+    </g>
+  </defs>
+  <rect width="1732" height="845" fill="#eef4ef"/>
+  <text x="38" y="48" class="title">FX</text>
+  <text x="38" y="74" class="sub">PROCESSOR DETAIL / PARALLEL RETURNS / MASTER FX BUS</text>
+  <rect x="38" y="91" width="1656" height="2" fill="#c5d5cc"/>
+
+  <!-- Selected FX -->
+  <rect x="38" y="120" width="794" height="680" rx="10" fill="#f9fbf8" stroke="#bfd0c6" stroke-width="2"/>
+  <path d="M48 120h774a10 10 0 0 1 10 10v58H38v-58a10 10 0 0 1 10-10z" fill="#29493f"/>
+  <rect x="64" y="138" width="36" height="36" rx="8" fill="#67a697"/>
+  <path d="M72 157h7v-10h9v19h8" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="120" y="150" class="head">BITCRUSHER</text>
+  <text x="120" y="171" class="headsub">SAMPLE-RATE REDUCTION / BIT QUANTIZATION / SATURATION</text>
+  <rect x="574" y="136" width="234" height="38" rx="4" fill="#1f302a" stroke="#617b70"/>
+  <text x="590" y="160" class="value">Bitcrusher</text>
+  <path d="M784 151l8 8 8-8z" fill="#d9e6df"/>
+
+  <text x="66" y="220" class="label">PROCESSOR CONTROL</text>
+  <text x="66" y="240" class="small">CURRENT MODULE: BITCRUSHER</text>
+  <line x1="66" y1="258" x2="804" y2="258" stroke="#d4e0d9"/>
+  <use href="#toggle" x="66" y="282"/>
+  <text x="122" y="309" class="label">ENABLE</text>
+  <circle cx="194" cy="304" r="6" fill="#efc94c"/>
+
+  <g transform="translate(248 270)">
+    <use href="#knob"/><text x="34" y="82" text-anchor="middle" class="small">BITS</text><text x="34" y="101" text-anchor="middle" class="label">12 bit</text>
+  </g>
+  <g transform="translate(390 270)">
+    <use href="#knob"/><text x="34" y="82" text-anchor="middle" class="small">RATE</text><text x="34" y="101" text-anchor="middle" class="label">12 kHz</text>
+  </g>
+  <g transform="translate(532 270)">
+    <use href="#knob"/><text x="34" y="82" text-anchor="middle" class="small">DRIVE</text><text x="34" y="101" text-anchor="middle" class="label">15 %</text>
+  </g>
+  <g transform="translate(674 270)">
+    <use href="#knob"/><text x="34" y="82" text-anchor="middle" class="small">OUTPUT</text><text x="34" y="101" text-anchor="middle" class="label">0.0 dB</text>
+  </g>
+
+  <text x="66" y="414" class="label">INPUT</text><text x="386" y="414" class="label">CRUSHED</text>
+  <g transform="translate(66 432)"><use href="#wave"/></g>
+  <g transform="translate(386 432)">
+    <rect width="250" height="122" rx="7" fill="#1f2925"/>
+    <line x1="0" y1="61" x2="250" y2="61" stroke="#806c2b"/>
+    <path d="M8 78h26V42h26v55h28V34h30v45h26V55h31V90h27V38h40v32h20" fill="none" stroke="#8cc1af" stroke-width="3"/>
+  </g>
+  <rect x="664" y="432" width="140" height="122" rx="7" fill="#edf3ef" stroke="#bfd0c6" stroke-width="2"/>
+  <text x="734" y="463" text-anchor="middle" class="small">RETURN LEVEL</text>
+  <g transform="translate(700 470) scale(.92)"><use href="#knob"/></g>
+
+  <rect x="66" y="584" width="738" height="104" rx="8" fill="#edf5f0" stroke="#a9c5b7" stroke-width="2"/>
+  <text x="88" y="613" class="label">PRESET CHARACTER</text>
+  <rect x="88" y="628" width="160" height="38" rx="19" fill="#29493f"/>
+  <text x="168" y="652" text-anchor="middle" class="headsub" fill="#fff">LO-FI WARM</text>
+  <rect x="264" y="628" width="160" height="38" rx="19" fill="#f9fbf8" stroke="#aac4b7"/>
+  <text x="344" y="652" text-anchor="middle" class="small">HARD DIGITAL</text>
+  <rect x="440" y="628" width="160" height="38" rx="19" fill="#f9fbf8" stroke="#aac4b7"/>
+  <text x="520" y="652" text-anchor="middle" class="small">SOFT DUST</text>
+  <text x="622" y="652" class="small">PURE WET RETURN</text>
+  <circle cx="782" cy="647" r="6" fill="#77a897"/>
+  <line x1="66" y1="720" x2="804" y2="720" stroke="#8eb3a1" stroke-width="3"/>
+  <text x="66" y="746" class="small">PROCESSED STEREO L / R</text>
+  <circle cx="796" cy="741" r="6" fill="#77a897"/>
+
+  <!-- FX return mixer -->
+  <rect x="860" y="120" width="834" height="680" rx="10" fill="#f9fbf8" stroke="#bfd0c6" stroke-width="2"/>
+  <path d="M870 120h814a10 10 0 0 1 10 10v58H860v-58a10 10 0 0 1 10-10z" fill="#29493f"/>
+  <circle cx="892" cy="153" r="10" fill="#efc94c"/>
+  <path d="M892 132v42m-18-21h36m-31-14l26 28m0-28l-26 28" stroke="#efc94c" stroke-width="2"/>
+  <text x="922" y="150" class="head">FX RETURN MIXER</text>
+  <text x="922" y="171" class="headsub">DRY / VOCODER / BITCRUSHER / DELAY / MULTIBAND</text>
+  <rect x="1510" y="136" width="158" height="36" rx="18" fill="none" stroke="#b99526"/>
+  <text x="1589" y="159" text-anchor="middle" class="headsub" fill="#f2cb48">RETURN BANK A</text>
+
+  <!-- six strips -->
+  <g transform="translate(875 206)">
+    <rect width="125" height="556" fill="#f9fbf8"/>
+    <text x="10" y="27" class="mix">DRY</text><use href="#toggle" transform="translate(82 7) scale(.62)"/>
+    <g transform="translate(35 95)"><use href="#fader"/></g>
+    <rect x="16" y="400" width="46" height="46" rx="8" fill="#fff" stroke="#9ec3b3"/>
+    <path d="M27 423h24" stroke="#6da493" stroke-width="3"/>
+    <line x1="10" y1="502" x2="115" y2="502" stroke="#93b3a3" stroke-width="3"/>
+    <text x="10" y="529" class="mixsub">DRY / L-R</text>
+  </g>
+  <line x1="1000" y1="206" x2="1000" y2="762" stroke="#c3d4ca"/>
+  <g transform="translate(1004 206)">
+    <rect width="125" height="556" fill="#f9fbf8"/>
+    <text x="10" y="27" class="mix">VOCODER</text><use href="#toggle" transform="translate(82 7) scale(.62)"/>
+    <g transform="translate(35 95)"><use href="#fader"/></g>
+    <rect x="16" y="400" width="46" height="46" rx="8" fill="#fff" stroke="#70aaa3"/>
+    <path d="M24 434v-20m8 26v-32m8 28v-24m8 27v-30m8 25v-18" stroke="#55a39e" stroke-width="3"/>
+    <line x1="10" y1="502" x2="115" y2="502" stroke="#75aaa2" stroke-width="3"/>
+    <text x="10" y="529" class="mixsub">RETURN / L-R</text>
+  </g>
+  <line x1="1129" y1="206" x2="1129" y2="762" stroke="#c3d4ca"/>
+  <g transform="translate(1133 206)">
+    <rect width="125" height="556" fill="#f9fbf8"/>
+    <text x="8" y="27" class="mix">BITCRUSHER</text><use href="#toggle" transform="translate(82 7) scale(.62)"/>
+    <g transform="translate(35 95)"><use href="#fader"/></g>
+    <rect x="16" y="400" width="46" height="46" rx="8" fill="#fff" stroke="#70aaa3"/>
+    <path d="M24 431h9v-19h10v28h10v-14h8" fill="none" stroke="#55a39e" stroke-width="3"/>
+    <line x1="10" y1="502" x2="115" y2="502" stroke="#75aaa2" stroke-width="3"/>
+    <text x="10" y="529" class="mixsub">RETURN / L-R</text>
+  </g>
+  <line x1="1258" y1="206" x2="1258" y2="762" stroke="#c3d4ca"/>
+  <g transform="translate(1262 206)">
+    <rect width="125" height="556" fill="#f9fbf8"/>
+    <text x="10" y="27" class="mix">DELAY</text><use href="#toggle" transform="translate(82 7) scale(.62)"/>
+    <g transform="translate(35 95)"><use href="#fader"/></g>
+    <rect x="16" y="400" width="46" height="46" rx="8" fill="#fff" stroke="#70aaa3"/>
+    <path d="M22 431c10-24 20-24 31 0m-31 8c10-24 20-24 31 0" fill="none" stroke="#55a39e" stroke-width="2"/>
+    <line x1="10" y1="502" x2="115" y2="502" stroke="#75aaa2" stroke-width="3"/>
+    <text x="10" y="529" class="mixsub">RETURN / L-R</text>
+  </g>
+  <line x1="1387" y1="206" x2="1387" y2="762" stroke="#c3d4ca"/>
+  <g transform="translate(1391 206)">
+    <rect width="125" height="556" fill="#f9fbf8"/>
+    <text x="7" y="27" class="mix">MULTIBAND</text><use href="#toggle" transform="translate(82 7) scale(.62)"/>
+    <g transform="translate(35 95)"><use href="#fader"/></g>
+    <rect x="16" y="400" width="46" height="46" rx="8" fill="#fff" stroke="#70aaa3"/>
+    <path d="M24 434v-18m10 23v-28m10 24v-20m10 22v-26" stroke="#55a39e" stroke-width="3"/>
+    <line x1="10" y1="502" x2="115" y2="502" stroke="#75aaa2" stroke-width="3"/>
+    <text x="10" y="529" class="mixsub">RETURN / L-R</text>
+  </g>
+  <line x1="1516" y1="206" x2="1516" y2="762" stroke="#c3d4ca"/>
+  <g transform="translate(1520 206)">
+    <rect width="154" height="556" fill="#f6f7f0"/>
+    <text x="10" y="27" class="mix" fill="#a17a08">MASTER OUT</text>
+    <g transform="translate(48 95)"><use href="#fader"/></g>
+    <rect x="15" y="400" width="124" height="46" rx="8" fill="#fffaf0" stroke="#e3bd3e"/>
+    <text x="77" y="428" text-anchor="middle" class="mix">MIXED FX BUS</text>
+    <line x1="10" y1="502" x2="144" y2="502" stroke="#e3bd3e" stroke-width="3"/>
+    <text x="10" y="529" class="mixsub">MIXED L / R</text>
+  </g>
+</svg>

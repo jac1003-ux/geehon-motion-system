@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1732" height="845" viewBox="0 0 1732 845">
+  <defs>
+    <style>
+      .title{font:600 28px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:2px;fill:#29493f}
+      .sub{font:500 12px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1.8px;fill:#789087}
+      .head{font:600 18px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1.5px;fill:#fff}
+      .headsub{font:500 10px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1.4px;fill:#b9cbc3}
+      .label{font:600 13px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1px;fill:#3d574e}
+      .small{font:500 10px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1px;fill:#82978f}
+      .value{font:500 15px "Avenir Next","Helvetica Neue",sans-serif;fill:#eaf2ed}
+      .mix{font:600 12px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1px;fill:#355148}
+      .mixsub{font:500 9px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1px;fill:#8a9f97}
+    </style>
+    <linearGradient id="meter" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#70a98e"/>
+      <stop offset=".78" stop-color="#8dbd96"/>
+      <stop offset="1" stop-color="#efc94c"/>
+    </linearGradient>
+    <g id="toggle">
+      <rect width="48" height="48" rx="10" fill="#17231f"/>
+      <path d="M15 15l18 18m0-18L15 33" stroke="#9cc7d8" stroke-width="3"/>
+    </g>
+    <g id="fader">
+      <rect width="76" height="300" rx="12" fill="#edf3ef" stroke="#b8ccc1" stroke-width="2"/>
+      <rect x="30" y="26" width="16" height="238" rx="8" fill="#14241f"/>
+      <rect x="25" y="126" width="26" height="12" rx="6" fill="#84a697"/>
+      <rect x="30" y="132" width="16" height="132" rx="8" fill="url(#meter)" opacity=".72"/>
+      <text x="38" y="286" text-anchor="middle" class="small">0.0 dB</text>
+    </g>
+    <g id="micicon">
+      <rect x="17" y="8" width="20" height="36" rx="10" fill="none" stroke="#86b99e" stroke-width="4"/>
+      <path d="M10 31c0 15 34 15 34 0M27 48v12M17 60h20" fill="none" stroke="#86b99e" stroke-width="4"/>
+    </g>
+  </defs>
+
+  <rect width="1732" height="845" fill="#eef4ef"/>
+  <text x="38" y="48" class="title">SOURCE</text>
+  <text x="38" y="74" class="sub">INPUT DETAIL / SOURCE MIX / DRY BUS</text>
+  <rect x="38" y="91" width="1656" height="2" fill="#c5d5cc"/>
+
+  <!-- Selected source -->
+  <rect x="38" y="120" width="794" height="680" rx="10" fill="#f9fbf8" stroke="#bfd0c6" stroke-width="2"/>
+  <path d="M48 120h774a10 10 0 0 1 10 10v58H38v-58a10 10 0 0 1 10-10z" fill="#29493f"/>
+  <g transform="translate(64 133)"><use href="#micicon"/></g>
+  <text x="130" y="150" class="head">MIC INPUT</text>
+  <text x="130" y="171" class="headsub">LIVE / MONO OR STEREO / NOISE GATE</text>
+  <rect x="582" y="136" width="226" height="38" rx="4" fill="#1f302a" stroke="#617b70"/>
+  <text x="598" y="160" class="value">Mic Input</text>
+  <path d="M784 151l8 8 8-8z" fill="#d9e6df"/>
+
+  <text x="66" y="220" class="label">INPUT ROUTING</text>
+  <text x="66" y="240" class="small">SELECT SOURCE AND CHANNEL CONFIGURATION</text>
+  <line x1="66" y1="258" x2="804" y2="258" stroke="#d4e0d9"/>
+
+  <rect x="66" y="282" width="138" height="248" rx="8" fill="#f4f8f5" stroke="#c5d5cc" stroke-width="2"/>
+  <use href="#toggle" x="111" y="316"/>
+  <text x="135" y="392" text-anchor="middle" class="label">ENABLE</text>
+  <text x="135" y="418" text-anchor="middle" class="small">LIVE INPUT</text>
+  <circle cx="135" cy="473" r="6" fill="#78a996"/>
+  <text x="150" y="477" class="small">ACTIVE</text>
+
+  <rect x="222" y="282" width="206" height="248" rx="8" fill="#f4f8f5" stroke="#c5d5cc" stroke-width="2"/>
+  <text x="246" y="316" class="label">MONO CHANNEL</text>
+  <text x="246" y="337" class="small">INPUT 1-8</text>
+  <rect x="246" y="360" width="158" height="46" rx="6" fill="#1f2724"/>
+  <path d="M260 374l9 9-9 9z" fill="#a7bbb2"/>
+  <text x="282" y="389" class="value">1</text>
+  <text x="246" y="452" class="small">CURRENT DEVICE INPUT</text>
+  <rect x="246" y="468" width="158" height="8" rx="4" fill="#dce8e1"/>
+  <rect x="246" y="468" width="78" height="8" rx="4" fill="#77a897"/>
+
+  <rect x="446" y="282" width="204" height="248" rx="8" fill="#f4f8f5" stroke="#c5d5cc" stroke-width="2"/>
+  <text x="470" y="316" class="label">STEREO PAIR</text>
+  <text x="470" y="337" class="small">OPTIONAL ROUTING</text>
+  <g fill="none" stroke="#81a99a" stroke-width="3">
+    <circle cx="490" cy="371" r="10"/><circle cx="490" cy="408" r="10"/>
+    <circle cx="490" cy="445" r="10"/><circle cx="490" cy="482" r="10"/>
+  </g>
+  <circle cx="490" cy="408" r="5" fill="#efc94c"/>
+  <text x="518" y="376" class="label">OFF</text>
+  <text x="518" y="413" class="label">1-2</text>
+  <text x="518" y="450" class="label">3-4</text>
+  <text x="518" y="487" class="label">5-6 / 7-8</text>
+
+  <rect x="668" y="282" width="136" height="248" rx="8" fill="#f4f8f5" stroke="#c5d5cc" stroke-width="2"/>
+  <text x="736" y="316" text-anchor="middle" class="label">OUTPUT</text>
+  <g transform="translate(698 338) scale(.75)"><use href="#fader"/></g>
+
+  <rect x="66" y="556" width="738" height="132" rx="8" fill="#edf5f0" stroke="#a9c5b7" stroke-width="2"/>
+  <text x="86" y="586" class="label">NOISE GATE</text>
+  <circle cx="184" cy="581" r="6" fill="#efc94c"/>
+  <text x="220" y="586" class="small">THRESHOLD dBFS</text>
+  <rect x="220" y="600" width="138" height="40" rx="5" fill="#202724"/>
+  <text x="238" y="626" class="value">-35.0</text>
+  <text x="388" y="586" class="small">RELEASE ms</text>
+  <rect x="388" y="600" width="122" height="40" rx="5" fill="#202724"/>
+  <text x="406" y="626" class="value">120</text>
+  <rect x="610" y="588" width="166" height="52" rx="8" fill="#fffaf0" stroke="#e4bd39" stroke-width="2"/>
+  <text x="693" y="620" text-anchor="middle" class="label" fill="#8a6a00">OPEN 7-BAND EQ</text>
+  <line x1="66" y1="720" x2="804" y2="720" stroke="#8eb3a1" stroke-width="3"/>
+  <text x="66" y="746" class="small">CLEAN STEREO L / R</text>
+  <circle cx="796" cy="741" r="6" fill="#77a897"/>
+
+  <!-- Mixer -->
+  <rect x="860" y="120" width="834" height="680" rx="10" fill="#f9fbf8" stroke="#bfd0c6" stroke-width="2"/>
+  <path d="M870 120h814a10 10 0 0 1 10 10v58H860v-58a10 10 0 0 1 10-10z" fill="#29493f"/>
+  <circle cx="892" cy="153" r="10" fill="#efc94c"/>
+  <path d="M892 132v42m-18-21h36m-31-14l26 28m0-28l-26 28" stroke="#efc94c" stroke-width="2"/>
+  <text x="922" y="150" class="head">SOURCE MIXER</text>
+  <text x="922" y="171" class="headsub">MIC / FILE / GRANULAR / DRY OUTPUT</text>
+  <rect x="1484" y="136" width="184" height="36" rx="18" fill="none" stroke="#b99526"/>
+  <text x="1576" y="159" text-anchor="middle" class="headsub" fill="#f2cb48">SOURCE MIX / DRY BUS</text>
+
+  <g transform="translate(882 214)">
+    <rect width="184" height="548" fill="#f9fbf8"/>
+    <text x="14" y="24" class="mix">MIC</text><text x="14" y="43" class="mixsub">LIVE SOURCE</text>
+    <use href="#toggle" transform="translate(122 4) scale(.7)"/>
+    <g transform="translate(54 88)"><use href="#fader"/></g>
+    <g transform="translate(10 182)"><use href="#micicon"/></g>
+    <line x1="12" y1="500" x2="172" y2="500" stroke="#93b3a3" stroke-width="3"/>
+    <text x="12" y="526" class="mixsub">GAIN / L-R</text><circle cx="170" cy="521" r="5" fill="#75a99a"/>
+  </g>
+  <line x1="1066" y1="206" x2="1066" y2="762" stroke="#c3d4ca"/>
+  <g transform="translate(1076 214)">
+    <rect width="184" height="548" fill="#f9fbf8"/>
+    <text x="14" y="24" class="mix">FILE</text><text x="14" y="43" class="mixsub">SAMPLE SOURCE</text>
+    <use href="#toggle" transform="translate(122 4) scale(.7)"/>
+    <g transform="translate(54 88)"><use href="#fader"/></g>
+    <path d="M20 186h42l20 20v58H20zM62 186v20h20" fill="none" stroke="#8bbba1" stroke-width="4"/>
+    <path d="M30 244l11-10 9 8 11-12 11 10" fill="none" stroke="#e1bd3c" stroke-width="3"/>
+    <line x1="12" y1="500" x2="172" y2="500" stroke="#93b3a3" stroke-width="3"/>
+    <text x="12" y="526" class="mixsub">GAIN / L-R</text><circle cx="170" cy="521" r="5" fill="#75a99a"/>
+  </g>
+  <line x1="1260" y1="206" x2="1260" y2="762" stroke="#c3d4ca"/>
+  <g transform="translate(1270 214)">
+    <rect width="184" height="548" fill="#f9fbf8"/>
+    <text x="14" y="24" class="mix">GRANULAR</text><text x="14" y="43" class="mixsub">TEXTURE SOURCE</text>
+    <use href="#toggle" transform="translate(122 4) scale(.7)"/>
+    <g transform="translate(54 88)"><use href="#fader"/></g>
+    <g fill="#88b59e"><circle cx="35" cy="208" r="8"/><circle cx="62" cy="192" r="5"/><circle cx="69" cy="222" r="10"/><circle cx="39" cy="244" r="6"/></g>
+    <g fill="#e5c044"><circle cx="28" cy="190" r="5"/><circle cx="72" cy="252" r="5"/></g>
+    <line x1="12" y1="500" x2="172" y2="500" stroke="#93b3a3" stroke-width="3"/>
+    <text x="12" y="526" class="mixsub">GAIN / L-R</text><circle cx="170" cy="521" r="5" fill="#75a99a"/>
+  </g>
+  <line x1="1454" y1="206" x2="1454" y2="762" stroke="#c3d4ca"/>
+  <g transform="translate(1464 214)">
+    <rect width="206" height="548" fill="#f6f7f0"/>
+    <text x="14" y="24" class="mix" fill="#a17a08">MASTER</text><text x="14" y="43" class="mixsub">DRY OUTPUT</text>
+    <rect x="14" y="72" width="178" height="74" rx="8" fill="#fffaf0" stroke="#e3bd3e" stroke-width="2"/>
+    <text x="28" y="98" class="mixsub" fill="#98720c">SOURCE SUM</text>
+    <text x="28" y="130" style="font:600 24px 'Avenir Next';fill:#29493f">0.0 dB</text>
+    <rect x="14" y="160" width="178" height="60" rx="8" fill="#fffaf0" stroke="#e3bd3e" stroke-width="2"/>
+    <text x="103" y="197" text-anchor="middle" class="mix">MUTE ALL</text>
+    <g transform="translate(64 236)"><use href="#fader"/></g>
+    <line x1="12" y1="500" x2="194" y2="500" stroke="#e3bd3e" stroke-width="3"/>
+    <text x="12" y="526" class="mixsub">MIXED L / R</text><circle cx="192" cy="521" r="5" fill="#e5bd31"/>
+  </g>
+</svg>

@@ -1462,24 +1462,6 @@
               {
                 "patchline": {
                   "source": [
-                    "fd-time-pack-r",
-                    1
-                  ],
-                  "destination": [
-                    "fd-time-sum-r",
-                    1
-                  ],
-                  "color": [
-                    1,
-                    0.5,
-                    0,
-                    1
-                  ]
-                }
-              },
-              {
-                "patchline": {
-                  "source": [
                     "fd-time-sum-r",
                     0
                   ],

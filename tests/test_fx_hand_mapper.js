@@ -116,8 +116,12 @@ for (const varname of [
   "ui_gesture_status",
   "ui_gesture_zone_note",
 ]) {
+  const gesturePageCommands = [...boxes.entries()]
+    .filter(([id]) => id === "page-msg-3" || id.startsWith("page-msg-3-chunk-"))
+    .map(([, box]) => box.text)
+    .join(", ");
   assert(
-    boxes.get("page-msg-3").text.includes(`script show ${varname}`),
+    gesturePageCommands.includes(`script show ${varname}`),
     `gesture page shows ${varname}`
   );
 }

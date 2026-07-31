@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1732" height="845" viewBox="0 0 1732 845">
+  <defs>
+    <style>
+      .brand{font:600 18px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:2.5px;fill:#fff}
+      .brandSub{font:500 9px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:2px;fill:#9fb6ac}
+      .nav{font:500 14px "Avenir Next","Helvetica Neue",sans-serif;fill:#314d44}
+      .section{font:600 11px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1.5px;fill:#6f887e}
+      .status{font:500 10px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:.8px;fill:#789087}
+    </style>
+  </defs>
+  <rect width="1732" height="845" fill="#edf3ee"/>
+  <rect width="1732" height="104" fill="#22463b"/>
+  <!-- chrysanthemum + tea leaf mark -->
+  <g transform="translate(58 28)">
+    <circle cx="24" cy="24" r="6" fill="#e4b42e"/>
+    <g fill="#efc94c">
+      <ellipse cx="24" cy="7" rx="4" ry="10"/><ellipse cx="24" cy="41" rx="4" ry="10"/>
+      <ellipse cx="7" cy="24" rx="10" ry="4"/><ellipse cx="41" cy="24" rx="10" ry="4"/>
+      <ellipse cx="12" cy="12" rx="4" ry="9" transform="rotate(-45 12 12)"/>
+      <ellipse cx="36" cy="36" rx="4" ry="9" transform="rotate(-45 36 36)"/>
+      <ellipse cx="36" cy="12" rx="4" ry="9" transform="rotate(45 36 12)"/>
+    </g>
+    <path d="M31 32c15-2 21 5 22 14-13 3-22-1-22-14z" fill="#80a56f"/>
+  </g>
+  <text x="124" y="46" class="brand">JUHUA</text>
+  <text x="124" y="66" class="brandSub">MOTION INSTRUMENT</text>
+  <text x="350" y="45" class="brand">PERFORMANCE SYSTEM</text>
+  <text x="350" y="65" class="brandSub">SOURCE / GESTURE / FX / MASTER</text>
+  <!-- navigation -->
+  <rect x="958" y="28" width="730" height="48" rx="4" fill="#e4eee8"/>
+  <rect x="958" y="28" width="146" height="48" rx="4" fill="#efc94c"/>
+  <text x="1031" y="58" text-anchor="middle" class="nav">PERFORM</text>
+  <text x="1177" y="58" text-anchor="middle" class="nav">SOURCE</text>
+  <text x="1323" y="58" text-anchor="middle" class="nav">FX</text>
+  <text x="1469" y="58" text-anchor="middle" class="nav">GESTURE</text>
+  <text x="1615" y="58" text-anchor="middle" class="nav">MASTER</text>
+  <!-- shared content stage -->
+  <rect x="38" y="128" width="1656" height="646" rx="12" fill="#f9fbf8" stroke="#c4d5cb" stroke-width="2"/>
+  <text x="62" y="160" class="section">DETAIL WORKSPACE</text>
+  <line x1="62" y1="178" x2="1670" y2="178" stroke="#d5e1da"/>
+  <!-- subtle botanical accents, intentionally outside control area -->
+  <g fill="none" stroke="#d7e5dc" stroke-width="2">
+    <path d="M1530 158c58 24 94 58 118 112-68-8-110-44-118-112z"/>
+    <path d="M1570 176c-5 36 4 68 35 98"/>
+    <path d="M74 718c56-74 112-99 184-82-37 70-97 96-184 82z"/>
+    <path d="M93 704c56-8 100-28 145-61"/>
+  </g>
+  <rect x="38" y="792" width="1656" height="30" rx="6" fill="#f9fbf8" stroke="#c4d5cb"/>
+  <circle cx="62" cy="807" r="5" fill="#70a98e"/><text x="76" y="811" class="status">AUDIO ENGINE READY</text>
+  <circle cx="270" cy="807" r="5" fill="#efc94c"/><text x="284" y="811" class="status">GESTURE MAPPING STATUS</text>
+  <text x="1668" y="811" text-anchor="end" class="status">48 kHz · STEREO · 24-bit</text>
+</svg>

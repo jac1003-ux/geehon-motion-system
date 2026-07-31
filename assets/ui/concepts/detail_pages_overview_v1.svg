@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1350" viewBox="0 0 2400 1350">
+  <defs>
+    <style>
+      .title{font:500 21px "Avenir Next","Helvetica Neue",sans-serif;fill:#243f35}
+      .h2{font:500 15px "Avenir Next","Helvetica Neue",sans-serif;fill:#29473c}
+      .label{font:500 11px "Avenir Next","Helvetica Neue",sans-serif;fill:#456156}
+      .cap{font:400 9px "Avenir Next","Helvetica Neue",sans-serif;fill:#7b9087}
+      .value{font:500 12px "Avenir Next","Helvetica Neue",sans-serif;fill:#243f35}
+      .white{fill:#fbfcfa;stroke:#bfd0c6;stroke-width:1}
+      .soft{fill:#f0f5f1;stroke:#c4d2ca;stroke-width:1}
+      .dark{fill:#18352c}
+      .line{stroke:#cbd8d1;stroke-width:1}
+      .yellow{fill:#f2c94c}
+      .green{fill:#5e9b83}
+      .teal{fill:#5c9e98}
+    </style>
+    <linearGradient id="meter" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#5e997f"/><stop offset=".72" stop-color="#91b995"/><stop offset="1" stop-color="#efc84d"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#173027" flood-opacity=".10"/>
+    </filter>
+    <g id="brand">
+      <g transform="translate(26 24)">
+        <path d="M0-13C-5-25-2-34 2-39C8-31 6-21 3-13Z" fill="#efc84d"/>
+        <path d="M0-12C-5-23-2-31 2-36C8-28 6-19 3-12Z" fill="#82a67d" transform="rotate(55)"/>
+        <path d="M0-12C-5-24-2-33 2-37C8-29 6-20 3-12Z" fill="#e2ae31" transform="rotate(110)"/>
+        <path d="M0-12C-5-22-2-30 2-34C7-27 6-18 3-12Z" fill="#f0d77a" transform="rotate(165)"/>
+        <path d="M0-12C-5-23-2-31 2-35C8-28 6-19 3-12Z" fill="#d9aa31" transform="rotate(220)"/>
+        <path d="M0-12C-5-22-2-30 2-34C7-27 6-18 3-12Z" fill="#f0d06a" transform="rotate(275)"/>
+        <circle cx="2" cy="0" r="7" fill="#f2da83"/>
+      </g>
+      <text x="51" y="23" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="14" font-weight="600" fill="#f8faf8">JUHUA</text>
+      <text x="51" y="37" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="7" fill="#afc3b8">MOTION INSTRUMENT</text>
+    </g>
+  </defs>
+
+  <rect width="2400" height="1350" fill="#e5ede7"/>
+  <text x="40" y="42" class="title">JUHUA MOTION INSTRUMENT · DETAIL PAGE SYSTEM</text>
+  <text x="2360" y="42" text-anchor="end" class="cap">SOURCE / FX / GESTURE / MASTER · UI CONCEPT V1</text>
+
+  <!-- SOURCE -->
+  <g transform="translate(40 70)" filter="url(#shadow)">
+    <rect width="1140" height="590" rx="8" fill="#f7faf7" stroke="#b7c9bf"/>
+    <rect width="1140" height="48" rx="8" fill="#243f35"/><rect y="40" width="1140" height="8" fill="#243f35"/>
+    <use href="#brand"/>
+    <rect x="578" y="9" width="548" height="30" rx="5" fill="#dce7df"/>
+    <rect x="688" y="9" width="110" height="30" rx="5" class="yellow"/>
+    <text x="605" y="28" class="label">PERFORM</text><text x="722" y="28" class="label">SOURCE</text>
+    <text x="824" y="28" class="label">FX</text><text x="906" y="28" class="label">GESTURE</text><text x="1021" y="28" class="label">MASTER</text>
+    <text x="24" y="81" class="title">SOURCE</text><text x="24" y="99" class="cap">INPUT SELECTION / DETAILED EDITOR / SOURCE MIX</text>
+
+    <rect x="24" y="116" width="226" height="446" rx="6" class="soft"/>
+    <text x="43" y="143" class="h2">INPUTS</text>
+    <g transform="translate(39 160)">
+      <rect width="196" height="86" rx="5" fill="#fff" stroke="#77aa90" stroke-width="1.5"/>
+      <rect width="4" height="86" rx="2" class="green"/>
+      <circle cx="25" cy="26" r="10" fill="#e4efe8" stroke="#6c9e84"/>
+      <text x="44" y="25" class="h2">MIC INPUT</text><text x="44" y="41" class="cap">ACTIVE · MONO CH 1</text>
+      <rect x="145" y="14" width="34" height="18" rx="9" class="green"/><circle cx="169" cy="23" r="6" fill="#fff"/>
+      <rect x="15" y="58" width="110" height="18" rx="4" fill="#eef4ef"/><text x="24" y="71" class="cap">EDITING</text>
+      <rect x="137" y="60" width="42" height="5" rx="2.5" fill="#d4dfd8"/><rect x="137" y="60" width="31" height="5" rx="2.5" fill="url(#meter)"/>
+    </g>
+    <g transform="translate(39 258)">
+      <rect width="196" height="74" rx="5" class="white"/>
+      <circle cx="25" cy="25" r="10" fill="#fff6d9" stroke="#dbb43a"/><text x="44" y="25" class="h2">FILE PLAYER</text>
+      <text x="44" y="41" class="cap">NO FILE LOADED</text><rect x="145" y="14" width="34" height="18" rx="9" fill="#d8e2dc"/><circle cx="155" cy="23" r="6" fill="#fff"/>
+    </g>
+    <g transform="translate(39 344)">
+      <rect width="196" height="74" rx="5" class="white"/>
+      <circle cx="25" cy="25" r="10" fill="#e5f0ea" stroke="#5c9e98"/><circle cx="22" cy="23" r="2" class="yellow"/><circle cx="28" cy="29" r="3" class="teal"/>
+      <text x="44" y="25" class="h2">GRANULAR</text><text x="44" y="41" class="cap">SAFE CLOUD</text>
+      <rect x="145" y="14" width="34" height="18" rx="9" class="green"/><circle cx="169" cy="23" r="6" fill="#fff"/>
+    </g>
+    <text x="43" y="451" class="cap">INPUT STATUS</text>
+    <circle cx="45" cy="470" r="5" fill="#78ad87"/><text x="58" y="474" class="label">Mic signal healthy</text>
+    <circle cx="45" cy="493" r="5" fill="#efc84d"/><text x="58" y="497" class="label">Gate follows Mic Enable</text>
+
+    <rect x="266" y="116" width="586" height="446" rx="6" class="white"/>
+    <text x="288" y="146" class="title">MIC INPUT</text><text x="288" y="163" class="cap">CHANNEL / NOISE GATE / CASCADE~ EQ</text>
+    <rect x="721" y="132" width="108" height="27" rx="5" fill="#edf4ef" stroke="#aec2b7"/><text x="750" y="150" class="label">PRESET A</text>
+    <rect x="288" y="184" width="160" height="98" rx="5" class="soft"/>
+    <text x="305" y="207" class="h2">INPUT ROUTING</text><text x="305" y="231" class="cap">MONO CHANNEL</text>
+    <rect x="305" y="242" width="124" height="25" rx="4" fill="#fff" stroke="#b8c9c0"/><text x="317" y="259" class="value">CHANNEL 1</text>
+    <rect x="462" y="184" width="160" height="98" rx="5" class="soft"/>
+    <text x="479" y="207" class="h2">NOISE GATE</text><text x="479" y="231" class="cap">THRESHOLD</text><text x="563" y="231" class="value">-45 dBFS</text>
+    <text x="479" y="255" class="cap">RELEASE</text><text x="563" y="255" class="value">120 ms</text>
+    <circle cx="603" cy="202" r="5" fill="#78ad87"/>
+    <rect x="636" y="184" width="194" height="98" rx="5" class="soft"/>
+    <text x="653" y="207" class="h2">OUTPUT</text><text x="653" y="232" class="cap">GAIN</text><text x="697" y="232" class="value">0.0 dB</text>
+    <rect x="653" y="248" width="150" height="7" rx="3.5" fill="#d2ded7"/><rect x="653" y="248" width="112" height="7" rx="3.5" fill="url(#meter)"/>
+    <rect x="288" y="300" width="542" height="234" rx="5" fill="#17342b"/>
+    <text x="307" y="324" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="12" font-weight="500" fill="#ecf2ee">7-BAND EQ</text>
+    <text x="753" y="324" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="9" fill="#aac1b5">CASCADE~</text>
+    <line x1="307" y1="495" x2="809" y2="495" stroke="#789388" opacity=".45"/><line x1="307" y1="368" x2="809" y2="368" stroke="#789388" opacity=".3"/>
+    <path d="M307 448C350 446 377 405 416 420S483 476 527 435S597 351 645 392S717 469 809 408" fill="none" stroke="#78b49f" stroke-width="2.5"/>
+    <g fill="#efc84d"><circle cx="365" cy="423" r="5"/><circle cx="444" cy="440" r="5"/><circle cx="526" cy="435" r="5"/><circle cx="612" cy="382" r="5"/><circle cx="706" cy="444" r="5"/></g>
+
+    <rect x="868" y="116" width="248" height="446" rx="6" class="soft"/>
+    <text x="888" y="145" class="h2">SOURCE MIX</text><text x="888" y="162" class="cap">QUICK LEVELS</text>
+    <g transform="translate(895 190)">
+      <text x="0" y="0" class="label">MIC</text><text x="70" y="0" class="label">FILE</text><text x="140" y="0" class="label">GRANULAR</text>
+      <rect x="10" y="20" width="18" height="220" rx="8" fill="#d9e4de"/><rect x="12" y="85" width="14" height="153" rx="7" fill="url(#meter)"/>
+      <rect x="80" y="20" width="18" height="220" rx="8" fill="#d9e4de"/><rect x="82" y="151" width="14" height="87" rx="7" fill="url(#meter)"/>
+      <rect x="150" y="20" width="18" height="220" rx="8" fill="#d9e4de"/><rect x="152" y="109" width="14" height="129" rx="7" fill="url(#meter)"/>
+      <text x="0" y="267" class="value">0.0</text><text x="70" y="267" class="value">-3.0</text><text x="140" y="267" class="value">0.0</text>
+    </g>
+    <rect x="888" y="500" width="208" height="39" rx="5" fill="#fff7dc" stroke="#d9b33a"/><text x="906" y="524" class="label">SOURCE MASTER · 0.0 dB</text>
+  </g>
+
+  <!-- FX -->
+  <g transform="translate(1220 70)" filter="url(#shadow)">
+    <rect width="1140" height="590" rx="8" fill="#f7faf7" stroke="#b7c9bf"/>
+    <rect width="1140" height="48" rx="8" fill="#243f35"/><rect y="40" width="1140" height="8" fill="#243f35"/><use href="#brand"/>
+    <rect x="578" y="9" width="548" height="30" rx="5" fill="#dce7df"/><rect x="798" y="9" width="100" height="30" rx="5" class="yellow"/>
+    <text x="605" y="28" class="label">PERFORM</text><text x="722" y="28" class="label">SOURCE</text><text x="838" y="28" class="label">FX</text>
+    <text x="924" y="28" class="label">GESTURE</text><text x="1030" y="28" class="label">MASTER</text>
+    <text x="24" y="81" class="title">FX</text><text x="24" y="99" class="cap">MODULE SELECTION / DETAILED EDITOR / RETURN CONTROL</text>
+
+    <rect x="24" y="116" width="242" height="446" rx="6" class="soft"/><text x="43" y="143" class="h2">FX MODULES</text>
+    <g transform="translate(39 160)"><rect width="212" height="64" rx="5" class="white"/><rect width="4" height="64" rx="2" class="green"/><text x="18" y="25" class="h2">VOCODER</text><text x="18" y="42" class="cap">CLEAR SPEECH</text><rect x="163" y="14" width="32" height="18" rx="9" class="green"/><circle cx="185" cy="23" r="6" fill="#fff"/></g>
+    <g transform="translate(39 234)"><rect width="212" height="72" rx="5" fill="#fff" stroke="#5c9e98" stroke-width="1.5"/><rect width="4" height="72" rx="2" class="teal"/><text x="18" y="25" class="h2">BITCRUSHER</text><text x="18" y="42" class="cap">SOFT CRUSH · EDITING</text><rect x="163" y="14" width="32" height="18" rx="9" class="green"/><circle cx="185" cy="23" r="6" fill="#fff"/></g>
+    <g transform="translate(39 316)"><rect width="212" height="64" rx="5" class="white"/><rect width="4" height="64" rx="2" fill="#d2ad37"/><text x="18" y="25" class="h2">FEEDBACK DELAY</text><text x="18" y="42" class="cap">TAPE ECHO</text><rect x="163" y="14" width="32" height="18" rx="9" class="green"/><circle cx="185" cy="23" r="6" fill="#fff"/></g>
+    <g transform="translate(39 390)"><rect width="212" height="64" rx="5" class="white"/><rect width="4" height="64" rx="2" class="green"/><text x="18" y="25" class="h2">MULTIBAND FILTER</text><text x="18" y="42" class="cap">VOCAL FOCUS</text><rect x="163" y="14" width="32" height="18" rx="9" class="green"/><circle cx="185" cy="23" r="6" fill="#fff"/></g>
+
+    <rect x="282" y="116" width="584" height="446" rx="6" class="white"/>
+    <text x="304" y="146" class="title">BITCRUSHER</text><text x="304" y="163" class="cap">DIGITAL DEGRADE / PERFORMANCE PROCESSOR</text>
+    <rect x="711" y="132" width="132" height="27" rx="5" fill="#edf4ef" stroke="#aec2b7"/><text x="738" y="150" class="label">SOFT CRUSH</text>
+    <rect x="304" y="184" width="540" height="190" rx="5" fill="#17342b"/>
+    <text x="320" y="207" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" fill="#abc1b6">INPUT / QUANTIZED OUTPUT</text>
+    <path d="M320 300C360 230 395 344 438 256S516 338 558 272S640 345 682 242S764 334 828 260" fill="none" stroke="#7db6a0" stroke-width="2"/>
+    <path d="M320 302H355V274H391V319H426V261H462V331H497V289H533V312H568V268H604V324H639V250H675V309H710V279H746V326H782V263H828" fill="none" stroke="#efc84d" stroke-width="2"/>
+    <g transform="translate(315 398)">
+      <g><circle cx="52" cy="45" r="34" fill="#e5ede8" stroke="#a9beb3"/><path d="M31 61A28 28 0 1 1 73 61" fill="none" stroke="#5d9c87" stroke-width="5"/><path d="M52 45l12-19" stroke="#29473c" stroke-width="3"/><text x="14" y="95" class="cap">BIT DEPTH</text><text x="35" y="113" class="value">13 bit</text></g>
+      <g transform="translate(150)"><circle cx="52" cy="45" r="34" fill="#e5ede8" stroke="#a9beb3"/><path d="M31 61A28 28 0 1 1 73 61" fill="none" stroke="#5c9e98" stroke-width="5"/><path d="M52 45l5-21" stroke="#29473c" stroke-width="3"/><text x="8" y="95" class="cap">SAMPLE RATE</text><text x="26" y="113" class="value">33.1 kHz</text></g>
+      <g transform="translate(300)"><circle cx="52" cy="45" r="34" fill="#e5ede8" stroke="#a9beb3"/><path d="M31 61A28 28 0 1 1 73 61" fill="none" stroke="#d7ad36" stroke-width="5"/><path d="M52 45l-9-20" stroke="#29473c" stroke-width="3"/><text x="31" y="95" class="cap">DRIVE</text><text x="35" y="113" class="value">0.18</text></g>
+    </g>
+
+    <rect x="882" y="116" width="234" height="446" rx="6" class="soft"/>
+    <text x="902" y="145" class="h2">RETURN</text><text x="902" y="162" class="cap">POST PROCESSOR</text>
+    <rect x="902" y="184" width="194" height="41" rx="5" fill="#fff" stroke="#b8c9c0"/><text x="918" y="209" class="label">ENABLE</text><rect x="1042" y="195" width="36" height="20" rx="10" class="green"/><circle cx="1068" cy="205" r="7" fill="#fff"/>
+    <rect x="902" y="239" width="194" height="41" rx="5" fill="#fff" stroke="#b8c9c0"/><text x="918" y="264" class="label">PRESET</text><text x="1005" y="264" class="value">Soft Crush</text>
+    <text x="902" y="316" class="cap">RETURN LEVEL</text><text x="1038" y="316" class="value">-3.0 dB</text>
+    <rect x="918" y="337" width="28" height="145" rx="10" fill="#d7e2dc"/><rect x="923" y="381" width="18" height="96" rx="7" fill="url(#meter)"/>
+    <rect x="979" y="337" width="15" height="145" rx="7" fill="#d7e2dc"/><rect x="976" y="390" width="21" height="7" rx="3.5" fill="#4f7666"/>
+    <text x="902" y="517" class="cap">PURE WET RETURN</text><circle cx="1076" cy="514" r="5" fill="#78ad87"/>
+  </g>
+
+  <!-- GESTURE -->
+  <g transform="translate(40 700)" filter="url(#shadow)">
+    <rect width="1140" height="590" rx="8" fill="#f7faf7" stroke="#b7c9bf"/>
+    <rect width="1140" height="48" rx="8" fill="#243f35"/><rect y="40" width="1140" height="8" fill="#243f35"/><use href="#brand"/>
+    <rect x="578" y="9" width="548" height="30" rx="5" fill="#dce7df"/><rect x="898" y="9" width="116" height="30" rx="5" class="yellow"/>
+    <text x="605" y="28" class="label">PERFORM</text><text x="722" y="28" class="label">SOURCE</text><text x="824" y="28" class="label">FX</text>
+    <text x="926" y="28" class="label">GESTURE</text><text x="1038" y="28" class="label">MASTER</text>
+    <text x="24" y="81" class="title">GESTURE</text><text x="24" y="99" class="cap">CAMERA / SAFETY CLUTCH / TARGET MAPPING</text>
+
+    <rect x="24" y="116" width="700" height="446" rx="6" class="white"/>
+    <text x="43" y="143" class="h2">CAMERA VIEW</text><text x="43" y="160" class="cap">PHYSICAL RIGHT HAND · CONTINUOUS CONTROL</text>
+    <rect x="542" y="132" width="72" height="24" rx="5" fill="#eef4ef" stroke="#b5c7bd"/><text x="560" y="148" class="cap">MIRROR</text>
+    <rect x="622" y="132" width="80" height="24" rx="5" fill="#eef4ef" stroke="#b5c7bd"/><text x="636" y="148" class="cap">CALIBRATE</text>
+    <rect x="43" y="177" width="662" height="372" rx="5" fill="#b8c9c0"/>
+    <path d="M43 465C155 418 249 447 348 492C449 538 572 479 705 430V549H43Z" fill="#9fb4a9"/>
+    <rect x="356" y="202" width="324" height="322" fill="none" stroke="#efc84d" stroke-width="2" stroke-dasharray="8 7"/>
+    <text x="451" y="224" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" font-weight="500" fill="#695b2a">RIGHT-HAND CONTROL ZONE</text>
+    <circle cx="374" cy="311" r="39" fill="#708b7f"/><path d="M302 490c7-72 30-118 72-118s67 47 74 118z" fill="#668377"/>
+    <path d="M374 351v74M374 379l-57 35M374 379l64 31M317 414l-43-42M438 410l50-47" fill="none" stroke="#f1c94c" stroke-width="3"/>
+    <g fill="#f1c94c"><circle cx="374" cy="351" r="5"/><circle cx="374" cy="379" r="5"/><circle cx="317" cy="414" r="5"/><circle cx="438" cy="410" r="5"/><circle cx="274" cy="372" r="6"/><circle cx="488" cy="363" r="6"/></g>
+
+    <rect x="740" y="116" width="376" height="446" rx="6" class="soft"/>
+    <text x="762" y="145" class="h2">CONTROL TARGET</text>
+    <rect x="762" y="162" width="332" height="31" rx="5" fill="#fff" stroke="#b8c9c0"/><text x="777" y="182" class="value">BITCRUSHER</text><path d="M1075 173l5 5 5-5" fill="none" stroke="#637a70"/>
+    <text x="762" y="224" class="cap">CONTINUOUS PARAMETERS</text>
+    <g transform="translate(762 241)">
+      <rect width="332" height="52" rx="5" fill="#fff" stroke="#c3d2ca"/><text x="15" y="21" class="label">RIGHT X</text><text x="15" y="38" class="cap">SAMPLE RATE</text><text x="266" y="31" class="value">33.1 kHz</text>
+      <rect y="62" width="332" height="52" rx="5" fill="#fff" stroke="#c3d2ca"/><text x="15" y="83" class="label">RIGHT Y</text><text x="15" y="100" class="cap">BIT DEPTH</text><text x="281" y="93" class="value">13 bit</text>
+      <rect y="124" width="332" height="52" rx="5" fill="#fff" stroke="#c3d2ca"/><text x="15" y="145" class="label">RIGHT PINCH</text><text x="15" y="162" class="cap">DRIVE</text><text x="291" y="155" class="value">0.18</text>
+    </g>
+    <text x="762" y="442" class="cap">PHYSICAL LEFT HAND · SAFETY CLUTCH</text>
+    <rect x="762" y="457" width="210" height="44" rx="5" fill="#fff" stroke="#c3d2ca"/><circle cx="784" cy="479" r="7" fill="#78ad87"/><text x="802" y="476" class="label">OPEN PALM</text><text x="802" y="490" class="cap">CONTROL ENABLED</text>
+    <rect x="982" y="457" width="112" height="44" rx="5" fill="#f5efd3" stroke="#d6b43f"/><text x="1004" y="484" class="label">96% CONF.</text>
+    <rect x="762" y="516" width="332" height="26" rx="4" fill="#e6efe9"/><text x="777" y="533" class="cap">TRACKING STABLE · 3-FRAME DEBOUNCE</text>
+  </g>
+
+  <!-- MASTER -->
+  <g transform="translate(1220 700)" filter="url(#shadow)">
+    <rect width="1140" height="590" rx="8" fill="#f7faf7" stroke="#b7c9bf"/>
+    <rect width="1140" height="48" rx="8" fill="#243f35"/><rect y="40" width="1140" height="8" fill="#243f35"/><use href="#brand"/>
+    <rect x="578" y="9" width="548" height="30" rx="5" fill="#dce7df"/><rect x="1014" y="9" width="112" height="30" rx="5" class="yellow"/>
+    <text x="605" y="28" class="label">PERFORM</text><text x="722" y="28" class="label">SOURCE</text><text x="824" y="28" class="label">FX</text>
+    <text x="910" y="28" class="label">GESTURE</text><text x="1041" y="28" class="label">MASTER</text>
+    <text x="24" y="81" class="title">MASTER</text><text x="24" y="99" class="cap">SOURCE MIX / FX RETURNS / RECORD / MAIN OUTPUT</text>
+
+    <rect x="24" y="116" width="326" height="318" rx="6" class="white"/>
+    <text x="43" y="145" class="h2">SOURCE MIXER</text><text x="43" y="162" class="cap">DRY BUS</text>
+    <g transform="translate(60 192)">
+      <text x="0" y="0" class="label">MIC</text><text x="88" y="0" class="label">FILE</text><text x="176" y="0" class="label">GRANULAR</text>
+      <rect x="12" y="20" width="22" height="164" rx="9" fill="#d8e3dd"/><rect x="16" y="64" width="14" height="116" rx="7" fill="url(#meter)"/>
+      <rect x="100" y="20" width="22" height="164" rx="9" fill="#d8e3dd"/><rect x="104" y="104" width="14" height="76" rx="7" fill="url(#meter)"/>
+      <rect x="188" y="20" width="22" height="164" rx="9" fill="#d8e3dd"/><rect x="192" y="81" width="14" height="99" rx="7" fill="url(#meter)"/>
+      <text x="1" y="211" class="value">0.0 dB</text><text x="84" y="211" class="value">-3.0 dB</text><text x="177" y="211" class="value">0.0 dB</text>
+    </g>
+    <rect x="24" y="450" width="326" height="112" rx="6" class="soft"/>
+    <text x="43" y="478" class="h2">SOURCE MASTER</text><text x="43" y="498" class="cap">DRY OUTPUT</text>
+    <rect x="43" y="516" width="174" height="9" rx="4.5" fill="#d4dfd8"/><rect x="43" y="516" width="129" height="9" rx="4.5" fill="url(#meter)"/>
+    <text x="256" y="526" class="value">0.0 dB</text>
+
+    <rect x="366" y="116" width="468" height="446" rx="6" class="white"/>
+    <text x="388" y="145" class="h2">FX RETURNS</text><text x="388" y="162" class="cap">PURE WET LAYERS</text>
+    <g transform="translate(397 190)">
+      <text x="0" y="0" class="label">VOCODER</text><text x="99" y="0" class="label">CRUSHER</text><text x="198" y="0" class="label">DELAY</text><text x="297" y="0" class="label">FILTER</text>
+      <g transform="translate(18 22)"><rect width="24" height="220" rx="10" fill="#d8e3dd"/><rect x="4" y="92" width="16" height="124" rx="8" fill="url(#meter)"/></g>
+      <g transform="translate(117 22)"><rect width="24" height="220" rx="10" fill="#d8e3dd"/><rect x="4" y="127" width="16" height="89" rx="8" fill="url(#meter)"/></g>
+      <g transform="translate(216 22)"><rect width="24" height="220" rx="10" fill="#d8e3dd"/><rect x="4" y="153" width="16" height="63" rx="8" fill="url(#meter)"/></g>
+      <g transform="translate(315 22)"><rect width="24" height="220" rx="10" fill="#d8e3dd"/><rect x="4" y="74" width="16" height="142" rx="8" fill="url(#meter)"/></g>
+      <text x="5" y="272" class="value">0.0</text><text x="104" y="272" class="value">-3.0</text><text x="203" y="272" class="value">-6.0</text><text x="302" y="272" class="value">0.0</text>
+      <rect x="356" y="25" width="70" height="212" rx="5" fill="#edf3ef"/><text x="370" y="47" class="cap">MASTER</text>
+      <rect x="381" y="65" width="20" height="145" rx="8" fill="#d4dfd8"/><rect x="385" y="95" width="12" height="111" rx="6" fill="url(#meter)"/>
+    </g>
+
+    <rect x="850" y="116" width="266" height="446" rx="6" class="soft"/>
+    <text x="871" y="145" class="h2">MASTER OUTPUT</text>
+    <text x="871" y="166" class="cap">STEREO L / R</text>
+    <g transform="translate(883 196)">
+      <rect width="24" height="190" rx="9" fill="#d8e3dd"/><rect x="4" y="57" width="16" height="129" rx="7" fill="url(#meter)"/>
+      <rect x="45" width="24" height="190" rx="9" fill="#d8e3dd"/><rect x="49" y="71" width="16" height="115" rx="7" fill="url(#meter)"/>
+      <text x="7" y="211" class="cap">L</text><text x="52" y="211" class="cap">R</text>
+      <circle cx="154" cy="68" r="48" fill="#e6eee9" stroke="#d9b33a" stroke-width="2"/>
+      <path d="M120 96A43 43 0 1 1 188 96" fill="none" stroke="#efc84d" stroke-width="6"/><path d="M154 68l17-28" stroke="#29473c" stroke-width="4"/>
+      <text x="130" y="133" class="value">0.0 dB</text>
+    </g>
+    <rect x="871" y="434" width="101" height="34" rx="5" fill="#fff8dd" stroke="#d8b13a"/><text x="888" y="455" class="label">MUTE ALL</text>
+    <rect x="982" y="434" width="112" height="34" rx="5" fill="#243f35"/><circle cx="1000" cy="451" r="5" fill="#78ad87"/><text x="1013" y="455" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" fill="#fff">AUDIO ON</text>
+    <line x1="871" y1="492" x2="1094" y2="492" class="line"/>
+    <text x="871" y="517" class="h2">RECORD / EXPORT</text>
+    <rect x="871" y="529" width="96" height="25" rx="4" fill="#fff" stroke="#b8c9c0"/><text x="891" y="546" class="cap">CHOOSE FILE</text>
+    <rect x="977" y="529" width="56" height="25" rx="4" fill="#fff8dd" stroke="#d8b13a"/><circle cx="991" cy="541" r="5" fill="#d56755"/><text x="1002" y="545" class="cap">REC</text>
+    <rect x="1043" y="529" width="51" height="25" rx="4" fill="#fff" stroke="#b8c9c0"/><text x="1054" y="546" class="cap">STOP</text>
+  </g>
+</svg>

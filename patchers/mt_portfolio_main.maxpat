@@ -24,6 +24,21 @@
     "boxes": [
       {
         "box": {
+          "id": "pm-project-paths",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 0,
+          "patching_rect": [
+            24,
+            24,
+            720,
+            22
+          ],
+          "text": "declare -path inputs -path mixers -path effects -path control -path dsp -path ../javascript -path ../assets/ui"
+        }
+      },
+      {
+        "box": {
           "autofit": 1,
           "background": 1,
           "forceaspect": 1,
@@ -297,7 +312,7 @@
               {
                 "box": {
                   "id": "page-msg-0",
-                  "linecount": 11,
+                  "linecount": 13,
                   "maxclass": "message",
                   "numinlets": 2,
                   "numoutlets": 1,
@@ -305,12 +320,12 @@
                     ""
                   ],
                   "patching_rect": [
-                    24,
-                    160,
-                    760,
-                    42
+                    170,
+                    110,
+                    720,
+                    36
                   ],
-                  "text": "script hide ui_gesture_target_label, script hide ui_gesture_target, script hide ui_gesture_status, script hide ui_gesture_zone_note, script hide ui_perform_shell, script hide ui_perform_mic, script hide ui_perform_file, script hide ui_perform_grain, script hide ui_perform_vocoder, script hide ui_perform_bitcrusher, script hide ui_perform_feedback_delay, script hide ui_perform_multiband, script hide ui_source_mic, script hide ui_source_file, script hide ui_source_grain, script hide ui_source_mixer, script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script hide ui_gesture_hand, script hide ui_gesture_map_title, script hide ui_gesture_slot1, script hide ui_gesture_slot1_label, script hide ui_gesture_slot2, script hide ui_gesture_slot2_label, script hide ui_gesture_slot3, script hide ui_gesture_slot3_label, script hide ui_gesture_slot4, script hide ui_gesture_slot4_label, script hide ui_master_returns, script hide ui_util_eq_title, script hide ui_util_eq_open, script hide ui_util_rec_title, script hide ui_util_rec_open_label, script hide ui_util_rec_start_label, script hide ui_util_rec_stop_label, script hide ui_util_rec_open, script hide ui_util_rec_start, script hide ui_util_rec_stop, script sendbox ui_gesture_hand presentation_rect 402 222 798 420, script sendbox ui_output_meter_l presentation_rect 1284 842 164 12, script sendbox ui_output_meter_r presentation_rect 1284 866 164 12, script sendbox ui_output_dac presentation_rect 1584 826 42 42, script sendbox ui_output_label presentation_rect 1464 884 114 18, script sendbox ui_util_eq_open presentation_rect 620 838 82 24, script sendbox ui_util_rec_open presentation_rect 918 838 82 24, script sendbox ui_util_rec_start presentation_rect 1010 838 44 24, script sendbox ui_util_rec_stop presentation_rect 1064 838 44 24, script show ui_perform_shell, script show ui_perform_mic, script show ui_perform_file, script show ui_perform_grain, script show ui_perform_vocoder, script show ui_perform_bitcrusher, script show ui_perform_feedback_delay, script show ui_perform_multiband, script show ui_gesture_hand, script show ui_util_eq_open, script show ui_util_rec_open, script show ui_util_rec_start, script show ui_util_rec_stop"
+                  "text": "script hide ui_source_shell, script hide ui_fx_shell, script hide ui_gesture_shell, script hide ui_master_shell, script hide ui_source_selector, script hide ui_fx_selector, script hide ui_gesture_target_label, script hide ui_gesture_target, script hide ui_gesture_status, script hide ui_gesture_zone_note, script hide ui_perform_shell, script hide ui_perform_mic, script hide ui_perform_file, script hide ui_perform_grain, script hide ui_perform_vocoder, script hide ui_perform_bitcrusher, script hide ui_perform_feedback_delay, script hide ui_perform_multiband, script hide ui_source_mic, script hide ui_source_file"
                 }
               },
               {
@@ -324,12 +339,12 @@
                     ""
                   ],
                   "patching_rect": [
-                    24,
-                    212,
-                    760,
-                    42
+                    170,
+                    164,
+                    720,
+                    36
                   ],
-                  "text": "script hide ui_gesture_target_label, script hide ui_gesture_target, script hide ui_gesture_status, script hide ui_gesture_zone_note, script hide ui_perform_shell, script hide ui_perform_mic, script hide ui_perform_file, script hide ui_perform_grain, script hide ui_perform_vocoder, script hide ui_perform_bitcrusher, script hide ui_perform_feedback_delay, script hide ui_perform_multiband, script hide ui_source_mic, script hide ui_source_file, script hide ui_source_grain, script hide ui_source_mixer, script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script hide ui_gesture_hand, script hide ui_gesture_map_title, script hide ui_gesture_slot1, script hide ui_gesture_slot1_label, script hide ui_gesture_slot2, script hide ui_gesture_slot2_label, script hide ui_gesture_slot3, script hide ui_gesture_slot3_label, script hide ui_gesture_slot4, script hide ui_gesture_slot4_label, script hide ui_master_returns, script hide ui_util_eq_title, script hide ui_util_eq_open, script hide ui_util_rec_title, script hide ui_util_rec_open_label, script hide ui_util_rec_start_label, script hide ui_util_rec_stop_label, script hide ui_util_rec_open, script hide ui_util_rec_start, script hide ui_util_rec_stop, script sendbox ui_source_mixer presentation_rect 24 520 760 320, script sendbox ui_output_meter_l presentation_rect 1390 902 120 12, script sendbox ui_output_meter_r presentation_rect 1390 928 120 12, script sendbox ui_output_dac presentation_rect 1530 895 45 45, script sendbox ui_output_label presentation_rect 1590 907 100 20, script show ui_source_mic, script show ui_source_file, script show ui_source_grain, script show ui_source_mixer"
+                  "text": "script hide ui_source_shell, script hide ui_fx_shell, script hide ui_gesture_shell, script hide ui_master_shell, script hide ui_source_selector, script hide ui_fx_selector, script hide ui_gesture_target_label, script hide ui_gesture_target, script hide ui_gesture_status, script hide ui_gesture_zone_note, script hide ui_perform_shell, script hide ui_perform_mic, script hide ui_perform_file, script hide ui_perform_grain, script hide ui_perform_vocoder, script hide ui_perform_bitcrusher, script hide ui_perform_feedback_delay, script hide ui_perform_multiband, script hide ui_source_mic, script hide ui_source_file"
                 }
               },
               {
@@ -343,12 +358,12 @@
                     ""
                   ],
                   "patching_rect": [
-                    24,
-                    264,
-                    760,
-                    42
+                    170,
+                    218,
+                    720,
+                    36
                   ],
-                  "text": "script hide ui_gesture_target_label, script hide ui_gesture_target, script hide ui_gesture_status, script hide ui_gesture_zone_note, script hide ui_perform_shell, script hide ui_perform_mic, script hide ui_perform_file, script hide ui_perform_grain, script hide ui_perform_vocoder, script hide ui_perform_bitcrusher, script hide ui_perform_feedback_delay, script hide ui_perform_multiband, script hide ui_source_mic, script hide ui_source_file, script hide ui_source_grain, script hide ui_source_mixer, script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script hide ui_gesture_hand, script hide ui_gesture_map_title, script hide ui_gesture_slot1, script hide ui_gesture_slot1_label, script hide ui_gesture_slot2, script hide ui_gesture_slot2_label, script hide ui_gesture_slot3, script hide ui_gesture_slot3_label, script hide ui_gesture_slot4, script hide ui_gesture_slot4_label, script hide ui_master_returns, script hide ui_util_eq_title, script hide ui_util_eq_open, script hide ui_util_rec_title, script hide ui_util_rec_open_label, script hide ui_util_rec_start_label, script hide ui_util_rec_stop_label, script hide ui_util_rec_open, script hide ui_util_rec_start, script hide ui_util_rec_stop, script show ui_fx_vocoder, script show ui_fx_bitcrusher, script show ui_fx_feedback_delay, script show ui_fx_multiband"
+                  "text": "script hide ui_source_shell, script hide ui_fx_shell, script hide ui_gesture_shell, script hide ui_master_shell, script hide ui_source_selector, script hide ui_fx_selector, script hide ui_gesture_target_label, script hide ui_gesture_target, script hide ui_gesture_status, script hide ui_gesture_zone_note, script hide ui_perform_shell, script hide ui_perform_mic, script hide ui_perform_file, script hide ui_perform_grain, script hide ui_perform_vocoder, script hide ui_perform_bitcrusher, script hide ui_perform_feedback_delay, script hide ui_perform_multiband, script hide ui_source_mic, script hide ui_source_file"
                 }
               },
               {
@@ -362,18 +377,18 @@
                     ""
                   ],
                   "patching_rect": [
-                    24,
-                    316,
-                    760,
-                    42
+                    170,
+                    272,
+                    720,
+                    36
                   ],
-                  "text": "script hide ui_gesture_target_label, script hide ui_gesture_target, script hide ui_gesture_status, script hide ui_gesture_zone_note, script hide ui_perform_shell, script hide ui_perform_mic, script hide ui_perform_file, script hide ui_perform_grain, script hide ui_perform_vocoder, script hide ui_perform_bitcrusher, script hide ui_perform_feedback_delay, script hide ui_perform_multiband, script hide ui_source_mic, script hide ui_source_file, script hide ui_source_grain, script hide ui_source_mixer, script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script hide ui_gesture_hand, script hide ui_gesture_map_title, script hide ui_gesture_slot1, script hide ui_gesture_slot1_label, script hide ui_gesture_slot2, script hide ui_gesture_slot2_label, script hide ui_gesture_slot3, script hide ui_gesture_slot3_label, script hide ui_gesture_slot4, script hide ui_gesture_slot4_label, script hide ui_master_returns, script hide ui_util_eq_title, script hide ui_util_eq_open, script hide ui_util_rec_title, script hide ui_util_rec_open_label, script hide ui_util_rec_start_label, script hide ui_util_rec_stop_label, script hide ui_util_rec_open, script hide ui_util_rec_start, script hide ui_util_rec_stop, script sendbox ui_gesture_hand presentation_rect 24 160 798 420, script sendbox ui_output_meter_l presentation_rect 1390 902 120 12, script sendbox ui_output_meter_r presentation_rect 1390 928 120 12, script sendbox ui_output_dac presentation_rect 1530 895 45 45, script sendbox ui_output_label presentation_rect 1590 907 100 20, script show ui_gesture_hand, script show ui_gesture_map_title, script show ui_gesture_slot1, script show ui_gesture_slot1_label, script show ui_gesture_slot2, script show ui_gesture_slot2_label, script show ui_gesture_slot3, script show ui_gesture_slot3_label, script show ui_gesture_slot4, script show ui_gesture_slot4_label, script show ui_gesture_target_label, script show ui_gesture_target, script show ui_gesture_status, script show ui_gesture_zone_note"
+                  "text": "script hide ui_source_shell, script hide ui_fx_shell, script hide ui_gesture_shell, script hide ui_master_shell, script hide ui_source_selector, script hide ui_fx_selector, script hide ui_gesture_target_label, script hide ui_gesture_target, script hide ui_gesture_status, script hide ui_gesture_zone_note, script hide ui_perform_shell, script hide ui_perform_mic, script hide ui_perform_file, script hide ui_perform_grain, script hide ui_perform_vocoder, script hide ui_perform_bitcrusher, script hide ui_perform_feedback_delay, script hide ui_perform_multiband, script hide ui_source_mic, script hide ui_source_file"
                 }
               },
               {
                 "box": {
                   "id": "page-msg-4",
-                  "linecount": 10,
+                  "linecount": 13,
                   "maxclass": "message",
                   "numinlets": 2,
                   "numoutlets": 1,
@@ -381,12 +396,12 @@
                     ""
                   ],
                   "patching_rect": [
-                    24,
-                    368,
-                    760,
-                    42
+                    170,
+                    326,
+                    720,
+                    36
                   ],
-                  "text": "script hide ui_gesture_target_label, script hide ui_gesture_target, script hide ui_gesture_status, script hide ui_gesture_zone_note, script hide ui_perform_shell, script hide ui_perform_mic, script hide ui_perform_file, script hide ui_perform_grain, script hide ui_perform_vocoder, script hide ui_perform_bitcrusher, script hide ui_perform_feedback_delay, script hide ui_perform_multiband, script hide ui_source_mic, script hide ui_source_file, script hide ui_source_grain, script hide ui_source_mixer, script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script hide ui_gesture_hand, script hide ui_gesture_map_title, script hide ui_gesture_slot1, script hide ui_gesture_slot1_label, script hide ui_gesture_slot2, script hide ui_gesture_slot2_label, script hide ui_gesture_slot3, script hide ui_gesture_slot3_label, script hide ui_gesture_slot4, script hide ui_gesture_slot4_label, script hide ui_master_returns, script hide ui_util_eq_title, script hide ui_util_eq_open, script hide ui_util_rec_title, script hide ui_util_rec_open_label, script hide ui_util_rec_start_label, script hide ui_util_rec_stop_label, script hide ui_util_rec_open, script hide ui_util_rec_start, script hide ui_util_rec_stop, script sendbox ui_master_returns presentation_rect 24 160 905 300, script sendbox ui_output_meter_l presentation_rect 1238 716 142 12, script sendbox ui_output_meter_r presentation_rect 1238 740 142 12, script sendbox ui_output_dac presentation_rect 1388 707 36 36, script sendbox ui_output_label presentation_rect 1238 760 130 18, script show ui_master_returns, script show ui_util_eq_title, script show ui_util_eq_open, script show ui_util_rec_title, script show ui_util_rec_open_label, script show ui_util_rec_start_label, script show ui_util_rec_stop_label, script show ui_util_rec_open, script show ui_util_rec_start, script show ui_util_rec_stop"
+                  "text": "script hide ui_source_shell, script hide ui_fx_shell, script hide ui_gesture_shell, script hide ui_master_shell, script hide ui_source_selector, script hide ui_fx_selector, script hide ui_gesture_target_label, script hide ui_gesture_target, script hide ui_gesture_status, script hide ui_gesture_zone_note, script hide ui_perform_shell, script hide ui_perform_mic, script hide ui_perform_file, script hide ui_perform_grain, script hide ui_perform_vocoder, script hide ui_perform_bitcrusher, script hide ui_perform_feedback_delay, script hide ui_perform_multiband, script hide ui_source_mic, script hide ui_source_file"
                 }
               },
               {
@@ -403,6 +418,400 @@
                     30,
                     30
                   ]
+                }
+              },
+              {
+                "box": {
+                  "id": "page-trigger-0",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 5,
+                  "outlettype": [
+                    "bang",
+                    "bang",
+                    "bang",
+                    "bang",
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    120,
+                    110,
+                    42,
+                    22
+                  ],
+                  "text": "t b b b b b"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-0-chunk-1",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    148,
+                    720,
+                    36
+                  ],
+                  "text": "script hide ui_source_grain, script hide ui_source_mixer, script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script hide ui_gesture_hand, script hide ui_gesture_map_title, script hide ui_gesture_slot1, script hide ui_gesture_slot1_label, script hide ui_gesture_slot2, script hide ui_gesture_slot2_label, script hide ui_gesture_slot3, script hide ui_gesture_slot3_label, script hide ui_gesture_slot4, script hide ui_gesture_slot4_label, script hide ui_master_returns, script hide ui_util_eq_title, script hide ui_util_eq_open, script hide ui_util_rec_title"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-0-chunk-2",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    186,
+                    720,
+                    36
+                  ],
+                  "text": "script hide ui_util_rec_open_label, script hide ui_util_rec_start_label, script hide ui_util_rec_stop_label, script hide ui_util_rec_open, script hide ui_util_rec_start, script hide ui_util_rec_stop, script hide ui_util_rec_file, script hide ui_util_rec_status, script hide ui_util_rec_time, script hide ui_output_meter_l, script hide ui_output_meter_r, script hide ui_output_dac, script hide ui_output_label, script sendbox ui_gesture_hand presentation_rect 402 222 798 420, script sendbox ui_util_rec_title presentation_rect 760 842 300 20, script sendbox ui_util_rec_open presentation_rect 760 876 110 28, script sendbox ui_util_rec_start presentation_rect 880 876 82 28, script sendbox ui_util_rec_stop presentation_rect 972 876 70 28, script sendbox ui_util_rec_file presentation_rect 760 916 320 24, script sendbox ui_util_rec_status presentation_rect 760 956 120 24"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-0-chunk-3",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    224,
+                    720,
+                    36
+                  ],
+                  "text": "script sendbox ui_util_rec_time presentation_rect 900 956 90 24, script sendbox ui_output_meter_l presentation_rect 1230 918 300 14, script sendbox ui_output_meter_r presentation_rect 1230 948 300 14, script sendbox ui_output_dac presentation_rect 1570 908 52 52, script sendbox ui_output_label presentation_rect 1230 978 180 20, script show ui_perform_shell, script show ui_perform_mic, script show ui_perform_file, script show ui_perform_grain, script show ui_perform_vocoder, script show ui_perform_bitcrusher, script show ui_perform_feedback_delay, script show ui_perform_multiband, script show ui_gesture_hand, script show ui_util_rec_title, script show ui_util_rec_open, script show ui_util_rec_start, script show ui_util_rec_stop, script show ui_util_rec_file, script show ui_util_rec_status"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-0-chunk-4",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    262,
+                    720,
+                    36
+                  ],
+                  "text": "script show ui_util_rec_time, script show ui_output_meter_l, script show ui_output_meter_r, script show ui_output_dac, script show ui_output_label"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-trigger-1",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 3,
+                  "outlettype": [
+                    "bang",
+                    "bang",
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    120,
+                    164,
+                    42,
+                    22
+                  ],
+                  "text": "t b b b"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-1-chunk-1",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    202,
+                    720,
+                    36
+                  ],
+                  "text": "script hide ui_source_grain, script hide ui_source_mixer, script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script hide ui_gesture_hand, script hide ui_gesture_map_title, script hide ui_gesture_slot1, script hide ui_gesture_slot1_label, script hide ui_gesture_slot2, script hide ui_gesture_slot2_label, script hide ui_gesture_slot3, script hide ui_gesture_slot3_label, script hide ui_gesture_slot4, script hide ui_gesture_slot4_label, script hide ui_master_returns, script hide ui_util_eq_title, script hide ui_util_eq_open, script hide ui_util_rec_title"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-1-chunk-2",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    240,
+                    720,
+                    36
+                  ],
+                  "text": "script hide ui_util_rec_open_label, script hide ui_util_rec_start_label, script hide ui_util_rec_stop_label, script hide ui_util_rec_open, script hide ui_util_rec_start, script hide ui_util_rec_stop, script hide ui_util_rec_file, script hide ui_util_rec_status, script hide ui_util_rec_time, script hide ui_output_meter_l, script hide ui_output_meter_r, script hide ui_output_dac, script hide ui_output_label, script sendbox ui_source_selector set 0, script sendbox ui_source_mic presentation_rect 225 300 420 280, script sendbox ui_source_mixer presentation_rect 897 300 760 320, script show ui_source_shell, script show ui_source_selector, script show ui_source_mic, script show ui_source_mixer"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-trigger-2",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 3,
+                  "outlettype": [
+                    "bang",
+                    "bang",
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    120,
+                    218,
+                    42,
+                    22
+                  ],
+                  "text": "t b b b"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-2-chunk-1",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    256,
+                    720,
+                    36
+                  ],
+                  "text": "script hide ui_source_grain, script hide ui_source_mixer, script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script hide ui_gesture_hand, script hide ui_gesture_map_title, script hide ui_gesture_slot1, script hide ui_gesture_slot1_label, script hide ui_gesture_slot2, script hide ui_gesture_slot2_label, script hide ui_gesture_slot3, script hide ui_gesture_slot3_label, script hide ui_gesture_slot4, script hide ui_gesture_slot4_label, script hide ui_master_returns, script hide ui_util_eq_title, script hide ui_util_eq_open, script hide ui_util_rec_title"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-2-chunk-2",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    294,
+                    720,
+                    36
+                  ],
+                  "text": "script hide ui_util_rec_open_label, script hide ui_util_rec_start_label, script hide ui_util_rec_stop_label, script hide ui_util_rec_open, script hide ui_util_rec_start, script hide ui_util_rec_stop, script hide ui_util_rec_file, script hide ui_util_rec_status, script hide ui_util_rec_time, script hide ui_output_meter_l, script hide ui_output_meter_r, script hide ui_output_dac, script hide ui_output_label, script sendbox ui_fx_selector set 1, script sendbox ui_fx_bitcrusher presentation_rect 55 278 760 268, script sendbox ui_master_returns presentation_rect 824 300 905 300, script show ui_fx_shell, script show ui_fx_selector, script show ui_fx_bitcrusher, script show ui_master_returns"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-trigger-3",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 5,
+                  "outlettype": [
+                    "bang",
+                    "bang",
+                    "bang",
+                    "bang",
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    120,
+                    272,
+                    42,
+                    22
+                  ],
+                  "text": "t b b b b b"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-3-chunk-1",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    310,
+                    720,
+                    36
+                  ],
+                  "text": "script hide ui_source_grain, script hide ui_source_mixer, script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script hide ui_gesture_hand, script hide ui_gesture_map_title, script hide ui_gesture_slot1, script hide ui_gesture_slot1_label, script hide ui_gesture_slot2, script hide ui_gesture_slot2_label, script hide ui_gesture_slot3, script hide ui_gesture_slot3_label, script hide ui_gesture_slot4, script hide ui_gesture_slot4_label, script hide ui_master_returns, script hide ui_util_eq_title, script hide ui_util_eq_open, script hide ui_util_rec_title"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-3-chunk-2",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    348,
+                    720,
+                    36
+                  ],
+                  "text": "script hide ui_util_rec_open_label, script hide ui_util_rec_start_label, script hide ui_util_rec_stop_label, script hide ui_util_rec_open, script hide ui_util_rec_start, script hide ui_util_rec_stop, script hide ui_util_rec_file, script hide ui_util_rec_status, script hide ui_util_rec_time, script hide ui_output_meter_l, script hide ui_output_meter_r, script hide ui_output_dac, script hide ui_output_label, script sendbox ui_gesture_hand presentation_rect 48 190 900 474, script sendbox ui_gesture_target_label presentation_rect 1000 190 180 20, script sendbox ui_gesture_target presentation_rect 1000 216 620 28, script sendbox ui_gesture_map_title presentation_rect 1000 278 520 22, script sendbox ui_gesture_slot1 presentation_rect 1000 326 96 24, script sendbox ui_gesture_slot1_label presentation_rect 1110 328 430 20, script sendbox ui_gesture_slot2 presentation_rect 1000 372 96 24"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-3-chunk-3",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    386,
+                    720,
+                    36
+                  ],
+                  "text": "script sendbox ui_gesture_slot2_label presentation_rect 1110 374 430 20, script sendbox ui_gesture_slot3 presentation_rect 1000 418 96 24, script sendbox ui_gesture_slot3_label presentation_rect 1110 420 430 20, script sendbox ui_gesture_slot4 presentation_rect 1000 464 96 24, script sendbox ui_gesture_slot4_label presentation_rect 1110 466 480 20, script sendbox ui_gesture_status presentation_rect 1000 536 520 28, script sendbox ui_gesture_zone_note presentation_rect 1000 590 610 46, script show ui_gesture_shell, script show ui_gesture_hand, script show ui_gesture_target_label, script show ui_gesture_target, script show ui_gesture_map_title, script show ui_gesture_slot1, script show ui_gesture_slot1_label, script show ui_gesture_slot2, script show ui_gesture_slot2_label, script show ui_gesture_slot3, script show ui_gesture_slot3_label, script show ui_gesture_slot4, script show ui_gesture_slot4_label"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-3-chunk-4",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    424,
+                    720,
+                    36
+                  ],
+                  "text": "script show ui_gesture_status, script show ui_gesture_zone_note"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-trigger-4",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 5,
+                  "outlettype": [
+                    "bang",
+                    "bang",
+                    "bang",
+                    "bang",
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    120,
+                    326,
+                    42,
+                    22
+                  ],
+                  "text": "t b b b b b"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-4-chunk-1",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    364,
+                    720,
+                    36
+                  ],
+                  "text": "script hide ui_source_grain, script hide ui_source_mixer, script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script hide ui_gesture_hand, script hide ui_gesture_map_title, script hide ui_gesture_slot1, script hide ui_gesture_slot1_label, script hide ui_gesture_slot2, script hide ui_gesture_slot2_label, script hide ui_gesture_slot3, script hide ui_gesture_slot3_label, script hide ui_gesture_slot4, script hide ui_gesture_slot4_label, script hide ui_master_returns, script hide ui_util_eq_title, script hide ui_util_eq_open, script hide ui_util_rec_title"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-4-chunk-2",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    402,
+                    720,
+                    36
+                  ],
+                  "text": "script hide ui_util_rec_open_label, script hide ui_util_rec_start_label, script hide ui_util_rec_stop_label, script hide ui_util_rec_open, script hide ui_util_rec_start, script hide ui_util_rec_stop, script hide ui_util_rec_file, script hide ui_util_rec_status, script hide ui_util_rec_time, script hide ui_output_meter_l, script hide ui_output_meter_r, script hide ui_output_dac, script hide ui_output_label, script sendbox ui_master_returns presentation_rect 92 300 905 300, script sendbox ui_util_rec_title presentation_rect 1120 292 300 20, script sendbox ui_util_rec_open presentation_rect 1120 332 110 28, script sendbox ui_util_rec_start presentation_rect 1240 332 82 28, script sendbox ui_util_rec_stop presentation_rect 1332 332 70 28, script sendbox ui_util_rec_open_label presentation_rect 1120 382 90 18, script sendbox ui_util_rec_file presentation_rect 1120 406 440 24"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-4-chunk-3",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    440,
+                    720,
+                    36
+                  ],
+                  "text": "script sendbox ui_util_rec_start_label presentation_rect 1120 454 60 18, script sendbox ui_util_rec_status presentation_rect 1120 478 140 24, script sendbox ui_util_rec_stop_label presentation_rect 1280 454 60 18, script sendbox ui_util_rec_time presentation_rect 1280 478 100 24, script sendbox ui_output_meter_l presentation_rect 1120 602 400 14, script sendbox ui_output_meter_r presentation_rect 1120 632 400 14, script sendbox ui_output_dac presentation_rect 1580 136 52 52, script sendbox ui_output_label presentation_rect 1120 668 180 20, script show ui_master_shell, script show ui_master_returns, script show ui_util_rec_title, script show ui_util_rec_open_label, script show ui_util_rec_start_label, script show ui_util_rec_stop_label, script show ui_util_rec_open, script show ui_util_rec_start, script show ui_util_rec_stop, script show ui_util_rec_file, script show ui_util_rec_status, script show ui_util_rec_time"
+                }
+              },
+              {
+                "box": {
+                  "id": "page-msg-4-chunk-4",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    478,
+                    720,
+                    36
+                  ],
+                  "text": "script show ui_output_meter_l, script show ui_output_meter_r, script show ui_output_dac, script show ui_output_label"
                 }
               }
             ],
@@ -433,121 +842,565 @@
               },
               {
                 "patchline": {
-                  "destination": [
-                    "page-out",
-                    0
-                  ],
-                  "source": [
-                    "page-msg-0",
-                    0
-                  ]
-                }
-              },
-              {
-                "patchline": {
-                  "destination": [
-                    "page-out",
-                    0
-                  ],
-                  "source": [
-                    "page-msg-1",
-                    0
-                  ]
-                }
-              },
-              {
-                "patchline": {
-                  "destination": [
-                    "page-out",
-                    0
-                  ],
-                  "source": [
-                    "page-msg-2",
-                    0
-                  ]
-                }
-              },
-              {
-                "patchline": {
-                  "destination": [
-                    "page-out",
-                    0
-                  ],
-                  "source": [
-                    "page-msg-3",
-                    0
-                  ]
-                }
-              },
-              {
-                "patchline": {
-                  "destination": [
-                    "page-out",
-                    0
-                  ],
-                  "source": [
-                    "page-msg-4",
-                    0
-                  ]
-                }
-              },
-              {
-                "patchline": {
-                  "destination": [
-                    "page-msg-0",
-                    0
-                  ],
                   "source": [
                     "page-select",
                     0
+                  ],
+                  "destination": [
+                    "page-trigger-0",
+                    0
                   ]
                 }
               },
               {
                 "patchline": {
+                  "source": [
+                    "page-trigger-0",
+                    4
+                  ],
                   "destination": [
-                    "page-msg-1",
+                    "page-msg-0",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-0",
                     0
                   ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-0",
+                    3
+                  ],
+                  "destination": [
+                    "page-msg-0-chunk-1",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-0-chunk-1",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-0",
+                    2
+                  ],
+                  "destination": [
+                    "page-msg-0-chunk-2",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-0-chunk-2",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-0",
+                    1
+                  ],
+                  "destination": [
+                    "page-msg-0-chunk-3",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-0-chunk-3",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-0",
+                    0
+                  ],
+                  "destination": [
+                    "page-msg-0-chunk-4",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-0-chunk-4",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
                   "source": [
                     "page-select",
                     1
+                  ],
+                  "destination": [
+                    "page-trigger-1",
+                    0
                   ]
                 }
               },
               {
                 "patchline": {
+                  "source": [
+                    "page-trigger-1",
+                    2
+                  ],
                   "destination": [
-                    "page-msg-2",
+                    "page-msg-1",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-1",
                     0
                   ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-1",
+                    1
+                  ],
+                  "destination": [
+                    "page-msg-1-chunk-1",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-1-chunk-1",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-1",
+                    0
+                  ],
+                  "destination": [
+                    "page-msg-1-chunk-2",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-1-chunk-2",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
                   "source": [
                     "page-select",
                     2
+                  ],
+                  "destination": [
+                    "page-trigger-2",
+                    0
                   ]
                 }
               },
               {
                 "patchline": {
+                  "source": [
+                    "page-trigger-2",
+                    2
+                  ],
                   "destination": [
-                    "page-msg-3",
+                    "page-msg-2",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-2",
                     0
                   ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-2",
+                    1
+                  ],
+                  "destination": [
+                    "page-msg-2-chunk-1",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-2-chunk-1",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-2",
+                    0
+                  ],
+                  "destination": [
+                    "page-msg-2-chunk-2",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-2-chunk-2",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
                   "source": [
                     "page-select",
                     3
+                  ],
+                  "destination": [
+                    "page-trigger-3",
+                    0
                   ]
                 }
               },
               {
                 "patchline": {
+                  "source": [
+                    "page-trigger-3",
+                    4
+                  ],
                   "destination": [
-                    "page-msg-4",
+                    "page-msg-3",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-3",
                     0
                   ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-3",
+                    3
+                  ],
+                  "destination": [
+                    "page-msg-3-chunk-1",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-3-chunk-1",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-3",
+                    2
+                  ],
+                  "destination": [
+                    "page-msg-3-chunk-2",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-3-chunk-2",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-3",
+                    1
+                  ],
+                  "destination": [
+                    "page-msg-3-chunk-3",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-3-chunk-3",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-3",
+                    0
+                  ],
+                  "destination": [
+                    "page-msg-3-chunk-4",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-3-chunk-4",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
                   "source": [
                     "page-select",
                     4
+                  ],
+                  "destination": [
+                    "page-trigger-4",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-4",
+                    4
+                  ],
+                  "destination": [
+                    "page-msg-4",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-4",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-4",
+                    3
+                  ],
+                  "destination": [
+                    "page-msg-4-chunk-1",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-4-chunk-1",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-4",
+                    2
+                  ],
+                  "destination": [
+                    "page-msg-4-chunk-2",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-4-chunk-2",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-4",
+                    1
+                  ],
+                  "destination": [
+                    "page-msg-4-chunk-3",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-4-chunk-3",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-trigger-4",
+                    0
+                  ],
+                  "destination": [
+                    "page-msg-4-chunk-4",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "page-msg-4-chunk-4",
+                    0
+                  ],
+                  "destination": [
+                    "page-out",
+                    0
                   ]
                 }
               }
@@ -1930,7 +2783,7 @@
           "presentation": 1,
           "presentation_rect": [
             1284,
-            842,
+            844,
             164,
             12
           ],
@@ -1955,7 +2808,7 @@
           "presentation": 1,
           "presentation_rect": [
             1284,
-            866,
+            864,
             164,
             12
           ],
@@ -1999,7 +2852,7 @@
           "presentation": 1,
           "presentation_rect": [
             1464,
-            884,
+            878,
             114,
             18
           ],
@@ -2021,12 +2874,12 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            1034,
-            700,
-            160,
-            18
+            1000,
+            500,
+            220,
+            20
           ],
-          "text": "MASTER RECORD",
+          "text": "MASTER RECORD / WAV EXPORT",
           "varname": "ui_util_rec_title"
         }
       },
@@ -2044,12 +2897,12 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            1034,
-            722,
-            72,
+            1000,
+            570,
+            90,
             18
           ],
-          "text": "Choose File",
+          "text": "Destination",
           "varname": "ui_util_rec_open_label"
         }
       },
@@ -2067,12 +2920,12 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            1114,
-            722,
-            52,
+            1000,
+            624,
+            60,
             18
           ],
-          "text": "Record",
+          "text": "Status",
           "varname": "ui_util_rec_start_label"
         }
       },
@@ -2090,12 +2943,12 @@
           ],
           "presentation": 1,
           "presentation_rect": [
-            1174,
-            722,
-            42,
+            1120,
+            624,
+            60,
             18
           ],
-          "text": "Stop",
+          "text": "Elapsed",
           "varname": "ui_util_rec_stop_label"
         }
       },
@@ -2111,17 +2964,17 @@
           "patching_rect": [
             220,
             2258,
-            72,
+            88,
             22
           ],
           "presentation": 1,
           "presentation_rect": [
-            918,
-            838,
+            760,
+            842,
             82,
-            24
+            22
           ],
-          "text": "open wave",
+          "text": "Choose File",
           "varname": "ui_util_rec_open"
         }
       },
@@ -2135,19 +2988,19 @@
             ""
           ],
           "patching_rect": [
-            304,
+            320,
             2258,
-            32,
+            62,
             22
           ],
           "presentation": 1,
           "presentation_rect": [
-            1010,
-            838,
-            44,
-            24
+            850,
+            842,
+            58,
+            22
           ],
-          "text": "1",
+          "text": "Record",
           "varname": "ui_util_rec_start"
         }
       },
@@ -2161,19 +3014,19 @@
             ""
           ],
           "patching_rect": [
-            368,
+            394,
             2258,
-            32,
+            52,
             22
           ],
           "presentation": 1,
           "presentation_rect": [
-            1064,
-            838,
-            44,
-            24
+            916,
+            842,
+            50,
+            22
           ],
-          "text": "0",
+          "text": "Stop",
           "varname": "ui_util_rec_stop"
         }
       },
@@ -2188,117 +3041,11 @@
           ],
           "patching_rect": [
             220,
-            2294,
+            2390,
             92,
             22
           ],
           "text": "sfrecord~ 2"
-        }
-      },
-      {
-        "box": {
-          "id": "pm-perform-chop",
-          "maxclass": "textbutton",
-          "numinlets": 1,
-          "numoutlets": 1,
-          "outlettype": [
-            "int"
-          ],
-          "mode": 1,
-          "text": "OFF",
-          "texton": "ON",
-          "rounded": 14,
-          "bgcolor": [
-            0.88,
-            0.92,
-            0.89,
-            1
-          ],
-          "bgoncolor": [
-            0.3,
-            0.56,
-            0.45,
-            1
-          ],
-          "textcolor": [
-            0.35,
-            0.46,
-            0.41,
-            1
-          ],
-          "textoncolor": [
-            0.97,
-            0.99,
-            0.97,
-            1
-          ],
-          "patching_rect": [
-            2148,
-            980,
-            48,
-            28
-          ],
-          "presentation": 1,
-          "presentation_rect": [
-            1620,
-            380,
-            48,
-            28
-          ],
-          "varname": "ui_perform_chop"
-        }
-      },
-      {
-        "box": {
-          "id": "pm-perform-tremolo",
-          "maxclass": "textbutton",
-          "numinlets": 1,
-          "numoutlets": 1,
-          "outlettype": [
-            "int"
-          ],
-          "mode": 1,
-          "text": "OFF",
-          "texton": "ON",
-          "rounded": 14,
-          "bgcolor": [
-            0.88,
-            0.92,
-            0.89,
-            1
-          ],
-          "bgoncolor": [
-            0.3,
-            0.56,
-            0.45,
-            1
-          ],
-          "textcolor": [
-            0.35,
-            0.46,
-            0.41,
-            1
-          ],
-          "textoncolor": [
-            0.97,
-            0.99,
-            0.97,
-            1
-          ],
-          "patching_rect": [
-            2220,
-            980,
-            48,
-            28
-          ],
-          "presentation": 1,
-          "presentation_rect": [
-            1620,
-            504,
-            48,
-            28
-          ],
-          "varname": "ui_perform_tremolo"
         }
       },
       {
@@ -2419,6 +3166,2360 @@
           ],
           "varname": "ui_fx_multiband",
           "viewvisibility": 1
+        }
+      },
+      {
+        "box": {
+          "id": "pm-bitcrusher-hand-mapper",
+          "maxclass": "newobj",
+          "numinlets": 2,
+          "numoutlets": 9,
+          "outlettype": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "patching_rect": [
+            1862,
+            860,
+            330,
+            22
+          ],
+          "text": "js Patcher:/../javascript/mt_fx_hand_mapper.js",
+          "varname": "gesture_fx_mapper"
+        }
+      },
+      {
+        "box": {
+          "hidden": 1,
+          "id": "pm-gesture-target-label",
+          "maxclass": "comment",
+          "numinlets": 1,
+          "numoutlets": 0,
+          "patching_rect": [
+            2210,
+            860,
+            120,
+            20
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            860,
+            160,
+            160,
+            20
+          ],
+          "text": "CONTROL TARGET",
+          "varname": "ui_gesture_target_label"
+        }
+      },
+      {
+        "box": {
+          "hidden": 1,
+          "id": "pm-gesture-target",
+          "items": [
+            "Off",
+            ",",
+            "Vocoder",
+            ",",
+            "Bitcrusher",
+            ",",
+            "Feedback Delay",
+            ",",
+            "Multiband Filter"
+          ],
+          "maxclass": "umenu",
+          "numinlets": 1,
+          "numoutlets": 3,
+          "outlettype": [
+            "int",
+            "",
+            ""
+          ],
+          "parameter_enable": 0,
+          "patching_rect": [
+            2210,
+            890,
+            220,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            860,
+            184,
+            300,
+            26
+          ],
+          "varname": "ui_gesture_target"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-gesture-target-init",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patching_rect": [
+            2210,
+            825,
+            70,
+            22
+          ],
+          "text": "loadmess 0"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-gesture-target-fanout",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 4,
+          "outlettype": [
+            "int",
+            "int",
+            "int",
+            "int"
+          ],
+          "patching_rect": [
+            2210,
+            925,
+            70,
+            22
+          ],
+          "text": "t i i i i"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-gesture-x-fanout",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 2,
+          "outlettype": [
+            "float",
+            "float"
+          ],
+          "patching_rect": [
+            2210,
+            955,
+            45,
+            22
+          ],
+          "text": "t f f"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-gesture-x-gate",
+          "maxclass": "newobj",
+          "numinlets": 2,
+          "numoutlets": 4,
+          "outlettype": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "patching_rect": [
+            2290,
+            955,
+            62,
+            22
+          ],
+          "text": "gate 4"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-gesture-y-fanout",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 2,
+          "outlettype": [
+            "float",
+            "float"
+          ],
+          "patching_rect": [
+            2210,
+            985,
+            45,
+            22
+          ],
+          "text": "t f f"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-gesture-y-gate",
+          "maxclass": "newobj",
+          "numinlets": 2,
+          "numoutlets": 4,
+          "outlettype": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "patching_rect": [
+            2290,
+            985,
+            62,
+            22
+          ],
+          "text": "gate 4"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-gesture-pinch-fanout",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 2,
+          "outlettype": [
+            "float",
+            "float"
+          ],
+          "patching_rect": [
+            2210,
+            1015,
+            45,
+            22
+          ],
+          "text": "t f f"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-gesture-pinch-gate",
+          "maxclass": "newobj",
+          "numinlets": 2,
+          "numoutlets": 4,
+          "outlettype": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "patching_rect": [
+            2290,
+            1015,
+            62,
+            22
+          ],
+          "text": "gate 4"
+        }
+      },
+      {
+        "box": {
+          "hidden": 1,
+          "id": "pm-gesture-status",
+          "maxclass": "comment",
+          "numinlets": 1,
+          "numoutlets": 0,
+          "patching_rect": [
+            2380,
+            955,
+            300,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            860,
+            455,
+            440,
+            26
+          ],
+          "text": "OFF",
+          "varname": "ui_gesture_status"
+        }
+      },
+      {
+        "box": {
+          "hidden": 1,
+          "id": "pm-gesture-zone-note",
+          "linecount": 2,
+          "maxclass": "comment",
+          "numinlets": 1,
+          "numoutlets": 0,
+          "patching_rect": [
+            2380,
+            985,
+            450,
+            36
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            860,
+            500,
+            610,
+            40
+          ],
+          "text": "PHYSICAL RIGHT: MOVE INSIDE RIGHT-SIDE ZONE\nPHYSICAL LEFT: FIST HOLD / OPEN CONTROL",
+          "varname": "ui_gesture_zone_note"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-rec-control",
+          "maxclass": "newobj",
+          "numinlets": 3,
+          "numoutlets": 4,
+          "outlettype": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "patching_rect": [
+            220,
+            2298,
+            170,
+            22
+          ],
+          "text": "p Master_recorder_control",
+          "patcher": {
+            "fileversion": 1,
+            "appversion": {
+              "major": 9,
+              "minor": 0,
+              "revision": 5,
+              "architecture": "x64",
+              "modernui": 1
+            },
+            "classnamespace": "box",
+            "rect": [
+              120,
+              120,
+              760,
+              560
+            ],
+            "gridsize": [
+              15,
+              15
+            ],
+            "boxes": [
+              {
+                "box": {
+                  "id": "rc-open-in",
+                  "maxclass": "inlet",
+                  "comment": "choose WAV destination",
+                  "index": 1,
+                  "numinlets": 0,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    24,
+                    30,
+                    30
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-record-in",
+                  "maxclass": "inlet",
+                  "comment": "start recording",
+                  "index": 2,
+                  "numinlets": 0,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    260,
+                    24,
+                    30,
+                    30
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-stop-in",
+                  "maxclass": "inlet",
+                  "comment": "stop recording",
+                  "index": 3,
+                  "numinlets": 0,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    500,
+                    24,
+                    30,
+                    30
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-command-out",
+                  "maxclass": "outlet",
+                  "comment": "commands to sfrecord~",
+                  "index": 1,
+                  "numinlets": 1,
+                  "numoutlets": 0,
+                  "patching_rect": [
+                    24,
+                    500,
+                    30,
+                    30
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-file-out",
+                  "maxclass": "outlet",
+                  "comment": "set filename display",
+                  "index": 2,
+                  "numinlets": 1,
+                  "numoutlets": 0,
+                  "patching_rect": [
+                    250,
+                    500,
+                    30,
+                    30
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-status-out",
+                  "maxclass": "outlet",
+                  "comment": "set status display",
+                  "index": 3,
+                  "numinlets": 1,
+                  "numoutlets": 0,
+                  "patching_rect": [
+                    390,
+                    500,
+                    30,
+                    30
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-time-out",
+                  "maxclass": "outlet",
+                  "comment": "set elapsed display",
+                  "index": 4,
+                  "numinlets": 1,
+                  "numoutlets": 0,
+                  "patching_rect": [
+                    530,
+                    500,
+                    30,
+                    30
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-open-bang",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    24,
+                    72,
+                    36,
+                    22
+                  ],
+                  "text": "t b"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-save-dialog",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    108,
+                    76,
+                    22
+                  ],
+                  "text": "savedialog"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-path-trigger",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 3,
+                  "outlettype": [
+                    "symbol",
+                    "symbol",
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    24,
+                    144,
+                    62,
+                    22
+                  ],
+                  "text": "t s s b"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-open-command",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    216,
+                    128,
+                    22
+                  ],
+                  "text": "prepend open wave"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-strip-path",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    180,
+                    68,
+                    22
+                  ],
+                  "text": "strippath"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-file-set",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    170,
+                    216,
+                    82,
+                    22
+                  ],
+                  "text": "prepend set"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-ready-trigger",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 2,
+                  "outlettype": [
+                    "bang",
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    300,
+                    180,
+                    46,
+                    22
+                  ],
+                  "text": "t b b"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-gate-open",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    300,
+                    216,
+                    30,
+                    22
+                  ],
+                  "text": "1"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-status-ready",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    350,
+                    216,
+                    82,
+                    22
+                  ],
+                  "text": "set READY"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-record-bang",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    260,
+                    72,
+                    36,
+                    22
+                  ],
+                  "text": "t b"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-record-gate",
+                  "maxclass": "newobj",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    260,
+                    108,
+                    52,
+                    22
+                  ],
+                  "text": "gate 1"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-record-trigger",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 4,
+                  "outlettype": [
+                    "bang",
+                    "bang",
+                    "bang",
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    260,
+                    288,
+                    74,
+                    22
+                  ],
+                  "text": "t b b b b"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-reset-trigger",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 2,
+                  "outlettype": [
+                    "bang",
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    390,
+                    324,
+                    46,
+                    22
+                  ],
+                  "text": "t b b"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-counter-reset",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    390,
+                    360,
+                    46,
+                    22
+                  ],
+                  "text": "reset"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-time-reset",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    450,
+                    360,
+                    76,
+                    22
+                  ],
+                  "text": "set 00:00"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-metro-on",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    330,
+                    324,
+                    30,
+                    22
+                  ],
+                  "text": "1"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-status-recording",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    260,
+                    360,
+                    104,
+                    22
+                  ],
+                  "text": "set RECORDING"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-command-record",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    260,
+                    396,
+                    30,
+                    22
+                  ],
+                  "text": "1"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-stop-trigger",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 3,
+                  "outlettype": [
+                    "bang",
+                    "bang",
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    500,
+                    72,
+                    62,
+                    22
+                  ],
+                  "text": "t b b b"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-metro-off",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    500,
+                    108,
+                    30,
+                    22
+                  ],
+                  "text": "0"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-status-stopped",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    540,
+                    108,
+                    94,
+                    22
+                  ],
+                  "text": "set STOPPED"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-command-stop",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    646,
+                    108,
+                    30,
+                    22
+                  ],
+                  "text": "0"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-metro",
+                  "maxclass": "newobj",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    "bang"
+                  ],
+                  "patching_rect": [
+                    500,
+                    216,
+                    76,
+                    22
+                  ],
+                  "text": "metro 1000"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-counter",
+                  "maxclass": "newobj",
+                  "numinlets": 5,
+                  "numoutlets": 4,
+                  "outlettype": [
+                    "int",
+                    "",
+                    "",
+                    "int"
+                  ],
+                  "patching_rect": [
+                    500,
+                    252,
+                    58,
+                    22
+                  ],
+                  "text": "counter"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-time-trigger",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 2,
+                  "outlettype": [
+                    "int",
+                    "int"
+                  ],
+                  "patching_rect": [
+                    500,
+                    288,
+                    42,
+                    22
+                  ],
+                  "text": "t i i"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-seconds",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    590,
+                    324,
+                    42,
+                    22
+                  ],
+                  "text": "% 60"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-minutes",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    500,
+                    324,
+                    42,
+                    22
+                  ],
+                  "text": "/ 60"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-time-pack",
+                  "maxclass": "newobj",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    "list"
+                  ],
+                  "patching_rect": [
+                    500,
+                    360,
+                    62,
+                    22
+                  ],
+                  "text": "pack i i"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-time-format",
+                  "maxclass": "newobj",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    500,
+                    396,
+                    126,
+                    22
+                  ],
+                  "text": "sprintf %02ld:%02ld"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-time-set",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    500,
+                    432,
+                    82,
+                    22
+                  ],
+                  "text": "prepend set"
+                }
+              },
+              {
+                "box": {
+                  "id": "rc-format-int24",
+                  "maxclass": "newobj",
+                  "numinlets": 1,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    460,
+                    146,
+                    22
+                  ],
+                  "text": "loadmess samptype int24"
+                }
+              }
+            ],
+            "lines": [
+              {
+                "patchline": {
+                  "source": [
+                    "rc-open-in",
+                    0
+                  ],
+                  "destination": [
+                    "rc-open-bang",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-open-bang",
+                    0
+                  ],
+                  "destination": [
+                    "rc-save-dialog",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-save-dialog",
+                    0
+                  ],
+                  "destination": [
+                    "rc-path-trigger",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-path-trigger",
+                    0
+                  ],
+                  "destination": [
+                    "rc-open-command",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-open-command",
+                    0
+                  ],
+                  "destination": [
+                    "rc-command-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-path-trigger",
+                    1
+                  ],
+                  "destination": [
+                    "rc-strip-path",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-strip-path",
+                    0
+                  ],
+                  "destination": [
+                    "rc-file-set",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-file-set",
+                    0
+                  ],
+                  "destination": [
+                    "rc-file-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-path-trigger",
+                    2
+                  ],
+                  "destination": [
+                    "rc-ready-trigger",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-ready-trigger",
+                    1
+                  ],
+                  "destination": [
+                    "rc-status-ready",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-status-ready",
+                    0
+                  ],
+                  "destination": [
+                    "rc-status-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-ready-trigger",
+                    0
+                  ],
+                  "destination": [
+                    "rc-gate-open",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-gate-open",
+                    0
+                  ],
+                  "destination": [
+                    "rc-record-gate",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-record-in",
+                    0
+                  ],
+                  "destination": [
+                    "rc-record-bang",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-record-bang",
+                    0
+                  ],
+                  "destination": [
+                    "rc-record-gate",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-record-gate",
+                    0
+                  ],
+                  "destination": [
+                    "rc-record-trigger",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-record-trigger",
+                    3
+                  ],
+                  "destination": [
+                    "rc-reset-trigger",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-reset-trigger",
+                    1
+                  ],
+                  "destination": [
+                    "rc-time-reset",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-time-reset",
+                    0
+                  ],
+                  "destination": [
+                    "rc-time-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-reset-trigger",
+                    0
+                  ],
+                  "destination": [
+                    "rc-counter-reset",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-counter-reset",
+                    0
+                  ],
+                  "destination": [
+                    "rc-counter",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-record-trigger",
+                    2
+                  ],
+                  "destination": [
+                    "rc-metro-on",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-metro-on",
+                    0
+                  ],
+                  "destination": [
+                    "rc-metro",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-record-trigger",
+                    1
+                  ],
+                  "destination": [
+                    "rc-status-recording",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-status-recording",
+                    0
+                  ],
+                  "destination": [
+                    "rc-status-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-record-trigger",
+                    0
+                  ],
+                  "destination": [
+                    "rc-command-record",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-command-record",
+                    0
+                  ],
+                  "destination": [
+                    "rc-command-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-stop-in",
+                    0
+                  ],
+                  "destination": [
+                    "rc-stop-trigger",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-stop-trigger",
+                    2
+                  ],
+                  "destination": [
+                    "rc-metro-off",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-metro-off",
+                    0
+                  ],
+                  "destination": [
+                    "rc-metro",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-stop-trigger",
+                    1
+                  ],
+                  "destination": [
+                    "rc-status-stopped",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-status-stopped",
+                    0
+                  ],
+                  "destination": [
+                    "rc-status-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-stop-trigger",
+                    0
+                  ],
+                  "destination": [
+                    "rc-command-stop",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-command-stop",
+                    0
+                  ],
+                  "destination": [
+                    "rc-command-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-metro",
+                    0
+                  ],
+                  "destination": [
+                    "rc-counter",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-counter",
+                    0
+                  ],
+                  "destination": [
+                    "rc-time-trigger",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-time-trigger",
+                    1
+                  ],
+                  "destination": [
+                    "rc-seconds",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-seconds",
+                    0
+                  ],
+                  "destination": [
+                    "rc-time-pack",
+                    1
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-time-trigger",
+                    0
+                  ],
+                  "destination": [
+                    "rc-minutes",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-minutes",
+                    0
+                  ],
+                  "destination": [
+                    "rc-time-pack",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-time-pack",
+                    0
+                  ],
+                  "destination": [
+                    "rc-time-format",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-time-format",
+                    0
+                  ],
+                  "destination": [
+                    "rc-time-set",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-time-set",
+                    0
+                  ],
+                  "destination": [
+                    "rc-time-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "rc-format-int24",
+                    0
+                  ],
+                  "destination": [
+                    "rc-command-out",
+                    0
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "box": {
+          "id": "pm-rec-file-display",
+          "maxclass": "message",
+          "numinlets": 2,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patching_rect": [
+            420,
+            2298,
+            220,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            974,
+            842,
+            250,
+            22
+          ],
+          "text": "No file selected",
+          "varname": "ui_util_rec_file"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-rec-status-display",
+          "maxclass": "message",
+          "numinlets": 2,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patching_rect": [
+            420,
+            2330,
+            110,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            760,
+            868,
+            110,
+            20
+          ],
+          "text": "NO FILE",
+          "varname": "ui_util_rec_status"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-rec-time-display",
+          "maxclass": "message",
+          "numinlets": 2,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patching_rect": [
+            542,
+            2330,
+            80,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            880,
+            868,
+            80,
+            20
+          ],
+          "text": "00:00",
+          "varname": "ui_util_rec_time"
+        }
+      },
+      {
+        "box": {
+          "autofit": 1,
+          "background": 1,
+          "forceaspect": 1,
+          "hidden": 1,
+          "id": "pm-source-bg",
+          "ignoreclick": 1,
+          "maxclass": "fpic",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            "jit_matrix"
+          ],
+          "patching_rect": [
+            2360,
+            20,
+            346,
+            169
+          ],
+          "pic": "source_detail_shell_v1.png",
+          "presentation": 1,
+          "presentation_rect": [
+            0,
+            96,
+            1732,
+            845
+          ],
+          "varname": "ui_source_shell"
+        }
+      },
+      {
+        "box": {
+          "autofit": 1,
+          "background": 1,
+          "forceaspect": 1,
+          "hidden": 1,
+          "id": "pm-fx-bg",
+          "ignoreclick": 1,
+          "maxclass": "fpic",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            "jit_matrix"
+          ],
+          "patching_rect": [
+            2720,
+            20,
+            346,
+            169
+          ],
+          "pic": "fx_detail_shell_v1.png",
+          "presentation": 1,
+          "presentation_rect": [
+            0,
+            96,
+            1732,
+            845
+          ],
+          "varname": "ui_fx_shell"
+        }
+      },
+      {
+        "box": {
+          "autofit": 1,
+          "background": 1,
+          "forceaspect": 1,
+          "hidden": 1,
+          "id": "pm-gesture-bg",
+          "ignoreclick": 1,
+          "maxclass": "fpic",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            "jit_matrix"
+          ],
+          "patching_rect": [
+            3080,
+            20,
+            346,
+            169
+          ],
+          "pic": "gesture_detail_shell_v1.png",
+          "presentation": 1,
+          "presentation_rect": [
+            0,
+            96,
+            1732,
+            845
+          ],
+          "varname": "ui_gesture_shell"
+        }
+      },
+      {
+        "box": {
+          "autofit": 1,
+          "background": 1,
+          "forceaspect": 1,
+          "hidden": 1,
+          "id": "pm-master-bg",
+          "ignoreclick": 1,
+          "maxclass": "fpic",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            "jit_matrix"
+          ],
+          "patching_rect": [
+            3440,
+            20,
+            346,
+            169
+          ],
+          "pic": "master_detail_shell_v1.png",
+          "presentation": 1,
+          "presentation_rect": [
+            0,
+            96,
+            1732,
+            845
+          ],
+          "varname": "ui_master_shell"
+        }
+      },
+      {
+        "box": {
+          "hidden": 1,
+          "id": "pm-source-selector",
+          "items": [
+            "Mic Input",
+            ",",
+            "File Player",
+            ",",
+            "Granular"
+          ],
+          "maxclass": "umenu",
+          "numinlets": 1,
+          "numoutlets": 3,
+          "outlettype": [
+            "int",
+            "",
+            ""
+          ],
+          "parameter_enable": 0,
+          "patching_rect": [
+            2360,
+            220,
+            220,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            574,
+            136,
+            220,
+            28
+          ],
+          "varname": "ui_source_selector"
+        }
+      },
+      {
+        "box": {
+          "hidden": 1,
+          "id": "pm-fx-selector",
+          "items": [
+            "Vocoder",
+            ",",
+            "Bitcrusher",
+            ",",
+            "Feedback Delay",
+            ",",
+            "Multiband Filter"
+          ],
+          "maxclass": "umenu",
+          "numinlets": 1,
+          "numoutlets": 3,
+          "outlettype": [
+            "int",
+            "",
+            ""
+          ],
+          "parameter_enable": 0,
+          "patching_rect": [
+            2720,
+            220,
+            220,
+            22
+          ],
+          "presentation": 1,
+          "presentation_rect": [
+            574,
+            136,
+            220,
+            28
+          ],
+          "varname": "ui_fx_selector"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-source-detail-router",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patcher": {
+            "fileversion": 1,
+            "appversion": {
+              "major": 9,
+              "minor": 0,
+              "revision": 5,
+              "architecture": "x64",
+              "modernui": 1
+            },
+            "classnamespace": "box",
+            "rect": [
+              120,
+              120,
+              720,
+              360
+            ],
+            "gridsize": [
+              15,
+              15
+            ],
+            "boxes": [
+              {
+                "box": {
+                  "id": "pm-source-detail-router-in",
+                  "index": 1,
+                  "maxclass": "inlet",
+                  "numinlets": 0,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    "int"
+                  ],
+                  "patching_rect": [
+                    24,
+                    24,
+                    30,
+                    30
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "pm-source-detail-router-sel",
+                  "maxclass": "newobj",
+                  "numinlets": 4,
+                  "numoutlets": 4,
+                  "outlettype": [
+                    "bang",
+                    "bang",
+                    "bang",
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    70,
+                    90,
+                    22
+                  ],
+                  "text": "sel 0 1 2"
+                }
+              },
+              {
+                "box": {
+                  "id": "pm-source-detail-router-msg-0",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    110,
+                    660,
+                    36
+                  ],
+                  "text": "script hide ui_source_file, script hide ui_source_grain, script sendbox ui_source_mic presentation_rect 225 300 420 280, script show ui_source_mic"
+                }
+              },
+              {
+                "box": {
+                  "id": "pm-source-detail-router-msg-1",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    154,
+                    660,
+                    36
+                  ],
+                  "text": "script hide ui_source_mic, script hide ui_source_grain, script sendbox ui_source_file presentation_rect 175 270 520 340, script show ui_source_file"
+                }
+              },
+              {
+                "box": {
+                  "id": "pm-source-detail-router-msg-2",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    198,
+                    660,
+                    36
+                  ],
+                  "text": "script hide ui_source_mic, script hide ui_source_file, script sendbox ui_source_grain presentation_rect 75 230 720 440, script show ui_source_grain"
+                }
+              },
+              {
+                "box": {
+                  "id": "pm-source-detail-router-out",
+                  "index": 1,
+                  "maxclass": "outlet",
+                  "numinlets": 1,
+                  "numoutlets": 0,
+                  "patching_rect": [
+                    24,
+                    262,
+                    30,
+                    30
+                  ]
+                }
+              }
+            ],
+            "lines": [
+              {
+                "patchline": {
+                  "source": [
+                    "pm-source-detail-router-in",
+                    0
+                  ],
+                  "destination": [
+                    "pm-source-detail-router-sel",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-source-detail-router-sel",
+                    0
+                  ],
+                  "destination": [
+                    "pm-source-detail-router-msg-0",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-source-detail-router-msg-0",
+                    0
+                  ],
+                  "destination": [
+                    "pm-source-detail-router-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-source-detail-router-sel",
+                    1
+                  ],
+                  "destination": [
+                    "pm-source-detail-router-msg-1",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-source-detail-router-msg-1",
+                    0
+                  ],
+                  "destination": [
+                    "pm-source-detail-router-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-source-detail-router-sel",
+                    2
+                  ],
+                  "destination": [
+                    "pm-source-detail-router-msg-2",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-source-detail-router-msg-2",
+                    0
+                  ],
+                  "destination": [
+                    "pm-source-detail-router-out",
+                    0
+                  ]
+                }
+              }
+            ]
+          },
+          "patching_rect": [
+            2380,
+            220,
+            150,
+            22
+          ],
+          "text": "p Source_detail_router"
+        }
+      },
+      {
+        "box": {
+          "id": "pm-fx-detail-router",
+          "maxclass": "newobj",
+          "numinlets": 1,
+          "numoutlets": 1,
+          "outlettype": [
+            ""
+          ],
+          "patcher": {
+            "fileversion": 1,
+            "appversion": {
+              "major": 9,
+              "minor": 0,
+              "revision": 5,
+              "architecture": "x64",
+              "modernui": 1
+            },
+            "classnamespace": "box",
+            "rect": [
+              120,
+              120,
+              720,
+              360
+            ],
+            "gridsize": [
+              15,
+              15
+            ],
+            "boxes": [
+              {
+                "box": {
+                  "id": "pm-fx-detail-router-in",
+                  "index": 1,
+                  "maxclass": "inlet",
+                  "numinlets": 0,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    "int"
+                  ],
+                  "patching_rect": [
+                    24,
+                    24,
+                    30,
+                    30
+                  ]
+                }
+              },
+              {
+                "box": {
+                  "id": "pm-fx-detail-router-sel",
+                  "maxclass": "newobj",
+                  "numinlets": 5,
+                  "numoutlets": 5,
+                  "outlettype": [
+                    "bang",
+                    "bang",
+                    "bang",
+                    "bang",
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    70,
+                    90,
+                    22
+                  ],
+                  "text": "sel 0 1 2 3"
+                }
+              },
+              {
+                "box": {
+                  "id": "pm-fx-detail-router-msg-0",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    110,
+                    660,
+                    36
+                  ],
+                  "text": "script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script sendbox ui_fx_vocoder presentation_rect 55 300 760 225, script show ui_fx_vocoder"
+                }
+              },
+              {
+                "box": {
+                  "id": "pm-fx-detail-router-msg-1",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    154,
+                    660,
+                    36
+                  ],
+                  "text": "script hide ui_fx_vocoder, script hide ui_fx_feedback_delay, script hide ui_fx_multiband, script sendbox ui_fx_bitcrusher presentation_rect 55 278 760 268, script show ui_fx_bitcrusher"
+                }
+              },
+              {
+                "box": {
+                  "id": "pm-fx-detail-router-msg-2",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    198,
+                    660,
+                    36
+                  ],
+                  "text": "script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_multiband, script sendbox ui_fx_feedback_delay presentation_rect 10 278 850 268, script show ui_fx_feedback_delay"
+                }
+              },
+              {
+                "box": {
+                  "id": "pm-fx-detail-router-msg-3",
+                  "maxclass": "message",
+                  "numinlets": 2,
+                  "numoutlets": 1,
+                  "outlettype": [
+                    ""
+                  ],
+                  "patching_rect": [
+                    24,
+                    242,
+                    660,
+                    36
+                  ],
+                  "text": "script hide ui_fx_vocoder, script hide ui_fx_bitcrusher, script hide ui_fx_feedback_delay, script sendbox ui_fx_multiband presentation_rect 38 200 794 500, script show ui_fx_multiband"
+                }
+              },
+              {
+                "box": {
+                  "id": "pm-fx-detail-router-out",
+                  "index": 1,
+                  "maxclass": "outlet",
+                  "numinlets": 1,
+                  "numoutlets": 0,
+                  "patching_rect": [
+                    24,
+                    306,
+                    30,
+                    30
+                  ]
+                }
+              }
+            ],
+            "lines": [
+              {
+                "patchline": {
+                  "source": [
+                    "pm-fx-detail-router-in",
+                    0
+                  ],
+                  "destination": [
+                    "pm-fx-detail-router-sel",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-fx-detail-router-sel",
+                    0
+                  ],
+                  "destination": [
+                    "pm-fx-detail-router-msg-0",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-fx-detail-router-msg-0",
+                    0
+                  ],
+                  "destination": [
+                    "pm-fx-detail-router-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-fx-detail-router-sel",
+                    1
+                  ],
+                  "destination": [
+                    "pm-fx-detail-router-msg-1",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-fx-detail-router-msg-1",
+                    0
+                  ],
+                  "destination": [
+                    "pm-fx-detail-router-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-fx-detail-router-sel",
+                    2
+                  ],
+                  "destination": [
+                    "pm-fx-detail-router-msg-2",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-fx-detail-router-msg-2",
+                    0
+                  ],
+                  "destination": [
+                    "pm-fx-detail-router-out",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-fx-detail-router-sel",
+                    3
+                  ],
+                  "destination": [
+                    "pm-fx-detail-router-msg-3",
+                    0
+                  ]
+                }
+              },
+              {
+                "patchline": {
+                  "source": [
+                    "pm-fx-detail-router-msg-3",
+                    0
+                  ],
+                  "destination": [
+                    "pm-fx-detail-router-out",
+                    0
+                  ]
+                }
+              }
+            ]
+          },
+          "patching_rect": [
+            2380,
+            220,
+            150,
+            22
+          ],
+          "text": "p FX_detail_router"
         }
       },
       {
@@ -3809,98 +6910,7 @@
       },
       {
         "box": {
-          "id": "pm-bitcrusher-hand-mapper",
-          "maxclass": "newobj",
-          "numinlets": 2,
-          "numoutlets": 9,
-          "outlettype": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "patching_rect": [
-            1862,
-            860,
-            330,
-            22
-          ],
-          "text": "js Patcher:/../javascript/mt_fx_hand_mapper.js",
-          "varname": "gesture_fx_mapper"
-        }
-      },
-      {
-        "box": {
-          "hidden": 1,
-          "id": "pm-gesture-target-label",
-          "maxclass": "comment",
-          "numinlets": 1,
-          "numoutlets": 0,
-          "patching_rect": [
-            2210,
-            860,
-            120,
-            20
-          ],
-          "presentation": 1,
-          "presentation_rect": [
-            860,
-            160,
-            160,
-            20
-          ],
-          "text": "CONTROL TARGET",
-          "varname": "ui_gesture_target_label"
-        }
-      },
-      {
-        "box": {
-          "hidden": 1,
-          "id": "pm-gesture-target",
-          "items": [
-            "Off",
-            ",",
-            "Vocoder",
-            ",",
-            "Bitcrusher",
-            ",",
-            "Feedback Delay",
-            ",",
-            "Multiband Filter"
-          ],
-          "maxclass": "umenu",
-          "numinlets": 1,
-          "numoutlets": 3,
-          "outlettype": [
-            "int",
-            "",
-            ""
-          ],
-          "parameter_enable": 0,
-          "patching_rect": [
-            2210,
-            890,
-            220,
-            22
-          ],
-          "presentation": 1,
-          "presentation_rect": [
-            860,
-            184,
-            300,
-            26
-          ],
-          "varname": "ui_gesture_target"
-        }
-      },
-      {
-        "box": {
-          "id": "pm-gesture-target-init",
+          "id": "pm-page-defer",
           "maxclass": "newobj",
           "numinlets": 1,
           "numoutlets": 1,
@@ -3908,242 +6918,16 @@
             ""
           ],
           "patching_rect": [
-            2210,
-            825,
-            70,
-            22
-          ],
-          "text": "loadmess 0"
-        }
-      },
-      {
-        "box": {
-          "id": "pm-gesture-target-fanout",
-          "maxclass": "newobj",
-          "numinlets": 1,
-          "numoutlets": 4,
-          "outlettype": [
-            "int",
-            "int",
-            "int",
-            "int"
-          ],
-          "patching_rect": [
-            2210,
-            925,
-            70,
-            22
-          ],
-          "text": "t i i i i"
-        }
-      },
-      {
-        "box": {
-          "id": "pm-gesture-x-fanout",
-          "maxclass": "newobj",
-          "numinlets": 1,
-          "numoutlets": 2,
-          "outlettype": [
-            "float",
-            "float"
-          ],
-          "patching_rect": [
-            2210,
-            955,
-            45,
-            22
-          ],
-          "text": "t f f"
-        }
-      },
-      {
-        "box": {
-          "id": "pm-gesture-x-gate",
-          "maxclass": "newobj",
-          "numinlets": 2,
-          "numoutlets": 4,
-          "outlettype": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "patching_rect": [
-            2290,
-            955,
+            1990,
+            20,
             62,
             22
           ],
-          "text": "gate 4"
-        }
-      },
-      {
-        "box": {
-          "id": "pm-gesture-y-fanout",
-          "maxclass": "newobj",
-          "numinlets": 1,
-          "numoutlets": 2,
-          "outlettype": [
-            "float",
-            "float"
-          ],
-          "patching_rect": [
-            2210,
-            985,
-            45,
-            22
-          ],
-          "text": "t f f"
-        }
-      },
-      {
-        "box": {
-          "id": "pm-gesture-y-gate",
-          "maxclass": "newobj",
-          "numinlets": 2,
-          "numoutlets": 4,
-          "outlettype": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "patching_rect": [
-            2290,
-            985,
-            62,
-            22
-          ],
-          "text": "gate 4"
-        }
-      },
-      {
-        "box": {
-          "id": "pm-gesture-pinch-fanout",
-          "maxclass": "newobj",
-          "numinlets": 1,
-          "numoutlets": 2,
-          "outlettype": [
-            "float",
-            "float"
-          ],
-          "patching_rect": [
-            2210,
-            1015,
-            45,
-            22
-          ],
-          "text": "t f f"
-        }
-      },
-      {
-        "box": {
-          "id": "pm-gesture-pinch-gate",
-          "maxclass": "newobj",
-          "numinlets": 2,
-          "numoutlets": 4,
-          "outlettype": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "patching_rect": [
-            2290,
-            1015,
-            62,
-            22
-          ],
-          "text": "gate 4"
-        }
-      },
-      {
-        "box": {
-          "hidden": 1,
-          "id": "pm-gesture-status",
-          "maxclass": "comment",
-          "numinlets": 1,
-          "numoutlets": 0,
-          "patching_rect": [
-            2380,
-            955,
-            300,
-            22
-          ],
-          "presentation": 1,
-          "presentation_rect": [
-            860,
-            455,
-            440,
-            26
-          ],
-          "text": "OFF",
-          "varname": "ui_gesture_status"
-        }
-      },
-      {
-        "box": {
-          "hidden": 1,
-          "id": "pm-gesture-zone-note",
-          "linecount": 2,
-          "maxclass": "comment",
-          "numinlets": 1,
-          "numoutlets": 0,
-          "patching_rect": [
-            2380,
-            985,
-            450,
-            36
-          ],
-          "presentation": 1,
-          "presentation_rect": [
-            860,
-            500,
-            610,
-            40
-          ],
-          "text": "PHYSICAL RIGHT: MOVE INSIDE RIGHT-SIDE ZONE\nPHYSICAL LEFT: FIST HOLD / OPEN CONTROL",
-          "varname": "ui_gesture_zone_note"
+          "text": "deferlow"
         }
       }
     ],
     "lines": [
-      {
-        "patchline": {
-          "destination": [
-            "pm-recorder",
-            0
-          ],
-          "source": [
-            "pm-rec-open",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
-            "pm-recorder",
-            0
-          ],
-          "source": [
-            "pm-rec-start",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
-            "pm-recorder",
-            0
-          ],
-          "source": [
-            "pm-rec-stop",
-            0
-          ]
-        }
-      },
       {
         "patchline": {
           "destination": [
@@ -4332,18 +7116,6 @@
           ],
           "source": [
             "pm-mic",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "destination": [
-            "pm-page-tab",
-            0
-          ],
-          "source": [
-            "pm-page-load",
             0
           ]
         }
@@ -4703,258 +7475,6 @@
           "destination": [
             "pm-vocoder",
             3
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-mic",
-            0
-          ],
-          "destination": [
-            "pm-perform-state",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-state",
-            0
-          ],
-          "destination": [
-            "pm-perform-mic",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-file",
-            0
-          ],
-          "destination": [
-            "pm-perform-state",
-            1
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-state",
-            1
-          ],
-          "destination": [
-            "pm-perform-file",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-grain",
-            0
-          ],
-          "destination": [
-            "pm-perform-state",
-            2
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-state",
-            2
-          ],
-          "destination": [
-            "pm-perform-grain",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-vocoder",
-            0
-          ],
-          "destination": [
-            "pm-perform-state",
-            3
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-state",
-            3
-          ],
-          "destination": [
-            "pm-perform-vocoder",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-bitcrusher",
-            0
-          ],
-          "destination": [
-            "pm-perform-state",
-            4
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-state",
-            4
-          ],
-          "destination": [
-            "pm-perform-bitcrusher",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-feedback-delay",
-            0
-          ],
-          "destination": [
-            "pm-perform-state",
-            5
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-state",
-            5
-          ],
-          "destination": [
-            "pm-perform-feedback-delay",
-            0
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-multiband",
-            0
-          ],
-          "destination": [
-            "pm-perform-state",
-            6
-          ]
-        }
-      },
-      {
-        "patchline": {
-          "color": [
-            0.44,
-            0.72,
-            1,
-            1
-          ],
-          "source": [
-            "pm-perform-state",
-            6
-          ],
-          "destination": [
-            "pm-perform-multiband",
-            0
           ]
         }
       },
@@ -5437,6 +7957,414 @@
             5
           ]
         }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-rec-open",
+            0
+          ],
+          "destination": [
+            "pm-rec-control",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-rec-start",
+            0
+          ],
+          "destination": [
+            "pm-rec-control",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-rec-stop",
+            0
+          ],
+          "destination": [
+            "pm-rec-control",
+            2
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-rec-control",
+            0
+          ],
+          "destination": [
+            "pm-recorder",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-rec-control",
+            1
+          ],
+          "destination": [
+            "pm-rec-file-display",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-rec-control",
+            2
+          ],
+          "destination": [
+            "pm-rec-status-display",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-rec-control",
+            3
+          ],
+          "destination": [
+            "pm-rec-time-display",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-mic",
+            0
+          ],
+          "destination": [
+            "pm-perform-state",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-state",
+            0
+          ],
+          "destination": [
+            "pm-perform-mic",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-file",
+            0
+          ],
+          "destination": [
+            "pm-perform-state",
+            1
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-state",
+            1
+          ],
+          "destination": [
+            "pm-perform-file",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-grain",
+            0
+          ],
+          "destination": [
+            "pm-perform-state",
+            2
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-state",
+            2
+          ],
+          "destination": [
+            "pm-perform-grain",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-vocoder",
+            0
+          ],
+          "destination": [
+            "pm-perform-state",
+            3
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-state",
+            3
+          ],
+          "destination": [
+            "pm-perform-vocoder",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-bitcrusher",
+            0
+          ],
+          "destination": [
+            "pm-perform-state",
+            4
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-state",
+            4
+          ],
+          "destination": [
+            "pm-perform-bitcrusher",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-feedback-delay",
+            0
+          ],
+          "destination": [
+            "pm-perform-state",
+            5
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-state",
+            5
+          ],
+          "destination": [
+            "pm-perform-feedback-delay",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-multiband",
+            0
+          ],
+          "destination": [
+            "pm-perform-state",
+            6
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "color": [
+            0.44,
+            0.72,
+            1,
+            1
+          ],
+          "source": [
+            "pm-perform-state",
+            6
+          ],
+          "destination": [
+            "pm-perform-multiband",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-source-selector",
+            0
+          ],
+          "destination": [
+            "pm-source-detail-router",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-source-detail-router",
+            0
+          ],
+          "destination": [
+            "pm-thispatcher",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-fx-selector",
+            0
+          ],
+          "destination": [
+            "pm-fx-detail-router",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-fx-detail-router",
+            0
+          ],
+          "destination": [
+            "pm-thispatcher",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-page-load",
+            0
+          ],
+          "destination": [
+            "pm-page-defer",
+            0
+          ]
+        }
+      },
+      {
+        "patchline": {
+          "source": [
+            "pm-page-defer",
+            0
+          ],
+          "destination": [
+            "pm-page-tab",
+            0
+          ]
+        }
       }
     ],
     "originid": "pat-4",
@@ -5703,6 +8631,26 @@
         "patcherrelativepath": "../javascript",
         "type": "TEXT",
         "implicit": 1
+      },
+      {
+        "bootpath": "~/Documents/maxmsp插件制作/geehon-motion-system/assets/ui",
+        "name": "source_detail_shell_v1.png",
+        "type": "PNG "
+      },
+      {
+        "bootpath": "~/Documents/maxmsp插件制作/geehon-motion-system/assets/ui",
+        "name": "fx_detail_shell_v1.png",
+        "type": "PNG "
+      },
+      {
+        "bootpath": "~/Documents/maxmsp插件制作/geehon-motion-system/assets/ui",
+        "name": "gesture_detail_shell_v1.png",
+        "type": "PNG "
+      },
+      {
+        "bootpath": "~/Documents/maxmsp插件制作/geehon-motion-system/assets/ui",
+        "name": "master_detail_shell_v1.png",
+        "type": "PNG "
       }
     ],
     "autosave": 0

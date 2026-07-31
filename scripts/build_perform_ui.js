@@ -141,6 +141,16 @@ function updateMain() {
   boxes.get("pm-hand").numoutlets = 5;
   boxes.get("pm-hand").outlettype = ["", "", "", "", ""];
   patcher.boxes = patcher.boxes.filter((entry) => entry.box.id !== "pm-project-paths");
+  patcher.boxes.unshift({
+    box: {
+      id: "pm-project-paths",
+      maxclass: "newobj",
+      numinlets: 1,
+      numoutlets: 0,
+      patching_rect: [24, 24, 720, 22],
+      text: "declare -path inputs -path mixers -path effects -path control -path dsp -path ../javascript -path ../assets/ui",
+    },
+  });
 
   const oldIds = new Set([
     "pm-perform-bg",
@@ -151,6 +161,8 @@ function updateMain() {
     "pm-perform-bitcrusher",
     "pm-perform-feedback-delay",
     "pm-perform-multiband",
+    "pm-perform-chop",
+    "pm-perform-tremolo",
     "pm-perform-state",
   ]);
   patcher.boxes = patcher.boxes.filter((entry) => !oldIds.has(entry.box.id));
@@ -224,107 +236,16 @@ function updateMain() {
 
   const refreshed = boxMap(patcher);
   setPresentation(refreshed.get("pm-hand"), [402, 222, 798, 420]);
-  setPresentation(refreshed.get("pm-rec-open"), [918, 838, 82, 24]);
-  setPresentation(refreshed.get("pm-rec-start"), [1010, 838, 44, 24]);
-  setPresentation(refreshed.get("pm-rec-stop"), [1064, 838, 44, 24]);
-  setPresentation(refreshed.get("pm-meter-l"), [1284, 842, 164, 12]);
-  setPresentation(refreshed.get("pm-meter-r"), [1284, 866, 164, 12]);
+  setPresentation(refreshed.get("pm-rec-open"), [760, 842, 82, 22]);
+  setPresentation(refreshed.get("pm-rec-start"), [850, 842, 58, 22]);
+  setPresentation(refreshed.get("pm-rec-stop"), [916, 842, 50, 22]);
+  setPresentation(refreshed.get("pm-rec-file-display"), [974, 842, 250, 22]);
+  setPresentation(refreshed.get("pm-rec-status-display"), [760, 868, 110, 20]);
+  setPresentation(refreshed.get("pm-rec-time-display"), [880, 868, 80, 20]);
+  setPresentation(refreshed.get("pm-meter-l"), [1284, 844, 164, 12]);
+  setPresentation(refreshed.get("pm-meter-r"), [1284, 864, 164, 12]);
   setPresentation(refreshed.get("pm-dac"), [1584, 826, 42, 42]);
-  setPresentation(refreshed.get("pm-output-label"), [1464, 884, 114, 18]);
-
-  const router = refreshed.get("pm-page-router").patcher;
-  const routerBoxes = boxMap(router);
-  const pageOnly = [
-    "ui_perform_shell",
-    "ui_perform_mic",
-    "ui_perform_file",
-    "ui_perform_grain",
-    "ui_perform_vocoder",
-    "ui_perform_bitcrusher",
-    "ui_perform_feedback_delay",
-    "ui_perform_multiband",
-  ];
-  const existing = [
-    "ui_source_mic", "ui_source_file", "ui_source_grain", "ui_source_mixer",
-    "ui_fx_vocoder", "ui_fx_bitcrusher", "ui_fx_feedback_delay",
-    "ui_fx_multiband", "ui_gesture_hand",
-    "ui_gesture_map_title", "ui_gesture_slot1", "ui_gesture_slot1_label",
-    "ui_gesture_slot2", "ui_gesture_slot2_label", "ui_gesture_slot3",
-    "ui_gesture_slot3_label", "ui_gesture_slot4", "ui_gesture_slot4_label",
-    "ui_master_returns", "ui_util_eq_title", "ui_util_eq_open",
-    "ui_util_rec_title", "ui_util_rec_open_label", "ui_util_rec_start_label",
-    "ui_util_rec_stop_label", "ui_util_rec_open", "ui_util_rec_start",
-    "ui_util_rec_stop",
-  ];
-  const hideAll = [...pageOnly, ...existing].map((name) => `script hide ${name}`).join(", ");
-  const show = (names) => names.map((name) => `script show ${name}`).join(", ");
-
-  routerBoxes.get("page-msg-0").text = [
-    hideAll,
-    "script sendbox ui_gesture_hand presentation_rect 402 222 798 420",
-    "script sendbox ui_output_meter_l presentation_rect 1284 842 164 12",
-    "script sendbox ui_output_meter_r presentation_rect 1284 866 164 12",
-    "script sendbox ui_output_dac presentation_rect 1584 826 42 42",
-    "script sendbox ui_output_label presentation_rect 1464 884 114 18",
-    "script sendbox ui_util_eq_open presentation_rect 620 838 82 24",
-    "script sendbox ui_util_rec_open presentation_rect 918 838 82 24",
-    "script sendbox ui_util_rec_start presentation_rect 1010 838 44 24",
-    "script sendbox ui_util_rec_stop presentation_rect 1064 838 44 24",
-    show([
-      ...pageOnly,
-      "ui_gesture_hand",
-      "ui_util_eq_open",
-      "ui_util_rec_open",
-      "ui_util_rec_start",
-      "ui_util_rec_stop",
-    ]),
-  ].join(", ");
-
-  routerBoxes.get("page-msg-1").text = [
-    hideAll,
-    "script sendbox ui_source_mixer presentation_rect 24 520 760 320",
-    "script sendbox ui_output_meter_l presentation_rect 1390 902 120 12",
-    "script sendbox ui_output_meter_r presentation_rect 1390 928 120 12",
-    "script sendbox ui_output_dac presentation_rect 1530 895 45 45",
-    "script sendbox ui_output_label presentation_rect 1590 907 100 20",
-    show(["ui_source_mic", "ui_source_file", "ui_source_grain", "ui_source_mixer"]),
-  ].join(", ");
-
-  routerBoxes.get("page-msg-2").text = [
-    hideAll,
-    show(["ui_fx_vocoder", "ui_fx_bitcrusher", "ui_fx_feedback_delay", "ui_fx_multiband"]),
-  ].join(", ");
-
-  routerBoxes.get("page-msg-3").text = [
-    hideAll,
-    "script sendbox ui_gesture_hand presentation_rect 24 160 798 420",
-    "script sendbox ui_output_meter_l presentation_rect 1390 902 120 12",
-    "script sendbox ui_output_meter_r presentation_rect 1390 928 120 12",
-    "script sendbox ui_output_dac presentation_rect 1530 895 45 45",
-    "script sendbox ui_output_label presentation_rect 1590 907 100 20",
-    show([
-      "ui_gesture_hand", "ui_gesture_map_title",
-      "ui_gesture_slot1", "ui_gesture_slot1_label",
-      "ui_gesture_slot2", "ui_gesture_slot2_label",
-      "ui_gesture_slot3", "ui_gesture_slot3_label",
-      "ui_gesture_slot4", "ui_gesture_slot4_label",
-    ]),
-  ].join(", ");
-
-  routerBoxes.get("page-msg-4").text = [
-    hideAll,
-    "script sendbox ui_master_returns presentation_rect 24 160 905 300",
-    "script sendbox ui_output_meter_l presentation_rect 1238 716 142 12",
-    "script sendbox ui_output_meter_r presentation_rect 1238 740 142 12",
-    "script sendbox ui_output_dac presentation_rect 1388 707 36 36",
-    "script sendbox ui_output_label presentation_rect 1238 760 130 18",
-    show([
-      "ui_master_returns", "ui_util_eq_title", "ui_util_eq_open",
-      "ui_util_rec_title", "ui_util_rec_open_label", "ui_util_rec_start_label",
-      "ui_util_rec_stop_label", "ui_util_rec_open", "ui_util_rec_start",
-      "ui_util_rec_stop",
-    ]),
-  ].join(", ");
+  setPresentation(refreshed.get("pm-output-label"), [1464, 878, 114, 18]);
 
   patcher.dependency_cache = patcher.dependency_cache || [];
   const dependencyPaths = {

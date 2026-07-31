@@ -26,15 +26,27 @@ function inspectPatcher(patcher, label, totals) {
   );
 
   const idSet = new Set(ids);
+  const boxesById = new Map(
+    boxes.map((entry) => [entry.box && entry.box.id, entry.box])
+  );
   for (const entry of patcher.lines || []) {
     const patchline = entry.patchline || {};
     const sourceId = patchline.source && patchline.source[0];
+    const sourceOutlet = patchline.source && patchline.source[1];
     const destinationId = patchline.destination && patchline.destination[0];
     assert(idSet.has(sourceId), `${label}: missing patchline source ${sourceId}`);
     assert(
       idSet.has(destinationId),
       `${label}: missing patchline destination ${destinationId}`
     );
+    const sourceText = (boxesById.get(sourceId) || {}).text || "";
+    if (/^pa(?:ck|k)\b/.test(sourceText)) {
+      assert.strictEqual(
+        sourceOutlet,
+        0,
+        `${label}: ${sourceId} has only one outlet`
+      );
+    }
     totals.lines += 1;
   }
 

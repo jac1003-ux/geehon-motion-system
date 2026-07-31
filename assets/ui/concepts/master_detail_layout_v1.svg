@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1732" height="845" viewBox="0 0 1732 845">
+  <defs>
+    <style>
+      .title{font:600 28px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:2px;fill:#29493f}
+      .sub{font:500 12px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1.8px;fill:#789087}
+      .head{font:600 18px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1.5px;fill:#fff}
+      .headsub{font:500 10px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1.3px;fill:#b9cbc3}
+      .label{font:600 13px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1px;fill:#3d574e}
+      .small{font:500 10px "Avenir Next","Helvetica Neue",sans-serif;letter-spacing:1px;fill:#82978f}
+      .value{font:600 14px "Avenir Next","Helvetica Neue",sans-serif;fill:#29493f}
+    </style>
+    <linearGradient id="meter" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#70a98e"/><stop offset=".8" stop-color="#9cbd8a"/><stop offset="1" stop-color="#efc94c"/></linearGradient>
+    <g id="toggle"><rect width="38" height="38" rx="8" fill="#17231f"/><path d="M12 12l14 14m0-14L12 26" stroke="#9cc7d8" stroke-width="3"/></g>
+    <g id="fader">
+      <rect width="58" height="250" rx="10" fill="#edf3ef" stroke="#b8ccc1" stroke-width="2"/>
+      <rect x="22" y="22" width="14" height="194" rx="7" fill="#14241f"/>
+      <rect x="18" y="112" width="22" height="10" rx="5" fill="#84a697"/>
+      <rect x="22" y="117" width="14" height="99" rx="7" fill="url(#meter)" opacity=".75"/>
+      <text x="29" y="238" text-anchor="middle" class="small">0.0 dB</text>
+    </g>
+    <g id="meterPair">
+      <rect width="25" height="236" rx="5" fill="#17231f"/>
+      <rect x="7" y="32" width="11" height="190" rx="4" fill="url(#meter)"/>
+    </g>
+  </defs>
+  <rect width="1732" height="845" fill="#eef4ef"/>
+  <text x="38" y="48" class="title">MASTER</text>
+  <text x="38" y="74" class="sub">FX RETURNS / RECORD / MAIN OUTPUT</text>
+  <rect x="38" y="91" width="1656" height="2" fill="#c5d5cc"/>
+
+  <!-- FX returns -->
+  <rect x="38" y="120" width="1014" height="680" rx="10" fill="#f9fbf8" stroke="#bfd0c6" stroke-width="2"/>
+  <path d="M48 120h994a10 10 0 0 1 10 10v58H38v-58a10 10 0 0 1 10-10z" fill="#29493f"/>
+  <rect x="66" y="138" width="36" height="36" rx="8" fill="#67a697"/>
+  <path d="M74 157h7v-10h9v19h8" fill="none" stroke="#fff" stroke-width="3"/>
+  <text x="120" y="150" class="head">FX RETURNS</text>
+  <text x="120" y="171" class="headsub">DRY / VOCODER / BITCRUSHER / DELAY / MULTIBAND</text>
+
+  <line x1="241" y1="210" x2="241" y2="690" stroke="#d3e0d9"/>
+  <line x1="438" y1="210" x2="438" y2="690" stroke="#d3e0d9"/>
+  <line x1="635" y1="210" x2="635" y2="690" stroke="#d3e0d9"/>
+  <line x1="832" y1="210" x2="832" y2="690" stroke="#d3e0d9"/>
+
+  <g transform="translate(68 226)">
+    <text x="44" y="0" class="label">DRY</text>
+    <g transform="translate(108 -28) scale(.72)"><use href="#toggle"/></g>
+    <use href="#fader" x="35" y="38"/>
+    <text x="64" y="320" text-anchor="middle" class="small">ORIGINAL</text>
+    <line x1="0" y1="354" x2="150" y2="354" stroke="#8eb3a1" stroke-width="3"/>
+    <text x="0" y="382" class="small">DRY L / R</text>
+  </g>
+  <g transform="translate(265 226)">
+    <text x="20" y="0" class="label">VOCODER</text>
+    <g transform="translate(132 -28) scale(.72)"><use href="#toggle"/></g>
+    <use href="#fader" x="45" y="38"/>
+    <text x="74" y="320" text-anchor="middle" class="small">SPECTRAL</text>
+    <line x1="0" y1="354" x2="150" y2="354" stroke="#75aaa2" stroke-width="3"/>
+    <text x="0" y="382" class="small">RETURN L / R</text>
+  </g>
+  <g transform="translate(462 226)">
+    <text x="10" y="0" class="label">BITCRUSHER</text>
+    <g transform="translate(132 -28) scale(.72)"><use href="#toggle"/></g>
+    <use href="#fader" x="45" y="38"/>
+    <text x="74" y="320" text-anchor="middle" class="small">DIGITAL</text>
+    <line x1="0" y1="354" x2="150" y2="354" stroke="#75aaa2" stroke-width="3"/>
+    <text x="0" y="382" class="small">RETURN L / R</text>
+  </g>
+  <g transform="translate(659 226)">
+    <text x="36" y="0" class="label">DELAY</text>
+    <g transform="translate(132 -28) scale(.72)"><use href="#toggle"/></g>
+    <use href="#fader" x="45" y="38"/>
+    <text x="74" y="320" text-anchor="middle" class="small">FEEDBACK</text>
+    <line x1="0" y1="354" x2="150" y2="354" stroke="#75aaa2" stroke-width="3"/>
+    <text x="0" y="382" class="small">RETURN L / R</text>
+  </g>
+  <g transform="translate(856 226)">
+    <text x="11" y="0" class="label">MULTIBAND</text>
+    <g transform="translate(132 -28) scale(.72)"><use href="#toggle"/></g>
+    <use href="#fader" x="45" y="38"/>
+    <text x="74" y="320" text-anchor="middle" class="small">SPECTRAL</text>
+    <line x1="0" y1="354" x2="150" y2="354" stroke="#75aaa2" stroke-width="3"/>
+    <text x="0" y="382" class="small">RETURN L / R</text>
+  </g>
+
+  <rect x="66" y="636" width="958" height="122" rx="8" fill="#edf5f0" stroke="#a9c5b7" stroke-width="2"/>
+  <text x="90" y="670" class="label">RETURN BUS</text>
+  <text x="90" y="700" class="title" style="font-size:24px">5 parallel stereo layers</text>
+  <text x="90" y="728" class="small">POST-PROCESSOR RETURNS · INDEPENDENT ENABLE · MASTER SUM</text>
+  <rect x="834" y="674" width="162" height="48" rx="24" fill="#fffaf0" stroke="#e3bd3e" stroke-width="2"/>
+  <text x="915" y="703" text-anchor="middle" class="label">MUTE RETURNS</text>
+
+  <!-- Master output and record -->
+  <rect x="1076" y="120" width="618" height="680" rx="10" fill="#f9fbf8" stroke="#bfd0c6" stroke-width="2"/>
+  <path d="M1086 120h598a10 10 0 0 1 10 10v58h-618v-58a10 10 0 0 1 10-10z" fill="#29493f"/>
+  <text x="1104" y="150" class="head">MASTER OUTPUT</text>
+  <text x="1104" y="171" class="headsub">RECORD BUS / AUDIO ENGINE</text>
+  <rect x="1492" y="136" width="174" height="38" rx="19" fill="#fffaf0" stroke="#e3bd3e" stroke-width="2"/>
+  <circle cx="1515" cy="155" r="7" fill="#6fa98c"/>
+  <text x="1580" y="160" text-anchor="middle" class="label">AUDIO ENGINE</text>
+
+  <text x="1110" y="226" class="label">MASTER GAIN</text>
+  <g transform="translate(1112 250) scale(1.08)"><use href="#fader"/></g>
+  <text x="1280" y="226" class="label">OUTPUT LEVEL</text>
+  <g transform="translate(1294 250)"><use href="#meterPair"/></g>
+  <g transform="translate(1338 250)"><use href="#meterPair"/></g>
+  <text x="1305" y="506" class="small">L</text><text x="1349" y="506" class="small">R</text>
+  <rect x="1424" y="250" width="216" height="50" rx="25" fill="#edf5f0" stroke="#9fbcae" stroke-width="2"/>
+  <text x="1532" y="280" text-anchor="middle" class="label">MUTE MASTER</text>
+  <rect x="1424" y="320" width="216" height="104" rx="8" fill="#fffaf0" stroke="#e3bd3e" stroke-width="2"/>
+  <text x="1448" y="352" class="small">MASTER PEAK</text>
+  <text x="1448" y="390" class="title" style="font-size:28px">−6.2 dBFS</text>
+
+  <line x1="1104" y1="548" x2="1666" y2="548" stroke="#d3e0d9"/>
+  <text x="1104" y="580" class="label">RECORD / EXPORT</text>
+  <text x="1104" y="602" class="small">WAV · 48 kHz · 24-bit · STEREO</text>
+  <rect x="1104" y="624" width="118" height="42" rx="5" fill="#29493f"/><text x="1163" y="650" text-anchor="middle" class="headsub">CHOOSE FILE</text>
+  <rect x="1236" y="624" width="100" height="42" rx="5" fill="#67a697"/><text x="1286" y="650" text-anchor="middle" class="headsub">RECORD</text>
+  <rect x="1350" y="624" width="88" height="42" rx="5" fill="#edf3ef" stroke="#aac4b7"/><text x="1394" y="650" text-anchor="middle" class="small">STOP</text>
+  <rect x="1104" y="684" width="442" height="38" rx="4" fill="#1f302a"/><text x="1120" y="708" class="headsub">No file selected</text>
+  <text x="1104" y="756" class="small">STATUS: READY</text>
+  <circle cx="1656" cy="752" r="7" fill="#77a897"/>
+</svg>
