@@ -187,4 +187,4 @@ Master Output
 
 2026-08-03 完成 Main 实际使用的 16 个文件、31 个递归 patcher 的全量布局审计与整理；三个用户手工 Mic 子 patch 保持不动。新增活动 subpatch 布局守卫并修复 Mic 资源依赖与 Master Monitor 元数据，合并前后 32/32 项静态检查通过。`ui/commercial-redesign` 已以快进方式合并到本地 `main`，当前里程碑提交为 `2f47eaf`，尚未推送远端。
 
-2026-08-03 依据三份参考模板完成中英文两版 4 页项目阐述初版，正式名称统一为 MOTION INSTRUMENT。DOCX/PDF 位于 `docs/MOTION_INSTRUMENT_Project_Statement_Draft_EN.*` 与 `docs/MOTION_INSTRUMENT_Project_Statement_Draft_ZH.*`，均已逐页渲染检查；待老师反馈后再修改、发布代码和上传最终文件。
+2026-08-03 依据三份参考模板完成中英文项目阐述初版，正式名称统一为 MOTION INSTRUMENT。现已用用户提供的 Perform、Source、FX、Gesture、Master 五张实际成品截图替换效果图，并新增系统功能导览；DOCX/PDF 位于 `docs/MOTION_INSTRUMENT_Project_Statement_Draft_EN.*` 与 `_ZH.*`，两版均为 6 页且已逐页渲染检查。待老师反馈后再修改、发布代码和上传最终文件。
