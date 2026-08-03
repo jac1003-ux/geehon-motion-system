@@ -66,7 +66,7 @@ Master Output
 ## UI 设计系统
 
 - 五个页面：Perform、Source、FX、Gesture、Master。
-- 品牌：JUHUA Motion Instrument。
+- 项目名称：MOTION INSTRUMENT。
 - 配色：清爽白、茶叶绿、菊花黄；圆润、安静、轻量、细字体。
 - PNG 负责背景和视觉分区，Max 原生对象负责真实交互。
 - 修改 PNG 时使用新文件名，避免 Max 图片缓存继续显示旧图。
@@ -187,4 +187,4 @@ Master Output
 
 2026-08-03 完成 Main 实际使用的 16 个文件、31 个递归 patcher 的全量布局审计与整理；三个用户手工 Mic 子 patch 保持不动。新增活动 subpatch 布局守卫并修复 Mic 资源依赖与 Master Monitor 元数据，合并前后 32/32 项静态检查通过。`ui/commercial-redesign` 已以快进方式合并到本地 `main`，当前里程碑提交为 `2f47eaf`，尚未推送远端。
 
-2026-08-03 依据三份参考模板完成 4 页英文项目阐述初版，结构为 Project Statement、Artistic Motivation、Interaction Design、Technical Realisation、Sound Design Strategy 与 Reflection。DOCX/PDF 位于 `docs/JUHUA_Project_Statement_Draft.*`，已逐页渲染检查；待老师反馈后再修改、发布代码和上传最终文件。
+2026-08-03 依据三份参考模板完成中英文两版 4 页项目阐述初版，正式名称统一为 MOTION INSTRUMENT。DOCX/PDF 位于 `docs/MOTION_INSTRUMENT_Project_Statement_Draft_EN.*` 与 `docs/MOTION_INSTRUMENT_Project_Statement_Draft_ZH.*`，均已逐页渲染检查；待老师反馈后再修改、发布代码和上传最终文件。
