@@ -116,7 +116,7 @@ const startVideo = () => {
           lastVideoTime = video.currentTime;
           results = gestureRecognizer.recognizeForVideo(video, nowInMs);
           results.image = video;
-          onResultsHands(results);
+          onResultsHands(results, nowInMs);
         }
       }
     },
@@ -158,7 +158,7 @@ const setRunningMode = async (running_mode) => {
 const detectImage = async () => {
   let results = gestureRecognizer.recognize(image); 
   results.image = image;
-  onResultsHands(results);
+  onResultsHands(results, Date.now());
 };
 
 image.onload = detectImage;
@@ -178,42 +178,64 @@ function zonePalmCenter(hand) {
 
 function drawControlZone(output) {
   const inset = 4;
-  const width = overlay.width * 0.5 - inset * 2;
+  const zoneWidth = overlay.width * 0.45 - inset * 2;
   const height = overlay.height * 0.65 - inset * 2;
-  const x = inset; // CSS mirror places this half on the visible right.
+  const parameterX = inset; // CSS mirror places this zone on the visible right.
+  const gateX = overlay.width * 0.55 + inset;
   const y = overlay.height * 0.175 + inset;
-  const gateHand = output.Left;
-  const controlCenter = zonePalmCenter(output.Right);
-  const open = Number(gateHand?.Gestures?.Open_Palm) || 0;
+  const indexedHands = Object.keys(output)
+    .filter((key) => /^Hand\d+$/.test(key))
+    .map((key) => output[key]);
+  const hands = indexedHands.length ? indexedHands : [output.Left, output.Right].filter(Boolean);
+  const parameterHands = hands.filter((hand) => {
+    const center = zonePalmCenter(hand);
+    return center && center.x <= 0.45 && center.y >= 0.175 && center.y <= 0.825;
+  });
+  const gateHands = hands.filter((hand) => {
+    const center = zonePalmCenter(hand);
+    return center && center.x >= 0.55 && center.y >= 0.175 && center.y <= 0.825;
+  });
+  const gateHand = gateHands.length === 1 ? gateHands[0] : null;
+  const rolesValid = parameterHands.length <= 1 && gateHands.length <= 1;
   const fist = Number(gateHand?.Gestures?.Closed_Fist) || 0;
-  const inside = controlCenter
-    && controlCenter.x >= 0 && controlCenter.x <= 0.5
-    && controlCenter.y >= 0.175 && controlCenter.y <= 0.825;
-  const color = !gateHand || !controlCenter
+  const color = !rolesValid || (!parameterHands.length && !gateHands.length)
     ? "#86958f"
-    : open >= 0.6 && open > fist && inside
-      ? "#52a875"
-      : "#d3aa32";
+    : fist >= 0.6
+      ? "#d3aa32"
+      : gateHand ? "#52a875" : "#86958f";
 
   canvas.save();
   canvas.fillStyle = color + "18";
   canvas.strokeStyle = color;
   canvas.lineWidth = 3;
   canvas.setLineDash([10, 8]);
-  canvas.fillRect(x, y, width, height);
-  canvas.strokeRect(x, y, width, height);
+  canvas.fillRect(parameterX, y, zoneWidth, height);
+  canvas.strokeRect(parameterX, y, zoneWidth, height);
+  canvas.fillRect(gateX, y, zoneWidth, height);
+  canvas.strokeRect(gateX, y, zoneWidth, height);
   canvas.setLineDash([]);
   canvas.lineWidth = 2;
   canvas.beginPath();
-  canvas.moveTo(x + width / 2 - 18, y + height / 2);
-  canvas.lineTo(x + width / 2 + 18, y + height / 2);
-  canvas.moveTo(x + width / 2, y + height / 2 - 18);
-  canvas.lineTo(x + width / 2, y + height / 2 + 18);
+  canvas.moveTo(parameterX + zoneWidth / 2 - 18, y + height / 2);
+  canvas.lineTo(parameterX + zoneWidth / 2 + 18, y + height / 2);
+  canvas.moveTo(parameterX + zoneWidth / 2, y + height / 2 - 18);
+  canvas.lineTo(parameterX + zoneWidth / 2, y + height / 2 + 18);
   canvas.stroke();
+  canvas.restore();
+
+  // CSS mirrors the camera, so mirror labels once in-canvas to keep them readable.
+  canvas.save();
+  canvas.translate(overlay.width, 0);
+  canvas.scale(-1, 1);
+  canvas.fillStyle = color;
+  canvas.font = "600 15px sans-serif";
+  canvas.textAlign = "center";
+  canvas.fillText("GATE: 1-5 / FIST", overlay.width * 0.225, y + 22);
+  canvas.fillText("PARAMETER ZONE", overlay.width * 0.775, y + 22);
   canvas.restore();
 }
 
-function onResultsHands(results) {
+function onResultsHands(results, timestampMs) {
 
   canvas.save();
   canvas.clearRect(0, 0, overlay.width, overlay.height);
@@ -222,26 +244,31 @@ function onResultsHands(results) {
     canvas.drawImage(results.image, 0, 0, overlay.width, overlay.height);
   }
 
-  const output = {};
+  const output = { meta: { timestamp_ms: timestampMs } };
 
   if (results.handednesses) {
-    for (const hand of results.handednesses) {
-      Object.values(HAND_LANDMARKS).forEach(([landmark, index]) => { 
-        try {
-          const handIndex = results.handednesses.length > 1 ? Number(hand[0].index) : 0;
-          const handName = flipHands ? hand[0].categoryName === "Right" ? "Left" : "Right" : hand[0].categoryName;
-          output[handName] = output[handName] || {};
-          output[handName][landmark] = results.landmarks[handIndex][index];
-          if (results.gestures?.[handIndex]?.length) {
-            const gesture = results.gestures[handIndex][0];
-            output[handName]["Gestures"] = {
-              [gesture.categoryName]: gesture.score
-            };
-          }
-        } catch (e) {
-          console.error(e);
+    for (let handIndex = 0; handIndex < results.handednesses.length; handIndex += 1) {
+      try {
+        const handedness = results.handednesses[handIndex][0];
+        const indexedKey = `Hand${handIndex}`;
+        const detectedHand = {};
+        Object.values(HAND_LANDMARKS).forEach(([landmark, landmarkIndex]) => {
+          detectedHand[landmark] = results.landmarks[handIndex][landmarkIndex];
+        });
+        if (results.gestures?.[handIndex]?.length) {
+          const gesture = results.gestures[handIndex][0];
+          detectedHand.Gestures = { [gesture.categoryName]: gesture.score };
         }
-      });
+        output[indexedKey] = detectedHand;
+
+        // Keep legacy handedness keys for older patchers; spatial control ignores them.
+        const handName = flipHands
+          ? handedness.categoryName === "Right" ? "Left" : "Right"
+          : handedness.categoryName;
+        output[handName] = detectedHand;
+      } catch (e) {
+        console.error(e);
+      }
     }
   }
 

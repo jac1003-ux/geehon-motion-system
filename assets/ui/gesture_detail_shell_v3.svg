@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1732" height="845" viewBox="0 0 1732 845">
+  <rect width="1732" height="845" fill="#eef4ef"/>
+  <text x="40" y="55" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="32" font-weight="600" fill="#21483b">GESTURE</text>
+  <text x="40" y="82" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="12" letter-spacing="1.5" fill="#7b968d">LIVE CONTROL / TARGET FEEDBACK / PARAMETER MAPPING</text>
+  <rect x="1490" y="28" width="202" height="42" rx="9" fill="#f9fbf8" stroke="#c6d4cc"/>
+  <text x="1510" y="54" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="11" letter-spacing="1" fill="#7b968d">FIST = HOLD PARAMETERS</text>
+  <line x1="40" y1="96" x2="1692" y2="96" stroke="#c8d7cf"/>
+
+  <rect x="40" y="116" width="1010" height="685" rx="11" fill="#f9fbf8" stroke="#c4d2ca"/>
+  <text x="64" y="150" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="14" font-weight="600" letter-spacing=".6" fill="#355b4e">CAMERA / CONTROL WORKSPACE</text>
+  <text x="786" y="150" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" letter-spacing="1" fill="#829990">LEFT: TARGET · RIGHT: PARAMETERS</text>
+
+  <rect x="1070" y="116" width="622" height="180" rx="11" fill="#f9fbf8" stroke="#c4d2ca"/>
+  <text x="1094" y="150" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="14" font-weight="600" letter-spacing=".6" fill="#355b4e">GESTURE READ</text>
+
+  <rect x="1070" y="316" width="622" height="150" rx="11" fill="#f9fbf8" stroke="#c4d2ca"/>
+  <text x="1094" y="352" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="14" font-weight="600" letter-spacing=".6" fill="#355b4e">CONTROL TARGET</text>
+  <text x="1514" y="352" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" letter-spacing="1" fill="#829990">MANUAL OR GESTURE</text>
+
+  <rect x="1070" y="486" width="622" height="315" rx="11" fill="#f9fbf8" stroke="#c4d2ca"/>
+  <text x="1094" y="520" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="14" font-weight="600" letter-spacing=".6" fill="#355b4e">PARAMETER MAPPING</text>
+  <text x="1094" y="556" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" letter-spacing="1" fill="#829990">GESTURE INPUT DATA</text>
+  <rect x="1094" y="566" width="178" height="72" rx="8" fill="#f1f5f2" stroke="#ccd9d2"/>
+  <rect x="1282" y="566" width="178" height="72" rx="8" fill="#f1f5f2" stroke="#ccd9d2"/>
+  <rect x="1470" y="566" width="178" height="72" rx="8" fill="#f1f5f2" stroke="#ccd9d2"/>
+  <text x="1110" y="589" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" letter-spacing=".8" fill="#789087">X AXIS</text>
+  <text x="1298" y="589" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" letter-spacing=".8" fill="#789087">Y AXIS</text>
+  <text x="1486" y="589" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" letter-spacing=".8" fill="#789087">PINCH</text>
+  <text x="1094" y="660" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" letter-spacing="1" fill="#829990">MAPPED PARAMETERS</text>
+  <rect x="1094" y="670" width="178" height="70" rx="8" fill="#fff9e9" stroke="#ecc557"/>
+  <rect x="1282" y="670" width="178" height="70" rx="8" fill="#fff9e9" stroke="#ecc557"/>
+  <rect x="1470" y="670" width="178" height="70" rx="8" fill="#fff9e9" stroke="#ecc557"/>
+  <rect x="1094" y="750" width="554" height="34" rx="7" fill="#21483b"/>
+  </svg>

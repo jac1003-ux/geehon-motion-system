@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1732" height="845" viewBox="0 0 1732 845">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#19342b" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .ui { font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif; }
+      .title { font-size: 32px; font-weight: 600; letter-spacing: 1px; fill: #183d31; }
+      .subtitle { font-size: 13px; letter-spacing: 1.5px; fill: #789087; }
+      .section { font-size: 14px; font-weight: 600; letter-spacing: 1px; fill: #34564a; }
+      .small { font-size: 11px; letter-spacing: .8px; fill: #789087; }
+      .label { font-size: 13px; font-weight: 600; fill: #23473b; }
+      .value { font-size: 14px; font-weight: 600; fill: #173d31; }
+    </style>
+  </defs>
+
+  <rect width="1732" height="845" fill="#eef4ef"/>
+  <text class="ui title" x="40" y="55">GESTURE</text>
+  <text class="ui subtitle" x="40" y="82">LIVE CONTROL / TARGET FEEDBACK / PARAMETER MAPPING</text>
+  <line x1="40" y1="96" x2="1692" y2="96" stroke="#cbd8d1"/>
+
+  <g class="ui">
+    <rect x="1110" y="28" width="180" height="42" rx="8" fill="#f8faf7" stroke="#c2d0c8"/>
+    <circle cx="1134" cy="49" r="5" fill="#79b195"/>
+    <text class="small" x="1148" y="53">CAMERA ONLINE</text>
+    <rect x="1300" y="28" width="180" height="42" rx="8" fill="#f8faf7" stroke="#c2d0c8"/>
+    <circle cx="1324" cy="49" r="5" fill="#e6b72f"/>
+    <text class="small" x="1338" y="53">TARGET LOCKED</text>
+    <rect x="1490" y="28" width="202" height="42" rx="8" fill="#f8faf7" stroke="#c2d0c8"/>
+    <text class="small" x="1510" y="53">FIST = HOLD PARAMETERS</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="40" y="116" width="1010" height="685" rx="12" fill="#fbfcfa" stroke="#c3d0c8"/>
+  </g>
+  <text class="ui section" x="64" y="150">CAMERA / CONTROL WORKSPACE</text>
+  <text class="ui small" x="786" y="150">LEFT: TARGET · RIGHT: PARAMETERS</text>
+
+  <rect x="64" y="168" width="962" height="44" rx="7" fill="#edf3ef" stroke="#ccd8d1"/>
+  <rect x="76" y="178" width="80" height="24" rx="4" fill="#203f35"/>
+  <text class="ui" x="96" y="195" font-size="11" fill="#f5f8f5">RELOAD</text>
+  <rect x="164" y="178" width="132" height="24" rx="4" fill="#203f35"/>
+  <text class="ui" x="180" y="195" font-size="11" fill="#f5f8f5">CAMERA DEVICE</text>
+  <rect x="304" y="178" width="248" height="24" rx="4" fill="#ffffff" stroke="#c4d1ca"/>
+  <text class="ui small" x="318" y="195">FaceTime HD Camera</text>
+  <rect x="560" y="178" width="116" height="24" rx="4" fill="#203f35"/>
+  <text class="ui" x="578" y="195" font-size="11" fill="#f5f8f5">SET DEVICE</text>
+  <text class="ui small" x="930" y="195">MIRROR</text>
+
+  <rect x="64" y="222" width="962" height="510" rx="8" fill="#dce7e0" stroke="#b8c8be"/>
+  <rect x="64" y="222" width="466" height="510" rx="8" fill="#d7e1db" opacity="0.72"/>
+  <rect x="530" y="222" width="496" height="510" rx="8" fill="#dfece4" opacity="0.78"/>
+  <path d="M65 575 L250 410 L432 520 L618 335 L812 490 L1025 350" fill="none" stroke="#cad9d0" stroke-width="3"/>
+  <path d="M65 318 L226 265 L430 342 L620 278 L834 330 L1025 250" fill="none" stroke="#e9f0ec" stroke-width="18" opacity="0.65"/>
+  <line x1="530" y1="242" x2="530" y2="712" stroke="#82a89a" stroke-width="2" stroke-dasharray="9 8"/>
+  <rect x="84" y="244" width="426" height="448" fill="none" stroke="#91aca1" stroke-width="2" stroke-dasharray="9 8"/>
+  <rect x="550" y="244" width="456" height="448" fill="none" stroke="#91aca1" stroke-width="2" stroke-dasharray="9 8"/>
+  <text class="ui section" x="102" y="274" fill="#648477">TARGET / HOLD ZONE</text>
+  <text class="ui section" x="744" y="274" fill="#648477">PARAMETER ZONE</text>
+  <text class="ui small" x="102" y="294">SHOW 1–5 TO SELECT · FIST TO HOLD</text>
+  <text class="ui small" x="744" y="294">MOVE X / Y · PINCH</text>
+
+  <g opacity="0.65">
+    <circle cx="465" cy="558" r="62" fill="#819c91"/>
+    <path d="M375 710 C382 625 412 588 465 588 C520 588 550 625 560 710 Z" fill="#789286"/>
+    <circle cx="712" cy="497" r="16" fill="#e6b72f"/>
+    <circle cx="686" cy="526" r="14" fill="#e6b72f"/>
+    <circle cx="715" cy="540" r="15" fill="#e6b72f"/>
+    <circle cx="744" cy="523" r="13" fill="#e6b72f"/>
+    <path d="M690 545 C710 525 745 530 758 563 C770 594 744 624 710 617 C676 610 670 569 690 545 Z" fill="#d8ab28"/>
+  </g>
+  <line x1="770" y1="430" x2="770" y2="478" stroke="#698c7e" stroke-width="2"/>
+  <line x1="746" y1="454" x2="794" y2="454" stroke="#698c7e" stroke-width="2"/>
+
+  <rect x="64" y="746" width="962" height="38" rx="7" fill="#f1f6f2" stroke="#cbd8d1"/>
+  <circle cx="84" cy="765" r="5" fill="#e6b72f"/>
+  <text class="ui small" x="98" y="769">GESTURE 2 CONFIRMED</text>
+  <circle cx="312" cy="765" r="5" fill="#79b195"/>
+  <text class="ui small" x="326" y="769">RIGHT HAND IN PARAMETER ZONE</text>
+  <text class="ui small" x="788" y="769">CAMERA 30 FPS · SMOOTHED CONTROL</text>
+
+  <g filter="url(#shadow)">
+    <rect x="1070" y="116" width="622" height="180" rx="12" fill="#fbfcfa" stroke="#c3d0c8"/>
+  </g>
+  <text class="ui section" x="1094" y="150">GESTURE READ</text>
+  <rect x="1094" y="166" width="116" height="104" rx="10" fill="#1f4035"/>
+  <text class="ui" x="1152" y="240" font-size="68" font-weight="600" text-anchor="middle" fill="#f2c43f">2</text>
+  <text class="ui" x="1238" y="196" font-size="24" font-weight="600" fill="#1e4035">BITCRUSHER</text>
+  <text class="ui small" x="1238" y="219">TARGET CONFIRMED · LEFT HAND</text>
+  <rect x="1238" y="235" width="118" height="28" rx="14" fill="#e8f2eb"/>
+  <circle cx="1256" cy="249" r="5" fill="#79b195"/>
+  <text class="ui small" x="1268" y="253">TRACKING</text>
+  <rect x="1366" y="235" width="160" height="28" rx="14" fill="#fbf2d7"/>
+  <text class="ui small" x="1384" y="253" fill="#9a7410">300 ms CONFIRMED</text>
+  <text class="ui small" x="1548" y="253">FIST → HOLD</text>
+
+  <g filter="url(#shadow)">
+    <rect x="1070" y="316" width="622" height="150" rx="12" fill="#fbfcfa" stroke="#c3d0c8"/>
+  </g>
+  <text class="ui section" x="1094" y="350">CONTROL TARGET</text>
+  <text class="ui small" x="1515" y="350">MANUAL OR GESTURE</text>
+  <g class="ui">
+    <rect x="1094" y="372" width="92" height="62" rx="7" fill="#edf3ef" stroke="#c5d2ca"/>
+    <text class="label" x="1140" y="397" text-anchor="middle">0</text><text class="small" x="1140" y="417" text-anchor="middle">HOLD</text>
+    <rect x="1192" y="372" width="92" height="62" rx="7" fill="#edf3ef" stroke="#c5d2ca"/>
+    <text class="label" x="1238" y="397" text-anchor="middle">1</text><text class="small" x="1238" y="417" text-anchor="middle">VOCODER</text>
+    <rect x="1290" y="372" width="92" height="62" rx="7" fill="#f2c43f" stroke="#d9a927"/>
+    <text class="label" x="1336" y="397" text-anchor="middle">2</text><text class="small" x="1336" y="417" text-anchor="middle" fill="#355246">BITCRUSH</text>
+    <rect x="1388" y="372" width="92" height="62" rx="7" fill="#edf3ef" stroke="#c5d2ca"/>
+    <text class="label" x="1434" y="397" text-anchor="middle">3</text><text class="small" x="1434" y="417" text-anchor="middle">MULTI</text>
+    <rect x="1486" y="372" width="92" height="62" rx="7" fill="#edf3ef" stroke="#c5d2ca"/>
+    <text class="label" x="1532" y="397" text-anchor="middle">4</text><text class="small" x="1532" y="417" text-anchor="middle">DELAY</text>
+    <rect x="1584" y="372" width="84" height="62" rx="7" fill="#edf3ef" stroke="#c5d2ca"/>
+    <text class="label" x="1626" y="397" text-anchor="middle">5</text><text class="small" x="1626" y="417" text-anchor="middle">ALL</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1070" y="486" width="622" height="315" rx="12" fill="#fbfcfa" stroke="#c3d0c8"/>
+  </g>
+  <text class="ui section" x="1094" y="520">PARAMETER MAPPING</text>
+  <rect x="1518" y="500" width="150" height="28" rx="14" fill="#e8f2eb"/>
+  <circle cx="1538" cy="514" r="5" fill="#79b195"/>
+  <text class="ui small" x="1550" y="518">MAPPING ACTIVE</text>
+
+  <g class="ui">
+    <text class="small" x="1094" y="556">GESTURE INPUT DATA</text>
+    <rect x="1094" y="566" width="178" height="72" rx="7" fill="#f1f5f2" stroke="#d0dbd4"/>
+    <text class="small" x="1110" y="588">X AXIS</text>
+    <text x="1110" y="622" font-size="25" font-weight="600" fill="#1f4035">0.50</text>
+    <text class="small" x="1252" y="620" text-anchor="end">NORMALIZED</text>
+
+    <rect x="1282" y="566" width="178" height="72" rx="7" fill="#f1f5f2" stroke="#d0dbd4"/>
+    <text class="small" x="1298" y="588">Y AXIS</text>
+    <text x="1298" y="622" font-size="25" font-weight="600" fill="#1f4035">0.40</text>
+    <text class="small" x="1440" y="620" text-anchor="end">NORMALIZED</text>
+
+    <rect x="1470" y="566" width="178" height="72" rx="7" fill="#f1f5f2" stroke="#d0dbd4"/>
+    <text class="small" x="1486" y="588">PINCH</text>
+    <text x="1486" y="622" font-size="25" font-weight="600" fill="#1f4035">0.50</text>
+    <text class="small" x="1628" y="620" text-anchor="end">NORMALIZED</text>
+
+    <text class="small" x="1094" y="660">BITCRUSHER · MAPPED PARAMETERS</text>
+    <rect x="1094" y="670" width="178" height="70" rx="7" fill="#fff9e8" stroke="#e5c45e"/>
+    <text class="small" x="1110" y="692" fill="#8c6b12">SAMPLE RATE</text>
+    <text x="1110" y="725" font-size="22" font-weight="600" fill="#1f4035">12,000</text>
+    <text class="small" x="1252" y="723" text-anchor="end">Hz</text>
+
+    <rect x="1282" y="670" width="178" height="70" rx="7" fill="#fff9e8" stroke="#e5c45e"/>
+    <text class="small" x="1298" y="692" fill="#8c6b12">BIT DEPTH</text>
+    <text x="1298" y="725" font-size="22" font-weight="600" fill="#1f4035">12</text>
+    <text class="small" x="1440" y="723" text-anchor="end">BITS</text>
+
+    <rect x="1470" y="670" width="178" height="70" rx="7" fill="#fff9e8" stroke="#e5c45e"/>
+    <text class="small" x="1486" y="692" fill="#8c6b12">DRIVE</text>
+    <text x="1486" y="725" font-size="22" font-weight="600" fill="#1f4035">0.50</text>
+    <text class="small" x="1628" y="723" text-anchor="end">AMOUNT</text>
+  </g>
+
+  <rect x="1094" y="750" width="554" height="34" rx="7" fill="#1f4035"/>
+  <circle cx="1114" cy="767" r="5" fill="#f2c43f"/>
+  <text class="ui" x="1128" y="771" font-size="11" letter-spacing=".8" fill="#f6f8f5">LIVE · MOVE RIGHT HAND / LEFT FIST HOLDS CURRENT VALUES</text>
+</svg>

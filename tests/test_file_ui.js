@@ -90,6 +90,10 @@ assert.strictEqual(boxes.get("f-ext-enable").comment, "Enable 0/1");
 assert.strictEqual(boxes.get("f-ext-play").comment, "Play 0/1");
 assert.strictEqual(boxes.get("f-out-l").comment, "File audio L");
 assert.strictEqual(boxes.get("f-out-r").comment, "File audio R");
+const progressOutlet = boxes.get("f-out-progress");
+assert(progressOutlet, "File progress outlet is missing");
+assert.strictEqual(progressOutlet.comment, "File progress 0-1");
+assert.strictEqual(progressOutlet.index, 3, "progress is the third public outlet");
 assert(!recursiveBoxes.some((box) => box.text && box.text.startsWith("ezdac~")));
 assert(!recursiveBoxes.some((box) => box.text && box.text.startsWith("loadmess")));
 
@@ -117,6 +121,11 @@ assert(coreBoxes.some((box) => box.text === "$1 20"), "20 ms Enable ramp missing
 assert(coreBoxes.some((box) => box.text === "prepend loop"), "explicit Loop control missing");
 assert(coreBoxes.some((box) => box.text === "prepend line"), "waveform playhead feedback missing");
 assert(coreBoxes.some((box) => box.text && box.text.startsWith("expr min(max(0.")), "safe waveform seek missing");
+assert(p.lines.some((entry) =>
+  entry.patchline.source[0] === "p-File-input"
+    && entry.patchline.source[1] === 2
+    && entry.patchline.destination[0] === "f-out-progress"
+), "existing normalized playhead must be exposed to the parent patch");
 
 const initLoop = controlBoxes.get("fc-init-loop");
 assert(initLoop && initLoop.text === "0", "Loop must initialize Off");

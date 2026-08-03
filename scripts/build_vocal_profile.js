@@ -506,7 +506,7 @@ function buildDemoPatch() {
       "vd-mic",
       "mt_input_mic_ui.maxpat",
       [20, 590, 420, 280],
-      1,
+      2,
       2,
       ["signal", "signal"],
       [20, 565, 420, 280]

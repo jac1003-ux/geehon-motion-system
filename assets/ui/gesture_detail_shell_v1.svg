@@ -12,5 +12,5 @@
   <text x="1000" y="618" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="13" font-weight="600" fill="#456156">CONTROL STATUS</text>
   
   <line x1="48" y1="785" x2="1682" y2="785" stroke="#d2ded7"/>
-  <text x="48" y="802" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" fill="#7b9087">PHYSICAL RIGHT: CONTINUOUS CONTROL · PHYSICAL LEFT: HOLD / RELEASE</text>
+  <text x="48" y="802" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" fill="#7b9087">PARAMETER ZONE: CONTINUOUS CONTROL · GATE: 1-5 TARGET / FIST HOLD</text>
 </svg>

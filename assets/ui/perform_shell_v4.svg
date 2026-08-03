@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1732" height="845" viewBox="0 0 1732 845">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#173027" flood-opacity=".07"/>
+    </filter>
+    <style>
+      .title{font-family:"Avenir Next","Helvetica Neue",sans-serif;font-size:20px;font-weight:600;fill:#29473c}
+      .module{font-family:"Avenir Next","Helvetica Neue",sans-serif;font-size:15px;font-weight:600;fill:#29473c}
+      .caption{font-family:"Avenir Next","Helvetica Neue",sans-serif;font-size:10px;letter-spacing:.7px;fill:#789087}
+      .micro{font-family:"Avenir Next","Helvetica Neue",sans-serif;font-size:9px;letter-spacing:.5px;fill:#668077}
+      .panel{fill:#f9fbf8;stroke:#b7c9bf}.moduleBox{fill:#f2f6f2;stroke:#c3d2ca}
+    </style>
+  </defs>
+  <rect width="1732" height="845" fill="#e8efea"/>
+  <g filter="url(#shadow)">
+    <rect x="24" y="48" width="346" height="746" rx="10" class="panel"/>
+    <rect x="386" y="48" width="830" height="520" rx="10" class="panel"/>
+    <rect x="1232" y="48" width="476" height="520" rx="10" class="panel"/>
+    <rect x="386" y="588" width="830" height="206" rx="10" class="panel"/>
+    <rect x="1232" y="588" width="476" height="206" rx="10" fill="#fffdf5" stroke="#ddb638"/>
+  </g>
+
+  <text x="48" y="83" class="title">SOURCE</text><text x="48" y="103" class="caption">INPUTS / QUICK CONTROL</text>
+  <line x1="48" y1="116" x2="346" y2="116" stroke="#d0ddd5"/>
+  <g transform="translate(44 132)"><rect width="306" height="112" rx="8" class="moduleBox"/><rect width="4" height="112" rx="2" fill="#78a98f"/><text x="24" y="34" class="module">MIC INPUT</text><text x="24" y="54" class="caption">LIVE SOURCE / MIC EQ</text></g>
+  <g transform="translate(44 256)"><rect width="306" height="112" rx="8" class="moduleBox"/><rect width="4" height="112" rx="2" fill="#e0b73a"/><text x="24" y="32" class="module">FILE PLAYER</text><text x="24" y="52" class="caption">SAMPLE SOURCE / TIMELINE</text><rect x="68" y="72" width="150" height="8" rx="4" fill="#d8e2dc"/></g>
+  <g transform="translate(44 380)"><rect width="306" height="112" rx="8" class="moduleBox"/><rect width="4" height="112" rx="2" fill="#5b9b90"/><text x="24" y="32" class="module">GRANULAR</text><text x="24" y="52" class="caption">TEXTURE SOURCE / PERFORMANCE</text></g>
+  <rect x="44" y="516" width="306" height="254" rx="8" fill="#f5f8f5" stroke="#d2ded7"/>
+  <text x="62" y="548" class="module">GRANULAR PERFORMANCE</text><text x="62" y="568" class="caption">CORE CONTROLS</text>
+  <text x="73" y="721" class="micro">WET</text><text x="131" y="721" class="micro">DENSITY</text><text x="211" y="721" class="micro">SIZE</text><text x="277" y="721" class="micro">PITCH</text>
+
+  <text x="410" y="83" class="title">GESTURE VIEW</text><text x="410" y="103" class="caption">PRIMARY PERFORMANCE FEEDBACK</text>
+  <line x1="410" y1="116" x2="1192" y2="116" stroke="#d0ddd5"/>
+  <rect x="402" y="126" width="798" height="420" rx="8" fill="#eef3ef" stroke="#b8cac0"/>
+  <rect x="418" y="494" width="202" height="36" rx="7" fill="#21483b"/>
+  <rect x="964" y="494" width="220" height="36" rx="7" fill="#fff8df" stroke="#e3b82c"/>
+
+  <text x="1256" y="83" class="title">EFFECTS</text><text x="1256" y="103" class="caption">SERIAL CHAIN / QUICK ENABLE</text>
+  <line x1="1256" y1="116" x2="1684" y2="116" stroke="#d0ddd5"/>
+  <g transform="translate(1252 132)"><rect width="436" height="89" rx="8" class="moduleBox"/><text x="24" y="38" class="module">01  VOCODER</text><text x="24" y="59" class="caption">SPECTRAL VOICE</text></g>
+  <g transform="translate(1252 231)"><rect width="436" height="89" rx="8" class="moduleBox"/><text x="24" y="38" class="module">02  BITCRUSHER</text><text x="24" y="59" class="caption">DIGITAL DEGRADE</text></g>
+  <g transform="translate(1252 330)"><rect width="436" height="89" rx="8" class="moduleBox"/><text x="24" y="38" class="module">03  MULTIBAND FILTER</text><text x="24" y="59" class="caption">SPECTRAL MOTION</text></g>
+  <g transform="translate(1252 429)"><rect width="436" height="89" rx="8" class="moduleBox"/><text x="24" y="38" class="module">04  FEEDBACK DELAY</text><text x="24" y="59" class="caption">RESONANT ECHO</text></g>
+
+  <text x="410" y="625" class="title">RECORD / EXPORT</text><text x="410" y="645" class="caption">MASTER RECORD / QUICK TRANSPORT</text>
+  <line x1="410" y1="658" x2="1192" y2="658" stroke="#d0ddd5"/><rect x="410" y="676" width="782" height="92" rx="8" class="moduleBox"/><rect x="430" y="694" width="742" height="10" rx="5" fill="#d7e1db"/>
+
+  <text x="1256" y="625" class="title">MASTER OUTPUT</text><text x="1256" y="645" class="caption">FINAL LISTENING / MONITOR</text>
+  <line x1="1256" y1="658" x2="1684" y2="658" stroke="#e3c967"/><rect x="1256" y="676" width="428" height="92" rx="8" fill="#fffef9" stroke="#ead787"/>
+  <text x="1274" y="697" class="micro">MONITOR LEVEL</text><text x="1474" y="697" class="micro">PEAK</text><text x="1603" y="750" class="micro">DSP STATUS IN HEADER</text>
+</svg>

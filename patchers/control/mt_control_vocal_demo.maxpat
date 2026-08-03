@@ -166,7 +166,7 @@
           "lockeddragscroll": 0,
           "lockedsize": 0,
           "name": "mt_input_mic_ui.maxpat",
-          "numinlets": 1,
+          "numinlets": 2,
           "numoutlets": 2,
           "offset": [
             0,

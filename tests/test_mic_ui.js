@@ -5,6 +5,7 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const patchPath = path.join(root, "patchers", "inputs", "mt_input_mic_ui.maxpat");
 const selectionWatchPath = path.join(root, "javascript", "mt_filtergraph_selection.js");
+const eqControllerPath = path.join(root, "javascript", "mt_mic_eq_controller.js");
 
 function boxMap(patcher) {
   return new Map((patcher.boxes || []).map((entry) => [entry.box.id, entry.box]));
@@ -73,6 +74,7 @@ assert.strictEqual(mono.maximum, 8);
 assert.deepStrictEqual(gain.saved_attribute_attributes.valueof.parameter_initial, [0]);
 
 assert.strictEqual(boxes.get("m-ext-enable").comment, "Enable 0/1");
+assert.strictEqual(boxes.get("m-ext-eq-open")?.comment, "Open EQ editor");
 assert.strictEqual(boxes.get("m-out-l").comment, "Mic audio L");
 assert.strictEqual(boxes.get("m-out-r").comment, "Mic audio R");
 assert(recursiveBoxes.some((box) => box.text === "s mt_mic_enable_state"), "shared Enable sender missing");
@@ -108,6 +110,25 @@ assert.strictEqual(
 for (const varname of ["mic_eq_frequency", "mic_eq_gain_db", "mic_eq_q"]) {
   assert([...eqBoxes.values()].some((box) => box.varname === varname), `missing EQ control ${varname}`);
 }
+assert(!eqBoxes.has("eq-flat") && !eqBoxes.has("eq-flat-msg"), "FLAT must live inside the preset menu");
+const typeMenu = eqBoxes.get("eq-type-menu");
+const presetMenu = eqBoxes.get("eq-preset-menu");
+const eqController = eqBoxes.get("eq-controller");
+assert.deepStrictEqual(
+  typeMenu?.items.filter((item) => item !== ","),
+  ["LOW CUT", "LOW SHELF", "BELL", "NOTCH", "HIGH SHELF", "HIGH CUT"],
+  "EQ type menu must expose the useful commercial filter modes"
+);
+assert.deepStrictEqual(
+  presetMenu?.items.filter((item) => item !== ","),
+  ["FLAT", "RADIO", "TELEPHONE", "WARM VOCAL", "AIR / PRESENCE", "MEGAPHONE"],
+  "EQ preset menu must include the six agreed profiles"
+);
+assert.deepStrictEqual(typeMenu?.presentation_rect, [458, 344, 126, 22]);
+assert.deepStrictEqual(presetMenu?.presentation_rect, [600, 344, 136, 22]);
+assert.strictEqual(eqController?.text, "js Patcher:/../../javascript/mt_mic_eq_controller.js");
+assert.strictEqual(eqController?.numinlets, 3);
+assert.strictEqual(eqController?.numoutlets, 2);
 for (const parameter of ["p-Mic-eq::eq-freq", "p-Mic-eq::eq-gain", "p-Mic-eq::eq-q"]) {
   assert(p.parameters?.[parameter], `missing registered EQ parameter ${parameter}`);
 }
@@ -176,24 +197,32 @@ assert(
   "graph clicks and BAND edits must share one selected-node path"
 );
 assert(fs.existsSync(selectionWatchPath), "EQ selection watcher script is missing");
+assert(fs.existsSync(eqControllerPath), "EQ type and preset controller script is missing");
 const selectionWatch = fs.readFileSync(selectionWatchPath, "utf8");
 assert(selectionWatch.includes("selectNearest"), "selection watcher must hit-test EQ nodes");
 assert(selectionWatch.includes("clickedFrequency"), "selection watcher must use logarithmic frequency position");
 assert(selectionWatch.includes("outlet(0, nearest + 1)"), "selection watcher must report the one-based BAND value");
 assert(!selectionWatch.includes("EQ_SELECTION_DEBUG"), "selection watcher must not log per-click debug output");
+assert(hasExactEqLine("eq-type-menu", 0, "eq-controller", 0), "type menu must drive the EQ controller");
+assert(hasExactEqLine("eq-preset-menu", 0, "eq-controller", 1), "preset menu must drive the EQ controller");
+assert(hasExactEqLine("eq-selected-trigger", 0, "eq-controller", 2), "selected node must drive the EQ controller");
+assert(hasExactEqLine("eq-controller", 0, "eq-graph", 0), "EQ controller must update filtergraph~");
+assert(hasExactEqLine("eq-controller", 1, "eq-type-menu", 0), "node selection must refresh the type menu");
 const rootLines = p.lines.map((entry) => entry.patchline);
 const hasRootLine = (source, destination) => rootLines.some((patchline) =>
   patchline.source[0] === source && patchline.destination[0] === destination
+);
+const hasExactRootLine = (source, sourceOutlet, destination, destinationInlet) => rootLines.some((patchline) =>
+  patchline.source[0] === source &&
+  patchline.source[1] === sourceOutlet &&
+  patchline.destination[0] === destination &&
+  patchline.destination[1] === destinationInlet
 );
 assert(hasRootLine("p-Mic-input", "p-Mic-eq"), "Mic DSP must feed the embedded EQ");
 assert(hasRootLine("p-Mic-eq", "m-gain"), "Mic EQ must feed the output gain");
 assert(!hasRootLine("p-Mic-input", "m-gain"), "Mic audio must not bypass the EQ");
 assert(boxes.get("m-eq-open")?.varname === "mic_eq_open", "missing Mic EQ editor button");
-assert(
-  [...eqBoxes.values()].some((box) => box.text === "flat 0 1 2 3 4 5 6, edit_filter 0, selectfilt 0, bang"),
-  "missing EQ flat reset"
-);
-
+assert(hasExactRootLine("m-ext-eq-open", 0, "m-eq-open-msg", 0), "external EQ trigger must reuse the editor open path");
 const approvedColors = new Set([
   JSON.stringify([0.44, 0.72, 1, 1]),
   JSON.stringify([1, 0.62, 0.24, 1]),

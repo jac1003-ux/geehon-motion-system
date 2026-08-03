@@ -262,10 +262,10 @@ const core = Object.assign({}, baseCore, {
 });
 [
   ["mb2c-l", 1, 30], ["mb2c-r", 2, 80], ["mb2c-enable", 3, 150],
-  ["mb2c-test", 4, 210], ["mb2c-low-x", 5, 290], ["mb2c-high-x", 6, 360],
-  ["mb2c-low-gain", 7, 450], ["mb2c-mid-gain", 8, 520], ["mb2c-high-gain", 9, 590],
-  ["mb2c-low-drive", 10, 680], ["mb2c-mid-drive", 11, 750], ["mb2c-high-drive", 12, 820],
-  ["mb2c-low-width", 13, 910], ["mb2c-mid-width", 14, 980], ["mb2c-high-width", 15, 1050]
+  ["mb2c-low-x", 4, 230], ["mb2c-high-x", 5, 300],
+  ["mb2c-low-gain", 6, 390], ["mb2c-mid-gain", 7, 460], ["mb2c-high-gain", 8, 530],
+  ["mb2c-low-drive", 9, 620], ["mb2c-mid-drive", 10, 690], ["mb2c-high-drive", 11, 760],
+  ["mb2c-low-width", 12, 850], ["mb2c-mid-width", 13, 920], ["mb2c-high-width", 14, 990]
 ].forEach(([id, index, x]) => add(core, box(id, "inlet", [x, 30, 30, 30], { index })));
 
 add(core, object("mb2c-cross-low-l", "cross~ 250.", [30, 245, 90, 22], { numinlets: 2, numoutlets: 2, outlettype: ["signal", "signal"] }));
@@ -343,7 +343,7 @@ core.lines.push(
 );
 
 add(p, object("mb2-core", "p Multiband_filter_v2_core", [20, 550, 220, 22], {
-  numinlets: 15, numoutlets: 5,
+  numinlets: 14, numoutlets: 5,
   outlettype: ["signal", "signal", "signal", "signal", "signal"],
   patcher: core
 }));
@@ -399,18 +399,18 @@ p.lines.push(
   line("mb2-controller", 2, "mb2-width", 0, control),
   line("mb2-controller", 3, "mb2-mute", 0, control),
   line("mb2-controller", 4, "mb2-solo", 0, control),
-  line("mb2-controller", 5, "mb2-core", 6, control),
-  line("mb2-controller", 6, "mb2-core", 7, control),
-  line("mb2-controller", 7, "mb2-core", 8, control),
-  line("mb2-controller", 8, "mb2-core", 9, control),
-  line("mb2-controller", 9, "mb2-core", 10, control),
-  line("mb2-controller", 10, "mb2-core", 11, control),
-  line("mb2-controller", 11, "mb2-core", 12, control),
-  line("mb2-controller", 12, "mb2-core", 13, control),
-  line("mb2-controller", 13, "mb2-core", 14, control),
+  line("mb2-controller", 5, "mb2-core", 5, control),
+  line("mb2-controller", 6, "mb2-core", 6, control),
+  line("mb2-controller", 7, "mb2-core", 7, control),
+  line("mb2-controller", 8, "mb2-core", 8, control),
+  line("mb2-controller", 9, "mb2-core", 9, control),
+  line("mb2-controller", 10, "mb2-core", 10, control),
+  line("mb2-controller", 11, "mb2-core", 11, control),
+  line("mb2-controller", 12, "mb2-core", 12, control),
+  line("mb2-controller", 13, "mb2-core", 13, control),
   line("mb2-controller", 14, "mb2-visual", 0, control),
-  line("mb2-controller", 15, "mb2-core", 4, control),
-  line("mb2-controller", 16, "mb2-core", 5, control),
+  line("mb2-controller", 15, "mb2-core", 3, control),
+  line("mb2-controller", 16, "mb2-core", 4, control),
   line("mb2-init", 0, "mb2-controller", 0, control),
   line("mb2-core", 2, "mb2-snapshot-low", 0),
   line("mb2-core", 3, "mb2-snapshot-mid", 0),

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1732" height="845" viewBox="0 0 1732 845">
+  <rect width="1732" height="845" fill="#eef4ef"/>
+  <rect x="22" y="20" width="1688" height="790" rx="10" fill="#f9fbf8" stroke="#bfd0c6" stroke-width="2"/>
+  <text x="48" y="62" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="24" font-weight="500" fill="#243f35">SOURCE</text>
+  <text x="48" y="85" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="11" letter-spacing="1.2" fill="#7b9087">INPUT SELECTION / DETAILED EDITOR / SOURCE MIX</text>
+
+  <rect x="38" y="104" width="794" height="658" rx="8" fill="#ffffff" stroke="#c4d2ca"/>
+  <text x="56" y="134" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="13" font-weight="600" fill="#456156">SELECTED SOURCE</text>
+  <rect x="860" y="104" width="834" height="658" rx="8" fill="#f3f7f3" stroke="#c4d2ca"/>
+  <text x="878" y="134" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="13" font-weight="600" fill="#456156">SOURCE MIXER</text>
+
+  <line x1="48" y1="785" x2="1682" y2="785" stroke="#d2ded7"/>
+  <text x="48" y="802" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" fill="#7b9087">MIC / FILE / GRANULAR · SHARED DRY BUS</text>
+</svg>

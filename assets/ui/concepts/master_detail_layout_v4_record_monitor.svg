@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1732" height="845" viewBox="0 0 1732 845">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#17392f" flood-opacity=".08"/>
+    </filter>
+    <linearGradient id="meter" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#64aa91"/><stop offset=".72" stop-color="#d8c754"/><stop offset="1" stop-color="#f0aa31"/>
+    </linearGradient>
+    <style>
+      .sans{font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif}.title{font-size:32px;font-weight:650}.subtitle{font-size:12px;font-weight:500;letter-spacing:1.5px}.section{font-size:14px;font-weight:650;letter-spacing:.7px}.small{font-size:10px;font-weight:500;letter-spacing:1px}.label{font-size:11px;font-weight:650;letter-spacing:.7px}.value{font-size:22px;font-weight:650}.button{font-size:10px;font-weight:650;letter-spacing:.5px}
+    </style>
+  </defs>
+  <rect width="1732" height="845" fill="#eef4ef"/>
+  <g class="sans">
+    <text x="40" y="55" class="title" fill="#21483b">MASTER</text>
+    <text x="40" y="82" class="subtitle" fill="#7b968d">RECORD / EDIT / EXPORT / FINAL OUTPUT</text>
+    <rect x="1220" y="28" width="142" height="42" rx="9" fill="#f9fbf8" stroke="#c6d4cc"/>
+    <circle cx="1240" cy="49" r="5" fill="#6aaa91"/><text x="1253" y="53" class="small" fill="#7b968d">POST-FX TAP</text>
+    <rect x="1372" y="28" width="144" height="42" rx="9" fill="#f9fbf8" stroke="#c6d4cc"/>
+    <text x="1392" y="53" class="small" fill="#7b968d">48 kHz · 24-bit</text>
+    <rect x="1526" y="28" width="166" height="42" rx="9" fill="#fff7dc" stroke="#e6c153"/>
+    <circle cx="1548" cy="49" r="5" fill="#21483b"/><text x="1562" y="53" class="small" fill="#7b6321">DSP OUTPUT ON</text>
+    <line x1="40" y1="96" x2="1692" y2="96" stroke="#c8d7cf"/>
+
+    <g filter="url(#shadow)"><rect x="40" y="116" width="1010" height="685" rx="11" fill="#f9fbf8" stroke="#c4d2ca"/></g>
+    <text x="64" y="150" class="section" fill="#355b4e">RECORD / EXPORT EDITOR</text>
+    <text x="820" y="150" class="small" fill="#829990">FULL EDITOR · 960 × 528</text>
+    <rect x="64" y="170" width="962" height="578" rx="10" fill="#fbfcfa" stroke="#b9cec3"/>
+    <path d="M74 170h942a10 10 0 0 1 10 10v68H64v-68a10 10 0 0 1 10-10z" fill="#21483b"/>
+    <circle cx="92" cy="209" r="19" fill="#6da99a"/><circle cx="92" cy="209" r="6" fill="#f0c94d"/>
+    <text x="124" y="204" font-size="22" font-weight="650" fill="#f8faf7">RECORD / EXPORT</text>
+    <text x="124" y="226" class="small" fill="#a9c1b6">POST-FX MASTER CAPTURE · NON-DESTRUCTIVE TRIM</text>
+    <rect x="886" y="188" width="112" height="42" rx="21" fill="#f6faf7"/><circle cx="908" cy="209" r="5" fill="#6da99a"/><text x="924" y="213" class="label" fill="#355b4e">READY</text>
+
+    <rect x="84" y="266" width="922" height="272" rx="7" fill="#18372e"/>
+    <g stroke="#3a5c50" stroke-width="1" opacity=".65">
+      <line x1="84" y1="316" x2="1006" y2="316"/><line x1="84" y1="402" x2="1006" y2="402"/><line x1="84" y1="488" x2="1006" y2="488"/>
+      <line x1="190" y1="266" x2="190" y2="538"/><line x1="300" y1="266" x2="300" y2="538"/><line x1="410" y1="266" x2="410" y2="538"/><line x1="520" y1="266" x2="520" y2="538"/><line x1="630" y1="266" x2="630" y2="538"/><line x1="740" y1="266" x2="740" y2="538"/><line x1="850" y1="266" x2="850" y2="538"/><line x1="960" y1="266" x2="960" y2="538"/>
+    </g>
+    <path d="M92 358 L105 346 118 364 132 336 146 370 160 348 174 360 188 329 202 372 216 344 230 360 244 334 258 370 272 350 286 363 300 326 314 376 328 344 342 359 356 333 370 372 384 348 398 362 412 330 426 374 440 342 454 360 468 335 482 369 496 347 510 362 524 328 538 375 552 343 566 360 580 334 594 370 608 348 622 363 636 329 650 374 664 342 678 360 692 334 706 370 720 348 734 362 748 330 762 374 776 342 790 359 804 335 818 370 832 346 846 362 860 328 874 374 888 343 902 359 916 334 930 370 944 347 958 361 972 332 994 358" fill="none" stroke="#a9c8b7" stroke-width="3"/>
+    <path d="M92 450 L106 438 120 458 134 430 148 464 162 442 176 454 190 425 204 466 218 439 232 454 246 429 260 464 274 444 288 457 302 422 316 470 330 438 344 453 358 427 372 466 386 442 400 456 414 424 428 468 442 436 456 454 470 429 484 463 498 441 512 456 526 423 540 469 554 437 568 454 582 428 596 464 610 442 624 457 638 424 652 468 666 436 680 454 694 428 708 464 722 442 736 456 750 424 764 468 778 436 792 453 806 429 820 464 834 440 848 456 862 423 876 468 890 437 904 453 918 428 932 464 946 441 960 455 974 426 994 450" fill="none" stroke="#a9c8b7" stroke-width="3"/>
+    <rect x="360" y="266" width="308" height="272" fill="#f0c94d" opacity=".09"/><line x1="360" y1="266" x2="360" y2="538" stroke="#f2c337" stroke-width="3"/><line x1="668" y1="266" x2="668" y2="538" stroke="#f2c337" stroke-width="3"/>
+    <text x="98" y="288" class="small" fill="#a9c1b6">00:00</text><text x="346" y="288" class="small" fill="#f1ca4a">IN 00:12.4</text><text x="652" y="288" class="small" fill="#f1ca4a">OUT 00:26.8</text><text x="946" y="288" class="small" fill="#a9c1b6">00:40</text>
+
+    <g class="button">
+      <rect x="84" y="556" width="144" height="58" rx="7" fill="#6aaa91"/><circle cx="110" cy="585" r="7" fill="#fff4c7"/><text x="154" y="590" text-anchor="middle" fill="#fff">RECORD</text>
+      <rect x="240" y="556" width="144" height="58" rx="7" fill="#eef3f0" stroke="#c0d0c8"/><rect x="266" y="578" width="13" height="13" fill="#587267"/><text x="322" y="590" text-anchor="middle" fill="#355b4e">STOP</text>
+      <rect x="396" y="556" width="144" height="58" rx="7" fill="#eef3f0" stroke="#c0d0c8"/><path d="M423 575l16 10-16 10z" fill="#587267"/><text x="478" y="590" text-anchor="middle" fill="#355b4e">PREVIEW</text>
+      <rect x="552" y="556" width="144" height="58" rx="7" fill="#eef3f0" stroke="#c0d0c8"/><text x="624" y="590" text-anchor="middle" fill="#355b4e">RESET RANGE</text>
+      <rect x="708" y="556" width="144" height="58" rx="7" fill="#eef3f0" stroke="#c0d0c8"/><text x="780" y="590" text-anchor="middle" fill="#355b4e">NEW TAKE</text>
+      <rect x="864" y="556" width="142" height="58" rx="7" fill="#21483b"/><text x="935" y="590" text-anchor="middle" fill="#fff">EXPORT WAV</text>
+    </g>
+    <rect x="84" y="632" width="258" height="92" rx="7" fill="#f4f7f4" stroke="#cad7d0"/><text x="102" y="657" class="small" fill="#789087">TAKE LENGTH</text><text x="102" y="699" class="value" fill="#21483b">00:40</text>
+    <rect x="354" y="632" width="338" height="92" rx="7" fill="#f4f7f4" stroke="#cad7d0"/><text x="372" y="657" class="small" fill="#789087">SELECTION RANGE</text><text x="372" y="699" class="value" fill="#21483b">00:12.4 — 00:26.8</text>
+    <rect x="704" y="632" width="302" height="92" rx="7" fill="#f4f7f4" stroke="#cad7d0"/><text x="722" y="657" class="small" fill="#789087">EXPORT FORMAT</text><text x="722" y="691" font-size="17" font-weight="650" fill="#21483b">WAV · 24-BIT · STEREO</text><text x="722" y="711" class="small" fill="#789087">48 kHz</text>
+
+    <g filter="url(#shadow)"><rect x="1070" y="116" width="622" height="685" rx="11" fill="#f9fbf8" stroke="#c4d2ca"/></g>
+    <text x="1094" y="150" class="section" fill="#355b4e">MASTER OUTPUT / MONITOR</text>
+    <rect x="1094" y="170" width="574" height="78" rx="9" fill="#21483b"/>
+    <rect x="1118" y="188" width="42" height="42" rx="8" fill="#4c806f"/><path d="M1129 199v20m10-20v20m10-20v20" stroke="#fff" stroke-width="3"/><path d="M1124 205h30" stroke="#fff" opacity=".5"/>
+    <text x="1178" y="204" font-size="21" font-weight="650" fill="#fff">MASTER MONITOR</text><text x="1178" y="225" class="small" fill="#a9c1b6">FINAL LISTENING BUS · POST FX</text>
+
+    <text x="1118" y="282" class="label" fill="#355b4e">MONITOR LEVEL</text><text x="1264" y="282" class="label" fill="#355b4e">OUTPUT LEVEL</text>
+    <rect x="1126" y="302" width="70" height="332" rx="9" fill="#edf3ef" stroke="#c1d1c9"/><line x1="1161" y1="328" x2="1161" y2="606" stroke="#bdcbc4" stroke-width="8" stroke-linecap="round"/><line x1="1161" y1="434" x2="1161" y2="606" stroke="#285446" stroke-width="8" stroke-linecap="round"/><rect x="1138" y="418" width="46" height="32" rx="6" fill="#fff" stroke="#355b4e"/><text x="1161" y="662" text-anchor="middle" class="label" fill="#355b4e">0.0 dB</text>
+    <rect x="1264" y="302" width="44" height="332" rx="7" fill="#18372e"/><rect x="1274" y="350" width="24" height="274" rx="3" fill="url(#meter)"/><rect x="1324" y="302" width="44" height="332" rx="7" fill="#18372e"/><rect x="1334" y="365" width="24" height="259" rx="3" fill="url(#meter)"/>
+    <g class="small" fill="#789087"><text x="1240" y="316">0</text><text x="1233" y="370">-12</text><text x="1233" y="424">-24</text><text x="1233" y="478">-36</text><text x="1233" y="532">-48</text><text x="1233" y="620">-60</text><text x="1286" y="654">L</text><text x="1346" y="654">R</text></g>
+    <rect x="1410" y="302" width="234" height="126" rx="9" fill="#f3f7f4" stroke="#c4d2ca"/><text x="1527" y="334" text-anchor="middle" class="label" fill="#789087">MASTER PEAK</text><text x="1527" y="389" text-anchor="middle" font-size="31" font-weight="650" fill="#21483b">−6.2 dBFS</text>
+    <rect x="1410" y="450" width="234" height="78" rx="9" fill="#fffaf0" stroke="#e2b932" stroke-width="2"/><text x="1527" y="497" text-anchor="middle" class="label" fill="#806315">MUTE MONITOR</text>
+    <rect x="1410" y="548" width="234" height="86" rx="9" fill="#21483b"/><circle cx="1450" cy="591" r="16" fill="none" stroke="#fff" stroke-width="3"/><line x1="1450" y1="569" x2="1450" y2="592" stroke="#fff" stroke-width="3"/><text x="1542" y="597" text-anchor="middle" class="label" fill="#fff">DSP OUTPUT ON</text>
+    <line x1="1094" y1="688" x2="1668" y2="688" stroke="#cedbd4"/>
+    <circle cx="1118" cy="724" r="5" fill="#f0c94d"/><text x="1134" y="728" class="small" fill="#567066">RECORDING TAP: POST-FX / PRE-MONITOR</text>
+    <circle cx="1634" cy="724" r="5" fill="#6aaa91"/><text x="1620" y="728" text-anchor="end" class="small" fill="#567066">ACTIVE</text>
+    <text x="1094" y="774" class="small" fill="#829990">MONITOR CHANGES DO NOT ALTER THE CAPTURED FILE</text>
+  </g>
+</svg>

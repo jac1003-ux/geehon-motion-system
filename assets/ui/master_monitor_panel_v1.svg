@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="574" height="578" viewBox="0 0 574 578">
+  <rect width="574" height="578" fill="#f3f7f3"/>
+  <rect width="574" height="76" fill="#21483b"/>
+  <text x="24" y="36" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="20" font-weight="700" fill="#f5f8f5">MASTER MONITOR</text>
+  <text x="24" y="57" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="9" letter-spacing=".8" fill="#b8ccbf">POST-EDITOR LISTENING / PRE-DAC CONTROL</text>
+  <rect x="20" y="96" width="268" height="382" rx="12" fill="#fafbf8" stroke="#bfd0c6"/>
+  <text x="36" y="120" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" font-weight="700" fill="#355b4e">MONITOR LEVEL</text>
+  <text x="166" y="120" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" font-weight="700" fill="#355b4e">L</text>
+  <text x="228" y="120" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" font-weight="700" fill="#355b4e">R</text>
+  <rect x="304" y="96" width="250" height="162" rx="12" fill="#fff9e9" stroke="#ecc557"/>
+  <text x="320" y="122" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" font-weight="700" fill="#7b681f">OUTPUT PEAK</text>
+  <text x="466" y="236" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" fill="#8d7b3c">dBFS</text>
+  <rect x="304" y="276" width="250" height="106" rx="12" fill="#fafbf8" stroke="#bfd0c6"/>
+  <text x="320" y="396" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" font-weight="700" fill="#355b4e">DSP OUTPUT</text>
+  <rect x="304" y="406" width="250" height="72" rx="12" fill="#fafbf8" stroke="#bfd0c6"/>
+  <text x="320" y="504" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" letter-spacing=".8" fill="#7b9087">RECORD TAP: POST-FX / PRE-MONITOR</text>
+  <line x1="20" y1="526" x2="554" y2="526" stroke="#d2ded7"/>
+  <text x="20" y="550" font-family="Avenir Next,Helvetica Neue,sans-serif" font-size="10" fill="#7b9087">Monitor Level and Mute never change the exported recording.</text>
+</svg>

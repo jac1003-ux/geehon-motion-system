@@ -17,6 +17,13 @@ function recursiveBoxes(patcher) {
   ]);
 }
 
+function hasLine(patcher, source, outlet, destination, inlet) {
+  return patcher.lines.some(({ patchline }) =>
+    patchline.source[0] === source && patchline.source[1] === outlet
+      && patchline.destination[0] === destination && patchline.destination[1] === inlet
+  );
+}
+
 function assertProductionOnly(patcher, name) {
   const boxes = recursiveBoxes(patcher);
   assert(
@@ -41,6 +48,30 @@ function assertExternalEnableIsEchoSuppressed(patcher, prefix, name) {
   );
 }
 
+function assertCompactedCoreInterface(patcher, core, name, inletIds, routes) {
+  const inlets = core.patcher.boxes
+    .map((entry) => entry.box)
+    .filter((box) => box.maxclass === "inlet")
+    .sort((left, right) => left.index - right.index);
+  assert.strictEqual(core.numinlets, inletIds.length, `${name} core inlet count`);
+  assert.deepStrictEqual(
+    inlets.map((box) => box.index),
+    Array.from({ length: inletIds.length }, (_, index) => index + 1),
+    `${name} core inlet indexes must be contiguous`
+  );
+  assert.deepStrictEqual(
+    inlets.map((box) => box.id),
+    inletIds,
+    `${name} core must not retain a disconnected legacy Test Input`
+  );
+  routes.forEach(([source, outlet, inlet]) => {
+    assert(
+      hasLine(patcher, source, outlet, core.id, inlet),
+      `${name} ${source} must reach compacted core inlet ${inlet + 1}`
+    );
+  });
+}
+
 const bitcrusher = readEffect("mt_mod_bitcrusher.maxpat");
 const bitcrusherBoxes = bitcrusher.boxes.map((entry) => entry.box);
 const bitcrusherCore = bitcrusherBoxes.find((box) => box.id === "bc-core");
@@ -58,6 +89,13 @@ assert.strictEqual(
   "Bitcrusher must expose stereo audio"
 );
 assert(bitcrusherCore && bitcrusherCore.patcher, "Bitcrusher core is missing");
+assertCompactedCoreInterface(
+  bitcrusher,
+  bitcrusherCore,
+  "Bitcrusher",
+  ["bci-l", "bci-r", "bci-enable", "bci-bits", "bci-rate", "bci-drive"],
+  [["bc-bits", 0, 3], ["bc-rate", 0, 4], ["bc-drive", 0, 5]]
+);
 assert.strictEqual(
   bitcrusherBoxes.filter((box) => box.maxclass === "live.dial").length,
   3,
@@ -132,6 +170,13 @@ assert.strictEqual(
   "Delay must expose stereo audio"
 );
 assert(delayCore && delayCore.patcher, "Feedback delay core is missing");
+assertCompactedCoreInterface(
+  delay,
+  delayCore,
+  "Feedback Delay",
+  ["fdi-l", "fdi-r", "fdi-enable", "fdi-time", "fdi-feedback", "fdi-damping", "fdi-stereo"],
+  [["fd-time", 0, 3], ["fd-feedback", 0, 4], ["fd-damping", 0, 5], ["fd-stereo", 0, 6]]
+);
 assert.strictEqual(
   delayBoxes.filter((box) => box.maxclass === "live.dial").length,
   4,
@@ -148,6 +193,22 @@ assert.strictEqual(
 const delayCoreTexts = delayCore.patcher.boxes
   .map((entry) => entry.box.text)
   .filter(Boolean);
+const delayCoreBoxes = new Map(
+  delayCore.patcher.boxes.map((entry) => [entry.box.id, entry.box])
+);
+assert.strictEqual(
+  delayCoreTexts.filter((text) => text === "slide~").length,
+  2,
+  "Only the stereo delay-time controls should use slide~"
+);
+assert.strictEqual(
+  delayCoreTexts.filter((text) => text === "line~").length,
+  2,
+  "Feedback and wet enable must retain deterministic line~ ramps"
+);
+assert.strictEqual(delayCoreBoxes.get("fd-time-msg-l").text, "sig~");
+assert.strictEqual(delayCoreBoxes.get("fd-time-msg-r").text, "sig~");
+assert(delayCoreTexts.includes("mstosamps~"), "Delay slide time must follow the DSP sample rate");
 assert.strictEqual(
   delayCoreTexts.filter((text) => text.startsWith("tapin~")).length,
   2,
@@ -285,6 +346,42 @@ assert.strictEqual(
   );
 });
 assert(multibandV2Core && multibandV2Core.patcher, "V2 core is missing");
+const multibandV2CoreInlets = multibandV2Core.patcher.boxes
+  .map((entry) => entry.box)
+  .filter((box) => box.maxclass === "inlet")
+  .sort((left, right) => left.index - right.index);
+assert.strictEqual(
+  multibandV2Core.numinlets,
+  14,
+  "V2 core must not retain the removed legacy Test Input"
+);
+assert.deepStrictEqual(
+  multibandV2CoreInlets.map((box) => box.index),
+  Array.from({ length: 14 }, (_, index) => index + 1),
+  "V2 core inlet indexes must remain contiguous after Test Input removal"
+);
+assert(
+  !multibandV2CoreInlets.some((box) => box.id === "mb2c-test"),
+  "V2 core must not contain the disconnected legacy Test Input inlet"
+);
+[
+  [15, 3],
+  [16, 4],
+  [5, 5],
+  [6, 6],
+  [7, 7],
+  [8, 8],
+  [9, 9],
+  [10, 10],
+  [11, 11],
+  [12, 12],
+  [13, 13]
+].forEach(([controllerOutlet, coreInlet]) => {
+  assert(
+    hasLine(multibandV2, "mb2-controller", controllerOutlet, "mb2-core", coreInlet),
+    `V2 controller outlet ${controllerOutlet} must reach compacted core inlet ${coreInlet + 1}`
+  );
+});
 assert(
   multibandV2Visual &&
     multibandV2Visual.maxclass === "jsui" &&
@@ -337,7 +434,79 @@ assert(
     ),
   "V2 JavaScript dependencies are missing"
 );
-assertProductionOnly(readEffect("mt_mod_vocoder.maxpat"), "Vocoder");
+const vocoder = readEffect("mt_mod_vocoder.maxpat");
+const vocoderBoxes = new Map(
+  vocoder.boxes.map((entry) => [entry.box.id, entry.box])
+);
+const vocoderCore = vocoderBoxes.get("p-Vocoder-core");
+assertProductionOnly(vocoder, "Vocoder");
+assert(vocoderCore && vocoderCore.patcher, "Vocoder core is missing");
+assertCompactedCoreInterface(
+  vocoder,
+  vocoderCore,
+  "Vocoder",
+  ["vc-in-l", "vc-in-r", "vc-enable", "vc-wet", "vc-tone", "vc-noise", "vc-smooth", "vc-bright"],
+  [["vm-wet", 0, 3], ["vm-tone", 0, 4], ["vm-noise", 0, 5], ["vm-smooth", 0, 6], ["vm-bright", 0, 7]]
+);
+assert.strictEqual(
+  [...vocoderBoxes.values()].filter((box) => box.maxclass === "live.dial").length,
+  5,
+  "Vocoder must expose five presentation live.dial controls"
+);
+assert.deepStrictEqual(
+  vocoderBoxes.get("vm-header")?.presentation_rect,
+  [0, 0, 760, 58],
+  "Vocoder commercial header"
+);
+assert.deepStrictEqual(
+  vocoderBoxes.get("vm-body")?.presentation_rect,
+  [0, 58, 760, 210],
+  "Vocoder commercial body"
+);
+assert.strictEqual(vocoderBoxes.get("vm-title")?.text, "VOCODER");
+for (const [id, varname] of [
+  ["vm-wet", "vocoder_dry_wet"],
+  ["vm-tone", "vocoder_carrier_tone"],
+  ["vm-noise", "vocoder_noise_mix"],
+  ["vm-smooth", "vocoder_spectral_smooth"],
+  ["vm-bright", "vocoder_brightness"],
+]) {
+  assert.strictEqual(vocoderBoxes.get(id)?.maxclass, "live.dial", `${id} UI class`);
+  assert.strictEqual(vocoderBoxes.get(id)?.varname, varname, `${id} varname`);
+  assert(vocoder.parameters?.[id], `${id} parameter metadata`);
+}
+assert.strictEqual(vocoderBoxes.get("vm-bright-label")?.text, "X · BRIGHTNESS");
+assert.strictEqual(vocoderBoxes.get("vm-tone-label")?.text, "Y · CARRIER TONE");
+assert.strictEqual(vocoderBoxes.get("vm-noise-label")?.text, "PINCH · NOISE MIX");
+const vocoderGain = vocoderBoxes.get("vm-gain");
+assert.deepStrictEqual(vocoderGain?.inactivecoldcolor, [0.08, 0.1, 0.09, 0], "disabled Vocoder meter is visually silent");
+assert.deepStrictEqual(vocoderGain?.inactivewarmcolor, [0.08, 0.1, 0.09, 0], "disabled Vocoder warm meter is visually silent");
+assert.strictEqual(vocoderBoxes.get("vm-gain-active-state")?.text, "r mt_vocoder_enable_state");
+assert.strictEqual(vocoderBoxes.get("vm-gain-active")?.text, "prepend active");
+assert(hasLine(vocoder, "vm-gain-active-state", 0, "vm-gain-active", 0), "Vocoder state reaches gain active mode");
+assert(hasLine(vocoder, "vm-gain-active", 0, "vm-gain", 0), "Vocoder off state disables only its gain UI");
+const vocoderLabels = ["vm-bright-label", "vm-tone-label", "vm-noise-label", "vm-wet-label", "vm-smooth-label"]
+  .map((id) => vocoderBoxes.get(id));
+for (const label of vocoderLabels) {
+  assert.strictEqual(label?.fontsize, 9, `${label?.id} uses compact text`);
+  assert.strictEqual(label?.textjustification, 1, `${label?.id} is centered below its dial`);
+}
+for (let index = 1; index < vocoderLabels.length; index += 1) {
+  const previous = vocoderLabels[index - 1].presentation_rect;
+  const current = vocoderLabels[index].presentation_rect;
+  assert(previous[0] + previous[2] <= current[0], "Vocoder parameter labels must not overlap");
+}
+assert(
+  vocoderBoxes.get("vm-bright").presentation_rect[0]
+    < vocoderBoxes.get("vm-tone").presentation_rect[0]
+    && vocoderBoxes.get("vm-tone").presentation_rect[0]
+      < vocoderBoxes.get("vm-noise").presentation_rect[0]
+    && vocoderBoxes.get("vm-noise").presentation_rect[0]
+      < vocoderBoxes.get("vm-wet").presentation_rect[0]
+    && vocoderBoxes.get("vm-wet").presentation_rect[0]
+      < vocoderBoxes.get("vm-smooth").presentation_rect[0],
+  "Vocoder must place X, Y, and Pinch controls before manual Wet and Smooth controls"
+);
 const multibandVisualSource = fs.readFileSync(
   path.join(root, "patchers", "effects", "mt_multiband_filter_visual.js"),
   "utf8"

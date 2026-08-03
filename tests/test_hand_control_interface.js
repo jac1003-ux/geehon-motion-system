@@ -29,10 +29,10 @@ assert.deepStrictEqual(outletOrder, [
   "hp-hand-control-core-out-tracking",
 ]);
 
-assert.deepStrictEqual(root.rect.slice(2), [798, 420], "camera-first hand UI footprint");
+assert.deepStrictEqual(root.rect.slice(2), [798, 486], "camera-first hand UI footprint");
 assert.deepStrictEqual(
   rootBoxes.get("hp-jweb").presentation_rect,
-  [12, 50, 774, 358],
+  [12, 50, 774, 424],
   "camera must dominate the performance view"
 );
 for (const id of [

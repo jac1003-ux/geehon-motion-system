@@ -92,5 +92,6 @@ assert(connected(demo, "vd-mic", 1, "vd-vocoder", 1));
 assert(connected(demo, "vd-profile", 0, "vd-vocoder", 7));
 assert(connected(demo, "vd-profile", 1, "vd-vocoder", 4));
 assert.strictEqual(micModule.numoutlets, 2);
+assert.strictEqual(micModule.numinlets, 2);
 
 console.log("Vocal profile patch interfaces: PASS");
