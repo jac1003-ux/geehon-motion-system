@@ -1,0 +1,4 @@
+interface:
+  display_name: "Organize Max Patches"
+  short_description: "Clean Max patch layouts without changing behavior"
+  default_prompt: "Use $organizing-max-patches to clean this Max patch layout without changing its behavior."
