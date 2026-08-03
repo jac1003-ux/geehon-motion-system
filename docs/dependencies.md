@@ -55,4 +55,4 @@ The files under `javascript/` are Max runtime logic and run inside Max's `js` ob
 
 ## Project License Status
 
-The repository does not yet declare a separate license for the original Geehon Motion System code and artwork. Before public release or commercial distribution, select a project license and review how the bundled GPL-3.0 Hand and Pose tracking components affect the intended distribution model.
+The repository does not yet declare a separate license for the original MOTION INSTRUMENT code and artwork. Before public release or commercial distribution, select a project license and review how the bundled GPL-3.0 Hand and Pose tracking components affect the intended distribution model.

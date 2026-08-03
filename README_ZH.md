@@ -1,135 +1,99 @@
-# Geehon Motion System
+# MOTION INSTRUMENT
 
-[English README](README.md)
+[English README](README.md) · [项目阐述（PDF）](docs/MOTION_INSTRUMENT_Project_Statement_Draft_ZH.pdf)
 
-Geehon Motion System 是一个处于作品集原型阶段的 Max/MSP 手势音乐系统。它将模块化音频输入、并联效果器、`jweb` 手部追踪和分页式乐器界面组合在一起，用于现场演示和音乐科技研究生作品集。
+MOTION INSTRUMENT 是一个基于 Max/MSP 的实时演奏系统，通过摄像头识别手部动作并控制声音。项目将三类音源、固定串联效果链、空间角色手势控制，以及录音、简单编辑和导出整合在一套五页面界面中。
 
-## 当前阶段
+![Perform 页面](assets/documentation/screenshots/perform_actual.png)
 
-本仓库提供的是可以运行和继续开发的原型，并非已经封装完成的独立软件或商业插件。当前版本面向 Max 9，用于作品集展示、课程测试，以及后续对手势与声音参数映射的人体工学研究。
+## 当前版本
 
-## 主要功能
+本仓库包含可在 Max 9 中运行的完整作品集原型。它目前是 Max Project，尚未封装为 VST、Audio Unit、Max for Live Device 或独立应用。
 
-- Mic 输入：支持单声道通道或立体声通道对选择
-- File 输入：支持拖放、文件选择、波形点击定位、循环播放和时间反馈
-- Granular 输入：支持录音、样本加载、预设、波形位置、密度、粒子长度、音高、散布、粒子增益和纹理增益
-- 三路 Source Mixer，并提供独立 Dry Bus
-- 并联效果器：pfft 频谱 Vocoder、实时 Vocal Chop、立体声 Tremolo
-- 在 Max `jweb` 中运行的 MediaPipe 手部追踪
-- 独立的 MediaPipe Pose 交互原型，提供 Singer 与 Instrumentalist 两套校准基准
-- 失追时的 Hold、Return、Lost 与平滑重连保护
-- 可选 MIDI CC 脚踏 clutch，并包含设备掉线保护
-- Source、FX、Gesture、Master 四页式界面
-- 关键开关与参数使用短 ramp，减少爆音和点击声
+### 音频系统
 
-## 音频链路
+- 三类音源：带 EQ 的麦克风输入、文件播放器和 Granular 乐器
+- Source Mixer：各音源独立启用、增益调节与电平反馈
+- 固定串联效果链：**Vocoder → Bitcrusher → Multiband Filter → Feedback Delay**
+- 每个串联阶段都具有独立输出增益和电平显示
+- 最终效果链后的立体声录音、波形选区、试听与 24-bit WAV 导出
+- 独立监听增益和静音；不会改变导出的录音文件
 
-```text
-Mic / File / Granular
-        |
-        v
-   Source Mixer
-        |
-        +---------------------------> Dry Return
-        +---> pfft Vocoder ---------> Vocoder Return
-        +---> Live Vocal Chop ------> Chop Return
-        +---> Stereo Tremolo -------> Tremolo Return
-                                         |
-                                         v
-                                  FX Return Mixer
-                                         |
-                                         v
-                                     Main Out
-```
+### 手势系统
 
-各效果器输出独立的处理声层。输入原声只由 Dry Return 控制，避免效果器 bypass 时把隐藏的干声重复送入总线。
+- 通过 Max `jweb` 嵌入 MediaPipe 手部追踪
+- 按手所在工作区分配角色，不依赖容易判断错误的 Left/Right 标签
+- Target 工作区用数字手势 `1–5` 选择控制目标，握拳冻结参数更新
+- Parameter 工作区将归一化 X、Y 和 Pinch 数据映射到当前效果器
+- 基于时间戳的确认与平滑，减少摄像头帧率变化对响应速度的影响
+- Gesture 页面直接显示识别数字、当前目标、原始输入值和映射后参数
+
+| 目标 | X | Y | Pinch |
+| --- | --- | --- | --- |
+| 1 Vocoder | Brightness | Carrier Tone | Noise Mix |
+| 2 Bitcrusher | Sample Rate | Bit Depth | Drive |
+| 3 Multiband | Focus | Contrast | Spread |
+| 4 Delay | Delay Time | Feedback | Stereo Offset |
+| 5 All | 同时控制四个效果器 | 同时控制四个效果器 | 同时控制四个效果器 |
+
+选择手势控制目标不会自动启用效果器；效果器的启用与旁通仍由演奏界面明确控制。
+
+## 界面页面
+
+| Source | FX |
+| --- | --- |
+| ![Source 页面](assets/documentation/screenshots/source_actual.png) | ![FX 页面](assets/documentation/screenshots/fx_actual.png) |
+
+| Gesture | Master |
+| --- | --- |
+| ![Gesture 页面](assets/documentation/screenshots/gesture_actual.png) | ![Master 页面](assets/documentation/screenshots/master_actual.png) |
+
+五个页面各自承担不同任务：**Perform** 用于现场演奏，**Source** 用于音源编辑与混音，**FX** 用于效果器细调，**Gesture** 用于摄像头反馈和参数映射，**Master** 用于录音、导出与最终监听。
 
 ## 打开方式
 
-1. 下载或克隆完整仓库，不要把单独的 `.maxpat` 从项目目录中拿出来运行。
-2. 安装 Max 9。
+1. 安装 Cycling '74 Max 9。
+2. 克隆或下载完整仓库，并保持原有目录结构。
 3. 打开 `geehon-motion-system.maxproj`。
-4. 在 Max Project 窗口中打开 `mt_portfolio_main.maxpat`。
-5. 若要单独测试第一阶段 Pose 控制层，在同一 Project 窗口中打开 `mt_control_pose_demo.maxpat`。
-6. macOS 询问摄像头权限时，允许 Max 使用摄像头。
-7. Hand 或 Pose 模块加载 MediaPipe 库和模型时需要网络连接。
-8. 打开 DSP，启用至少一个输入源，再提高对应 Source 和 FX Return 的增益。
+4. 从 Max Project 窗口打开 `mt_portfolio_main.maxpat`。
+5. macOS 请求摄像头权限时选择允许，再在 Gesture 页面选择摄像头。
+6. 打开 DSP，启用至少一个音源并提高 Source Mixer 电平，再按需要启用效果器。
 
-## 当前手势映射
+当前手势模块在运行时从网络加载 MediaPipe 库和模型资源。首次连接新的声卡或扬声器时，请先降低监听音量。
 
-| 手势数据 | 当前控制目标 |
-| --- | --- |
-| Hand X | Tremolo Rate |
-| Hand Y | Tremolo Depth |
-| Pinch Distance | Tremolo Stereo Spread |
-| Palm Width | 暂时预留 |
-
-这些映射目前只是可运行原型。后续会从基准姿势、活动范围、疲劳程度、参数曲线和声音辨识度等方面继续评估，不把当前连接直接视为最终的人体工学方案。
-
-## Pose 交互第一阶段
-
-独立 Pose Demo 有意停在效果器映射之前，先输出经过校准和安全状态处理的人体特征，供下一阶段人体工学设计使用：
-
-- **Singer：** 单独保存自然基准姿势，目标是在演唱时无需占用双手。
-- **Instrumentalist：** 单独保存受乐器演奏姿势影响的自然基准。
-- **失追保护：** 短暂保持最后数值，随后回到中性；重新识别时平滑接回实时数据。
-- **可选脚踏 clutch：** MIDI Learn 可学习一个 CC 脚踏；设备掉线会关门，重新插入也不会自动重新激活。
-
-`Energy`、`Space`、`Texture`、`Transform` 四个宏输出已经预留，但目前固定为 0 并明确标记为 `Unassigned`。第一阶段 Pose 原型没有接入 `mt_portfolio_main.maxpat`，也没有连接任何音频效果器。
-
-## 文件结构
+## 仓库结构
 
 ```text
-geehon-motion-system.maxproj   正式 Max Project 入口
-patchers/                      当前运行所需的 Max patch
-  inputs/                      Mic、File、Granular 输入模块
-  mixers/                      Source Mixer 与 FX Return Mixer
-  effects/                     Vocoder、Vocal Chop、Tremolo
-  control/                     手势追踪与控制路由
-  dsp/                         Granular voice 与 pfft 处理核心
-assets/ui/                     PNG 皮肤、可编辑 SVG 和 Logo
-web/hand-landmarker/           jweb 页面与 MediaPipe 桥接代码
-web/pose-landmarker/           Pose jweb 页面、运行代码、许可证与模型桥接
-javascript/                    Max 运行时数学、校准、状态机和 MIDI 安全逻辑
-media/                         可选本地音频，默认不提交 Git
-tests/                         Patch 与仓库结构检查
-scripts/                       维护脚本
-docs/                          架构、依赖和设计过程文档
-archive/                       旧版本和实验模块，不参与正式运行
+geehon-motion-system.maxproj   Max Project 正式入口
+patchers/mt_portfolio_main.maxpat
+patchers/inputs/               Mic、File、Granular 音源
+patchers/effects/              四个串联效果器
+patchers/mixers/               Source、FX Output 和监听控制
+patchers/control/              手势追踪与控制路由
+patchers/dsp/                  Granular 与 Vocoder DSP 抽象
+web/hand-landmarker/           jweb 桥接与 MediaPipe 集成
+javascript/                    手势映射和界面控制逻辑
+assets/ui/                     界面资源
+tests/                         静态结构与逻辑检查
+docs/                          项目阐述与技术说明
+archive/                       研究原型和已停用模块
 ```
 
-## 开发检查
+## 检查与文档
 
-以下检查需要 Node.js，但运行乐器本身不需要 Node.js。
+运行完整静态检查：
 
 ```bash
-node tests/test_maxproj.js
 node tests/test_maxpat_integrity.js
-node tests/test_repository_structure.js
-node tests/test_hand_control_interface.js
-node tests/test_pose_feature_math.js
-node tests/test_pose_interaction_state.js
-node tests/test_pose_patch_interfaces.js
-node tests/test_pose_demo.js
 ```
 
-`tests/` 中还包含各个 UI 模块的独立检查。
+静态检查用于验证 Patch 结构和路由；声音、摄像头、延迟与录音行为仍需在目标电脑的 Max 中人工测试。
+
+- [中文项目阐述（PDF）](docs/MOTION_INSTRUMENT_Project_Statement_Draft_ZH.pdf)
+- [英文项目阐述（PDF）](docs/MOTION_INSTRUMENT_Project_Statement_Draft_EN.pdf)
+- [系统架构](docs/architecture.md)
+- [依赖与来源](docs/dependencies.md)
 
 ## 依赖与来源
 
-音频部分主要使用 Max/MSP 原生对象。Hand 与 Pose 追踪分别基于对应的 `jweb` Landmarker 项目进行适配，并在运行时加载 MediaPipe Tasks Vision。详细来源、网络要求和许可证说明见 [docs/dependencies.md](docs/dependencies.md)。
-
-## 当前限制
-
-- Hand 与 Pose 追踪目前依赖在线 MediaPipe CDN 与模型资源。
-- 手势参数映射尚未完成人体工学定稿。
-- Pose 的 Singer/Instrumentalist 长时间使用、疲劳表现和 MIDI 硬件行为仍需完成手工测试记录。
-- 当前还没有封装为 VST、Audio Unit、Max for Live Device 或独立 App。
-- 更换声卡、摄像头和电脑后仍需进行实际音频与摄像头测试。
-
-## 项目文档
-
-- [系统架构](docs/architecture.md)
-- [依赖与来源](docs/dependencies.md)
-- [设计过程记录](docs/design/)
-- [版本记录](CHANGELOG.md)
+音频系统主要使用 Max/MSP 原生对象。手部追踪改编自 [lysdexic-audio/jweb-hands-landmarker](https://github.com/lysdexic-audio/jweb-hands-landmarker)，原项目说明与 GPL-3.0 许可证保留在 `web/hand-landmarker/`。详细信息见 [docs/dependencies.md](docs/dependencies.md)。

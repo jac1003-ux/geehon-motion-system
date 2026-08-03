@@ -13,18 +13,18 @@
 ### Task 1: Stage jweb Gesture Assets
 
 **Files:**
-- Create directory: `/Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/jweb/`
-- Copy from: `/Volumes/菊花茶/作品集msp/jweb-hands-gesture-recognizer-main.zip`
-- Copy from: `/Volumes/菊花茶/作品集msp/jweb-hands-landmarker-main.zip`
+- Create directory: `<project-root>/jweb/`
+- Copy from: `<local-source>/jweb-hands-gesture-recognizer-main.zip`
+- Copy from: `<local-source>/jweb-hands-landmarker-main.zip`
 
 - [ ] **Step 1: Extract both zip files into the project**
 
 Run:
 
 ```bash
-mkdir -p /Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/jweb
-unzip -q -o /Volumes/菊花茶/作品集msp/jweb-hands-gesture-recognizer-main.zip -d /Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/jweb
-unzip -q -o /Volumes/菊花茶/作品集msp/jweb-hands-landmarker-main.zip -d /Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/jweb
+mkdir -p <project-root>/jweb
+unzip -q -o <local-source>/jweb-hands-gesture-recognizer-main.zip -d <project-root>/jweb
+unzip -q -o <local-source>/jweb-hands-landmarker-main.zip -d <project-root>/jweb
 ```
 
 Expected: both package folders exist with `.html`, `.js`, `.maxpat`, README, image, and gif files.
@@ -32,8 +32,8 @@ Expected: both package folders exist with `.html`, `.js`, `.maxpat`, README, ima
 ### Task 2: Add Main Patch Generator
 
 **Files:**
-- Modify: `/Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/scripts/generate_patches.js`
-- Create generated file: `/Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/mt_portfolio_main.maxpat`
+- Modify: `<project-root>/scripts/generate_patches.js`
+- Create generated file: `<project-root>/mt_portfolio_main.maxpat`
 
 - [ ] **Step 1: Add `buildPortfolioMain()`**
 
@@ -53,8 +53,8 @@ Expected: running the generator writes `mt_portfolio_main.maxpat`.
 ### Task 3: Update Documentation
 
 **Files:**
-- Modify: `/Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/README.md`
-- Modify generator README template in: `/Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/scripts/generate_patches.js`
+- Modify: `<project-root>/README.md`
+- Modify generator README template in: `<project-root>/scripts/generate_patches.js`
 
 - [ ] **Step 1: Add `mt_portfolio_main.maxpat` to the file list**
 
@@ -67,17 +67,17 @@ Expected: README states that the first prototype uses `mt_control_hand_stub.maxp
 ### Task 4: Verify
 
 **Files:**
-- Check: `/Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/*.maxpat`
-- Check: `/Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/jweb/`
+- Check: `<project-root>/*.maxpat`
+- Check: `<project-root>/jweb/`
 
 - [ ] **Step 1: Run syntax and generator checks**
 
 Run:
 
 ```bash
-node --check /Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/scripts/generate_patches.js
-node /Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/scripts/generate_patches.js
-jq empty /Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/*.maxpat
+node --check <project-root>/scripts/generate_patches.js
+node <project-root>/scripts/generate_patches.js
+jq empty <project-root>/*.maxpat
 ```
 
 Expected: all commands exit 0.
@@ -93,7 +93,7 @@ Expected: no missing object ids.
 Run:
 
 ```bash
-open -a Max /Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/mt_portfolio_main.maxpat
+open -a Max <project-root>/mt_portfolio_main.maxpat
 ```
 
 Expected: Max receives the file path without shell error.

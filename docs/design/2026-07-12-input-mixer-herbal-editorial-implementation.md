@@ -42,7 +42,7 @@ Run:
 
 ```bash
 qlmanage -t -s 1520 -o /private/tmp assets/ui/input_mixer_panel_v1.svg
-/Users/jac_tea/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 \
+python3 \
   -c 'from PIL import Image; src=Image.open("/private/tmp/input_mixer_panel_v1.svg.png"); crop=src.crop((0,0,1520,640)); crop.save("assets/ui/input_mixer_panel_v1.png"); crop.save("input_mixer_panel_v1.png")'
 ```
 

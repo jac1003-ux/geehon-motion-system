@@ -1011,7 +1011,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "jit_matrix" ],
 					"patching_rect" : [ 20.0, 20.0, 420.0, 280.0 ],
-					"pic" : "/Users/jac_tea/Documents/maxmsp插件制作/gesture_input_system/assets/ui/mic_panel_v1.png",
+					"pic" : "mic_panel_v1.png",
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 420.0, 280.0 ]
 				}

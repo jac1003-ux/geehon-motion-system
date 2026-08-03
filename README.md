@@ -1,135 +1,99 @@
-# Geehon Motion System
+# MOTION INSTRUMENT
 
-[中文说明](README_ZH.md)
+[中文说明](README_ZH.md) · [Project statement (PDF)](docs/MOTION_INSTRUMENT_Project_Statement_Draft_EN.pdf)
 
-Geehon Motion System is a portfolio-stage Max/MSP instrument for controlling sound sources and parallel audio effects with hand movement. It combines a modular source layer, gesture tracking in `jweb`, and a tabbed instrument interface designed for live demonstration.
+MOTION INSTRUMENT is a Max/MSP performance system that uses camera-tracked hand movement to shape sound in real time. It combines three sound sources, a fixed serial effects chain, spatial gesture roles, and an integrated record/edit/export workflow in one five-page interface.
 
-## Current Status
+![Perform page](assets/documentation/screenshots/perform_actual.png)
 
-This repository contains a working prototype, not a packaged standalone application or commercial plug-in. The current build has been developed for Max 9 and is intended for portfolio review, classroom testing, and continued research into ergonomic gesture-to-sound mapping.
+## Current build
 
-## Features
+This repository contains the complete portfolio prototype for Max 9. It is a Max Project rather than a packaged VST, Audio Unit, Max for Live device, or standalone application.
 
-- Mic input with mono channel or stereo-pair selection
-- File playback with drag-and-drop loading, waveform seeking, looping, and time feedback
-- Granular source with recording, sample loading, presets, waveform position, density, size, pitch, spray, amplitude, and texture gain
-- Three-channel source mixer with a dedicated dry bus
-- Parallel FX returns for a pfft spectral vocoder, live vocal chop, and stereo tremolo
-- MediaPipe hand tracking inside Max `jweb`
-- Standalone MediaPipe Pose interaction prototype with Singer and Instrumentalist calibration profiles
-- Tracking-loss safety with Hold, Return, Lost, and reconnect ramps
-- Optional MIDI CC foot clutch with device-loss protection
-- Four-page Source, FX, Gesture, and Master presentation interface
-- Short parameter ramps for click-free switching
+### Audio system
 
-## Signal Flow
+- Sources: microphone input with EQ, file player, and granular instrument
+- Source Mixer with independent enable, gain, and level feedback
+- Fixed serial effects chain: **Vocoder → Bitcrusher → Multiband Filter → Feedback Delay**
+- Independent output gain and metering for every effect stage
+- Post-FX stereo recording, waveform range selection, preview, and 24-bit WAV export
+- Separate monitor level and mute controls that do not alter the exported recording
 
-```text
-Mic / File / Granular
-        |
-        v
-   Source Mixer
-        |
-        +---------------------------> Dry Return
-        +---> pfft Vocoder ---------> Vocoder Return
-        +---> Live Vocal Chop ------> Chop Return
-        +---> Stereo Tremolo -------> Tremolo Return
-                                         |
-                                         v
-                                  FX Return Mixer
-                                         |
-                                         v
-                                     Main Out
-```
+### Gesture system
 
-FX modules output independent processed layers. The original source signal is controlled only by the Dry return, avoiding hidden dry-signal leakage through effect bypass paths.
+- MediaPipe hand tracking embedded in Max through `jweb`
+- Hands are assigned by workspace position instead of unreliable Left/Right labels
+- The target workspace selects an effect with finger counts `1–5`; a fist freezes parameter updates
+- The parameter workspace maps normalized X, Y, and pinch values to the selected effect
+- Timestamp-based confirmation and smoothing keep behavior consistent across camera frame rates
+- The Gesture page shows the recognized number, current target, raw input values, and mapped parameters
 
-## Quick Start
+| Target | X | Y | Pinch |
+| --- | --- | --- | --- |
+| 1 Vocoder | Brightness | Carrier tone | Noise mix |
+| 2 Bitcrusher | Sample rate | Bit depth | Drive |
+| 3 Multiband | Focus | Contrast | Spread |
+| 4 Delay | Delay time | Feedback | Stereo offset |
+| 5 All | Controls all four effects | Controls all four effects | Controls all four effects |
 
-1. Download or clone the complete repository. Do not separate individual `.maxpat` files from the project folders.
-2. Install Max 9.
+Gesture target selection does not automatically enable an effect. Effect enable/bypass remains an explicit performance control.
+
+## Interface
+
+| Source | FX |
+| --- | --- |
+| ![Source page](assets/documentation/screenshots/source_actual.png) | ![FX page](assets/documentation/screenshots/fx_actual.png) |
+
+| Gesture | Master |
+| --- | --- |
+| ![Gesture page](assets/documentation/screenshots/gesture_actual.png) | ![Master page](assets/documentation/screenshots/master_actual.png) |
+
+The five tabs have distinct roles: **Perform** for live operation, **Source** for input editing and mixing, **FX** for detailed effect control, **Gesture** for camera feedback and mapping, and **Master** for recording, export, and final monitoring.
+
+## Quick start
+
+1. Install Cycling '74 Max 9.
+2. Clone or download the complete repository; keep its folder structure intact.
 3. Open `geehon-motion-system.maxproj`.
 4. Open `mt_portfolio_main.maxpat` from the Max Project window.
-5. To test the Stage-One Pose control layer separately, open `mt_control_pose_demo.maxpat` from the same Project window.
-6. Allow Max to access the camera when macOS asks.
-7. Keep an internet connection available while the Hand or Pose tracker loads its MediaPipe libraries and model.
-8. Turn on DSP, enable one or more sources, then raise the relevant Source and FX return gains.
+5. Allow camera access when macOS asks, then select the camera in the Gesture view.
+6. Turn on DSP, enable a source, raise its Source Mixer level, and enable effects as needed.
 
-## Current Gesture Mapping
+The current hand tracker loads MediaPipe libraries and model resources from the internet at runtime. Start with monitor volume low when testing a new audio interface.
 
-| Gesture value | Current destination |
-| --- | --- |
-| Hand X | Tremolo rate |
-| Hand Y | Tremolo depth |
-| Pinch distance | Tremolo stereo spread |
-| Palm width | Reserved for a future mapping |
-
-These mappings are provisional. The next design stage will evaluate neutral positions, movement range, fatigue, parameter scaling, and perceptual clarity before treating them as a final performance system.
-
-## Pose Interaction Stage One
-
-The standalone Pose demo deliberately stops before effect mapping. It produces calibrated, safety-conditioned body features for later ergonomic design:
-
-- **Singer:** a separately stored neutral baseline intended for hands-free control while singing.
-- **Instrumentalist:** a separately stored neutral baseline intended for postures shaped by an instrument.
-- **Safety:** tracking loss holds the last value briefly, returns to neutral, and reconnects without a sudden jump.
-- **Optional foot clutch:** MIDI Learn can bind one CC pedal; device loss closes the clutch and reconnection does not automatically re-arm it.
-
-The `Energy`, `Space`, `Texture`, and `Transform` macro outputs exist but remain zero and explicitly unassigned. The Pose prototype is not connected to `mt_portfolio_main.maxpat` or to any audio effect in Stage One.
-
-## Repository Structure
+## Repository structure
 
 ```text
-geehon-motion-system.maxproj   Supported Max Project entry point
-patchers/                      Active Max runtime patchers
-  inputs/                      Mic, File, and Granular sources
-  mixers/                      Source and FX return mixers
-  effects/                     Vocoder, Vocal Chop, and Tremolo
-  control/                     Hand tracking and control routing
-  dsp/                         Granular voices and pfft processing
-assets/ui/                     PNG skins, editable SVG sources, and logo assets
-web/hand-landmarker/           Local jweb page and MediaPipe bridge
-web/pose-landmarker/           Local Pose jweb page, runtime, license, and model bridge
-javascript/                    Max runtime math, calibration, state, and MIDI safety logic
-media/                         Optional local audio files, ignored by default
-tests/                         Static patch and repository checks
-scripts/                       Maintenance utilities
-docs/                          Architecture, dependencies, and design history
-archive/                       Legacy patchers and experiments, not used at runtime
+geehon-motion-system.maxproj   Max Project entry point
+patchers/mt_portfolio_main.maxpat
+patchers/inputs/               Mic, File, and Granular sources
+patchers/effects/              Four serial effects
+patchers/mixers/               Source, FX output, and monitor controls
+patchers/control/              Hand tracking and gesture routing
+patchers/dsp/                  Granular and vocoder DSP abstractions
+web/hand-landmarker/           Local jweb bridge and MediaPipe integration
+javascript/                    Gesture mapping and UI control logic
+assets/ui/                     Interface assets
+tests/                         Static structure and logic checks
+docs/                          Project statements and technical notes
+archive/                       Research prototypes and retired modules
 ```
 
-## Development Checks
+## Verification and documentation
 
-The checks require Node.js but the instrument itself does not.
+Run the full static verification suite with:
 
 ```bash
-node tests/test_maxproj.js
 node tests/test_maxpat_integrity.js
-node tests/test_repository_structure.js
-node tests/test_hand_control_interface.js
-node tests/test_pose_feature_math.js
-node tests/test_pose_interaction_state.js
-node tests/test_pose_patch_interfaces.js
-node tests/test_pose_demo.js
 ```
 
-Additional module-specific checks are available in `tests/`.
+Static checks validate patch structure and routing; final sound, camera, latency, and recording behavior must still be checked inside Max on the target computer.
 
-## Dependencies and Credits
-
-The audio system uses standard Max/MSP objects. Hand and Pose tracking are adapted from their respective `jweb` Landmarker projects and load MediaPipe Tasks Vision resources at runtime. Full attribution, network requirements, and license notes are documented in [docs/dependencies.md](docs/dependencies.md).
-
-## Known Limitations
-
-- Hand and Pose tracking currently depend on remote MediaPipe CDN and model resources.
-- Gesture mappings are functional prototypes and are not yet finalized for ergonomics.
-- Pose Singer/Instrumentalist operation, long-session fatigue, and MIDI hardware behavior still require the documented manual checkpoint.
-- The project has not yet been packaged as a VST, Audio Unit, Max for Live device, or standalone app.
-- Audio behavior should still be verified on each target interface and camera setup.
-
-## Project Documentation
-
+- [English project statement (PDF)](docs/MOTION_INSTRUMENT_Project_Statement_Draft_EN.pdf)
+- [Chinese project statement (PDF)](docs/MOTION_INSTRUMENT_Project_Statement_Draft_ZH.pdf)
 - [Architecture](docs/architecture.md)
 - [Dependencies and attribution](docs/dependencies.md)
-- [Design history](docs/design/)
-- [Changelog](CHANGELOG.md)
+
+## Dependencies and attribution
+
+The audio system uses standard Max/MSP objects. Hand tracking is adapted from [lysdexic-audio/jweb-hands-landmarker](https://github.com/lysdexic-audio/jweb-hands-landmarker); the retained notice and GPL-3.0 license are included under `web/hand-landmarker/`. See [docs/dependencies.md](docs/dependencies.md) for details.

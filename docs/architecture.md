@@ -2,90 +2,87 @@
 
 ## Overview
 
-Geehon Motion System separates audio generation, parallel processing, gesture control, and presentation UI into independent Max abstractions. The supported entry point is `geehon-motion-system.maxproj`; the top-level performance patch is `patchers/mt_portfolio_main.maxpat`.
+MOTION INSTRUMENT separates audio sources, serial processing, gesture control, recording, and presentation into reusable Max abstractions. The supported entry point remains `geehon-motion-system.maxproj`; the top-level performance patch is `patchers/mt_portfolio_main.maxpat`.
 
-## Runtime Layers
+## Runtime signal flow
 
-### 1. Source Layer
+```text
+Mic / File / Granular
+          |
+          v
+     Source Mixer
+          |
+          v
+       Vocoder
+          |
+          v
+      Bitcrusher
+          |
+          v
+  Multiband Filter
+          |
+          v
+   Feedback Delay
+          |
+          +----> Record / Edit / Export (post-FX, pre-monitor)
+          |
+          v
+   Master Monitor ----> Meter / DAC
+```
 
-- `mt_input_mic_ui.maxpat`: live ADC input with mono/stereo routing
-- `mt_input_file_ui.maxpat`: buffered file playback and waveform transport
+Bitcrusher, Multiband Filter, and Feedback Delay use a short `mt_serial_bypass` ramp so a disabled processor continues passing the dry serial signal without clicks. Vocoder uses its internal bypass path. The monitor gain and mute stage is after the recording tap and therefore cannot change the exported WAV.
+
+## Runtime layers
+
+### 1. Source layer
+
+- `mt_input_mic_ui.maxpat`: live mono/stereo input, noise gate, and microphone EQ access
+- `mt_input_file_ui.maxpat`: buffered file loading, playback, progress, and waveform transport
 - `mt_input_granular_ui.maxpat`: sample capture/loading and granular synthesis controls
-- `mt_input_mixer_ui.maxpat`: source enable, gain, metering, and master source sum
+- `mt_input_mixer_ui.maxpat`: source enable, gain, metering, and stereo source sum
 
-All source enables use shared state routing so the module controls and mixer controls remain synchronized.
+### 2. Serial FX layer
 
-### 2. Parallel FX Layer
+- `mt_mod_vocoder.maxpat`: pfft spectral voice processor
+- `mt_mod_bitcrusher.maxpat`: sample-rate reduction, bit-depth reduction, and drive
+- `mt_mod_multiband_filter_v2.maxpat`: three-band spectral motion processor
+- `mt_mod_feedback_delay.maxpat`: stereo feedback delay
+- `mt_fx_output_trim_panel.maxpat`: one synchronized output control and meter per serial stage
 
-- `mt_mod_vocoder.maxpat`: pfft spectral envelope transfer with an internal carrier
-- `mt_mod_vocal_chop.maxpat`: live slicing and optional recent-buffer hold behavior
-- `mt_mod_tremolo.maxpat`: stereo amplitude motion
+Effect selection in the FX page changes only the visible editor. It does not change signal order.
 
-The Source Mixer output is copied to each processor. Effect outputs do not form a serial chain.
+### 3. Gesture layer
 
-### 3. Return and Master Layer
+`mt_control_hand_jweb.maxpat` embeds the local Hand Landmarker page and returns independent tracked-hand dictionaries. `mt_fx_hand_mapper.js` assigns roles by workspace position:
 
-`mt_fx_return_mixer.maxpat` receives one dry stereo bus and three independent stereo FX returns. Each return has its own enable and gain stage before the master sum.
+- Target workspace: finger counts 1–5 select Vocoder, Bitcrusher, Multiband, Delay, or All; a fist holds the current values.
+- Parameter workspace: X, Y, and pinch continuously drive the selected target.
 
-This structure keeps the dry signal explicit:
+This spatial role assignment avoids relying on MediaPipe Left/Right labels. Confirmation, loss handling, and smoothing use timestamps so the response is not tied to a particular camera frame rate.
 
-- Dry Return off means no unprocessed source reaches the master.
-- FX Return off means that processor contributes no output.
-- Enabling an effect does not implicitly add another dry copy.
+### 4. Record and monitor layer
 
-### 4. Gesture Layer
+- `mt_record_export_editor.maxpat`: post-FX stereo capture, waveform selection, preview, and 24-bit WAV export
+- `mt_master_monitor.maxpat`: final listening gain, mute, stereo meters, and peak display
 
-`mt_control_hand_jweb.maxpat` embeds a local HTML page with `jweb`. The page loads MediaPipe Tasks Vision, obtains camera frames, draws the mirrored preview, and sends hand landmark dictionaries back into Max.
+Preview is routed into the monitor path without being recorded back into the take.
 
-The Max control layer derives normalized values for hand X, hand Y, pinch distance, and palm width. The current Main patch maps the first three values to Tremolo parameters and leaves palm width reserved.
+### 5. Presentation layer
 
-### 5. Standalone Pose Interaction Layer
+The top-level patch contains five presentation states:
 
-`mt_control_pose_demo.maxpat` is a separate Stage-One control prototype and is not part of the Main audio graph. Its pipeline is:
+- Perform: live source, gesture, effect, record, and monitor controls
+- Source: one selected source editor plus the fixed Source Mixer
+- FX: one selected effect editor plus the fixed serial-stage output panel
+- Gesture: camera workspace, gesture readout, control target, and mapping values
+- Master: full record/export editor and final monitor
 
-```text
-mt_control_pose_jweb
-        |
-        v
-mt_pose_feature_engine
-        |
-        v
-mt_interaction_profile <---- mt_midi_clutch
-        |
-        v
-raw safe features + unassigned macro outlets
-```
+Page switching changes visibility only; it does not reset DSP or create duplicate processing instances.
 
-The feature engine stores separate Singer and Instrumentalist calibration baselines, applies confidence hysteresis, smoothing, deadzones, and motion history, and keeps display mirroring separate from anatomical sign conventions.
+## Project-relative loading
 
-The interaction profile adds timestamp-driven safety states: `NO_CAMERA`, `POSITION`, `UNCALIBRATED`, `CALIBRATING`, `READY`, `ACTIVE`, `HOLD`, `RETURN`, and `LOST`. An optional MIDI CC foot clutch closes before device-disconnect status is emitted. The four semantic macros remain zero until later ergonomic mapping research.
+The hand tracker resolves `Project:/web/hand-landmarker/jweb-hands-landmarker.html` through the Max Project. Active runtime patchers and UI assets therefore do not depend on a specific macOS user path.
 
-## Project-Relative Resource Loading
+## Source of truth
 
-The hand tracker resolves:
-
-```text
-Project:/web/hand-landmarker/jweb-hands-landmarker.html
-```
-
-through `absolutepath`, converts it to a `file://` URL, and sends it to `jweb`. Active runtime patchers therefore do not depend on a specific macOS user folder.
-
-The Pose tracker uses the same project-relative pattern for:
-
-```text
-Project:/web/pose-landmarker/jweb-pose-landmarker.html
-```
-
-## Interface Stability
-
-Max inlet and outlet order follows interface order, including horizontal outlet placement inside subpatchers. The test `tests/test_hand_control_interface.js` locks the internal hand-control order to:
-
-```text
-Camera Menu -> Hand X -> Hand Y -> Pinch -> Palm
-```
-
-This prevents camera list messages from being routed into numeric gesture outputs if internal objects are rearranged.
-
-## Source of Truth
-
-The manually organized `.maxpat` files under `patchers/` are the current source of truth. Older generators are retained only under `archive/development-tools/` and must not overwrite active patches.
+The manually organized `.maxpat` files under `patchers/` are the runtime source of truth. Files under `archive/` are retained for design history and are not part of the current Main signal path.
