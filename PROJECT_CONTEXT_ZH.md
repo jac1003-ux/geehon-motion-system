@@ -184,3 +184,7 @@ Master Output
 2026-08-03 清理 `Multiband_filter_v2_core` 的遗留第 4 口：该口原为旧版内部噪声 `Test Input`，V2 删除测试支路后仍被生成脚本误保留。现从当前 patch 与 `build_multiband_filter_v2.js` 同步删除，原 5–15 号参数入口及父层连接连续前移为 4–14；新增结构回归断言，参数含义与 DSP 不变。
 
 2026-08-03 完成 Main 实际使用的其余已整理 Patch 接口复查：在 Bitcrusher、Feedback Delay、Vocoder Core 中发现并删除同类的遗留空 `Test Input`，其后入口与父层连接只做连续前移，DSP 含义不变；16 个 Main 依赖、31 个递归 patcher 已无内外同时孤立的子 patch 端口。`mt_record_export_editor` 的根层入口/出口已按外部编号从左到右排列并清除全部对象重叠，`p-Granular-input` 的第 5 口移到第 4 口右侧。受保护的 `p Mic_input`、`p Mic_eq`、`p Mic_control` 未改。接口清理、Record、Granular、FX、Main、Max Project 与全仓 `.maxpat` 完整性检查通过；仍需用户在 Max 中做人眼与声音验收。
+
+2026-08-03 完成 Main 实际使用的 16 个文件、31 个递归 patcher 的全量布局审计与整理；三个用户手工 Mic 子 patch 保持不动。新增活动 subpatch 布局守卫并修复 Mic 资源依赖与 Master Monitor 元数据，合并前后 32/32 项静态检查通过。`ui/commercial-redesign` 已以快进方式合并到本地 `main`，当前里程碑提交为 `2f47eaf`，尚未推送远端。
+
+2026-08-03 依据三份参考模板完成 4 页英文项目阐述初版，结构为 Project Statement、Artistic Motivation、Interaction Design、Technical Realisation、Sound Design Strategy 与 Reflection。DOCX/PDF 位于 `docs/JUHUA_Project_Statement_Draft.*`，已逐页渲染检查；待老师反馈后再修改、发布代码和上传最终文件。
